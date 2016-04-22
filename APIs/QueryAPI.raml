@@ -187,6 +187,7 @@ documentation:
       200:
         body:
           example: !include ../examples/queryapi-v1.0-subscriptions-post-200.json
+      400:
   get:
     description: List active connections to websockets providing real-time updates on resource changes
     responses:
@@ -205,4 +206,5 @@ documentation:
       description: Delete a single subscription
       responses:
         204:
+        403:
         404:
