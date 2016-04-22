@@ -4,13 +4,12 @@ This repository contains details of this AMWA Specification, including Node, Reg
 
 ## Getting started
 
-Readers are advised to be familiar with the NMOS Technical Overview at (https://github.com/AMWA-TV/nmos) and then read the [API Overview](APIOverview.md) in this repository. The API specifications are written in RAML -- if a suitable tool is not available for reading this, then [this](APIs/generateHTML) will create HTML versions. 
+Readers are advised to be familiar with the JT-NM Reference Architecture (http://jt-nm.org/), before starting with the [Overview](docs/1.0. Overview.md) in this repository. The API specifications are written in RAML -- if a suitable tool is not available for reading this, then [this](APIs/generateHTML) will create HTML versions.
 
 ## Contents
 
 * README.md -- This file
-* [APIOverview.md](APIOverview.md) -- Overview of APIs, including parts of the specification common to all APIs
-* [P2POperation.md](P2POperation.md) -- Overview of peer-to-peer discovery (without a distributed registry)
+* [docs/1.0. Overview.md](docs/1.0. Overview.md) -- Documentation targeting those implementing APIs and clients. Further topics are covered within the [docs/](docs/) directory
 * [APIs/NodeAPI.raml](APIs/NodeAPI.raml) -- Normative specification of the NMOS Node API
 * [APIs/RegistrationAPI.raml](APIs/RegistrationAPI.raml) -- Normative specification of the NMOS Registration API
 * [APIs/QueryAPI.raml](APIs/QueryAPI.raml) -- Normative specification of the NMOS Query API
