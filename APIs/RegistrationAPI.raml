@@ -15,7 +15,7 @@ documentation:
     content: |
       Registration APIs MUST produce an mDNS advertisement of the type \_nmos-registration.\_tcp
 
-      The mDNS advertisement MUST include a TXT record with key 'pri' and an integer value. Values 0 to 99 correspond to an active NMOS Registration API (zero being the highest priority). Values 100+ are reserved for development work to avoid colliding with a live system.
+      The mDNS advertisement MUST include a TXT record with key 'pri' and an integer value. Values 0 to 99 correspond to an active NMOS Registration API (zero being the highest priority). Values 100+ are reserved for development work to avoid colliding with a live system. NB: In future versions of the specification it is likely that the 'priority' and 'weight' as specified by RFC 2782 will be used.
 
       The IP address and port of the registration API MUST be identified via the mDNS advertisement, with the HTTP path then being resolved via the standard NMOS API path documentation.
 
