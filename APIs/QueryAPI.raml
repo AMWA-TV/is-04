@@ -59,6 +59,7 @@ documentation:
             example: !include ../examples/queryapi-v1.0-nodeid-get-200.json
             schema: Node
         404:
+          description: Returned when the requested Node ID does not exist
 /sources:
   displayName: Sources
   get:
@@ -82,6 +83,7 @@ documentation:
             example: !include ../examples/queryapi-v1.0-sourceid-get-200.json
             schema: Source
         404:
+          description: Returned when the requested Source ID does not exist
 /flows:
   displayName: Flows
   get:
@@ -105,6 +107,7 @@ documentation:
             example: !include ../examples/queryapi-v1.0-flowid-get-200.json
             schema: Flow
         404:
+          description: Returned when the requested Flow ID does not exist
 /devices:
   displayName: Devices
   get:
@@ -127,6 +130,7 @@ documentation:
             example: !include ../examples/queryapi-v1.0-deviceid-get-200.json
             schema: Device
         404:
+          description: Returned when the requested Device ID does not exist
 /senders:
   displayName: Senders
   get:
@@ -150,6 +154,7 @@ documentation:
             example: !include ../examples/queryapi-v1.0-senderid-get-200.json
             schema: Sender
         404:
+          description: Returned when the requested Sender ID does not exist
 /receivers:
   displayName: Receivers
   get:
@@ -173,6 +178,7 @@ documentation:
             example: !include ../examples/queryapi-v1.0-receiverid-get-200.json
             schema: Receiver
         404:
+          description: Returned when the requested Receiver ID does not exist
 /subscriptions:
   displayName: Subscriptions
   post:
@@ -188,6 +194,7 @@ documentation:
         body:
           example: !include ../examples/queryapi-v1.0-subscriptions-post-200.json
       400:
+        description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
   get:
     description: List active connections to websockets providing real-time updates on resource changes
     responses:
@@ -202,9 +209,13 @@ documentation:
           body:
             example: !include ../examples/queryapi-v1.0-subscriptionid-get-200.json
         404:
+          description: Returned when the requested Subscription ID does not exist
     delete:
       description: Delete a single subscription
       responses:
         204:
+          description: The expected response, indicating 'No Content' following the DELETE
         403:
+          description: Returned when a DELETE request is made against a non-persistent subscription which is managed by the Query API and cannot be deleted
         404:
+          description: Returned when the requested Subscription ID does not exist

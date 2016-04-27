@@ -89,6 +89,7 @@ documentation:
             example: !include ../examples/nodeapi-v1.0-sourceid-get-200.json
             schema: Source
         404:
+          description: Returned when the requested Source ID does not exist
 /flows:
   displayName: Flows
   get:
@@ -107,6 +108,7 @@ documentation:
             example: !include ../examples/nodeapi-v1.0-flowid-get-200.json
             schema: Flow
         404:
+          description: Returned when the requested Flow ID does not exist
 /devices:
   displayName: Devices
   get:
@@ -125,6 +127,7 @@ documentation:
             example: !include ../examples/nodeapi-v1.0-deviceid-get-200.json
             schema: Device
         404:
+          description: Returned when the requested Device ID does not exist
 /senders:
   displayName: Senders
   get:
@@ -143,6 +146,7 @@ documentation:
             example: !include ../examples/nodeapi-v1.0-senderid-get-200.json
             schema: Sender
         404:
+          description: Returned when the requested Sender ID does not exist
 /receivers:
   displayName: Receivers
   get:
@@ -161,6 +165,7 @@ documentation:
             example: !include ../examples/nodeapi-v1.0-receiverid-get-200.json
             schema: Receiver
         404:
+          description: Returned when the requested Receiver ID does not exist
     /target:
       put:
         description: Request a change to a Receiver's subscription
@@ -172,4 +177,6 @@ documentation:
               example: !include ../examples/nodeapi-v1.0-receivertarget-put-200.json
               schema: SenderTarget
           400:
+            description: Returned when the PUT request is incorrectly formatted or missing mandatory attributes
           404:
+            description: Returned when the requested Receiver ID does not exist
