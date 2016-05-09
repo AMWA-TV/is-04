@@ -25,6 +25,10 @@ documentation:
 
       The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_proto' with a value of either 'http' or 'https' dependent on the protocol in use by the Registration API web server.
 
+      **api\_ver**
+
+      The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_ver'. The value of this TXT record is a comma separated list of API versions supported by the server. For example: 'v1.0,v1.1,v2.0'. There should be no whitespace between commas, and versions should be listed in ascending order.
+
       **pri**
 
       The DNS-SD advertisement MUST include a TXT record with key 'pri' and an integer value. Values 0 to 99 correspond to an active NMOS Registration API (zero being the highest priority). Values 100+ are reserved for development work to avoid colliding with a live system. NB: In future versions of the specification it is likely that the 'priority' and 'weight' as specified by RFC 2782 will be used.

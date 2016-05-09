@@ -5,6 +5,7 @@ This document provides an overview of changes between released versions of this 
 * Under active development
 
 * Add 'api\_proto' TXT records to DNS-SD advertisements
+* Add 'api\_ver' TXT records to DNS-SD advertisements
 
 ## Release v1.0
 * Initial release

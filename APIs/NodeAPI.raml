@@ -39,6 +39,10 @@ documentation:
 
       The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_proto' with a value of either 'http' or 'https' (lower-case) dependent on the protocol in use by the Node API web server.
 
+      **api\_ver**
+
+      The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_ver'. The value of this TXT record is a comma separated list of API versions supported by the server. For example: 'v1.0,v1.1,v2.0'. There should be no whitespace between commas, and versions should be listed in ascending order.
+
       **ver\_**
 
       When a Node is unable to locate or successfully register with a Registration API it MUST additionally advertise the following mDNS TXT records as part of its Node advertisement. If a Node is successfully registered with a Registration API it MUST withdraw advertisements of these TXT records. There is no requirement to register these TXT records with a unicast DNS service.
