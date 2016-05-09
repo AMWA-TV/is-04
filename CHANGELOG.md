@@ -4,5 +4,7 @@ This document provides an overview of changes between released versions of this 
 ## Release (unreleased)
 * Under active development
 
+* Add 'api\_proto' TXT records to DNS-SD advertisements
+
 ## Release v1.0
 * Initial release
