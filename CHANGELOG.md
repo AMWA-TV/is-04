@@ -7,6 +7,7 @@ This document provides an overview of changes between released versions of this 
 * Add multi-protocol support and version identification to Node API /self and hence Query API /nodes
 * Add 'api\_proto' TXT records to DNS-SD advertisements
 * Add 'api\_ver' TXT records to DNS-SD advertisements
+* Add guidance on use of DNS SRV record priority and weight
 
 ## Release v1.0
 * Initial release
