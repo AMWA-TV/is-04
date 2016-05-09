@@ -19,15 +19,6 @@ documentation:
 
       The IP address and port of the registration API MUST be identified via the mDNS advertisement, with the HTTP path then being resolved via the standard NMOS API path documentation.
 
-  - title: Client Behaviour
-    content: |
-      In order to prevent the overloading of a Registration API in production use, the following best practice for clients is highly recommended. Registration APIs may choose to ban clients on a temporary or permanent basis if they do not follow good practice.
-
-      - When a client (Node) first joins the network and discovers a Registration API it may interact with it immediately
-      - If the Registration API becomes unavailable, the client may discover another Registration API via the means described above (mDNS announced priority). It should then POST to the health resource as before, interpreting a success (200) response as confirmation that the registry still has knowledge of the Node despite one Registration API disappearing. Re-registration of all resources is not necessary if a success (200) response is received.
-      - If all Registration APIs in a network become unavailable, the client should continue to browse mDNS to identify when one has become available. Once a Registration API becomes available, the Node should assume that it has become de-registered. The Node should wait for a random period between zero and ten seconds before attempting registration in order to avoid flooding the registration API with requests.
-      - If at any time the client receives a 4XX error from the Registration API this is a client error. The client should not re-attempt the same request unless it has first taken corrective action to avoid the same error from occurring again. For example if a 404 response is received from the health resource, the Node must be re-registered before contacting the health resource again. A 400 error when registering a Flow may indicate an invalid payload, in which case the same payload should not be re-registered with the API and the client should log an error.
-      - If at any time the client receives a 5XX error or timeout from the Registration API it should assume a server side issue and carry out exponential back-off prior to any retry attempts to the same API. Alternatively another Registration API may be sought using the mDNS mechanism described above.
 /:
   displayName: Base
   get:
