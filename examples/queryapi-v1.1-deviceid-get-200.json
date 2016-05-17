@@ -15,5 +15,11 @@
     "senders": [], 
     "id": "a370d258-69de-4422-860a-ee4cf32ee9f4", 
     "node_id": "3a25a674-e6eb-4987-84ad-ef479fe4d527",
-    "type": "urn:x-nmos:device:pipeline"
+    "type": "urn:x-nmos:device:pipeline",
+    "controls": [
+        {
+            "type": "urn:x-manufacturer:control:generic",
+            "href": "wss://154.67.62.2:4635"
+        }
+    ]
 }
