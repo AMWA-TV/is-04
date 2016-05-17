@@ -9,6 +9,7 @@
     "label",
     "href",
     "caps",
+    "api",
     "services"
   ],
   "properties": {
@@ -27,14 +28,55 @@
       "type": "string"
     },
     "href": {
-      "description": "HTTP access href for the Node's API",
+      "description": "HTTP access href for the Node's API (deprecated)",
       "type": "string",
       "format": "uri"
     },
     "hostname": {
-      "description": "Node hostname (optional)",
+      "description": "Node hostname (optional, deprecated)",
       "type": "string",
       "format": "hostname"
+    },
+    "api": {
+      "description": "URL fragments required to connect to the Node API",
+      "type": "object",
+      "required": ["versions", "endpoints"],
+      "properties": {
+        "versions": {
+          "description": "Supported API versions running on this Node",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "v[0-9]+.[0-9]+"
+          }
+        },
+        "endpoints": {
+          "description": "Host, port and protocol details required to connect to the API",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["host", "port", "protocol"],
+            "properties": {
+              "host": {
+                "type": "string",
+                "description": "IP address or hostname which the Node API is running on",
+                "format": ["hostname", "ipv4", "ipv6"]
+              },
+              "port": {
+                "type": "integer",
+                "description": "Port number which the Node API is running on",
+                "minimum": 1,
+                "maximum": 65535
+              },
+              "protocol": {
+                "type": "string",
+                "description": "Protocol supported by this instance of the Node API",
+                "enum": ["http", "https"]
+              }
+            }
+          }
+        }
+      }
     },
     "caps": {
       "description": "Capabilities (not yet defined)",
