@@ -4,6 +4,7 @@ This document provides an overview of changes between released versions of this 
 ## Release (unreleased)
 * Under active development
 
+* Add multi-protocol support and version identification to Node API /self and hence Query API /nodes
 * Add 'api\_proto' TXT records to DNS-SD advertisements
 * Add 'api\_ver' TXT records to DNS-SD advertisements
 
