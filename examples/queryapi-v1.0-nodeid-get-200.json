@@ -5,16 +5,16 @@
     "href": "http://172.29.176.102:12345/", 
     "services": [
         {
-            "href": "http://172.29.176.102:12345/x-nmos/node/v1.0/self/status/", 
-            "type": "urn:x-nmos:service:status"
+            "href": "http://172.29.176.102:12345/x-manufacturer/status/", 
+            "type": "urn:x-manufacturer:service:status"
         }, 
         {
-            "href": "http://172.29.176.102:12345/x-nmos/node/v1.0/self/pipelinemanager/", 
-            "type": "urn:x-nmos:service:pipelinemanager"
+            "href": "http://172.29.176.102:12345/x-manufacturer/pipelinemanager/", 
+            "type": "urn:x-manufacturer:service:pipelinemanager"
         }, 
         {
-            "href": "http://172.29.176.102:12345/x-nmos/node/v1.0/self/mdnsbridge/", 
-            "type": "urn:x-nmos:service:mdnsbridge"
+            "href": "http://172.29.176.102:12345/x-manufacturer/mdnsbridge/", 
+            "type": "urn:x-manufacturer:service:mdnsbridge"
         }
     ], 
     "caps": {}, 
