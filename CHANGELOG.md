@@ -9,6 +9,7 @@ This document provides an overview of changes between released versions of this 
 * Add 'api\_ver' TXT records to DNS-SD advertisements
 * Add guidance on use of DNS SRV record priority and weight
 * Add support for secure websockets to the Query API
+* Add support for Upgrade headers when using websockets
 
 ## Release v1.0
 * Initial release

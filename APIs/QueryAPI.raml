@@ -55,6 +55,9 @@ documentation:
     content: |
       The Query API MUST announce its 'priority' and 'weight' via its mDNS or unicast DNS SRV record as defined by RFC 2782.
 
+  - title: Websockets
+    content: |
+      Persistent connections to the Query API are supported via Websockets which can be set up via the /subscriptions resource. Query APIs may additionally support the HTTP 'Upgrade' header sent by clients to upgrade an HTTP GET request to a Websocket. In cases where this is performed, a corresponding entry in /subscriptions must also be created with matching query parameters.
 /:
   displayName: Base
   get:
