@@ -1,8 +1,9 @@
 {
-    "max_update_rate_ms": 100, 
-    "resource_path": "/nodes", 
+    "max_update_rate_ms": 100,
+    "resource_path": "/nodes",
     "params": {
         "label": "host1"
-    }, 
-    "persist": false
-} 
+    },
+    "persist": false,
+    "secure": false
+}
