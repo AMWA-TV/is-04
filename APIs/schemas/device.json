@@ -20,7 +20,8 @@
     },
     "version": {
       "description": "String formatted PTP timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
-      "type": "string"
+      "type": "string",
+      "pattern": "^[0-9]+:[0-9]+$"
     },
     "label": {
       "description": "Freeform string label for the Device",
@@ -28,7 +29,8 @@
     },
     "type": {
       "description": "Device type URN",
-      "type": "string"
+      "type": "string",
+      "format": "uri"
     },
     "node_id": {
       "description": "Globally unique identifier for the Node which initially created the Device",

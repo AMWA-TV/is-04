@@ -12,7 +12,8 @@
     },
     "version": {
       "description": "String formatted PTP timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
-      "type": "string"
+      "type": "string",
+      "pattern": "^[0-9]+:[0-9]+$"
     },
     "label": {
       "description": "Freeform string label for the Sender",
@@ -35,11 +36,20 @@
         "urn:x-nmos:transport:rtp.ucast",
         "urn:x-nmos:transport:rtp.mcast",
         "urn:x-nmos:transport:dash"
-      ]
+      ],
+      "format": "uri"
     },
     "tags": {
       "description": "Key value set of freeform string tags to aid in filtering Senders. Values should be represented as an array of strings. Can be empty.",
-      "type": "object"
+      "type": "object",
+      "patternProperties": {
+        "": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     },
     "device_id": {
       "description": "Device ID which this Sender forms part of",
@@ -48,7 +58,8 @@
     },
     "manifest_href": {
       "description": "HTTP URL to a file describing how to connect to the Sender (SDP for RTP)",
-      "type": "string"
+      "type": "string",
+      "format": "uri"
     }
   }
 }

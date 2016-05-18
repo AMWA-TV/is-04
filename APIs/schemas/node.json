@@ -19,7 +19,8 @@
     },
     "version": {
       "description": "String formatted PTP timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
-      "type": "string"
+      "type": "string",
+      "pattern": "^[0-9]+:[0-9]+$"
     },
     "label": {
       "description": "Freeform string label for the Node",
@@ -27,11 +28,13 @@
     },
     "href": {
       "description": "HTTP access href for the Node's API",
-      "type": "string"
+      "type": "string",
+      "format": "uri"
     },
     "hostname": {
       "description": "Node hostname (optional)",
-      "type": "string"
+      "type": "string",
+      "format": "hostname"
     },
     "caps": {
       "description": "Capabilities (not yet defined)",
@@ -46,11 +49,13 @@
         "properties": {
           "href": {
             "type": "string",
-            "description": "URL to reach a service running on the Node"
+            "description": "URL to reach a service running on the Node",
+            "format": "uri"
           },
           "type": {
             "type": "string",
-            "description": "URN identifying the type of service"
+            "description": "URN identifying the type of service",
+            "format": "uri"
           }
         }
       }

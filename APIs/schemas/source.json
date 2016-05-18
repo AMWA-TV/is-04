@@ -22,7 +22,8 @@
     },
     "version": {
       "description": "String formatted PTP timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
-      "type": "string"
+      "type": "string",
+      "pattern": "^[0-9]+:[0-9]+$"
     },
     "label": {
       "description": "Freeform string label for the Source",
@@ -39,7 +40,8 @@
         "urn:x-nmos:format:video",
         "urn:x-nmos:format:audio",
         "urn:x-nmos:format:data"
-      ]
+      ],
+      "format": "uri"
     },
     "caps": {
       "description": "Capabilities (not yet defined)",
@@ -47,7 +49,15 @@
     },
     "tags": {
       "description": "Key value set of freeform string tags to aid in filtering Sources. Values should be represented as an array of strings. Can be empty.",
-      "type": "object"
+      "type": "object",
+      "patternProperties": {
+        "": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     },
     "device_id": {
       "description": "Globally unique identifier for the Device which initially created the Source",

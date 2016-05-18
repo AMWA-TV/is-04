@@ -10,7 +10,8 @@
   "properties": {
     "type": {
       "description": "Singular form of the resource type to be registered (e.g. node, source, flow etc)",
-      "type": "string"
+      "type": "string",
+      "enum": ["node", "device", "sender", "receiver", "source", "flow"]
     },
     "data": {
       "description": "Object containing the full representation of the Node, Source, Flow, Device etc.",
