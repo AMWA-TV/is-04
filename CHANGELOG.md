@@ -12,6 +12,7 @@ This document provides an overview of changes between released versions of this 
 * Add support for Upgrade headers when using websockets
 * Add paging support to the Query API
 * Add paging support to the Node API
+* Add advanced query parameter support for the Query API
 
 ## Release v1.0
 * Initial release

@@ -60,6 +60,41 @@ traits:
               description: Identifies the current value of the query parameter 'paging.until' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.since value of a query to return the next page of results. Combining this with the X-Paging-Since header value provides the absolute time bounds of the current returned data set.
               type: string
               example: 1441716120:318744030
+  - rql:
+      description: This resource MAY support advanced query formats using the Resource Query Language (RQL) syntax
+      queryParameters:
+        query.rql:
+          description: RQL format string indicating the query to be performed, such as 'and(eq(format,urn:x-nmos:format:video),in(tags.location,(Salford,London)))'. Strings used as filter values MUST be URL encoded.
+          type: string
+      responses:
+        400:
+          description: The server refuses to perform the query as it would be too resource intensive.
+        501:
+          description: The query parameters specified are not currently supported by this implementation.
+  - ancestry:
+      description: This resource MAY support ancestry tracking whereby an ID is traced through 'parents' attributes to find and return all related resources
+      queryParameters:
+        query.ancestry_id:
+          description: UUID of the Source or Flow for which the ancestry is to be tracked
+          type: string
+          pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        query.ancestry_type:
+          description: The type of ancestry query to perform, whether searching for 'parents' or 'children' of the specified resource
+          type: string
+          enum: ["parents", "children"]
+        query.ancestry_generations:
+          description: The maximum number of generations to search through before returning the set of results. If this is not set, the server may use a default or fail to return results due to the request being too resource intensive
+          type: integer
+      responses:
+        200:
+          headers:
+            X-Ancestry-Generations:
+              description: Identifies the number of ancestry generations being searched through. If 'query.ancestry_generations' is not specified by the user this should be returned as the server defined default.
+              type: integer
+        400:
+          description: The server refuses to perform the query as it would be too resource intensive.
+        501:
+          description: The query parameters specified are not currently supported by this implementation.
 documentation:
   - title: Overview
     content: |
@@ -96,6 +131,74 @@ documentation:
   - title: Websockets
     content: |
       Persistent connections to the Query API are supported via Websockets which can be set up via the /subscriptions resource. Query APIs may additionally support the HTTP 'Upgrade' header sent by clients to upgrade an HTTP GET request to a Websocket. In cases where this is performed, a corresponding entry in /subscriptions must also be created with matching query parameters.
+
+  - title: Query Parameters
+    content: |
+      As a Query API may provide access to many thousands of resources, query parameters provide the means to narrow down these results. Any attribute which may be returned by a particular API resource should be available to use as a query parameter.
+
+      ** Basic Queries **
+
+      Basic query parameters SHOULD be supported. Advanced queries using RQL, ancestry tracking and similar MAY be supported.
+
+      * Querying Within Objects
+
+      Querying using attributes of objects is permitted via the use of a '.' separator. For example, the /receivers resource may be queried with '?subscription.sender_id=2683ad14-642f-459d-a169-ef91c76cec6b'.
+
+      * Querying Within Arrays
+
+      Querying using attributes of objects held within arrays is permitted via the use of a '.' separator. For example, the /nodes resource may be queried with '?services.type=urn:x-manufacturer:service:tally'. More advanced queries within arrays may require use of the Resource Query Language 'in()' operator.
+
+      * Examples
+
+      1) /senders?transport=urn:x-nmos:transport:rtp
+      This query would return all Senders which are using an RTP transport
+
+      2) /sources?format=urn:x-nmos:format:video&device_id=9126cc2f-4c26-4c9b-a6cd-93c4381c9be5
+      This query would return all Sources which use the video format, and originate from the Device with ID 9126cc2f-4c26-4c9b-a6cd-93c4381c9be5
+
+      3) /flows?tags.studio=HQ1
+      This query would return all Flows which have a tag of name 'studio', for which one of the values is 'HQ1'
+
+      * Invalid Examples
+
+      1) /flows?tags.location=Salford&tags.location=London
+      This query is acting on an array which may have multiple values. Unfortunately as different programming languages may interpret this query differently, the implementation may only see one of the requested values. If this sort of query is required then it is suggested that Resource Query Language is used (see below).
+
+      ** Resource Query Language **
+
+      Given the constraints of using a standard '?variable=value&variable2=value2' query syntax, Query APIs MAY support Resource Query Language (https://github.com/persvr/rql/) in order to support more advanced queries.
+
+      RQL should be formatted in the normalised form as opposed to using FIQL syntax, and passed via the query string using '?query.rql=...'.
+
+      Querying within objects and arrays should be performed as in the Basic Queries case by using the '.' separator.
+
+      When an RQL query is specified, the Basic Queries format MAY be ignored in order to simplify implementation.
+
+      Note that as RQL permits the definition of very complex queries, the server may return a 400 error code to indicate that it is refusing to action the client's request due to the query's complexity.
+
+      * Constraints
+
+      Not all RQL operators will be suitable for use with a Query API. It is suggested that the following operators are supported, however these are not mandated and implementations may choose to support their own subset.
+
+      1) Functions: in(), out(), sort(), like(), select()
+
+      2) Logical Operators: and(), or(), not()
+
+      3) Relational Operators: eq(), ne(), gt(), ge(), lt(), le()
+
+      NB: It is suggested that limit() is not implemented as paging and associated limits is specified directly by the Query API.
+
+      * Examples
+
+      1) /senders?query.rql=eq(transport,urn:x-nmos:format:rtp)
+      This query performs the same action as the first Basic Queries example, identifying all Senders which use an RTP transport
+
+      2) /sources?query.rql=and(eq(format,urn:x-nmos:format:video),in(tags.location,(Salford,London)))
+      This query identifies Sources which have a format of video, and have a tag with name 'location' which has value 'Salford' or 'London'.
+
+      ** Querying Ancestry **
+
+      Sources and Flows list their 'parents' in an array. A Query API implementing ancestry tracking may be queried using '?query.ancestry_...' parameters in order to identify parents or children of a given Source or Flow.
 /:
   displayName: Base
   get:
@@ -110,10 +213,17 @@ documentation:
 /nodes:
   displayName: Nodes
   get:
-    is: [paged]
+    is: [paged, rql]
     description: List Nodes
     body:
       schema: EmptySchema
+    queryParameters:
+      version:
+      label:
+      href:
+      hostname:
+      caps:
+      services:
     responses:
       200:
         body:
@@ -140,15 +250,19 @@ documentation:
 /sources:
   displayName: Sources
   get:
-    is: [paged]
+    is: [paged, rql, ancestry]
     description: List Sources
     body:
       schema: EmptySchema
     queryParameters:
-      device_id:
+      version:
       label:
       description:
       format:
+      caps:
+      tags:
+      device_id:
+      parents:
     responses:
       200:
         body:
@@ -175,15 +289,18 @@ documentation:
 /flows:
   displayName: Flows
   get:
-    is: [paged]
+    is: [paged, rql, ancestry]
     description: List Flows
     body:
       schema: EmptySchema
     queryParameters:
-      source_id:
+      version:
       label:
       description:
       format:
+      tags:
+      source_id:
+      parents:
     responses:
       200:
         body:
@@ -210,14 +327,17 @@ documentation:
 /devices:
   displayName: Devices
   get:
-    is: [paged]
+    is: [paged, rql]
     description: List Devices
     body:
       schema: EmptySchema
     queryParameters:
-      node_id:
+      version:
       label:
-      description:
+      type:
+      node_id:
+      senders:
+      receivers:
     responses:
       200:
         body:
@@ -244,15 +364,19 @@ documentation:
 /senders:
   displayName: Senders
   get:
-    is: [paged]
+    is: [paged, rql]
     description: List Senders
     body:
       schema: EmptySchema
     queryParameters:
-      flow_id:
+      version:
       label:
       description:
+      flow_id:
       transport:
+      tags:
+      device_id:
+      manifest_href:
     responses:
       200:
         body:
@@ -279,15 +403,20 @@ documentation:
 /receivers:
   displayName: Receivers
   get:
-    is: [paged]
+    is: [paged, rql]
     description: List Receivers
     body:
       schema: EmptySchema
     queryParameters:
+      version:
       label:
       description:
       format:
+      caps:
+      tags:
+      device_id:
       transport:
+      subscription:
     responses:
       200:
         body:
