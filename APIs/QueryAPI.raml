@@ -40,7 +40,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.0-base-get-200.json
+          example: !include ../examples/queryapi-v1.1-base-get-200.json
 /nodes:
   displayName: Nodes
   get:
@@ -48,7 +48,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.0-nodes-get-200.json
+          example: !include ../examples/queryapi-v1.1-nodes-get-200.json
           schema: Nodes
   /{nodeId}:
     get:
@@ -56,7 +56,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.0-nodeid-get-200.json
+            example: !include ../examples/queryapi-v1.1-nodeid-get-200.json
             schema: Node
         404:
           description: Returned when the requested Node ID does not exist
@@ -72,7 +72,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.0-sources-get-200.json
+          example: !include ../examples/queryapi-v1.1-sources-get-200.json
           schema: Sources
   /{sourceId}:
     get:
@@ -80,7 +80,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.0-sourceid-get-200.json
+            example: !include ../examples/queryapi-v1.1-sourceid-get-200.json
             schema: Source
         404:
           description: Returned when the requested Source ID does not exist
@@ -96,7 +96,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.0-flows-get-200.json
+          example: !include ../examples/queryapi-v1.1-flows-get-200.json
           schema: Flows
   /{flowId}:
     get:
@@ -104,7 +104,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.0-flowid-get-200.json
+            example: !include ../examples/queryapi-v1.1-flowid-get-200.json
             schema: Flow
         404:
           description: Returned when the requested Flow ID does not exist
@@ -119,7 +119,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.0-devices-get-200.json
+          example: !include ../examples/queryapi-v1.1-devices-get-200.json
           schema: Devices
   /{deviceId}:
     get:
@@ -127,7 +127,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.0-deviceid-get-200.json
+            example: !include ../examples/queryapi-v1.1-deviceid-get-200.json
             schema: Device
         404:
           description: Returned when the requested Device ID does not exist
@@ -143,7 +143,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.0-senders-get-200.json
+          example: !include ../examples/queryapi-v1.1-senders-get-200.json
           schema: Senders
   /{senderId}:
     get:
@@ -151,7 +151,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.0-senderid-get-200.json
+            example: !include ../examples/queryapi-v1.1-senderid-get-200.json
             schema: Sender
         404:
           description: Returned when the requested Sender ID does not exist
@@ -167,7 +167,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.0-receivers-get-200.json
+          example: !include ../examples/queryapi-v1.1-receivers-get-200.json
           schema: Receivers
   /{receiverId}:
     get:
@@ -175,7 +175,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.0-receiverid-get-200.json
+            example: !include ../examples/queryapi-v1.1-receiverid-get-200.json
             schema: Receiver
         404:
           description: Returned when the requested Receiver ID does not exist
@@ -184,15 +184,15 @@ documentation:
   post:
     description: Create a websocket subscription to an API resource
     body:
-      example: !include ../examples/queryapi-v1.0-subscriptions-post-request.json
-      schema: !include schemas/queryapi-v1.0-subscriptions-post-request.json
+      example: !include ../examples/queryapi-v1.1-subscriptions-post-request.json
+      schema: !include schemas/queryapi-v1.1-subscriptions-post-request.json
     responses:
       201:
         body:
-          example: !include ../examples/queryapi-v1.0-subscriptions-post-200.json
+          example: !include ../examples/queryapi-v1.1-subscriptions-post-200.json
       200:
         body:
-          example: !include ../examples/queryapi-v1.0-subscriptions-post-200.json
+          example: !include ../examples/queryapi-v1.1-subscriptions-post-200.json
       400:
         description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
   get:
@@ -200,14 +200,14 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.0-subscriptions-get-200.json
+          example: !include ../examples/queryapi-v1.1-subscriptions-get-200.json
   /{subscriptionId}:
     get:
       description: Get a single subscription
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.0-subscriptionid-get-200.json
+            example: !include ../examples/queryapi-v1.1-subscriptionid-get-200.json
         404:
           description: Returned when the requested Subscription ID does not exist
     delete:

@@ -26,28 +26,28 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/registrationapi-v1.0-base-get-200.json
+          example: !include ../examples/registrationapi-v1.1-base-get-200.json
 /resource:
   displayName: Resource
   post:
     description: Create or update a registered resource
     body:
-      example: !include ../examples/registrationapi-v1.0-resource-post-request.json
-      schema: !include schemas/registrationapi-v1.0-resource-post-request.json
+      example: !include ../examples/registrationapi-v1.1-resource-post-request.json
+      schema: !include schemas/registrationapi-v1.1-resource-post-request.json
     responses:
       200:
         body:
-          example: !include ../examples/registrationapi-v1.0-resource-post-200.json
+          example: !include ../examples/registrationapi-v1.1-resource-post-200.json
         headers:
           Location:
-            example: /x-nmos/v1.0/registration/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
+            example: /x-nmos/v1.1/registration/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
         description: The expected response for an update operation on an existing registered resource
       201:
         body:
-          example: !include ../examples/registrationapi-v1.0-resource-post-200.json
+          example: !include ../examples/registrationapi-v1.1-resource-post-200.json
         headers:
           Location:
-            example: /x-nmos/v1.0/registration/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
+            example: /x-nmos/v1.1/registration/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
         description: The expected response for a create operation performed for a previously unregistered resource
       400:
         description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
@@ -68,7 +68,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/registrationapi-v1.0-resource-get-200.json
+            example: !include ../examples/registrationapi-v1.1-resource-get-200.json
         404:
           description: Returned when the requested resource does not exist
 /health/nodes/{nodeId}:
@@ -78,7 +78,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/registrationapi-v1.0-health-post-200.json
+          example: !include ../examples/registrationapi-v1.1-health-post-200.json
       404:
         description: Returned when the requested Node does not exist or has been garbage collected
   get:
@@ -86,6 +86,6 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/registrationapi-v1.0-health-get-200.json
+          example: !include ../examples/registrationapi-v1.1-health-get-200.json
       404:
         description: Returned when the requested Node does not exist or has been garbage collected
