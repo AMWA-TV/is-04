@@ -81,7 +81,7 @@
       "type": "object",
       "properties": {
         "sender_id": {
-          "type": "string",
+          "type": ["string", "null"],
           "description": "UUID of the Sender that this Receiver is currently subscribed to",
           "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
           "default": null
