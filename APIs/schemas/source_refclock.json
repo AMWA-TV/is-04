@@ -3,8 +3,8 @@
   "type": "object",
   "description": "Describes a Source",
   "title": "Source resource",
-  "allOf": [
-    { "$ref": "source_core.json" },
-    { "$ref": "source_refclock.json" }
+  "oneOf": [
+    { "$ref": "source_refclock_none.json" },
+    { "$ref": "source_refclock_ptp.json" }
   ]
 }

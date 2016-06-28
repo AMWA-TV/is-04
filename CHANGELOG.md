@@ -16,6 +16,7 @@ This document provides an overview of changes between released versions of this 
 * Add 'device\_id' to Flow attributes covering cases where a Device is a content transformer only
 * Permit Senders without attached Flows to model a Device before internal routing has been performed
 * Add support for exposing control endpoints from Devices
+* Add support for muxed Sources and Flows (TR-04 and 2022-6)
 
 ## Release v1.0
 * Initial release
