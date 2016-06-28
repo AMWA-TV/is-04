@@ -7,7 +7,11 @@
             ]
         }, 
         "format": "urn:x-nmos:format:video", 
-        "caps": {}, 
+        "caps": {
+            "media_types": [
+                "video/raw"
+            ]
+        },
         "device_id": "0d0cb97e-b96a-4a39-887f-d491492d9081", 
         "version": "1441895693:480000000", 
         "label": "Viewer 1", 
@@ -25,7 +29,11 @@
             ]
         }, 
         "format": "urn:x-nmos:format:video", 
-        "caps": {}, 
+        "caps": {
+            "media_types": [
+                "video/raw"
+            ]
+        },
         "device_id": "76aa31e5-c3a4-4639-8dbb-98a86dc32942", 
         "version": "1441726973:353560292", 
         "label": "Viewer 2", 
@@ -39,7 +47,12 @@
         "description": "Audio RX", 
         "tags": {}, 
         "format": "urn:x-nmos:format:audio", 
-        "caps": {}, 
+        "caps": {
+            "media_types": [
+                "audio/L24",
+                "audio/L16"
+            ]
+        },
         "device_id": "e19ef82c-5f0a-48da-a86c-bb2377ab09a4", 
         "version": "1441722334:801293520", 
         "label": "Audio RX", 

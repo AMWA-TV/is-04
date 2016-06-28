@@ -46,8 +46,34 @@
       "format": "uri"
     },
     "caps": {
-      "description": "Capabilities (not yet defined)",
-      "type": "object"
+      "description": "Capabilities",
+      "type": "object",
+      "required": ["media_types"],
+      "properties": {
+        "media_types": {
+          "description": "Subclassification of the formats accepted using IANA assigned media types",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "oneOf": [
+              {
+                "enum": [
+                  "video/raw",
+                  "video/H264",
+                  "video/vc2",
+                  "audio/L24",
+                  "audio/L16",
+                  "video/smpte291"
+                ]
+              },
+              {
+                "pattern": "^[^\s\/]+\/[^\s\/]+$"
+              }
+            ]
+          }
+        }
+      }
     },
     "tags": {
       "description": "Key value set of freeform string tags to aid in filtering sources. Values should be represented as an array of strings. Can be empty.",
