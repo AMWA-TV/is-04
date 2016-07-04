@@ -4,6 +4,16 @@
         "hostname": "host1", 
         "label": "host1", 
         "href": "http://172.29.176.102:12345/", 
+        "api": {
+            "versions": ["v1.1"],
+            "endpoints": [
+                {
+                    "host": "172.29.176.102",
+                    "port": 12345,
+                    "protocol": "http"
+                }
+            ]
+        },
         "services": [
             {
                 "href": "http://172.29.176.102:12345/x-manufacturer/status/", 
@@ -26,6 +36,16 @@
         "hostname": "host2", 
         "label": "host2", 
         "href": "http://172.29.176.19:12345/", 
+        "api": {
+            "versions": ["v1.1"],
+            "endpoints": [
+                {
+                    "host": "172.29.176.19",
+                    "port": 12345,
+                    "protocol": "http"
+                }
+            ]
+        },
         "services": [
             {
                 "href": "http://172.29.176.19:12345/x-manufacturer/pipelinemanager/", 

@@ -3,6 +3,21 @@
     "hostname": "host1", 
     "caps": {}, 
     "href": "http://172.29.80.65:12345/", 
+    "api": {
+        "versions": ["v1.0", "v1.1"],
+        "endpoints": [
+            {
+                "host": "172.29.80.65",
+                "port": 12345,
+                "protocol": "http"
+            },
+            {
+                "host": "172.29.80.65",
+                "port": 443,
+                "protocol": "https"
+            }
+        ]
+    },
     "services": [
         {
             "href": "http://172.29.80.65:12345/x-manufacturer/pipelinemanager/", 

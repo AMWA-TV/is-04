@@ -25,13 +25,27 @@ documentation:
   - title: Overview
     content: |
       The Node API is exposed by each NMOS Node in a system, regardless of whether it is possible for that Node to provide NMOS resources such as Flows, Sources etc. Data exposed by the Node API is used to populate the (distributed) registry via the Registration API. In smaller deployments the Node API is fetched from directly as required by Nodes which implement the Peer to Peer specification.
-  - title: mDNS Advertisement
+  - title: DNS-SD Advertisement
     content: |
-      Node APIs MUST produce an mDNS advertisement of the type \_nmos-node.\_tcp
+      Node APIs MUST produce an mDNS advertisement of the type \_nmos-node.\_tcp. This MAY be accompanied by a unicast DNS announcement of the same type.
 
-      The IP address and port of the Node API MUST be identified via the mDNS advertisement, with the HTTP path then being resolved via the standard NMOS API path documentation.
+      The IP address and port of the Node API MUST be identified via the DNS-SD advertisement, with the full HTTP path then being resolved via the standard NMOS API path documentation.
 
-      When a Node is unable to locate or successfully register with a Registration API it MUST additionally advertise the following mDNS TXT records as part of its Node advertisement. If a Node is successfully registered with a Registration API it MUST withdraw advertisements of these TXT records.
+      Multiple DNS-SD advertisements for the same API are permitted where the API is exposed via multiple ports and/or protocols.
+
+  - title: DNS-SD TXT Records
+    content: |
+      **api\_proto**
+
+      The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_proto' with a value of either 'http' or 'https' (lower-case) dependent on the protocol in use by the Node API web server.
+
+      **api\_ver**
+
+      The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_ver'. The value of this TXT record is a comma separated list of API versions supported by the server. For example: 'v1.0,v1.1,v2.0'. There should be no whitespace between commas, and versions should be listed in ascending order.
+
+      **ver\_**
+
+      When a Node is unable to locate or successfully register with a Registration API it MUST additionally advertise the following mDNS TXT records as part of its Node advertisement. If a Node is successfully registered with a Registration API it MUST withdraw advertisements of these TXT records. There is no requirement to register these TXT records with a unicast DNS service.
 
       | **TXT Record Name** | **Corresponding Node API Resource** |
       |---------------------|-------------------------------------|
@@ -45,6 +59,7 @@ documentation:
       The value of each of the above should be an unsigned 8-bit integer initialised to '0'. This integer MUST be incremented and mDNS TXT record updated whenever a change is made to the corresponding HTTP API resource on the Node. The integer must wrap back to a value of '0' after reaching a maximum value of '255' (MAX_UINT8_T).
 
       For example, the 'ver_src' TXT record must be created when the Node first advertises itself via mDNS. If the data held within the HTTP resource for /sources is added to, removed from or edited, then the 'ver_src' text record must be modified (value incremented).
+
   - title: Receiver Subscriptions
     content: |
       A PUT request to /receivers/{receiverId}/target will modify which Sender a Receiver is subscribed to.
