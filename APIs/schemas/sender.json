@@ -34,8 +34,9 @@
     },
     "flow_id": {
       "description": "ID of the Flow currently passing via this Sender",
-      "type": "string",
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "default": null
     },
     "transport": {
       "description": "Transport type used by the Sender in URN format",

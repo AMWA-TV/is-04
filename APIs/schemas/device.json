@@ -10,7 +10,8 @@
     "type",
     "node_id",
     "senders",
-    "receivers"
+    "receivers",
+    "controls"
   ],
   "properties": {
     "id": {
@@ -51,6 +52,26 @@
       "items": {
         "type": "string",
         "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+      }
+    },
+    "controls": {
+      "description": "Control endpoints exposed for the Device",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["href", "type"],
+        "properties": {
+          "href": {
+            "type": "string",
+            "description": "URL to reach a control endpoint, whether http or otherwise",
+            "format": "uri"
+          },
+          "type": {
+            "type": "string",
+            "description": "URN identifying the control format",
+            "format": "uri"
+          }
+        }
       }
     }
   }

@@ -10,7 +10,13 @@
         ], 
         "id": "c501ae64-f525-48b7-9816-c5e8931bc017", 
         "node_id": "1d452562-e1d5-4e84-b057-5c24de5f6b48",
-        "type": "urn:x-nmos:device:pipeline"
+        "type": "urn:x-nmos:device:pipeline",
+        "controls": [
+            {
+                "type": "urn:x-manufacturer:control:generic",
+                "href": "http://124.54.36.2:465"
+            }
+        ]
     }, 
     {
         "receivers": [], 
@@ -19,7 +25,8 @@
         "senders": [], 
         "id": "a30e4fba-254a-4e97-8bf7-daec80b8e57f", 
         "node_id": "3b8be755-08ff-452b-b217-c9151eb21193",
-        "type": "urn:x-nmos:device:pipeline"
+        "type": "urn:x-nmos:device:pipeline",
+        "controls": []
     }, 
     {
         "receivers": [
@@ -32,7 +39,8 @@
         ], 
         "id": "e19ef82c-5f0a-48da-a86c-bb2377ab09a4", 
         "node_id": "4cf38bb4-d6c4-48d6-a086-6eac45d73ae5",
-        "type": "urn:x-nmos:device:pipeline"
+        "type": "urn:x-nmos:device:pipeline",
+        "controls": []
     }, 
     {
         "receivers": [
@@ -51,6 +59,12 @@
         "senders": [], 
         "id": "a370d258-69de-4422-860a-ee4cf32ee9f4", 
         "node_id": "3a25a674-e6eb-4987-84ad-ef479fe4d527",
-        "type": "urn:x-nmos:device:pipeline"
+        "type": "urn:x-nmos:device:pipeline",
+        "controls": [
+            {
+                "type": "urn:x-manufacturer:control:generic",
+                "href": "wss://154.67.62.2:4635"
+            }
+        ]
     }
 ]

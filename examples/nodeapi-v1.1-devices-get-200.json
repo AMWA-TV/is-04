@@ -8,7 +8,13 @@
         "senders": [
             "d7aa5a30-681d-4e72-92fb-f0ba0f6f4c3e"
         ], 
-        "node_id": "3b8be755-08ff-452b-b217-c9151eb21193"
+        "node_id": "3b8be755-08ff-452b-b217-c9151eb21193",
+        "controls": [
+            {
+                "type": "urn:x-manufacturer:control:generic",
+                "href": "wss://154.67.63.2:4535"
+            }
+        ]
     }, 
     {
         "receivers": [], 
@@ -17,7 +23,21 @@
         "id": "67c25159-ce25-4000-a66c-f31fff890265", 
         "type": "urn:x-nmos:device:pipeline", 
         "senders": [], 
-        "node_id": "3b8be755-08ff-452b-b217-c9151eb21193"
+        "node_id": "3b8be755-08ff-452b-b217-c9151eb21193",
+        "controls": [
+            {
+                "type": "urn:x-manufacturer:control:generic",
+                "href": "ws://182.54.54.75:223"
+            },
+            {
+                "type": "urn:x-manufacturer:control:generic",
+                "href": "http://134.24.64.22/x-manufacturer/control/"
+            },
+            {
+                "type": "urn:x-manufacturer:control:legacy",
+                "href": "telnet://120.43.64.3:8080"
+            }
+        ]
     }, 
     {
         "receivers": [
@@ -28,6 +48,7 @@
         "id": "05017e08-b329-45f9-a566-a3f99cc11e4d", 
         "type": "urn:x-nmos:device:pipeline", 
         "senders": [], 
-        "node_id": "3b8be755-08ff-452b-b217-c9151eb21193"
+        "node_id": "3b8be755-08ff-452b-b217-c9151eb21193",
+        "controls": []
     }
 ]

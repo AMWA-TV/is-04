@@ -5,5 +5,19 @@
     "id": "67c25159-ce25-4000-a66c-f31fff890265",
     "type": "urn:x-nmos:device:pipeline",
     "senders": [],
-    "node_id": "3b8be755-08ff-452b-b217-c9151eb21193"
+    "node_id": "3b8be755-08ff-452b-b217-c9151eb21193",
+    "controls": [
+        {
+            "type": "urn:x-manufacturer:control:generic",
+            "href": "ws://182.54.54.75:223"
+        },
+        {
+            "type": "urn:x-manufacturer:control:generic",
+            "href": "http://134.24.64.22/x-manufacturer/control/"
+        },
+        {
+            "type": "urn:x-manufacturer:control:legacy",
+            "href": "telnet://120.43.64.3:8080"
+        }
+    ]
 }
