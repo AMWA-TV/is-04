@@ -23,7 +23,7 @@
         "media_type": {
           "description": "Subclassification of the format using IANA assigned media types",
           "type": "string",
-          "pattern": "^[^\s\/]+\/[^\s\/]+$"
+          "pattern": "^[^\\s\\/]+\\/[^\\s\\/]+$"
         }
       }
     }

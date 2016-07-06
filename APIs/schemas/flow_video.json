@@ -28,7 +28,7 @@
         "media_type": {
           "description": "Subclassification of the format using IANA assigned media types",
           "type": "string",
-          "oneOf": [
+          "anyOf": [
             {
               "enum": [
                 "video/raw",
@@ -37,7 +37,7 @@
               ]
             },
             {
-              "pattern": "^video\/[^\s\/]+$"
+              "pattern": "^video\\/[^\\s\\/]+$"
             }
           ]
         },
