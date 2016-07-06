@@ -56,7 +56,7 @@
           "minItems": 1,
           "items": {
             "type": "string",
-            "oneOf": [
+            "anyOf": [
               {
                 "enum": [
                   "video/raw",
@@ -68,7 +68,7 @@
                 ]
               },
               {
-                "pattern": "^[^\s\/]+\/[^\s\/]+$"
+                "pattern": "^[^\\s\\/]+\\/[^\\s\\/]+$"
               }
             ]
           }
