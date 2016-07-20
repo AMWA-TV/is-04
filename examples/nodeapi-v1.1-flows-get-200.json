@@ -20,5 +20,15 @@
         "source_id": "0e635152-e501-4d4e-bb87-9f3fe05eb79a", 
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
         "id": "db3bd465-2772-484f-8fac-830b0471258b"
+    },
+    {
+        "description": "TR-04 Video",
+        "tags": {},
+        "format": "urn:x-nmos:format:mux:sdi",
+        "label": "TR-04 Video",
+        "version": "1453880607:123995943",
+        "parents": [],
+        "source_id": "782fac41-17f6-4a21-8186-57ba63a1a8d3",
+        "id": "4857f747-96cf-4ed7-8f4b-9497199f1f25"
     }
 ]
