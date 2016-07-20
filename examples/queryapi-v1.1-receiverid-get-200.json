@@ -6,7 +6,11 @@
         ]
     }, 
     "format": "urn:x-nmos:format:video", 
-    "caps": {}, 
+    "caps": {
+        "media_types": [
+            "video/raw"
+        ]
+    },
     "device_id": "0d0cb97e-b96a-4a39-887f-d491492d9081", 
     "version": "1441895693:480000000", 
     "label": "Viewer", 

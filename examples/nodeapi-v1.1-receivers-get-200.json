@@ -3,7 +3,11 @@
         "description": "", 
         "format": "urn:x-nmos:format:video", 
         "tags": {}, 
-        "caps": {}, 
+        "caps": {
+            "media_types": [
+                "video/raw"
+            ]
+        },
         "subscription": {
             "sender_id": "2683ad14-642f-459d-a169-ef91c76cec6b"
         }, 
