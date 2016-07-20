@@ -74,6 +74,12 @@
           "items" : {
             "title" : "component",
             "type" : "object",
+            "required": [
+              "name",
+              "width",
+              "height",
+              "bit_depth"
+            ],
             "properties" :
             {
               "name" : {
