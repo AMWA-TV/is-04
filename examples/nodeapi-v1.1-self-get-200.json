@@ -42,6 +42,20 @@
     ],
     "label": "host1",
     "description": "host1",
-    "tags": {}, 
-    "id": "3b8be755-08ff-452b-b217-c9151eb21193"
+    "tags": {},
+    "id": "3b8be755-08ff-452b-b217-c9151eb21193",
+    "clocks": [
+        {
+            "name": "clk0",
+            "ref_type":"internal"
+        },
+        {
+            "name": "clk1",
+            "ref_type":"ptp",
+            "traceable": true,
+            "version": "IEEE1588-2008",
+            "gmid": "08-00-11-ff-fe-21-e1-b0",
+            "locked": true
+        }
+    ]
 }

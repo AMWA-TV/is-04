@@ -31,7 +31,17 @@
             }
         ],
         "caps": {},
-        "id": "c8ba20e9-e197-4ec5-8764-4da672128589"
+        "id": "c8ba20e9-e197-4ec5-8764-4da672128589",
+        "clocks": [
+            {
+                "name": "clk0",
+                "ref_type":"ptp",
+                "traceable": false,
+                "version": "IEEE1588-2008",
+                "gmid": "08-00-11-ff-fe-21-e1-b0",
+                "locked": true
+            }
+        ]
     },
     {
         "version": "1441716067:450064243",
@@ -65,6 +75,16 @@
             }
         ],
         "caps": {},
-        "id": "cebc6305-e8db-4026-aeb5-eb7a5620839e"
+        "id": "cebc6305-e8db-4026-aeb5-eb7a5620839e",
+        "clocks": [
+            {
+                "name": "clk0",
+                "ref_type":"ptp",
+                "traceable": false,
+                "version": "IEEE1588-2008",
+                "gmid": "08-00-11-ff-fe-21-e1-b0",
+                "locked": true
+            }
+        ]
     }
 ]

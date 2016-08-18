@@ -19,13 +19,7 @@
         "label": "Camera 1",
         "id": "042a4126-0208-443d-bda6-833ffc27ed51",
         "device_id": "21a28338-fb2e-4df5-9b55-d58e6124bc9f",
-        "refclock": {
-            "type": "ptp",
-            "traceable": true,
-            "version": "IEEE1588-2008",
-            "gmid": "08-00-11-ff-fe-21-e1-b0",
-            "locked": true
-        }
+        "clock_name": "clk0"
     },
     {
         "description": "Camera 2",
@@ -47,13 +41,7 @@
         "label": "CaptureCardSourceVideo",
         "id": "c23c6a65-8e91-4f6c-a484-046363dbca29",
         "device_id": "65fa8c20-890e-4b86-87b2-cfd9df91b7f8",
-        "refclock": {
-            "type": "ptp",
-            "traceable": true,
-            "version": "IEEE1588-2008",
-            "gmid": "08-00-11-ff-fe-21-e1-b0",
-            "locked": true
-        }
+        "clock_name": "clk0"
     },
     {
         "description": "Audio 1",
@@ -69,13 +57,7 @@
         "label": "Audio 1",
         "id": "62cf8dd3-015b-49e3-84c1-1d866a7540bc",
         "device_id": "e7aa15c4-f793-4d43-a0cb-c638db6215ac",
-        "refclock": {
-            "type": "ptp",
-            "traceable": true,
-            "version": "IEEE1588-2008",
-            "gmid": "08-00-11-ff-fe-21-e1-b0",
-            "locked": true
-        },
+        "clock_name": "clk0",
         "channels": [
             {
                 "label": "Left Channel",
@@ -101,13 +83,7 @@
         "label": "Capture Card Source TR-04/2022-6",
         "id": "782fac41-17f6-4a21-8186-57ba63a1a8d3",
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
-        "refclock": {
-            "type": "ptp",
-            "traceable": true,
-            "version": "IEEE1588-2008",
-            "gmid": "08-00-11-ff-fe-21-e1-b0",
-            "locked": true
-        }
+        "clock_name": "clk0"
     },
     {
         "description": "Capture Card Source 2022-6 (No Refclock)",
@@ -123,8 +99,6 @@
         "label": "Capture Card Source 2022-6 (No Refclock)",
         "id": "3ca37fce-c0cf-42a6-86ad-43635a53b5bb",
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
-        "refclock": {
-            "type": "none"
-        }
+        "clock_name": null
     }
 ]
