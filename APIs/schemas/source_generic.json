@@ -5,7 +5,6 @@
   "title": "Generic Source resource",
   "allOf": [
     { "$ref": "source_core.json" },
-    { "$ref": "source_refclock.json" },
     {
       "type": "object",
       "required": [
