@@ -11,7 +11,8 @@
         "href",
         "caps",
         "api",
-        "services"
+        "services",
+        "clocks"
       ],
       "properties": {
         "href": {
@@ -91,6 +92,16 @@
                 "format": "uri"
               }
             }
+          }
+        },
+        "clocks": {
+          "description": "Clocks made available to Devices owned by this Node",
+          "type": "array",
+          "items": {
+            "anyOf": [
+              { "$ref": "clock_internal.json" },
+              { "$ref": "clock_ptp.json" }
+            ]
           }
         }
       }
