@@ -13,13 +13,7 @@
         "label": "CaptureCardSourceVideo",
         "id": "4569cea2-ab63-4f97-8dd1-bad4669ea5e4",
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
-        "refclock": {
-            "type": "ptp",
-            "traceable": true,
-            "version": "IEEE1588-2008",
-            "gmid": "08-00-11-ff-fe-21-e1-b0",
-            "locked": true
-        }
+        "clock_name": "clk0"
     },
     {
         "description": "Capture Card Source Audio",
@@ -35,13 +29,7 @@
         "label": "CaptureCardSourceAudio",
         "id": "fc97ab0f-b51b-4129-9385-dcaf30f9482b",
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
-        "refclock": {
-            "type": "ptp",
-            "traceable": true,
-            "version": "IEEE1588-2008",
-            "gmid": "08-00-11-ff-fe-21-e1-b0",
-            "locked": true
-        },
+        "clock_name": "clk0",
         "channels": [
             {
                 "label": "Left Channel",
@@ -67,13 +55,7 @@
         "label": "CaptureCardSourceAudio",
         "id": "9738780e-141f-4e19-8601-a157dc855aa2",
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
-        "refclock": {
-            "type": "ptp",
-            "traceable": true,
-            "version": "IEEE1588-2008",
-            "gmid": "08-00-11-ff-fe-21-e1-b0",
-            "locked": true
-        },
+        "clock_name": "clk0",
         "channels": [
             {
                 "label": "Left Channel",
@@ -99,13 +81,7 @@
         "label": "CaptureCardSourceVideo",
         "id": "02c46999-d532-4c52-905f-2e368a2af6cb",
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
-        "refclock": {
-            "type": "ptp",
-            "traceable": true,
-            "version": "IEEE1588-2008",
-            "gmid": "08-00-11-ff-fe-21-e1-b0",
-            "locked": true
-        }
+        "clock_name": "clk0"
     },
     {
         "description": "Capture Card Source VANC",
@@ -121,13 +97,7 @@
         "label": "Capture Card Source VANC",
         "id": "0e635152-e501-4d4e-bb87-9f3fe05eb79a",
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
-        "refclock": {
-            "type": "ptp",
-            "traceable": true,
-            "version": "IEEE1588-2008",
-            "gmid": "08-00-11-ff-fe-21-e1-b0",
-            "locked": true
-        }
+        "clock_name": "clk0"
     },
     {
         "description": "Capture Card Source TR-04/2022-6",
@@ -143,13 +113,7 @@
         "label": "Capture Card Source TR-04/2022-6",
         "id": "782fac41-17f6-4a21-8186-57ba63a1a8d3",
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
-        "refclock": {
-            "type": "ptp",
-            "traceable": true,
-            "version": "IEEE1588-2008",
-            "gmid": "08-00-11-ff-fe-21-e1-b0",
-            "locked": true
-        }
+        "clock_name": "clk0"
     },
     {
         "description": "Capture Card Source 2022-6 (No Refclock)",
@@ -165,8 +129,6 @@
         "label": "Capture Card Source 2022-6 (No Refclock)",
         "id": "3ca37fce-c0cf-42a6-86ad-43635a53b5bb",
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
-        "refclock": {
-            "type": "none"
-        }
+        "clock_name": null
     }
 ]

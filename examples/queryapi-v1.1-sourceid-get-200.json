@@ -1,28 +1,22 @@
 {
-    "description": "Capture Card Source Video", 
-    "format": "urn:x-nmos:format:video", 
+    "description": "Capture Card Source Video",
+    "format": "urn:x-nmos:format:video",
     "tags": {
         "SourceDeviceType": [
             "HD Camera"
-        ], 
+        ],
         "host": [
             "host1"
-        ], 
+        ],
         "Location": [
             "Location 1"
         ]
-    }, 
-    "caps": {}, 
-    "version": "1441722516:851371645", 
-    "parents": [], 
-    "label": "CaptureCardSourceVideo", 
-    "id": "c23c6a65-8e91-4f6c-a484-046363dbca29", 
+    },
+    "caps": {},
+    "version": "1441722516:851371645",
+    "parents": [],
+    "label": "CaptureCardSourceVideo",
+    "id": "c23c6a65-8e91-4f6c-a484-046363dbca29",
     "device_id": "65fa8c20-890e-4b86-87b2-cfd9df91b7f8",
-    "refclock": {
-        "type": "ptp",
-        "traceable": true,
-        "version": "IEEE1588-2008",
-        "gmid": "08-00-11-ff-fe-21-e1-b0",
-        "locked": true
-    }
+    "clock_name": "clk1"
 }

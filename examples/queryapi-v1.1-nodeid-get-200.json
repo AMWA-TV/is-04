@@ -30,5 +30,19 @@
         }
     ],
     "caps": {},
-    "id": "c8ba20e9-e197-4ec5-8764-4da672128589"
+    "id": "c8ba20e9-e197-4ec5-8764-4da672128589",
+    "clocks": [
+        {
+            "name": "clk0",
+            "ref_type":"internal"
+        },
+        {
+            "name": "clk1",
+            "ref_type":"ptp",
+            "traceable": true,
+            "version": "IEEE1588-2008",
+            "gmid": "08-00-11-ff-fe-21-e1-b0",
+            "locked": true
+        }
+    ]
 }
