@@ -41,6 +41,7 @@
         "subscription": {
           "description": "Object containing the 'sender_id' currently subscribed to. Sender_id should be null on initialisation.",
           "type": "object",
+          "required": ["sender_id"],
           "properties": {
             "sender_id": {
               "type": ["string", "null"],
