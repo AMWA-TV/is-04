@@ -94,7 +94,7 @@
                 "host1"
             ]
         },
-        "format": "urn:x-nmos:format:mux:sdi",
+        "format": "urn:x-nmos:format:mux",
         "caps": {},
         "version": "1453880605:374934072",
         "parents": [],
@@ -116,7 +116,7 @@
                 "host1"
             ]
         },
-        "format": "urn:x-nmos:format:mux:sdi",
+        "format": "urn:x-nmos:format:mux",
         "caps": {},
         "version": "1453880605:374934072",
         "parents": [],

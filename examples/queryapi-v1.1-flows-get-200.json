@@ -94,7 +94,7 @@
     {
         "description": "TR-04 Video",
         "tags": {},
-        "format": "urn:x-nmos:format:mux:sdi",
+        "format": "urn:x-nmos:format:mux",
         "label": "TR-04 Video",
         "version": "1453880607:123995943",
         "parents": [],
