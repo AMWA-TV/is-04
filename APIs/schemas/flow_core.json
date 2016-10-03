@@ -3,82 +3,53 @@
   "type": "object",
   "description": "Describes a Flow",
   "title": "Flow resource",
-  "required": [
-    "id",
-    "version",
-    "label",
-    "description",
-    "tags",
-    "source_id",
-    "device_id",
-    "parents"
-  ],
-  "properties": {
-    "id": {
-      "description": "Globally unique identifier for the Flow",
-      "type": "string",
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-    },
-    "version": {
-      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
-      "type": "string",
-      "pattern": "^[0-9]+:[0-9]+$"
-    },
-    "label": {
-      "description": "Freeform string label for the Flow",
-      "type": "string"
-    },
-    "description": {
-      "description": "Detailed description of the Flow",
-      "type": "string"
-    },
-    "grain_rate" : {
-      "description": "Number of grains per second for this Flow - only used if Flow is periodic: numerator/denominator - denominator only required if non-integer rate.",
+  "allOf": [
+    { "$ref": "resource_core.json" },
+    {
       "type": "object",
-      "required" : [
-        "numerator"
+      "required": [
+        "source_id",
+        "device_id",
+        "parents"
       ],
-      "properties" : {
-        "numerator" : {
-          "description" : "numerator",
-          "type" : "integer"
+      "properties": {
+        "grain_rate" : {
+          "description": "Number of grains per second for this Flow - only used if Flow is periodic: numerator/denominator - denominator only required if non-integer rate.",
+          "type": "object",
+          "required" : [
+            "numerator"
+          ],
+          "properties" : {
+            "numerator" : {
+              "description" : "numerator",
+              "type" : "integer"
+            },
+            "denominator" : {
+              "description" : "denominator",
+              "type" : "integer",
+              "default" : 1
+            }
+          }
         },
-        "denominator" : {
-          "description" : "denominator",
-          "type" : "integer",
-          "default" : 1
-        }
-      }
-    },
-    "tags": {
-      "description": "Key value set of freeform string tags to aid in filtering Flows. Values should be represented as an array of strings. Can be empty.",
-      "type": "object",
-      "patternProperties": {
-        "": {
+        "source_id": {
+          "description": "Globally unique identifier for the Source which initially created the Flow",
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "device_id": {
+          "description": "Globally unique identifier for the Device which initially created the Flow",
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "parents": {
+          "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
           }
         }
       }
-    },
-    "source_id": {
-      "description": "Globally unique identifier for the Source which initially created the Flow",
-      "type": "string",
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-    },
-    "device_id": {
-      "description": "Globally unique identifier for the Device which initially created the Flow",
-      "type": "string",
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-    },
-    "parents": {
-      "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-      }
     }
-  }
+  ]
 }
