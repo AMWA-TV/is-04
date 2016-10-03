@@ -71,6 +71,7 @@
         "components" : {
           "description" : "array of objects describing the components",
           "type" : "array",
+          "minItems": 1,
           "items" : {
             "title" : "component",
             "type" : "object",
