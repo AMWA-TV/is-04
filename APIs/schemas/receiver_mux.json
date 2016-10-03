@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "description": "Describes a SMPTE 2022-6 Receiver",
-  "title": "SMPTE 2022-6 Receiver resource",
+  "description": "Describes a mux Receiver",
+  "title": "Mux Receiver resource",
   "allOf": [
     { "$ref": "receiver_core.json" },
     {
@@ -16,7 +16,7 @@
           "description": "Type of Flow accepted by the Receiver as a URN",
           "type": "string",
           "enum": [
-            "urn:x-nmos:format:mux:sdi"
+            "urn:x-nmos:format:mux"
           ],
           "format": "uri"
         },
@@ -31,8 +31,15 @@
               "minItems": 1,
               "items": {
                 "type": "string",
-                "enum": [
-                  "video/SMPTE2022-6"
+                "anyOf": [
+                  {
+                    "enum": [
+                      "video/SMPTE2022-6"
+                    ]
+                  },
+                  {
+                    "pattern": "^[^\\s\\/]+\\/[^\\s\\/]+$"
+                  }
                 ]
               }
             }

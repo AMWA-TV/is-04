@@ -7,6 +7,6 @@
     { "$ref": "receiver_video.json" },
     { "$ref": "receiver_audio.json" },
     { "$ref": "receiver_data.json" },
-    { "$ref": "receiver_sdi.json" }
+    { "$ref": "receiver_mux.json" }
   ]
 }
