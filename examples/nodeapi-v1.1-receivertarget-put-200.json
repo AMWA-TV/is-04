@@ -5,5 +5,7 @@
     "flow_id": "84f1a535-748b-457c-a25f-49d6691bab30",
     "id": "72af8f63-15ad-4ec2-8a22-363b4a094fee",
     "transport": "urn:x-nmos:transport:rtp.mcast",
-    "device_id": "2b9ad611-da45-4175-b091-41577f09f15f"
+    "device_id": "2b9ad611-da45-4175-b091-41577f09f15f",
+    "tags": {},
+    "version": "1441704532:450093308"
 }

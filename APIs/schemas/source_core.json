@@ -3,81 +3,52 @@
   "type": "object",
   "description": "Describes a Source",
   "title": "Source resource",
-  "required": [
-    "id",
-    "version",
-    "label",
-    "description",
-    "caps",
-    "tags",
-    "device_id",
-    "parents"
-  ],
-  "properties": {
-    "id": {
-      "description": "Globally unique identifier for the Source",
-      "type": "string",
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-    },
-    "version": {
-      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
-      "type": "string",
-      "pattern": "^[0-9]+:[0-9]+$"
-    },
-    "label": {
-      "description": "Freeform string label for the Source",
-      "type": "string"
-    },
-    "description": {
-      "description": "Detailed description of the Source",
-      "type": "string"
-    },
-    "grain_rate" : {
-      "description": "Maximum (nominal) number of grains per second for Flows of this Source - only used if Flow is periodic: numerator/denominator - denominator only required if non-integer rate.  Corresponding Flow grain rate may override if that Flow comprises a subsample of Grains.  This is not intended to be used for a variable grain rate Source - in that case the grain_rate attribute would be omitted.",
+  "allOf": [
+    { "$ref": "resource_core.json" },
+    {
       "type": "object",
-      "required" : [
-        "numerator"
+      "required": [
+        "caps",
+        "device_id",
+        "parents"
       ],
-      "properties" : {
-        "numerator" : {
-          "description" : "numerator",
-          "type" : "integer"
+      "properties": {
+        "grain_rate" : {
+          "description": "Maximum (nominal) number of grains per second for Flows of this Source - only used if Flow is periodic: numerator/denominator - denominator only required if non-integer rate.  Corresponding Flow grain rate may override if that Flow comprises a subsample of Grains.  This is not intended to be used for a variable grain rate Source - in that case the grain_rate attribute would be omitted.",
+          "type": "object",
+          "required" : [
+            "numerator"
+          ],
+          "properties" : {
+            "numerator" : {
+              "description" : "numerator",
+              "type" : "integer"
+            },
+            "denominator" : {
+              "description" : "denominator",
+              "type" : "integer",
+              "default" : 1
+            }
+          }
         },
-        "denominator" : {
-          "description" : "denominator",
-          "type" : "integer",
-          "default" : 1
-        }
-      }
-    },
-    "caps": {
-      "description": "Capabilities (not yet defined)",
-      "type": "object"
-    },
-    "tags": {
-      "description": "Key value set of freeform string tags to aid in filtering Sources. Values should be represented as an array of strings. Can be empty.",
-      "type": "object",
-      "patternProperties": {
-        "": {
+        "caps": {
+          "description": "Capabilities (not yet defined)",
+          "type": "object"
+        },
+        "device_id": {
+          "description": "Globally unique identifier for the Device which initially created the Source",
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        "parents": {
+          "description": "Array of UUIDs representing the Source IDs of Grains which came together at the input to this Source (may change over the lifetime of this Source)",
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
           }
         }
       }
-    },
-    "device_id": {
-      "description": "Globally unique identifier for the Device which initially created the Source",
-      "type": "string",
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-    },
-    "parents": {
-      "description": "Array of UUIDs representing the Source IDs of Grains which came together at the input to this Source (may change over the lifetime of this Source)",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-      }
     }
-  }
+  ]
 }
