@@ -23,11 +23,20 @@
         "transport": {
           "description": "Transport type used by the Sender in URN format",
           "type": "string",
-          "enum": [
-            "urn:x-nmos:transport:rtp",
-            "urn:x-nmos:transport:rtp.ucast",
-            "urn:x-nmos:transport:rtp.mcast",
-            "urn:x-nmos:transport:dash"
+          "oneOf": [
+            {
+              "enum": [
+                "urn:x-nmos:transport:rtp",
+                "urn:x-nmos:transport:rtp.ucast",
+                "urn:x-nmos:transport:rtp.mcast",
+                "urn:x-nmos:transport:dash"
+              ]
+            },
+            {
+              "not": {
+                "pattern": "^urn:x-nmos:*"
+              }
+            }
           ],
           "format": "uri"
         },
