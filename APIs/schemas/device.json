@@ -18,6 +18,19 @@
         "type": {
           "description": "Device type URN",
           "type": "string",
+          "oneOf": [
+            {
+              "enum": [
+                "urn:x-nmos:device:generic",
+                "urn:x-nmos:device:pipeline"
+              ]
+            },
+            {
+              "not": {
+                "pattern": "^urn:x-nmos:*"
+              }
+            }
+          ],
           "format": "uri"
         },
         "node_id": {

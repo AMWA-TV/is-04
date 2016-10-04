@@ -24,7 +24,11 @@
           "description": "Subclassification of the format using IANA assigned media types",
           "type": "string",
           "pattern": "^[^\\s\\/]+\\/[^\\s\\/]+$",
-          "not": {"enum": ["video/smpte291"]}
+          "not": {
+            "enum": [
+              "video/smpte291"
+            ]
+          }
         }
       }
     }
