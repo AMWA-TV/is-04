@@ -47,7 +47,11 @@
                   "host": {
                     "type": "string",
                     "description": "IP address or hostname which the Node API is running on",
-                    "format": ["hostname", "ipv4", "ipv6"]
+                    "anyOf": [
+                      {"format": "hostname"},
+                      {"format": "ipv4"},
+                      {"format": "ipv6"}
+                    ]
                   },
                   "port": {
                     "type": "integer",
