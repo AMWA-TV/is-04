@@ -39,7 +39,7 @@
           "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
         },
         "senders": {
-          "description": "UUIDs of Senders attached to the Device",
+          "description": "UUIDs of Senders attached to the Device (deprecated)",
           "type": "array",
           "items": {
             "type": "string",
@@ -47,7 +47,7 @@
           }
         },
         "receivers": {
-          "description": "UUIDs of Receivers attached to the Device",
+          "description": "UUIDs of Receivers attached to the Device (deprecated)",
           "type": "array",
           "items": {
             "type": "string",
