@@ -7,6 +7,9 @@ title: Registration
 baseUri: http://example.api.com/x-nmos/registration/{version}
 version: v1.0
 mediaType: application/json
+schemas:
+  - EmptySchema: !include schemas/empty.json
+    ErrorSchema: !include schemas/error.json
 documentation:
   - title: Overview
     content: |
@@ -23,10 +26,13 @@ documentation:
   displayName: Base
   get:
     description: List of paths available from this API
+    body:
+      schema: EmptySchema
     responses:
       200:
         body:
           example: !include ../examples/registrationapi-v1.0-base-get-200.json
+          schema: !include schemas/registrationapi-base.json
 /resource:
   displayName: Resource
   post:
@@ -38,6 +44,7 @@ documentation:
       200:
         body:
           example: !include ../examples/registrationapi-v1.0-resource-post-200.json
+          schema: !include schemas/registrationapi-resource-response.json
         headers:
           Location:
             example: /x-nmos/v1.0/registration/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
@@ -45,47 +52,83 @@ documentation:
       201:
         body:
           example: !include ../examples/registrationapi-v1.0-resource-post-200.json
+          schema: !include schemas/registrationapi-resource-response.json
         headers:
           Location:
             example: /x-nmos/v1.0/registration/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
         description: The expected response for a create operation performed for a previously unregistered resource
       400:
         description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
+        body:
+          schema: ErrorSchema
   /{resourceType}/{resourceId}:
     uriParameters:
-      resourceType:
-        description: One of 'nodes', 'devices', 'sources', 'flows', 'senders' or 'receivers'
+      resourceId:
         type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+      resourceType:
+        type: string
+        enum: [
+          "nodes",
+          "devices",
+          "sources",
+          "flows",
+          "senders",
+          "receivers"
+        ]
     delete:
       description: Delete a registered resource
+      body:
+        schema: EmptySchema
       responses:
         204:
           description: The expected response, indicating 'No Content' following the DELETE
         404:
           description: Returned when the requested resource does not exist
+          body:
+            schema: ErrorSchema
     get:
       description: Show a registered resource (for debug use only)
+      body:
+        schema: EmptySchema
       responses:
         200:
           body:
             example: !include ../examples/registrationapi-v1.0-resource-get-200.json
+            schema: !include schemas/registrationapi-resource-response.json
         404:
           description: Returned when the requested resource does not exist
+          body:
+            schema: ErrorSchema
 /health/nodes/{nodeId}:
   displayName: Node health
+  uriParameters:
+    nodeId:
+      type: string
+      pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
   post:
     description: Update Node health
+    body:
+      schema: EmptySchema
     responses:
       200:
         body:
           example: !include ../examples/registrationapi-v1.0-health-post-200.json
+          schema: !include schemas/registrationapi-health-response.json
       404:
         description: Returned when the requested Node does not exist or has been garbage collected
+        body:
+          schema: ErrorSchema
   get:
     description: Show a Node's health (for debug use only)
+    body:
+      schema: EmptySchema
     responses:
       200:
         body:
           example: !include ../examples/registrationapi-v1.0-health-get-200.json
+          schema: !include schemas/registrationapi-health-response.json
       404:
         description: Returned when the requested Node does not exist or has been garbage collected
+        body:
+          schema: ErrorSchema

@@ -21,6 +21,8 @@ schemas:
     SenderTarget: !include schemas/sender-target.json
     Receiver: !include schemas/receiver.json
     Receivers: !include schemas/receivers.json
+    EmptySchema: !include schemas/empty.json
+    ErrorSchema: !include schemas/error.json
 documentation:
   - title: Overview
     content: |
@@ -58,14 +60,19 @@ documentation:
   displayName: Base
   get:
     description: List of paths available from this API
+    body:
+      schema: EmptySchema
     responses:
       200:
         body:
           example: !include ../examples/nodeapi-v1.0-base-get-200.json
+          schema: !include schemas/nodeapi-base.json
 /self:
   displayName: Self
   get:
     description: Get information about this Node
+    body:
+      schema: EmptySchema
     responses:
       200:
         body:
@@ -75,14 +82,22 @@ documentation:
   displayName: Sources
   get:
     description: List Sources
+    body:
+      schema: EmptySchema
     responses:
       200:
         body:
           example: !include ../examples/nodeapi-v1.0-sources-get-200.json
           schema: Sources
   /{sourceId}:
+    uriParameters:
+      sourceId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
       description: Get a single Source
+      body:
+        schema: EmptySchema
       responses:
         200:
           body:
@@ -90,18 +105,28 @@ documentation:
             schema: Source
         404:
           description: Returned when the requested Source ID does not exist
+          body:
+            schema: ErrorSchema
 /flows:
   displayName: Flows
   get:
     description: List Flows
+    body:
+      schema: EmptySchema
     responses:
       200:
         body:
           example: !include ../examples/nodeapi-v1.0-flows-get-200.json
           schema: Flows
   /{flowId}:
+    uriParameters:
+      flowId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
       description: Get a single Flow
+      body:
+        schema: EmptySchema
       responses:
         200:
           body:
@@ -109,18 +134,28 @@ documentation:
             schema: Flow
         404:
           description: Returned when the requested Flow ID does not exist
+          body:
+            schema: ErrorSchema
 /devices:
   displayName: Devices
   get:
     description: List Devices
+    body:
+      schema: EmptySchema
     responses:
       200:
         body:
           example: !include ../examples/nodeapi-v1.0-devices-get-200.json
           schema: Devices
   /{deviceId}:
+    uriParameters:
+      deviceId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
       description: Get a single Device
+      body:
+        schema: EmptySchema
       responses:
         200:
           body:
@@ -128,18 +163,28 @@ documentation:
             schema: Device
         404:
           description: Returned when the requested Device ID does not exist
+          body:
+            schema: ErrorSchema
 /senders:
   displayName: Senders
   get:
     description: List Senders
+    body:
+      schema: EmptySchema
     responses:
       200:
         body:
           example: !include ../examples/nodeapi-v1.0-senders-get-200.json
           schema: Senders
   /{senderId}:
+    uriParameters:
+      senderId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
       description: Get a single Sender
+      body:
+        schema: EmptySchema
       responses:
         200:
           body:
@@ -147,18 +192,28 @@ documentation:
             schema: Sender
         404:
           description: Returned when the requested Sender ID does not exist
+          body:
+            schema: ErrorSchema
 /receivers:
   displayName: Receivers
   get:
     description: List Receivers
+    body:
+      schema: EmptySchema
     responses:
       200:
         body:
           example: !include ../examples/nodeapi-v1.0-receivers-get-200.json
           schema: Receivers
   /{receiverId}:
+    uriParameters:
+      receiverId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
       description: Get a single Receiver
+      body:
+        schema: EmptySchema
       responses:
         200:
           body:
@@ -166,11 +221,14 @@ documentation:
             schema: Receiver
         404:
           description: Returned when the requested Receiver ID does not exist
+          body:
+            schema: ErrorSchema
     /target:
       put:
         description: Request a change to a Receiver's subscription
         body:
           example: !include ../examples/nodeapi-v1.0-receivertarget-put-request.json
+          schema: SenderTarget
         responses:
           202:
             body:
@@ -178,5 +236,9 @@ documentation:
               schema: SenderTarget
           400:
             description: Returned when the PUT request is incorrectly formatted or missing mandatory attributes
+            body:
+              schema: ErrorSchema
           404:
             description: Returned when the requested Receiver ID does not exist
+            body:
+              schema: ErrorSchema
