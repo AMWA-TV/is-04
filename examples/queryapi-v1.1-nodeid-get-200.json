@@ -1,8 +1,10 @@
 {
-    "version": "1441716120:318744030", 
-    "hostname": "host1", 
-    "label": "host1", 
-    "href": "http://172.29.176.102:12345/", 
+    "version": "1441716120:318744030",
+    "hostname": "host1",
+    "label": "host1",
+    "description": "host1",
+    "tags": {},
+    "href": "http://172.29.176.102:12345/",
     "api": {
         "versions": ["v1.1"],
         "endpoints": [
@@ -15,18 +17,32 @@
     },
     "services": [
         {
-            "href": "http://172.29.176.102:12345/x-manufacturer/status/", 
+            "href": "http://172.29.176.102:12345/x-manufacturer/status/",
             "type": "urn:x-manufacturer:service:status"
-        }, 
+        },
         {
-            "href": "http://172.29.176.102:12345/x-manufacturer/pipelinemanager/", 
+            "href": "http://172.29.176.102:12345/x-manufacturer/pipelinemanager/",
             "type": "urn:x-manufacturer:service:pipelinemanager"
-        }, 
+        },
         {
-            "href": "http://172.29.176.102:12345/x-manufacturer/mdnsbridge/", 
+            "href": "http://172.29.176.102:12345/x-manufacturer/mdnsbridge/",
             "type": "urn:x-manufacturer:service:mdnsbridge"
         }
-    ], 
-    "caps": {}, 
-    "id": "c8ba20e9-e197-4ec5-8764-4da672128589"
+    ],
+    "caps": {},
+    "id": "c8ba20e9-e197-4ec5-8764-4da672128589",
+    "clocks": [
+        {
+            "name": "clk0",
+            "ref_type":"internal"
+        },
+        {
+            "name": "clk1",
+            "ref_type":"ptp",
+            "traceable": true,
+            "version": "IEEE1588-2008",
+            "gmid": "08-00-11-ff-fe-21-e1-b0",
+            "locked": true
+        }
+    ]
 }

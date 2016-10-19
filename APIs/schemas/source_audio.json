@@ -24,6 +24,7 @@
         "channels" : {
           "description" : "Array of objects describing the channels (only relevant for urn:x-nmos:format:audio)",
           "type" : "array",
+          "minItems": 1,
           "items" : {
             "title" : "Component",
             "type" : "object",

@@ -1,8 +1,8 @@
 {
-    "version": "1441700172:318426300", 
-    "hostname": "host1", 
-    "caps": {}, 
-    "href": "http://172.29.80.65:12345/", 
+    "version": "1441700172:318426300",
+    "hostname": "host1",
+    "caps": {},
+    "href": "http://172.29.80.65:12345/",
     "api": {
         "versions": ["v1.0", "v1.1"],
         "endpoints": [
@@ -20,26 +20,42 @@
     },
     "services": [
         {
-            "href": "http://172.29.80.65:12345/x-manufacturer/pipelinemanager/", 
+            "href": "http://172.29.80.65:12345/x-manufacturer/pipelinemanager/",
             "type": "urn:x-manufacturer:service:pipelinemanager"
-        }, 
+        },
         {
-            "href": "http://172.29.80.65:12345/x-manufacturer/status/", 
+            "href": "http://172.29.80.65:12345/x-manufacturer/status/",
             "type": "urn:x-manufacturer:service:status"
-        }, 
+        },
         {
-            "href": "http://172.29.80.65:12345/x-manufacturer/tally/", 
+            "href": "http://172.29.80.65:12345/x-manufacturer/tally/",
             "type": "urn:x-manufacturer:service:tally"
-        }, 
+        },
         {
-            "href": "http://172.29.80.65:12345/x-manufacturer/mdnsbridge/", 
+            "href": "http://172.29.80.65:12345/x-manufacturer/mdnsbridge/",
             "type": "urn:x-manufacturer:service:mdnsbridge"
-        }, 
+        },
         {
-            "href": "http://172.29.80.65:12345/x-manufacturer/storequery/", 
+            "href": "http://172.29.80.65:12345/x-manufacturer/storequery/",
             "type": "urn:x-manufacturer:service:storequery"
         }
-    ], 
-    "label": "host1", 
-    "id": "3b8be755-08ff-452b-b217-c9151eb21193"
+    ],
+    "label": "host1",
+    "description": "host1",
+    "tags": {},
+    "id": "3b8be755-08ff-452b-b217-c9151eb21193",
+    "clocks": [
+        {
+            "name": "clk0",
+            "ref_type":"internal"
+        },
+        {
+            "name": "clk1",
+            "ref_type":"ptp",
+            "traceable": true,
+            "version": "IEEE1588-2008",
+            "gmid": "08-00-11-ff-fe-21-e1-b0",
+            "locked": true
+        }
+    ]
 }
