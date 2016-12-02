@@ -11,9 +11,16 @@
         "flow_id",
         "transport",
         "device_id",
-        "manifest_href"
+        "manifest_href",
+        "interface_bindings"
       ],
       "properties": {
+        "caps": {
+          "description": "Capabilities of this sender",
+          "type": "object",
+          "properties":{
+          }
+        },
         "flow_id": {
           "description": "ID of the Flow currently passing via this Sender",
           "type": ["string", "null"],
@@ -49,6 +56,13 @@
           "description": "HTTP URL to a file describing how to connect to the Sender (SDP for RTP)",
           "type": "string",
           "format": "uri"
+        },
+        "interface_bindings": {
+          "description": "Binding of Sender egress ports to interfaces on the parent Node",
+          "type": "array",
+          "items": {
+            "type":"string"
+          }
         }
       }
     }

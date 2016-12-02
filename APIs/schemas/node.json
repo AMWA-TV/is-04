@@ -12,7 +12,8 @@
         "caps",
         "api",
         "services",
-        "clocks"
+        "clocks",
+        "interfaces"
       ],
       "properties": {
         "href": {
@@ -102,6 +103,27 @@
               { "$ref": "clock_internal.json" },
               { "$ref": "clock_ptp.json" }
             ]
+          }
+        },
+        "interfaces": {
+          "description":"Network interfaces made available to devices owned by this Node",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "chassis_id": {
+                "description": "Chassis ID of the interface, as signalled in LLDP from this node. Set to null where LLDP is unsuitable for use (ie. virtualised environments)",
+                "type": ["string", "null"]
+              },
+              "port_id": {
+                "description": "Port ID of the interface, as signalled in LLDP from this node. Set to interface MAC address where LLDP is unsuitable for use (ie. virtualised environments)",
+                "type": "string"
+              },
+              "name": {
+                "description": "Name of the interface (unique in scope of this node).  This attribute is used by sub-resources of this node such as senders and receivers to refer to interfaces to which they are bound.",
+                "type": "string"
+              }
+            }
           }
         }
       }

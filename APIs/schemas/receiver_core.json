@@ -10,6 +10,7 @@
       "required": [
         "device_id",
         "transport",
+        "interface_bindings",
         "subscription"
       ],
       "properties": {
@@ -37,6 +38,13 @@
             }
           ],
           "format": "uri"
+        },
+        "interface_bindings": {
+          "description": "Binding of Receiver ingress ports to interfaces on the parent Node of this Receiver",
+          "type": "array",
+          "items": {
+            "type":"string"
+          }
         },
         "subscription": {
           "description": "Object containing the 'sender_id' currently subscribed to. Sender_id should be null on initialisation.",
