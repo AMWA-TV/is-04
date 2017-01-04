@@ -60,6 +60,13 @@ traits:
               description: Identifies the current value of the query parameter 'paging.until' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.since value of a query to return the next page of results. Combining this with the X-Paging-Since header value provides the absolute time bounds of the current returned data set.
               type: string
               example: 1441716120:318744030
+  - downgrade:
+      description: API resource supporting the return of data which matches an older minor API version than the request would return by default.
+      queryParameters:
+        query.downgrade:
+          description: Minimum API version to return resources from if they exists within the registry
+          type: string
+          pattern: "^v[0-9]+.[0-9]+$"
   - rql:
       description: This resource MAY support advanced query formats using the Resource Query Language (RQL) syntax
       queryParameters:
@@ -160,6 +167,25 @@ documentation:
       1) /flows?tags.location=Salford&tags.location=London
       This query is acting on an array which may have multiple values. Unfortunately as different programming languages may interpret this query differently, the implementation may only see one of the requested values. If this sort of query is required then it is suggested that Resource Query Language is used (see below).
 
+      ** Downgrade Queries **
+
+      In order to streamline upgrades from one API version to another a Query API may sit in front of a registry which holds registered data matching multiple API versions' schemas. By default the Query API must only return data matching the API version specified in the request URL, however the client may choose to request mixed versions of data if it is capable of handling the potential missing keys.
+
+      Downgrades MUST only be performed between minor API versions as major versions may remove or re-purpose attributes. Clients which support multiple major API versions should retrieve this data via multiple HTTP requests or websocket subscriptions.
+
+      * Examples
+
+      1) /x-nmos/query/v1.1/nodes?query.downgrade=v1.0
+      Returns all Nodes held in the registry which match the v1.1 or v1.0 schemas.
+
+      2) /x-nmos/query/v1.3/flows?query.downgrade=v1.1
+      Returns all Flows held in the registry which match the v1.3, v1.2 or v1.1 schemas.
+
+      * Invalid Examples
+
+      1) /x-nmos/query/v3.0/flows?query.downgrade=v1.0
+      Downgrades may not be requested between major API versions (such as between v3 and v1).
+
       ** Resource Query Language **
 
       Given the constraints of using a standard '?variable=value&variable2=value2' query syntax, Query APIs MAY support Resource Query Language (https://github.com/persvr/rql/) in order to support more advanced queries.
@@ -209,7 +235,7 @@ documentation:
 /nodes:
   displayName: Nodes
   get:
-    is: [paged, rql]
+    is: [paged, rql, downgrade]
     description: List Nodes
     queryParameters:
       version:
@@ -231,6 +257,7 @@ documentation:
         type: string
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
+      is: [downgrade]
       description: Get a single Node
       body:
         schema: EmptySchema
@@ -246,7 +273,7 @@ documentation:
 /sources:
   displayName: Sources
   get:
-    is: [paged, rql, ancestry]
+    is: [paged, rql, ancestry, downgrade]
     description: List Sources
     body:
       schema: EmptySchema
@@ -270,6 +297,7 @@ documentation:
         type: string
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
+      is: [downgrade]
       description: Get a single Source
       body:
         schema: EmptySchema
@@ -285,7 +313,7 @@ documentation:
 /flows:
   displayName: Flows
   get:
-    is: [paged, rql, ancestry]
+    is: [paged, rql, ancestry, downgrade]
     description: List Flows
     body:
       schema: EmptySchema
@@ -308,6 +336,7 @@ documentation:
         type: string
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
+      is: [downgrade]
       description: Get a single Flow
       body:
         schema: EmptySchema
@@ -323,7 +352,7 @@ documentation:
 /devices:
   displayName: Devices
   get:
-    is: [paged, rql]
+    is: [paged, rql, downgrade]
     description: List Devices
     body:
       schema: EmptySchema
@@ -345,6 +374,7 @@ documentation:
         type: string
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
+      is: [downgrade]
       description: Get a single Device
       body:
         schema: EmptySchema
@@ -360,7 +390,7 @@ documentation:
 /senders:
   displayName: Senders
   get:
-    is: [paged, rql]
+    is: [paged, rql, downgrade]
     description: List Senders
     body:
       schema: EmptySchema
@@ -384,6 +414,7 @@ documentation:
         type: string
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
+      is: [downgrade]
       description: Get a single Sender
       body:
         schema: EmptySchema
@@ -399,7 +430,7 @@ documentation:
 /receivers:
   displayName: Receivers
   get:
-    is: [paged, rql]
+    is: [paged, rql, downgrade]
     description: List Receivers
     body:
       schema: EmptySchema
@@ -424,6 +455,7 @@ documentation:
         type: string
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
+      is: [downgrade]
       description: Get a single Receiver
       body:
         schema: EmptySchema
