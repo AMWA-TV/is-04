@@ -13,27 +13,7 @@
         "frame_width": 960,
         "frame_height": 540,
         "interlace_mode": "interlaced_tff",
-        "colorspace": "BT.709",
-        "components": [
-            {
-                "name": "Y",
-                "width": 960,
-                "height": 540,
-                "bit_depth": 8
-            },
-            {
-                "name": "U",
-                "width": 480,
-                "height": 270,
-                "bit_depth": 8
-            },
-            {
-                "name": "V",
-                "width": 480,
-                "height": 270,
-                "bit_depth": 8
-            }
-        ]
+        "colorspace": "BT.709"
     },
     {
         "description": "Off-air",

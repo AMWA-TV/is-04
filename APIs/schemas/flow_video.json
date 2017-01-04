@@ -9,12 +9,10 @@
       "type": "object",
       "required": [
         "format",
-        "media_type",
         "frame_width",
         "frame_height",
         "interlace_mode",
-        "colorspace",
-        "components"
+        "colorspace"
       ],
       "properties": {
         "format": {
@@ -24,22 +22,6 @@
             "urn:x-nmos:format:video"
           ],
           "format": "uri"
-        },
-        "media_type": {
-          "description": "Subclassification of the format using IANA assigned media types",
-          "type": "string",
-          "anyOf": [
-            {
-              "enum": [
-                "video/raw",
-                "video/H264",
-                "video/vc2"
-              ]
-            },
-            {
-              "pattern": "^video\\/[^\\s\\/]+$"
-            }
-          ]
         },
         "frame_width": {
           "description" : "width of the picture in pixels",
@@ -67,50 +49,6 @@
             "BT.709",
             "BT.2020"
           ]
-        },
-        "components" : {
-          "description" : "array of objects describing the components",
-          "type" : "array",
-          "minItems": 1,
-          "items" : {
-            "title" : "component",
-            "type" : "object",
-            "required": [
-              "name",
-              "width",
-              "height",
-              "bit_depth"
-            ],
-            "properties" :
-            {
-              "name" : {
-                "description" : "name of this component",
-                "type" : "string",
-                "enum" : [
-                  "Y",
-                  "U",
-                  "V",
-                  "A",
-                  "R",
-                  "G",
-                  "B",
-                  "DepthMap"
-                ]
-              },
-              "width" : {
-                "description" : "width of this component in pixels",
-                "type" : "integer"
-              },
-              "height" : {
-                "description" : "height of this component in pixels",
-                "type" : "integer"
-              },
-              "bit_depth" : {
-                "description" : "number of bits used to describe each sample",
-                "type" : "integer"                
-              }
-            }
-          }
         },
         "HDR_params" : {
           "description": "Parameters for describing standard transfer function used to encode HDR content",
