@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "description": "Describes a raw Video Flow",
+  "title": "Raw Video Flow resource",
+  "allOf": [
+    { "$ref": "flow_video.json" },
+    {
+      "type": "object",
+      "required": [
+        "media_type",
+        "components"
+      ],
+      "properties": {
+        "media_type": {
+          "description": "Subclassification of the format using IANA assigned media types",
+          "type": "string",
+          "enum": [
+            "video/raw"
+          ]
+        },
+        "components" : {
+          "description" : "array of objects describing the components",
+          "type" : "array",
+          "minItems": 1,
+          "items" : {
+            "title" : "component",
+            "type" : "object",
+            "required": [
+              "name",
+              "width",
+              "height",
+              "bit_depth"
+            ],
+            "properties" :
+            {
+              "name" : {
+                "description" : "name of this component",
+                "type" : "string",
+                "enum" : [
+                  "Y",
+                  "U",
+                  "V",
+                  "A",
+                  "R",
+                  "G",
+                  "B",
+                  "DepthMap"
+                ]
+              },
+              "width" : {
+                "description" : "width of this component in pixels",
+                "type" : "integer"
+              },
+              "height" : {
+                "description" : "height of this component in pixels",
+                "type" : "integer"
+              },
+              "bit_depth" : {
+                "description" : "number of bits used to describe each sample",
+                "type" : "integer"                
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

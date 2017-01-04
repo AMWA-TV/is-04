@@ -4,7 +4,8 @@
   "description": "Describes a Flow",
   "title": "Flow resource",
   "oneOf": [
-    { "$ref": "flow_video.json" },
+    { "$ref": "flow_video_raw.json" },
+    { "$ref": "flow_video_coded.json" },
     { "$ref": "flow_audio.json" },
     { "$ref": "flow_data.json" },
     { "$ref": "flow_sdianc_data.json" },
