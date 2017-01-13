@@ -23,7 +23,6 @@
         "caps": {
           "description": "Capabilities",
           "type": "object",
-          "required": ["media_types"],
           "properties": {
             "media_types": {
               "description": "Subclassification of the formats accepted using IANA assigned media types",
