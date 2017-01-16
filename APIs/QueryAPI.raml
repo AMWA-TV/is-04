@@ -137,7 +137,7 @@ documentation:
 
   - title: Query Parameters
     content: |
-      As a Query API may provide access to many thousands of resources, query parameters provide the means to narrow down these results. Any attribute which may be returned by a particular API resource should be available to use as a query parameter.
+      As a Query API may provide access to many thousands of resources, query parameters provide the means to narrow down these results. Any attribute which may be returned by a particular API resource SHOULD be available to use as a query parameter, however this RAML documentation only explicitly identifies core attributes under 'queryParameters'.
 
       ** Basic Queries **
 
@@ -236,14 +236,15 @@ documentation:
   displayName: Nodes
   get:
     is: [paged, rql, downgrade]
-    description: List Nodes
+    description: |
+      List Nodes.
+      NB: Query parameters should be implemented for all permitted resource attributes.
     queryParameters:
+      id:
       version:
       label:
-      href:
-      hostname:
-      caps:
-      services:
+      description:
+      tags:
     body:
       schema: EmptySchema
     responses:
@@ -274,18 +275,17 @@ documentation:
   displayName: Sources
   get:
     is: [paged, rql, ancestry, downgrade]
-    description: List Sources
+    description: |
+      List Sources.
+      NB: Query parameters should be implemented for all permitted resource attributes.
     body:
       schema: EmptySchema
     queryParameters:
+      id:
       version:
       label:
       description:
-      format:
-      caps:
       tags:
-      device_id:
-      parents:
     responses:
       200:
         body:
@@ -314,17 +314,17 @@ documentation:
   displayName: Flows
   get:
     is: [paged, rql, ancestry, downgrade]
-    description: List Flows
+    description: |
+      List Flows.
+      NB: Query parameters should be implemented for all permitted resource attributes.
     body:
       schema: EmptySchema
     queryParameters:
+      id:
       version:
       label:
       description:
-      format:
       tags:
-      source_id:
-      parents:
     responses:
       200:
         body:
@@ -353,16 +353,17 @@ documentation:
   displayName: Devices
   get:
     is: [paged, rql, downgrade]
-    description: List Devices
+    description: |
+      List Devices.
+      NB: Query parameters should be implemented for all permitted resource attributes.
     body:
       schema: EmptySchema
     queryParameters:
+      id:
       version:
       label:
-      type:
-      node_id:
-      senders:
-      receivers:
+      description:
+      tags:
     responses:
       200:
         body:
@@ -391,18 +392,17 @@ documentation:
   displayName: Senders
   get:
     is: [paged, rql, downgrade]
-    description: List Senders
+    description: |
+      List Senders.
+      NB: Query parameters should be implemented for all permitted resource attributes.
     body:
       schema: EmptySchema
     queryParameters:
+      id:
       version:
       label:
       description:
-      flow_id:
-      transport:
       tags:
-      device_id:
-      manifest_href:
     responses:
       200:
         body:
@@ -431,19 +431,17 @@ documentation:
   displayName: Receivers
   get:
     is: [paged, rql, downgrade]
-    description: List Receivers
+    description: |
+      List Receivers.
+      NB: Query parameters should be implemented for all permitted resource attributes.
     body:
       schema: EmptySchema
     queryParameters:
+      id:
       version:
       label:
       description:
-      format:
-      caps:
       tags:
-      device_id:
-      transport:
-      subscription:
     responses:
       200:
         body:
