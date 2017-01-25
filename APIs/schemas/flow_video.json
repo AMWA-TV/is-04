@@ -50,28 +50,14 @@
             "BT.2020"
           ]
         },
-        "HDR_params" : {
-          "description": "Parameters for describing standard transfer function used to encode HDR content",
-          "type": "object",
-          "oneOf" : [
-            {
-              "EOTF" : {
-                "description": "Electro-Optical Transfer Function",
-                "type": "string",
-                "enum": [
-                  "ST2084"
-                ]
-              }
-            },
-            {
-              "OETF" : {
-                "description": "Opto-Electrical Transfer Function",
-                "type": "string",
-                "enum": [
-                  "HLG"
-                ]
-              }
-            }
+        "transfer_characteristic": {
+          "description": "",
+          "type": "string",
+          "default": "SDR",
+          "enum": [
+            "SDR",
+            "HLG",
+            "PQ"
           ]
         }
       }
