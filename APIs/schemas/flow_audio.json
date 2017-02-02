@@ -9,9 +9,7 @@
       "type": "object",
       "required": [
         "format",
-        "media_type",
-        "sample_rate",
-        "bit_depth"
+        "sample_rate"
       ],
       "properties": {
         "format": {
@@ -21,21 +19,6 @@
             "urn:x-nmos:format:audio"
           ],
           "format": "uri"
-        },
-        "media_type": {
-          "description": "Subclassification of the format using IANA assigned media types",
-          "type": "string",
-          "anyOf": [
-            {
-              "enum": [
-                "audio/L24",
-                "audio/L16"
-              ]
-            },
-            {
-              "pattern": "^audio\\/[^\\s\\/]+$"
-            }
-          ]
         },
         "sample_rate" : {
           "description": "number of audio samples per second for this Flow - denominator only required if non-integer rate.",
@@ -54,10 +37,6 @@
               "default" : 1
             }
           }
-        },
-        "bit_depth" : {
-          "description" : "bit depth of the audio samples",
-          "type" : "integer"
         }
       }
     }
