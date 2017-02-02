@@ -42,12 +42,13 @@
           ]
         },
         "colorspace" : {
-          "description" : "",
+          "description" : "Colorspace used for the video",
           "type" : "string",
           "enum" : [
-            "BT.601",
-            "BT.709",
-            "BT.2020"
+            "BT601",
+            "BT709",
+            "BT2020",
+            "BT2100"
           ]
         },
         "transfer_characteristic": {
