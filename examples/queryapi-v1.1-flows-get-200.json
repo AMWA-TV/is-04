@@ -38,13 +38,13 @@
                 "bit_depth": 10
             },
             {
-                "name": "U",
+                "name": "Cb",
                 "width": 960,
                 "height": 1080,
                 "bit_depth": 10
             },
             {
-                "name": "V",
+                "name": "Cr",
                 "width": 960,
                 "height": 1080,
                 "bit_depth": 10

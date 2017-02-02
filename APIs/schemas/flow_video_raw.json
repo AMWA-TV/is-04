@@ -39,8 +39,11 @@
                 "type" : "string",
                 "enum" : [
                   "Y",
-                  "U",
-                  "V",
+                  "Cb",
+                  "Cr",
+                  "I",
+                  "Ct",
+                  "Cp",
                   "A",
                   "R",
                   "G",
