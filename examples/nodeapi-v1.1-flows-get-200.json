@@ -13,7 +13,7 @@
         "frame_width": 1920,
         "frame_height": 1080,
         "interlace_mode": "interlaced_tff",
-        "colorspace": "BT.709",
+        "colorspace": "BT709",
         "components": [
             {
                 "name": "Y",
