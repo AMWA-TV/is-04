@@ -19,6 +19,7 @@ This document provides an overview of changes between released versions of this 
 * Add support for muxed Sources and Flows (TR-04 and 2022-6)
 * Add attributes for Sources and Flows for TR-03 set of media streams (raw video, raw audio, anc data)
 * Ensure all API resources consistently advertise a 'label', 'description' and 'tags'
+* Add support for signalling clocks exposed by Nodes and used by Sources
 
 ## Release v1.0
 * Initial release
