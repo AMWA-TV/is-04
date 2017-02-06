@@ -8,6 +8,7 @@
     "ws_href",
     "max_update_rate_ms",
     "persist",
+    "secure",
     "resource_path",
     "params"
   ],
@@ -31,6 +32,10 @@
       "description": "Whether to destroy the socket when the final client disconnects",
       "type": "boolean",
       "default": false
+    },
+    "secure": {
+      "description": "Whether to produce a secure websocket connection (wss://). NB: Default should be 'false' if the API is being presented via HTTP, and 'true' for HTTPS",
+      "type": "boolean"
     },
     "resource_path": {
       "description": "HTTP resource path in the query API which this subscription relates to",
