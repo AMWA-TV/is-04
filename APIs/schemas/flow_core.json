@@ -14,18 +14,18 @@
       ],
       "properties": {
         "grain_rate" : {
-          "description": "Number of grains per second for this Flow - only used if Flow is periodic: numerator/denominator - denominator only required if non-integer rate.",
+          "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
           "type": "object",
           "required" : [
             "numerator"
           ],
           "properties" : {
             "numerator" : {
-              "description" : "numerator",
+              "description" : "Numerator",
               "type" : "integer"
             },
             "denominator" : {
-              "description" : "denominator",
+              "description" : "Denominator",
               "type" : "integer",
               "default" : 1
             }

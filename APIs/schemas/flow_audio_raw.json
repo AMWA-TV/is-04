@@ -30,7 +30,7 @@
           ]
         },
         "bit_depth" : {
-          "description" : "bit depth of the audio samples",
+          "description" : "Bit depth of the audio samples",
           "type" : "integer"
         }
       }

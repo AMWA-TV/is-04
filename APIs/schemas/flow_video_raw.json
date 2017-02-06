@@ -20,7 +20,7 @@
           ]
         },
         "components" : {
-          "description" : "array of objects describing the components",
+          "description" : "Array of objects describing the components",
           "type" : "array",
           "minItems": 1,
           "items" : {
@@ -35,7 +35,7 @@
             "properties" :
             {
               "name" : {
-                "description" : "name of this component",
+                "description" : "Name of this component",
                 "type" : "string",
                 "enum" : [
                   "Y",
@@ -52,16 +52,16 @@
                 ]
               },
               "width" : {
-                "description" : "width of this component in pixels",
+                "description" : "Width of this component in pixels",
                 "type" : "integer"
               },
               "height" : {
-                "description" : "height of this component in pixels",
+                "description" : "Height of this component in pixels",
                 "type" : "integer"
               },
               "bit_depth" : {
-                "description" : "number of bits used to describe each sample",
-                "type" : "integer"                
+                "description" : "Number of bits used to describe each sample",
+                "type" : "integer"
               }
             }
           }
