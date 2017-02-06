@@ -28,7 +28,7 @@
           ]
         },
         "DID_SDID" : {
-          "description" : "list of Data identification and Secondary data identification words (optional)",
+          "description" : "List of Data identification and Secondary data identification words",
           "type" : "array",
           "items" : {
             "title" : "entry",

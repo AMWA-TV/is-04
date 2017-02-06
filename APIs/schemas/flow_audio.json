@@ -21,18 +21,18 @@
           "format": "uri"
         },
         "sample_rate" : {
-          "description": "number of audio samples per second for this Flow - denominator only required if non-integer rate.",
+          "description": "Number of audio samples per second for this Flow",
           "type": "object",
           "required" : [
             "numerator"
           ],
           "properties" : {
             "numerator" : {
-              "description" : "numerator",
+              "description" : "Numerator",
               "type" : "integer"
             },
             "denominator" : {
-              "description" : "denominator",
+              "description" : "Denominator",
               "type" : "integer",
               "default" : 1
             }

@@ -15,18 +15,18 @@
       ],
       "properties": {
         "grain_rate" : {
-          "description": "Maximum (nominal) number of grains per second for Flows of this Source - only used if Flow is periodic: numerator/denominator - denominator only required if non-integer rate.  Corresponding Flow grain rate may override if that Flow comprises a subsample of Grains.  This is not intended to be used for a variable grain rate Source - in that case the grain_rate attribute would be omitted.",
+          "description": "Maximum number of Grains per second for Flows derived from this Source. Corresponding Flow Grain rates may override this attribute. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Sources only.",
           "type": "object",
           "required" : [
             "numerator"
           ],
           "properties" : {
             "numerator" : {
-              "description" : "numerator",
+              "description" : "Numerator",
               "type" : "integer"
             },
             "denominator" : {
-              "description" : "denominator",
+              "description" : "Denominator",
               "type" : "integer",
               "default" : 1
             }

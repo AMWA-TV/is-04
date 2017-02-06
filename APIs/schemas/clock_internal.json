@@ -14,7 +14,7 @@
       "pattern": "clk[0-9]+"
     },
     "ref_type": {
-      "description": "Type of external reference clock used by this clock",
+      "description": "Type of external reference used by this clock",
       "type": "string",
       "enum": [
         "internal"

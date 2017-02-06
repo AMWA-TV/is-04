@@ -23,15 +23,15 @@
           "format": "uri"
         },
         "frame_width": {
-          "description" : "width of the picture in pixels",
+          "description" : "Width of the picture in pixels",
           "type" : "integer"
         },
         "frame_height" : {
-          "description" : "height of the picture in pixels",
+          "description" : "Height of the picture in pixels",
           "type" : "integer"
         },
         "interlace_mode" : {
-          "description" : "interlaced video mode for frames in this flow - this attribute can be omitted if mode is progressive, but must be included if video has been captured as two separate interlaced fields",
+          "description" : "Interlaced video mode for frames in this Flow",
           "type" : "string",
           "default": "progressive",
           "enum" : [
@@ -52,7 +52,7 @@
           ]
         },
         "transfer_characteristic": {
-          "description": "",
+          "description": "Transfer characteristic",
           "type": "string",
           "default": "SDR",
           "enum": [

@@ -18,7 +18,7 @@
       "pattern": "clk[0-9]+"
     },
     "ref_type": {
-      "description": "Type of external reference clock used by this clock",
+      "description": "Type of external reference used by this clock",
       "type": "string",
       "enum": [
         "ptp"
@@ -29,19 +29,19 @@
       "type": "boolean"
     },
     "version": {
-      "description": "Version of PTP reference clock used by this clock",
+      "description": "Version of PTP reference used by this clock",
       "type": "string",
       "enum": [
         "IEEE1588-2008"
       ]
     },
     "gmid": {
-      "description": "ID of the PTP reference clock used by this clock",
+      "description": "ID of the PTP reference used by this clock",
       "type": "string",
       "pattern": "^[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}$"
     },
     "locked": {
-      "description": "Lock state of this clock to the external clock. If true, this device is slaved, otherwise it has no defined relationship to the external clock",
+      "description": "Lock state of this clock to the external reference. If true, this device is slaved, otherwise it has no defined relationship to the external reference",
       "type": "boolean"
     }
   }

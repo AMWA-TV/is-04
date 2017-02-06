@@ -21,7 +21,7 @@
           "format": "uri"
         },
         "channels" : {
-          "description" : "Array of objects describing the channels (only relevant for urn:x-nmos:format:audio)",
+          "description" : "Array of objects describing the audio channels",
           "type" : "array",
           "minItems": 1,
           "items" : {
