@@ -32,7 +32,7 @@
             },
             {
               "not": {
-                "pattern": "^urn:x-nmos:*"
+                "pattern": "^urn:x-nmos:"
               }
             }
           ],
