@@ -7,23 +7,78 @@
     "type",
     "data"
   ],
-  "properties": {
-    "type": {
-      "description": "Singular form of the resource type to be registered (e.g. node, source, flow etc)",
-      "type": "string",
-      "enum": ["node", "device", "sender", "receiver", "source", "flow"]
+  "oneOf": [
+    {
+      "properties": {
+        "type": {
+          "description": "Singular form of the resource type to be registered",
+          "type": "string",
+          "enum": ["node"]
+        },
+        "data": {
+          "$ref": "node.json"
+        }
+      }
     },
-    "data": {
-      "description": "Object containing the full representation of the Node, Source, Flow, Device etc.",
-      "type": "object",
-      "anyOf": [
-        {"$ref": "node.json"},
-        {"$ref": "device.json"},
-        {"$ref": "source.json"},
-        {"$ref": "flow.json"},
-        {"$ref": "sender.json"},
-        {"$ref": "receiver.json"}
-      ]
+    {
+      "properties": {
+        "type": {
+          "description": "Singular form of the resource type to be registered",
+          "type": "string",
+          "enum": ["device"]
+        },
+        "data": {
+          "$ref": "device.json"
+        }
+      }
+    },
+    {
+      "properties": {
+        "type": {
+          "description": "Singular form of the resource type to be registered",
+          "type": "string",
+          "enum": ["sender"]
+        },
+        "data": {
+          "$ref": "sender.json"
+        }
+      }
+    },
+    {
+      "properties": {
+        "type": {
+          "description": "Singular form of the resource type to be registered",
+          "type": "string",
+          "enum": ["receiver"]
+        },
+        "data": {
+          "$ref": "receiver.json"
+        }
+      }
+    },
+    {
+      "properties": {
+        "type": {
+          "description": "Singular form of the resource type to be registered",
+          "type": "string",
+          "enum": ["source"]
+        },
+        "data": {
+          "$ref": "source.json"
+        }
+      }
+    },
+    {
+      "properties": {
+        "type": {
+          "description": "Singular form of the resource type to be registered",
+          "type": "string",
+          "enum": ["flow"]
+        },
+        "data": {
+          "$ref": "flow.json"
+        }
+      }
     }
-  }
+  ]
 }
