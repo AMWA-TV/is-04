@@ -48,7 +48,7 @@ traits:
             Link:
               description: Provides references to cursors for paging. The 'rel' attribute may be one of 'next', 'prev', 'first' or 'last'
               type: string
-              example: <http://example.api.com/x-nmos/v1.1/query/nodes/?paging.since=1441716353:6839634&paging.limit=20>; rel="next", <http://example.api.com/x-nmos/v1.1/query/nodes/?paging.until=1441716120:318744030&paging.limit=20>; rel="prev"
+              example: <http://example.api.com/x-nmos/query/v1.1/nodes/?paging.since=1441716353:6839634&paging.limit=20>; rel="next", <http://example.api.com/x-nmos/query/v1.1/nodes/?paging.until=1441716120:318744030&paging.limit=20>; rel="prev"
             X-Paging-Limit:
               description: Identifies the current limit being used for paging. This may not match the requested value if the requested value was too high for the implementation
               type: integer
@@ -67,6 +67,9 @@ traits:
           description: Minimum API version to return resources from if they exists within the registry
           type: string
           pattern: "^v[0-9]+.[0-9]+$"
+      responses:
+        400:
+          description: The requested downgrade query moves between major API versions which is not permitted.
   - rql:
       description: This resource MAY support advanced query formats using the Resource Query Language (RQL) syntax
       queryParameters:
@@ -139,9 +142,13 @@ documentation:
     content: |
       As a Query API may provide access to many thousands of resources, query parameters provide the means to narrow down these results. Any attribute which may be returned by a particular API resource SHOULD be available to use as a query parameter, however this RAML documentation only explicitly identifies core attributes under 'queryParameters'.
 
+      For a full description of the expected querying behaviour along with examples, please see the [Query Parameters Documentation](../docs/2.5. APIs - Query Parameters.md).
+
+      Basic Queries and Downgrade Queries SHOULD be supported. Advanced queries using RQL, ancestry tracking and similar MAY be supported.
+
       ** Basic Queries **
 
-      Basic query parameters SHOULD be supported. Advanced queries using RQL, ancestry tracking and similar MAY be supported.
+      Basic queries make use of standard HTTP GET query parameters in the form '?key=value'. Keys may match any attribute which the API schemas indicate could be returned by a given resource.
 
       * Querying Within Objects
 
@@ -151,40 +158,11 @@ documentation:
 
       Querying using attributes of objects held within arrays is permitted via the use of a '.' separator. For example, the /nodes resource may be queried with '?services.type=urn:x-manufacturer:service:tally'. More advanced queries within arrays may require use of the Resource Query Language 'in()' operator.
 
-      * Examples
-
-      1) /senders?transport=urn:x-nmos:transport:rtp
-      This query would return all Senders which are using an RTP transport
-
-      2) /sources?format=urn:x-nmos:format:video&device_id=9126cc2f-4c26-4c9b-a6cd-93c4381c9be5
-      This query would return all Sources which use the video format, and originate from the Device with ID 9126cc2f-4c26-4c9b-a6cd-93c4381c9be5
-
-      3) /flows?tags.studio=HQ1
-      This query would return all Flows which have a tag of name 'studio', for which one of the values is 'HQ1'
-
-      * Invalid Examples
-
-      1) /flows?tags.location=Salford&tags.location=London
-      This query is acting on an array which may have multiple values. Unfortunately as different programming languages may interpret this query differently, the implementation may only see one of the requested values. If this sort of query is required then it is suggested that Resource Query Language is used (see below).
-
       ** Downgrade Queries **
 
       In order to streamline upgrades from one API version to another a Query API may sit in front of a registry which holds registered data matching multiple API versions' schemas. By default the Query API must only return data matching the API version specified in the request URL, however the client may choose to request mixed versions of data if it is capable of handling the potential missing keys.
 
       Downgrades MUST only be performed between minor API versions as major versions may remove or re-purpose attributes. Clients which support multiple major API versions should retrieve this data via multiple HTTP requests or websocket subscriptions.
-
-      * Examples
-
-      1) /x-nmos/query/v1.1/nodes?query.downgrade=v1.0
-      Returns all Nodes held in the registry which match the v1.1 or v1.0 schemas.
-
-      2) /x-nmos/query/v1.3/flows?query.downgrade=v1.1
-      Returns all Flows held in the registry which match the v1.3, v1.2 or v1.1 schemas.
-
-      * Invalid Examples
-
-      1) /x-nmos/query/v3.0/flows?query.downgrade=v1.0
-      Downgrades may not be requested between major API versions (such as between v3 and v1).
 
       ** Resource Query Language **
 
@@ -209,14 +187,6 @@ documentation:
       3) Relational Operators: eq(), ne(), gt(), ge(), lt(), le()
 
       NB: It is suggested that limit() is not implemented as paging and associated limits is specified directly by the Query API.
-
-      * Examples
-
-      1) /senders?query.rql=eq(transport,urn:x-nmos:format:rtp)
-      This query performs the same action as the first Basic Queries example, identifying all Senders which use an RTP transport
-
-      2) /sources?query.rql=and(eq(format,urn:x-nmos:format:video),in(tags.location,(Salford,London)))
-      This query identifies Sources which have a format of video, and have a tag with name 'location' which has value 'Salford' or 'London'.
 
       ** Querying Ancestry **
 
