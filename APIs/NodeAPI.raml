@@ -22,44 +22,6 @@ schemas:
     Receivers: !include schemas/receivers.json
     EmptySchema: !include schemas/empty.json
     ErrorSchema: !include schemas/error.json
-traits:
-  - paged:
-      description: API resource supporting pagination of results
-      queryParameters:
-        paging.since:
-          description: Return only the results which have been created/updated since the time specified (non-inclusive) (seconds:nanoseconds)
-          type: string
-          pattern: "^[0-9]+:[0-9]+$"
-        paging.until:
-          description: Return only the results which were created/updated up until the time specified (inclusive) (seconds:nanoseconds)
-          type: string
-          pattern: "^[0-9]+:[0-9]+$"
-        paging.limit:
-          description: Restrict the response to the specified number of results. Implementations may specify their own default and maximum for the limit
-          type: integer
-        paging.order:
-          description: Specify whether paging should be based upon initial resource creation time, or when it was last modified. In both cases the response should be provided in descending order
-          type: string
-          enum: ["create", "update"]
-          default: "update"
-      responses:
-        200:
-          headers:
-            Link:
-              description: Provides references to cursors for paging. The 'rel' attribute may be one of 'next', 'prev', 'first' or 'last'
-              type: string
-              example: <http://example.api.com/x-nmos/v1.1/query/nodes/?paging.since=1441716353:6839634&paging.limit=20>; rel="next", <http://example.api.com/x-nmos/v1.1/query/nodes/?paging.until=1441716120:318744030&paging.limit=20>; rel="prev"
-            X-Paging-Limit:
-              description: Identifies the current limit being used for paging. This may not match the requested value if the requested value was too high for the implementation
-              type: integer
-            X-Paging-Since:
-              description: Identifies the current value of the query parameter 'paging.since' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.until value of a query to return the previous page of results. Combining this with the X-Paging-Until header value provides the absolute time bounds of the current returned data set.
-              type: string
-              example: 1441716353:6839634
-            X-Paging-Until:
-              description: Identifies the current value of the query parameter 'paging.until' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.since value of a query to return the next page of results. Combining this with the X-Paging-Since header value provides the absolute time bounds of the current returned data set.
-              type: string
-              example: 1441716120:318744030
 documentation:
   - title: Overview
     content: |
@@ -133,7 +95,6 @@ documentation:
 /sources:
   displayName: Sources
   get:
-    is: [paged]
     description: List Sources
     body:
       schema: EmptySchema
@@ -163,7 +124,6 @@ documentation:
 /flows:
   displayName: Flows
   get:
-    is: [paged]
     description: List Flows
     body:
       schema: EmptySchema
@@ -193,7 +153,6 @@ documentation:
 /devices:
   displayName: Devices
   get:
-    is: [paged]
     description: List Devices
     body:
       schema: EmptySchema
@@ -223,7 +182,6 @@ documentation:
 /senders:
   displayName: Senders
   get:
-    is: [paged]
     description: List Senders
     body:
       schema: EmptySchema
@@ -253,7 +211,6 @@ documentation:
 /receivers:
   displayName: Receivers
   get:
-    is: [paged]
     description: List Receivers
     body:
       schema: EmptySchema
