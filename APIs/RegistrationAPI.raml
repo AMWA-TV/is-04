@@ -37,6 +37,10 @@ documentation:
       The DNS-SD advertisement MUST include a TXT record with key 'pri' and an integer value. Servers MAY additionally represent a matching priority via the DNS-SD SRV record 'priority' and 'weight' as defined in RFC 2782. The TXT record should be used in favour to the SRV priority and weight where these values differ in order to overcome issues in the Bonjour and Avahi implementations.
       Values 0 to 99 correspond to an active NMOS Registration API (zero being the highest priority). Values 100+ are reserved for development work to avoid colliding with a live system.
 
+  - title: Versioning
+    content: |
+      A Registration API may support multiple API versions at one time, provided data exposed from each of these versioned endpoints matches the schema for that API version. A Node registering with a Registration API should do so using only one version at a time, which should be the highest version which both the Node and the Registration API support. See the [APIs](../docs/2.0. APIs.md) and [Upgrade Path](../docs/6.0. Upgrade Path.md) documentation for more details.
+
 /:
   displayName: Base
   get:
