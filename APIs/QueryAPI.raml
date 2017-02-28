@@ -138,6 +138,10 @@ documentation:
     content: |
       Persistent connections to the Query API are supported via Websockets which can be set up via the /subscriptions resource. Query APIs may additionally support the HTTP 'Upgrade' header sent by clients to upgrade an HTTP GET request to a Websocket. In cases where this is performed, a corresponding entry in /subscriptions must also be created with matching query parameters.
 
+  - title: Versioning
+    content: |
+      A Query API may support multiple API versions at one time, provided data exposed from each of these versioned endpoints matches the schema for that API version. See the [APIs](../docs/2.0. APIs.md) and [Upgrade Path](../docs/6.0. Upgrade Path.md) documentation for more details.
+
   - title: Query Parameters
     content: |
       As a Query API may provide access to many thousands of resources, query parameters provide the means to narrow down these results. Any attribute which may be returned by a particular API resource SHOULD be available to use as a query parameter, however this RAML documentation only explicitly identifies core attributes under 'queryParameters'.

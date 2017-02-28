@@ -61,6 +61,10 @@ documentation:
 
       For example, the 'ver_src' TXT record must be created when the Node first advertises itself via mDNS. If the data held within the HTTP resource for /sources is added to, removed from or edited, then the 'ver_src' text record must be modified (value incremented).
 
+  - title: Versioning
+    content: |
+      A Node API may support multiple API versions at one time, provided data exposed from each of these versioned endpoints matches the schema for that API version. See the [APIs](../docs/2.0. APIs.md) and [Upgrade Path](../docs/6.0. Upgrade Path.md) documentation for more details.
+
   - title: Receiver Subscriptions
     content: |
       A PUT request to /receivers/{receiverId}/target will modify which Sender a Receiver is subscribed to.
