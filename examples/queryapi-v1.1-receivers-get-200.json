@@ -22,7 +22,8 @@
           "en1"
         ],
         "subscription": {
-            "sender_id": "55311762-8003-48fa-a645-0a0c7621ce45"
+            "sender_id": "55311762-8003-48fa-a645-0a0c7621ce45",
+            "active": true
         }
     },
     {
@@ -48,7 +49,8 @@
           "eth1"
         ],
         "subscription": {
-            "sender_id": "a325cfe1-47ee-4a23-9a5c-7b5fcb9c2bb2"
+            "sender_id": "a325cfe1-47ee-4a23-9a5c-7b5fcb9c2bb2",
+            "active": true
         }
     },
     {
@@ -70,7 +72,8 @@
           "eth0"
         ],
         "subscription": {
-            "sender_id": null
+            "sender_id": null,
+            "active": false
         }
     }
 ]

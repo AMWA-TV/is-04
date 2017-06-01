@@ -8,7 +8,8 @@
         ]
     },
     "subscription": {
-        "sender_id": "2683ad14-642f-459d-a169-ef91c76cec6b"
+        "sender_id": "2683ad14-642f-459d-a169-ef91c76cec6b",
+        "active": true
     },
     "version": "1441704532:450093308",
     "label": "RTPRx",

@@ -13,7 +13,11 @@
         ],
         "device_id": "3a98e804-9871-4699-ba31-d608309d8933",
         "caps": {},
-        "tags": {}
+        "tags": {},
+        "subscription": {
+            "receiver_id": null,
+            "active": true
+        }
     },
     {
         "description": "Camera 2",
@@ -28,7 +32,11 @@
         ],
         "device_id": "c501ae64-f525-48b7-9816-c5e8931bc017",
         "caps": {},
-        "tags": {}
+        "tags": {},
+        "subscription": {
+            "receiver_id": null,
+            "active": true
+        }
     },
     {
         "description": "Camera 2 Audio",
@@ -43,6 +51,10 @@
         ],
         "device_id": "5f88d383-596c-409c-887e-a90e42ef3684",
         "caps": {},
-        "tags": {}
+        "tags": {},
+        "subscription": {
+            "receiver_id": null,
+            "active": true
+        }
     }
 ]

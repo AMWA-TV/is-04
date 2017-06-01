@@ -20,6 +20,7 @@
       "eth1"
     ],
     "subscription": {
-        "sender_id": "55311762-8003-48fa-a645-0a0c7621ce45"
+        "sender_id": "55311762-8003-48fa-a645-0a0c7621ce45",
+        "active": true
     }
 }

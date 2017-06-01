@@ -13,6 +13,10 @@
           "eth1"
         ],
         "caps": {},
-        "tags": {}
+        "tags": {},
+        "subscription": {
+            "receiver_id": null,
+            "active": true
+        }
     }
 ]
