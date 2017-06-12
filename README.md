@@ -4,7 +4,7 @@ This repository contains details of this AMWA Specification, including Node, Reg
 
 ## Getting started
 
-Readers are advised to be familiar with the JT-NM Reference Architecture (http://jt-nm.org/), before starting with the [Overview](docs/1.0. Overview.md) in this repository. The API specifications are written in RAML -- if a suitable tool is not available for reading this, then [this](APIs/generateHTML) will create HTML versions.
+Readers are advised to be familiar with the JT-NM Reference Architecture (http://jt-nm.org/), before starting with the [Overview](docs/1.0.%20Overview.md) in this repository. The API specifications are written in RAML -- if a suitable tool is not available for reading this, then [this](APIs/generateHTML) will create HTML versions.
 
 ## Releases
 
@@ -15,7 +15,7 @@ Each version of the specification is available under a v&lt;#MAJOR&gt;.&lt;#MINO
 ## Contents
 
 * README.md -- This file
-* [docs/1.0. Overview.md](docs/1.0. Overview.md) -- Documentation targeting those implementing APIs and clients. Further topics are covered within the [docs/](docs/) directory
+* [docs/1.0. Overview.md](docs/1.0.%20Overview.md) -- Documentation targeting those implementing APIs and clients. Further topics are covered within the [docs/](docs/) directory
 * [APIs/NodeAPI.raml](APIs/NodeAPI.raml) -- Normative specification of the NMOS Node API
 * [APIs/RegistrationAPI.raml](APIs/RegistrationAPI.raml) -- Normative specification of the NMOS Registration API
 * [APIs/QueryAPI.raml](APIs/QueryAPI.raml) -- Normative specification of the NMOS Query API
