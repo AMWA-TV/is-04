@@ -110,6 +110,7 @@
           "type": "array",
           "items": {
             "type": "object",
+            "required": ["chassis_id", "port_id", "name"],
             "properties": {
               "chassis_id": {
                 "description": "Chassis ID of the interface, as signalled in LLDP from this node. Set to null where LLDP is unsuitable for use (ie. virtualised environments)",
