@@ -59,7 +59,8 @@
             },
             "active": {
               "type": "boolean",
-              "description": "Receiver is enabled and configured with a Sender's connection parameters"
+              "description": "Receiver is enabled and configured with a Sender's connection parameters",
+              "default": false
             }
           }
         }

@@ -12,7 +12,8 @@
         "transport",
         "device_id",
         "manifest_href",
-        "interface_bindings"
+        "interface_bindings",
+        "subscription"
       ],
       "properties": {
         "caps": {
@@ -77,7 +78,8 @@
             },
             "active": {
               "type": "boolean",
-              "description": "Sender is enabled and configured to stream data to a single Receiver (unicast), or to the network via multicast or a pull-based mechanism"
+              "description": "Sender is enabled and configured to stream data to a single Receiver (unicast), or to the network via multicast or a pull-based mechanism",
+              "default": false
             }
           }
         }
