@@ -7,6 +7,7 @@ This document provides an overview of changes between released versions of this 
 * Add network interfaces and bindings to Nodes, Senders and Receivers
 * Deprecate native Node API connection management interface
 * Deprecate Sender and Receiver arrays within Devices
+* Add signalling for active connections to unicast Senders, or non-NMOS Devices
 
 ## Release v1.1
 * Add multi-protocol support and version identification to Node API /self and hence Query API /nodes
