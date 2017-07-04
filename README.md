@@ -4,7 +4,11 @@ This repository contains details of this AMWA Specification, including Node, Reg
 
 ## Getting started
 
-Readers are advised to be familiar with the JT-NM Reference Architecture (http://jt-nm.org/), before starting with the [Overview](docs/1.0.%20Overview.md) in this repository. The API specifications are written in RAML -- if a suitable tool is not available for reading this, then [this](APIs/generateHTML) will create HTML versions.
+Readers are advised to be familiar with:
+* The JT-NM Reference Architecture (http://jt-nm.org/)
+* The [overview of Networked Media Open Specifications](https://github.com/AMWA-TV/nmos)
+
+Readers should read the [documentation](docs/) in this repository, starting with the [Overview](docs/1.0.%20Overview.md), and then look at the [APIs](APIs/), which are written in RAML and JSON Schema (if a suitable tool for reading RAML is not available, then [this](APIs/generateHTML) will create HTML versions).
 
 ## Releases
 
