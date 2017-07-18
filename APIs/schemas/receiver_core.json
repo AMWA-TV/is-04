@@ -40,7 +40,7 @@
           "format": "uri"
         },
         "interface_bindings": {
-          "description": "Binding of Receiver ingress ports to interfaces on the parent Node of this Receiver",
+          "description": "Binding of Receiver ingress ports to interfaces on the parent Node. Should contain a single network interface unless a redundancy mechanism such as ST.2022-7 is in use, in which case each 'leg' should have a matching interface listed.",
           "type": "array",
           "items": {
             "type":"string"
