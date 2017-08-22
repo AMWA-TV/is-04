@@ -1,4 +1,4 @@
-# **[Proposed Specification]** AMWA NMOS Discovery and Registration Specification (IS-04)
+# AMWA NMOS Discovery and Registration Specification (IS-04)
 
 This repository contains details of this AMWA Specification, including Node, Registration and Query APIs, and requirements for Nodes for registry-based and peer-to-peer discovery. with supporting documentation and examples
 
