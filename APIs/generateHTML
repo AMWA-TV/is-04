@@ -2,7 +2,10 @@
 
 # Tool to create HTML browseable version of the specifications.
 # Requires raml2html (https://github.com/kevinrenskers/raml2html)
-# (c) AMWA 2016
+# (c) AMWA 2017
+
+
+HTMLDIR=../docs/html-APIs
 
 havecmd ()
 {
@@ -20,15 +23,38 @@ cd $(dirname "${BASH_SOURCE[0]}")
 # Proper behaviour when no glob match
 shopt -s nullglob
 
+
+if [ ! -e $HTMLDIR ]; then
+    echo
+    echo "Making HTML directory: $HTMLDIR..."
+    mkdir $HTMLDIR
+fi
+
 for INFILE in *.raml
 do
-  echo "Found RAML file" $INFILE
-  OUTFILE=${INFILE%%raml}html
-  echo $OUTFILE
-  raml2html $INFILE > $OUTFILE
-  echo "Generated" $OUTFILE
+    echo
+    echo "Found RAML file " $INFILE
+    OUTFILE=$HTMLDIR/${INFILE%%raml}html
+    echo "Generatng $OUTFILE..."
+    raml2html $INFILE > $OUTFILE
 done
-echo ""
+
+echo
+echo "Creating $HTMLDIR/README.md..."
+
+cat > $HTMLDIR/README.md << 'EOF'
+# NMOS IS-04 APIs
+
+The APIs are formally specified in [RAML and JSON Schema](https://github.com/AMWA-TV/nmos-discovery-registration/APIs).  These HTML versions have been generated using raml2html.
+
+[Node API](NodeAPI.html)
+
+[Query API](QueryAPI.html)
+
+[Registration API](RegistrationAPI.html)
+EOF
+
+echo
 echo "Linting..."
 jsonlint -v ../examples/*.json
 echo ""
