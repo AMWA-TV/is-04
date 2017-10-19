@@ -6,6 +6,15 @@
     "flow_id": "b25d445a-20dc-4937-a8a1-5cb3d5c613ee",
     "id": "171d5c80-7fff-4c23-9383-46503eb1c63e",
     "transport": "urn:x-nmos:transport:rtp.mcast",
+    "interface_bindings":[
+      "eth0",
+      "eth1"
+    ],
     "device_id": "c501ae64-f525-48b7-9816-c5e8931bc017",
-    "tags": {}
+    "caps": {},
+    "tags": {},
+    "subscription": {
+      "receiver_id": null,
+      "active": true
+    }
 }

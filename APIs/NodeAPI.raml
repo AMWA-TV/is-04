@@ -5,7 +5,7 @@
 
 title: Node
 baseUri: http://example.api.com/x-nmos/node/{version}
-version: v1.1
+version: v1.2
 mediaType: application/json
 schemas:
   - Node: !include schemas/node.json
@@ -67,6 +67,8 @@ documentation:
 
   - title: Receiver Subscriptions
     content: |
+      This method is deprecated, but should be supported alongside any other connection mechanisms until it is removed in v2.0. Please see the NMOS Connection API specification for the current methods for creating connections between Senders and Receivers.
+
       A PUT request to /receivers/{receiverId}/target will modify which Sender a Receiver is subscribed to.
 
       In order to 'subscribe' a Receiver to a Sender, a PUT request should be made to this resource containing a full Sender object.
@@ -243,7 +245,7 @@ documentation:
             schema: ErrorSchema
     /target:
       put:
-        description: Request a change to a Receiver's subscription
+        description: Request a change to a Receiver's subscription (deprecated)
         body:
           example: !include ../examples/nodeapi-v1.1-senderid-get-200.json
           schema: Sender
