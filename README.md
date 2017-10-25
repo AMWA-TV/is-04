@@ -1,30 +1,29 @@
 # AMWA NMOS Discovery and Registration Specification (IS-04)
 
-This repository contains details of this AMWA Specification, including Node, Registration and Query APIs, and requirements for Nodes for registry-based and peer-to-peer discovery. with supporting documentation and examples
+IS-04 is an AMWA NMOS Specification for Discovery and Registration of networked media resources.
 
-## Getting started
+It has been developed by the [Advanced Media Workflow Association](https://www.amwa.tv) as part of the [Networked Media Open Specifications](https://www.nmos.tv) initative.
 
-Readers are advised to be familiar with:
-* The JT-NM Reference Architecture (http://jt-nm.org/)
-* The [overview of Networked Media Open Specifications](https://github.com/AMWA-TV/nmos)
+See [here](https://amwa-tv.github.io/nmos) for an overview of NMOS specifcations.
 
-Readers should read the [documentation](docs/) in this repository, starting with the [Overview](docs/1.0.%20Overview.md), and then look at the [APIs](APIs/), which are written in RAML and JSON Schema (if a suitable tool for reading RAML is not available, then [this](APIs/generateHTML) will create HTML versions).
+The formal specification is provided at the GitHub repository (click the "View on GitHub" button above). These pages provide supporting documentation and HTML renders of the APIs (which are specified in RAML and JSON Schema).
 
-## Releases
+ - [Overview](1.0. Overview.md)
+ - [APIs](2.0. APIs.md)
+   - [Common Keys](2.1. APIs - Common Keys.md)
+   - [Client Side Implementation Notes](2.2. APIs - Client Side Implementation Notes.md)
+   - [Server Side Implementation Notes](2.3. APIs - Server Side Implementation Notes.md)
+   - [Load Balancing & Redundancy](2.4. APIs - Load Balancing & Redundancy.md)
+   - [Query Parameters](2.5. APIs - Query Parameters.md)
+ - [Discovery](3.0. Discovery.md)
+   - [Registered Operation](3.1. Discovery - Registered Operation.md)
+   - [Peer to Peer Operation](3.2. Discovery - Peer to Peer Operation.md)
+ - [Behaviour](4.0. Behaviour.md)
+   - [Registration](4.1. Behaviour - Registration.md)
+   - [Querying](4.2. Behaviour - Querying.md)
+ - [Data Model](5.0. Data Model.md)
+   - [Identifier Mapping](5.1. Data Model - Identifier Mapping.md)
+ - [Upgrade Path](6.0. Upgrade Path.md)
 
-It is recommended that the tagged releases are used as a reference for development as opposed to the 'master' or development branches of this repository.
+ - [HTML versions of API specifications](html-APIs/)
 
-Each version of the specification is available under a v&lt;#MAJOR&gt;.&lt;#MINOR&gt; tag such as 'v1.0'. Once a specification has been released, any updates to its documentation and schemas which do not modify the specification will be made available via a v&lt;#MAJOR&gt;.&lt;#MINOR&gt;.&lt;#UPDATE&gt; tag such as 'v1.0.1'.
-
-## Contents
-
-* README.md -- This file
-* [docs/1.0. Overview.md](docs/1.0.%20Overview.md) -- Documentation targeting those implementing APIs and clients. Further topics are covered within the [docs/](docs/) directory
-* [APIs/NodeAPI.raml](APIs/NodeAPI.raml) -- Normative specification of the NMOS Node API
-* [APIs/RegistrationAPI.raml](APIs/RegistrationAPI.raml) -- Normative specification of the NMOS Registration API
-* [APIs/QueryAPI.raml](APIs/QueryAPI.raml) -- Normative specification of the NMOS Query API
-* [APIs/schemas/](APIs/schemas/) -- JSON schemas used by API specifications
-* [APIs/generateHTML](APIs/generateHTML) -- Tool to create HTML browsable version of the API specifications. Requires raml2html (https://github.com/kevinrenskers/raml2html).
-* [examples/](examples/) -- Example JSON requests and responses for APIs
-* [LICENSE](LICENSE) -- Licenses for software and text documents
-* [NOTICE](NOTICE) -- Disclaimer
