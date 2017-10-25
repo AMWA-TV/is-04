@@ -6,7 +6,7 @@ It has been developed by the [Advanced Media Workflow Association](https://www.a
 
 See [here](https://amwa-tv.github.io/nmos) for an overview of NMOS specifcations.
 
-The formal specification is provided at the GitHub repository (click the "View on GitHub" button above). These pages provide supporting documentation and HTML renders of the APIs (which are specified in RAML and JSON Schema).
+The formal IS-04 specification is provided at in [this GitHub repository](https://github.com/AMWA-TV/nmos-discovery-registration). These pages provide supporting documentation and HTML renders of the APIs (which are specified in RAML and JSON Schema).
 
  - [Overview](1.0. Overview.md)
  - [APIs](2.0. APIs.md)
@@ -25,5 +25,5 @@ The formal specification is provided at the GitHub repository (click the "View o
    - [Identifier Mapping](5.1. Data Model - Identifier Mapping.md)
  - [Upgrade Path](6.0. Upgrade Path.md)
 
- - [HTML versions of API specifications](html-APIs/)
+ - [HTML renders of API specifications](html-APIs/)
 
