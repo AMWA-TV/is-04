@@ -1,6 +1,6 @@
-<!DOCTYPE HTML><html><head><title>Registration API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 3.0.1"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script type="text/javascript">
+<!DOCTYPE HTML><html><head><title>Registration API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 2.1.0"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
       $(document).ready(function() {
-        $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+        $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
           hljs.highlightBlock(block);
         });
 
@@ -27,11 +27,9 @@
 
         // remove url fragment on modal hide
         $('.modal').on('hidden.bs.modal', function() {
-          try {
-            if (history && history.replaceState) {
-                history.replaceState({}, '', '#');
-            }
-          } catch(e) {}
+          if(history && history.replaceState) {
+            history.replaceState({}, '', '#');
+          }
         });
       });
     </script><style>
@@ -92,9 +90,6 @@
       .tab-pane ul {
         padding-left: 2em;
       }
-      .tab-pane h1 {
-        font-size: 1.3em;
-      }
       .tab-pane h2 {
         font-size: 1.2em;
         padding-bottom: 4px;
@@ -144,12 +139,6 @@
       }
       .list-group-item:hover {
         background-color: #f5f5f5;
-      }
-
-      pre code {
-        overflow: auto;
-        word-wrap: normal;
-        white-space: pre;
       }
     </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Registration API documentation <small>version v1.2</small></h1><p>http://example.api.com/x-nmos/registration/v1.2</p><h3 id="Overview"><a href="#Overview">Overview</a></h3><p>The Registration API is exposed by NMOS discovery Nodes. It is used to publish data to the distributed registry, which can then be queried via the Query API. In smaller deployments where no distributed registry is available, the Registration API is not used and discovery responsibilities fall to individual Nodes which choose to implement Peer to Peer specification. The Registration API is a Write Only API.</p><h3 id="DNS-SD-Advertisement"><a href="#DNS-SD-Advertisement">DNS-SD Advertisement</a></h3><p>Registration APIs MUST produce an mDNS advertisement of the type _nmos-registration._tcp. This MAY be accompanied by a unicast DNS announcement of the same type.</p><p>The IP address and port of the Registration API MUST be identified via the DNS-SD advertisement, with the full HTTP path then being resolved via the standard NMOS API path documentation.</p><p>Multiple DNS-SD advertisements for the same API are permitted where the API is exposed via multiple ports and/or protocols.</p><h3 id="DNS-SD-TXT-Records"><a href="#DNS-SD-TXT-Records">DNS-SD TXT Records</a></h3><p><strong>api_proto</strong></p><p>The DNS-SD advertisement MUST be accompanied by a TXT record of name &#39;api_proto&#39; with a value of either &#39;http&#39; or &#39;https&#39; dependent on the protocol in use by the Registration API web server.</p><p><strong>api_ver</strong></p><p>The DNS-SD advertisement MUST be accompanied by a TXT record of name &#39;api_ver&#39;. The value of this TXT record is a comma separated list of API versions supported by the server. For example: &#39;v1.0,v1.1,v2.0&#39;. There should be no whitespace between commas, and versions should be listed in ascending order.</p><p><strong>pri</strong></p><p>The DNS-SD advertisement MUST include a TXT record with key &#39;pri&#39; and an integer value. Servers MAY additionally represent a matching priority via the DNS-SD SRV record &#39;priority&#39; and &#39;weight&#39; as defined in RFC 2782. The TXT record should be used in favour to the SRV priority and weight where these values differ in order to overcome issues in the Bonjour and Avahi implementations. Values 0 to 99 correspond to an active NMOS Registration API (zero being the highest priority). Values 100+ are reserved for development work to avoid colliding with a live system.</p><h3 id="Versioning"><a href="#Versioning">Versioning</a></h3><p>A Registration API may support multiple API versions at one time, provided data exposed from each of these versioned endpoints matches the schema for that API version. A Node registering with a Registration API should do so using only one version at a time, which should be the highest version which both the Node and the Registration API support. See the <a href="../docs/2.0. APIs.md">APIs</a> and <a href="../docs/6.0. Upgrade Path.md">Upgrade Path</a> documentation for more details.</p></div><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">Base</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_"><span class="parent"></span>/</a> <span class="methods"><a href="#_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List of paths available from this API</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/</h4></div><div class="modal-body"><div class="alert alert-info"><p>List of paths available from this API</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_get_request" data-toggle="tab">Request</a></li><li><a href="#_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_get_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "$schema": "http://json-schema.org/draft-04/schema#",
