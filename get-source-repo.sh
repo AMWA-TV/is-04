@@ -16,5 +16,7 @@ for branch in $(cd source-repo; git branch -r | sed 's:origin/::' | grep -v HEAD
     ./generateHTML
     mkdir ../../branches/$branch/html-APIs
     mv *.html ../../branches/$branch/html-APIs/
-    cd ../..
+    cd ..
+    cp -r examples ../branches/$branch
+    cd ..
 done

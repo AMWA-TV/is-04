@@ -23,19 +23,35 @@ for dir in */; do
     cd $dir
     echo -e "# Documentation for $dirname\n" > $README
     for doc in [1-9]*.md; do
-        doc_no_ext=${doc%%.md}
+        no_ext=${doc%%.md}
         # Top level documents have numbers ending in '.0'
         match_top_level='^[1-9][0-9]*\.0\. '
         if [[ $doc =~ $match_top_level ]]; then
-            linktext=${doc_no_ext#* } 
+            linktext=${no_ext#* } 
             echo " - [$linktext]($doc)" >> $README
         else
             # Removing the top-level part of lower-level link texts
             # that is the part up to the hyphen and following space
-            linktext=${doc_no_ext#* - }
+            linktext=${no_ext#* - }
             echo "   - [$linktext]($doc)" >> $README
         fi
     done
+
+    echo -e "\n# APIs for $dirname" >> $README
+    for api in html-APIs/*.html; do
+        no_ext=${api%%.html}
+        linktext=${no_ext#*/}
+        echo " - [$linktext]($api)" >> $README
+    done
+
+    echo -e "\n# Examples for $dirname" >> $README
+    for example in examples/*.json; do
+        no_ext=${example%%.json}
+        linktext=${no_ext#*/}
+        echo " - [$linktext]($example)" >> $README
+    done
+
     echo -e "\n[API documentation (rendered from RAML)](html-APIs)\n" >> $README
     cd ..
 done
+
