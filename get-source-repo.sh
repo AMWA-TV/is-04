@@ -8,15 +8,13 @@ for branch in $(cd source-repo; git branch -r | sed 's:origin/::' | grep -v HEAD
     echo "Extracting documentation from branch $branch..."
     mkdir branches/$branch
     cd source-repo
-    git checkout $branch
-    cd docs/
-    cp -r *.md images ../../branches/$branch/
-    cd ..
-    cd APIs
-    ./generateHTML
-    mkdir ../../branches/$branch/html-APIs
-    mv *.html ../../branches/$branch/html-APIs/
-    cd ..
+         git checkout $branch
+         cp -r docs ../branches/$branch/
+         cd APIs
+            ./generateHTML
+            mkdir ../../branches/$branch/html-APIs
+            mv *.html ../../branches/$branch/html-APIs/
+            cd ..
     cp -r examples ../branches/$branch
     cd ..
 done
