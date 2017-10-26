@@ -10,7 +10,7 @@ for branch in $(cd source-repo; git branch -r | sed 's:origin/::' | grep -v HEAD
     cd source-repo
     git checkout $branch
     cd docs/
-    cp *.md ../../branches/$branch/
+    cp -r *.md images ../../branches/$branch/
     cd ..
     cd APIs
     ./generateHTML
