@@ -1,18 +1,21 @@
 #!/bin/bash
 
-TOP_CONTENTS=README-contents.md
+HEAD=README-head.md
+CONTENTS=README-contents.md
+README=README.md
 
 echo "Making top level README.md"
 
-echo "## Branches" > $TOP_CONTENTS
+echo "## Branches" > $CONTENTS
 
-for branch in branches/*; do
-    echo -e "\n[$branch](branches/$branch)" >>  $TOP_CONTENTS
+for dir in branches/*; do
+    branch=${dir##*/}
+    echo -e "\n[$branch](branches/$branch)" >>  $CONTENTS
 done
 
-echo -e "\n## Releases\n\n_tbc_" >> $TOP_CONTENTS
+echo -e "\n## Releases\n\n_tbc_" >> $CONTENTS
 
-cat README-head.md README-contents.md  >> README.md
+cat $HEAD $CONTENTS > $README
 
 echo "Processing branches..."
 cd branches
