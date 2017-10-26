@@ -16,13 +16,13 @@
    - [Identifier Mapping](docs/5.1. Data Model - Identifier Mapping.md)
  - [Upgrade Path](docs/6.0. Upgrade Path.md)
 
-# [APIs](html-APIs/) for v1.0.x
+# APIs for v1.0.x
 
  - [NodeAPI](html-APIs/NodeAPI.html)
  - [QueryAPI](html-APIs/QueryAPI.html)
  - [RegistrationAPI](html-APIs/RegistrationAPI.html)
 
-# [Examples](examples) for v1.0.x
+# Examples for v1.0.x
 
  - [nodeapi-v1.0-base-get-200](examples/nodeapi-v1.0-base-get-200.json)
  - [nodeapi-v1.0-deviceid-get-200](examples/nodeapi-v1.0-deviceid-get-200.json)

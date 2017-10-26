@@ -10,6 +10,19 @@
 
 [v1.2.x](branches/v1.2.x)
 
-## Releases
 
-_tbc_
+[](tags/)
+
+[](tags/)
+
+[](tags/)
+
+[](tags/)
+
+[](tags/)
+
+[](tags/)
+
+[](tags/)
+
+[](tags/)

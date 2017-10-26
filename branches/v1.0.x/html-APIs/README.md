@@ -1,4 +1,4 @@
-# [APIs](html-APIs/) for v1.0.x
+# APIs for v1.0.x
 
  - [NodeAPI](html-APIs/NodeAPI.html)
  - [QueryAPI](html-APIs/QueryAPI.html)

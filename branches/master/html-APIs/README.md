@@ -1,4 +1,4 @@
-# [APIs](html-APIs/) for master
+# APIs for master
 
  - [NodeAPI](html-APIs/NodeAPI.html)
  - [QueryAPI](html-APIs/QueryAPI.html)
