@@ -15,7 +15,7 @@ for dir in branches/*; do
 done
 echo >> $CONTENTS
 
-echo "## Branches" > $CONTENTS
+echo "## Tags" >> $CONTENTS
 for dir in tags/*; do
     tag=${dir##*/}
     echo -e "\n[$tag](tags/$tag)" >>  $CONTENTS
