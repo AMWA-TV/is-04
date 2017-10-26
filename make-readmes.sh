@@ -9,17 +9,18 @@ README=README.md
 echo "Making top level README.md"
 
 echo "## Branches" > $CONTENTS
-
 for dir in branches/*; do
     branch=${dir##*/}
     echo -e "\n[$branch](branches/$branch)" >>  $CONTENTS
 done
 echo >> $CONTENTS
 
+echo "## Branches" > $CONTENTS
 for dir in tags/*; do
-    branch=${dir##*/}
+    tag=${dir##*/}
     echo -e "\n[$tag](tags/$tag)" >>  $CONTENTS
 done
+echo >> $CONTENTS
 
 
 cat $HEAD $CONTENTS > $README
