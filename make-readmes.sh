@@ -40,21 +40,26 @@ for dir in */; do
             fi
         done
 
-        echo -e "\n# APIs for $dirname" >> $README
+        README_APIS=html-APIs/README.md
+        echo -e "# [APIs](html-APIs/) for $dirname\n" > $README_APIS
         for api in html-APIs/*.html; do
             no_ext=${api%%.html}
             linktext=${no_ext#*/}
-            echo " - [$linktext]($api)" >> $README
+            echo " - [$linktext]($api)" >> $README_APIS
         done
+        echo >> $README
+        cat $README_APIS >> $README
 
-        echo -e "\n# Examples for $dirname" >> $README
+        README_EXAMPLES=examples/README.md
+        echo -e "# [Examples](examples) for $dirname\n" > $README_EXAMPLES
         for example in examples/*.json; do
             no_ext=${example%%.json}
             linktext=${no_ext#*/}
-            echo " - [$linktext]($example)" >> $README
+            echo " - [$linktext]($example)" >> $README_EXAMPLES
         done
+        echo >> $README
+        cat $README_EXAMPLES >> $README
 
-        echo -e "\n[API documentation (rendered from RAML)](html-APIs)\n" >> $README
         cd ..
 done
 

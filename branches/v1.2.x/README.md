@@ -17,12 +17,14 @@
    - [Identifier Mapping](docs/5.1. Data Model - Identifier Mapping.md)
  - [Upgrade Path](docs/6.0. Upgrade Path.md)
 
-# APIs for v1.2.x
+# [APIs](html-APIs/) for v1.2.x
+
  - [NodeAPI](html-APIs/NodeAPI.html)
  - [QueryAPI](html-APIs/QueryAPI.html)
  - [RegistrationAPI](html-APIs/RegistrationAPI.html)
 
-# Examples for v1.2.x
+# [Examples](examples) for v1.2.x
+
  - [nodeapi-v1.1-base-get-200](examples/nodeapi-v1.1-base-get-200.json)
  - [nodeapi-v1.1-deviceid-get-200](examples/nodeapi-v1.1-deviceid-get-200.json)
  - [nodeapi-v1.1-devices-get-200](examples/nodeapi-v1.1-devices-get-200.json)
@@ -58,6 +60,3 @@
  - [registrationapi-v1.1-resource-get-200](examples/registrationapi-v1.1-resource-get-200.json)
  - [registrationapi-v1.1-resource-post-200](examples/registrationapi-v1.1-resource-post-200.json)
  - [registrationapi-v1.1-resource-post-request](examples/registrationapi-v1.1-resource-post-request.json)
-
-[API documentation (rendered from RAML)](html-APIs)
-
