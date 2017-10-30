@@ -54,11 +54,11 @@ for b_or_t in branches tags; do
             for api in html-APIs/*.html; do
                 no_ext=${api%%.html}
                 linktext=${no_ext##*/}
+                echo " - [$linktext]($api)" >> $README
                 echo " - [$linktext]($api)" >> $README_APIS
             done
             echo -e "\n[Schemas](schemas/)" >> $README_APIS
-            echo -e "\n[Examples](../examples/" >> $README_APIS
-            cat $README_APIS >> $README
+            echo -e "\n[Examples](../examples/)" >> $README_APIS
 
             README_SCHEMAS=html-APIs/schemas/README.md
             echo -e "# JSON Schemas for $dirname\n" > $README_SCHEMAS

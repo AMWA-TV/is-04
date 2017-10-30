@@ -6,4 +6,4 @@
 
 [Schemas](schemas/)
 
-[Examples](../examples/
+[Examples](../examples/)
