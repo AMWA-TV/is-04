@@ -56,7 +56,8 @@ for b_or_t in branches tags; do
                 linktext=${no_ext##*/}
                 echo " - [$linktext]($api)" >> $README_APIS
             done
-            echo >> $README
+            echo -e "\n[Schemas](schemas/)" >> $README_APIS
+            echo -e "\n[Examples](../examples/" >> $README_APIS
             cat $README_APIS >> $README
 
             README_SCHEMAS=html-APIs/schemas/README.md
@@ -66,8 +67,6 @@ for b_or_t in branches tags; do
                 linktext=${no_ext##*/} # NB Different
                 echo " - [$linktext]($schema)" >> $README_SCHEMAS
             done
-            echo >> $README
-            cat $README_SCHEMAS >> $README
 
             README_EXAMPLES=examples/README.md
             echo -e "# Examples for $dirname\n" > $README_EXAMPLES
@@ -76,9 +75,6 @@ for b_or_t in branches tags; do
                 linktext=${no_ext##*/}
                 echo " - [$linktext]($example)" >> $README_EXAMPLES
             done
-            echo >> $README
-            cat $README_EXAMPLES >> $README
-
 
             cd ..
     done
