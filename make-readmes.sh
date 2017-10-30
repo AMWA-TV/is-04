@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# TODO: Split into functions to handle branches/tags and docs/APIs/examples (DRY)
+# TODO: Move some of the common code into functions (DRY)
 
 HEAD=README-head.md
 CONTENTS=README-contents.md
@@ -53,21 +53,32 @@ for b_or_t in branches tags; do
             echo -e "# APIs for $dirname\n" > $README_APIS
             for api in html-APIs/*.html; do
                 no_ext=${api%%.html}
-                linktext=${no_ext#*/}
+                linktext=${no_ext##*/}
                 echo " - [$linktext]($api)" >> $README_APIS
             done
             echo >> $README
             cat $README_APIS >> $README
 
+            README_SCHEMAS=html-APIs/schemas/README.md
+            echo -e "# JSON Schemas for $dirname\n" > $README_SCHEMAS
+            for schema in html-APIs/schemas/*.json; do
+                no_ext=${schema%%.json}
+                linktext=${no_ext##*/} # NB Different
+                echo " - [$linktext]($schema)" >> $README_SCHEMAS
+            done
+            echo >> $README
+            cat $README_SCHEMAS >> $README
+
             README_EXAMPLES=examples/README.md
             echo -e "# Examples for $dirname\n" > $README_EXAMPLES
             for example in examples/*.json; do
                 no_ext=${example%%.json}
-                linktext=${no_ext#*/}
+                linktext=${no_ext##*/}
                 echo " - [$linktext]($example)" >> $README_EXAMPLES
             done
             echo >> $README
             cat $README_EXAMPLES >> $README
+
 
             cd ..
     done

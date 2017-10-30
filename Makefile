@@ -1,8 +1,8 @@
-.PHONY: build all source-repo readmes fixlinks push clean
+.PHONY: build all source-repo docs readmes fix-links push clean
 
 
 
-build: source-repo readmes fixlinks
+build: source-repo docs readmes fix-links
 
 all: build push
 
@@ -10,10 +10,13 @@ all: build push
 source-repo:
 	./get-source-repo.sh
 
+docs:
+	./extract-docs.sh
+
 readmes:
 	./make-readmes.sh
 
-fixlinks:
+fix-links:
 	./fix-links.sh
 
 push:
