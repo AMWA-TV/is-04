@@ -50,7 +50,7 @@ for b_or_t in branches tags; do
             done
 
             README_APIS=html-APIs/README.md
-            echo -e "\n##APIs" >> $README
+            echo -e "\n## APIs" >> $README
             echo -e "# APIs for $dirname\n" > $README_APIS
             for api in html-APIs/*.html; do
                 no_ext=${api%%.html}
@@ -64,8 +64,8 @@ for b_or_t in branches tags; do
             echo -e "## JSON Schemas\n" > $README_SCHEMAS
             for schema in html-APIs/schemas/*.json; do
                 no_ext=${schema%%.json}
-                linktext=${no_ext##*/} # NB Different
-                echo " - [$linktext]($schema)" >> $README_SCHEMAS
+                linktext=${no_ext##*/}
+                echo " - [$linktext](${schema##*/})" >> $README_SCHEMAS
             done
 
             README_EXAMPLES=examples/README.md
@@ -74,7 +74,7 @@ for b_or_t in branches tags; do
             for example in examples/*.json; do
                 no_ext=${example%%.json}
                 linktext=${no_ext##*/}
-                echo " - [$linktext]($example)" >> $README_EXAMPLES
+                echo " - [$linktext](${example##*/})" >> $README_EXAMPLES
             done
 
             cd ..

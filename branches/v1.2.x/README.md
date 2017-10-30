@@ -17,7 +17,7 @@
    - [Identifier Mapping](docs/5.1. Data Model - Identifier Mapping.md)
  - [Upgrade Path](docs/6.0. Upgrade Path.md)
 
-##APIs
+## APIs
  - [NodeAPI](html-APIs/NodeAPI.html)
  - [QueryAPI](html-APIs/QueryAPI.html)
  - [RegistrationAPI](html-APIs/RegistrationAPI.html)
