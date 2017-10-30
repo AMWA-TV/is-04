@@ -1,4 +1,4 @@
-# JSON Schemas for v1.0.2_approved
+## JSON Schemas
 
  - [device](html-APIs/schemas/device.json)
  - [devices](html-APIs/schemas/devices.json)

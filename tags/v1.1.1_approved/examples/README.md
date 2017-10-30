@@ -1,4 +1,4 @@
-# Examples for v1.1.1_approved
+## Examples
 
  - [nodeapi-v1.1-base-get-200](examples/nodeapi-v1.1-base-get-200.json)
  - [nodeapi-v1.1-deviceid-get-200](examples/nodeapi-v1.1-deviceid-get-200.json)

@@ -1,4 +1,4 @@
-# JSON Schemas for master
+## JSON Schemas
 
  - [clock_internal](html-APIs/schemas/clock_internal.json)
  - [clock_ptp](html-APIs/schemas/clock_ptp.json)

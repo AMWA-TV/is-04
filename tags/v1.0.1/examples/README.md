@@ -1,4 +1,4 @@
-# Examples for v1.0.1
+## Examples
 
  - [nodeapi-v1.0-base-get-200](examples/nodeapi-v1.0-base-get-200.json)
  - [nodeapi-v1.0-deviceid-get-200](examples/nodeapi-v1.0-deviceid-get-200.json)
