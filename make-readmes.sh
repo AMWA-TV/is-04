@@ -15,26 +15,27 @@ for b_or_t in branches tags; do
             echo -e "# Documentation for $dirname\n" > "$README"
             for doc in docs/[1-9]*.md; do
                 no_ext=${doc%%.md}
+                esc_space_doc=${doc// /%20}
                 # Top level documents have numbers ending in '.0'
                 match_top_level='^docs/[1-9][0-9]*\.0\. '
                 if [[ $doc =~ $match_top_level ]]; then
                     linktext=${no_ext#* }
-                    echo " - [$linktext]($doc)" >> "$README"
+                    echo " - [$linktext]($esc_space_doc)" >> "$README"
                 else
                     # Removing the top-level part of lower-level link texts
                     # that is the part up to the hyphen and following space
                     linktext=${no_ext#* - }
-                    echo "   - [$linktext]($doc)" >> "$README"
+                    echo "   - [$linktext]($esc_space_doc)" >> "$README"
                 fi
             done
 
             README_APIS="html-APIs/$README"
-            echo -e "\n## APIs" >> "$README"
+            echo -e "\n## APIs for $dirname" >> "$README"
             echo -e "# APIs for $dirname\n" > "$README_APIS"
             for api in html-APIs/*.html; do
                 no_ext=${api%%.html}
                 linktext=${no_ext##*/}
-                echo " - [$linktext]($api)" >> "$README"
+                echo " - [$linktext]($api)" | tee -a "$README" "$README_APIS"
                 echo " - [$linktext]($api)" >> "$README_APIS"
             done
 
@@ -68,7 +69,7 @@ echo "Making top level $README"
 
 echo "Adding in contents of master $README"
 # Shameful but effective - correct the links while copying text
-sed 's:(:(branches/master/:' branches/master/$README > "$CONTENTS"
+sed 's:(:(branches/master/:' "branches/master/$README" > "$CONTENTS"
 
 echo -e "\n## Branches" >> "$CONTENTS"
 for dir in branches/*; do
