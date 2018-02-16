@@ -20,7 +20,6 @@ schemas:
     Senders: !include schemas/senders.json
     Receiver: !include schemas/receiver.json
     Receivers: !include schemas/receivers.json
-    EmptySchema: !include schemas/empty.json
     ErrorSchema: !include schemas/error.json
 traits:
   - paged:
@@ -199,8 +198,6 @@ documentation:
   displayName: Base
   get:
     description: List of paths available from this API
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:
@@ -213,8 +210,6 @@ documentation:
     description: |
       List Nodes.
       NB: Query parameters should be implemented for all permitted resource attributes.
-    body:
-      schema: EmptySchema
     queryParameters:
       id:
       version:
@@ -234,8 +229,6 @@ documentation:
     get:
       is: [downgrade]
       description: Get a single Node
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -252,8 +245,6 @@ documentation:
     description: |
       List Sources.
       NB: Query parameters should be implemented for all permitted resource attributes.
-    body:
-      schema: EmptySchema
     queryParameters:
       id:
       version:
@@ -273,8 +264,6 @@ documentation:
     get:
       is: [downgrade]
       description: Get a single Source
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -291,8 +280,6 @@ documentation:
     description: |
       List Flows.
       NB: Query parameters should be implemented for all permitted resource attributes.
-    body:
-      schema: EmptySchema
     queryParameters:
       id:
       version:
@@ -312,8 +299,6 @@ documentation:
     get:
       is: [downgrade]
       description: Get a single Flow
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -330,8 +315,6 @@ documentation:
     description: |
       List Devices.
       NB: Query parameters should be implemented for all permitted resource attributes.
-    body:
-      schema: EmptySchema
     queryParameters:
       id:
       version:
@@ -351,8 +334,6 @@ documentation:
     get:
       is: [downgrade]
       description: Get a single Device
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -369,8 +350,6 @@ documentation:
     description: |
       List Senders.
       NB: Query parameters should be implemented for all permitted resource attributes.
-    body:
-      schema: EmptySchema
     queryParameters:
       id:
       version:
@@ -390,8 +369,6 @@ documentation:
     get:
       is: [downgrade]
       description: Get a single Sender
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -408,8 +385,6 @@ documentation:
     description: |
       List Receivers.
       NB: Query parameters should be implemented for all permitted resource attributes.
-    body:
-      schema: EmptySchema
     queryParameters:
       id:
       version:
@@ -429,8 +404,6 @@ documentation:
     get:
       is: [downgrade]
       description: Get a single Receiver
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -463,8 +436,6 @@ documentation:
   get:
     is: [paged]
     description: List active connections to websockets providing real-time updates on resource changes
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:
@@ -477,8 +448,6 @@ documentation:
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
       description: Get a single subscription
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -490,8 +459,6 @@ documentation:
             schema: ErrorSchema
     delete:
       description: Delete a single subscription
-      body:
-        schema: EmptySchema
       responses:
         204:
           description: The expected response, indicating 'No Content' following the DELETE
