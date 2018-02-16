@@ -18,7 +18,7 @@ documentation:
     content: |
       Registration APIs MUST produce an mDNS advertisement of the type \_nmos-registration.\_tcp
       *note: RFC6763 Section 7.2 specifies that the maximum service name length for an mDNS advertisement is 16 characters when including the leading underscore, but "_nmos_registration" is 18 characters.*
-      <-- TODO! Address the length of the mDNS advertisement type -->
+      <!-- TODO: Address the length of the mDNS advertisement type -->
 
       The mDNS advertisement MUST include a TXT record with key 'pri' and an integer value. Values 0 to 99 correspond to an active NMOS Registration API (zero being the highest priority). Values 100+ are reserved for development work to avoid colliding with a live system. NB: In future versions of the specification it is likely that the 'priority' and 'weight' as specified by RFC 2782 will be used.
 
