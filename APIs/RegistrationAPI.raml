@@ -8,8 +8,7 @@ baseUri: http://example.api.com/x-nmos/registration/{version}
 version: v1.1
 mediaType: application/json
 schemas:
-  - EmptySchema: !include schemas/empty.json
-    ErrorSchema: !include schemas/error.json
+  - ErrorSchema: !include schemas/error.json
 documentation:
   - title: Overview
     content: |
@@ -47,8 +46,6 @@ documentation:
   displayName: Base
   get:
     description: List of paths available from this API
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:
@@ -99,8 +96,6 @@ documentation:
         ]
     delete:
       description: Delete a registered resource
-      body:
-        schema: EmptySchema
       responses:
         204:
           description: The expected response, indicating 'No Content' following the DELETE
@@ -110,8 +105,6 @@ documentation:
             schema: ErrorSchema
     get:
       description: Show a registered resource (for debug use only)
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -129,8 +122,6 @@ documentation:
       pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
   post:
     description: Update Node health
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:
@@ -142,8 +133,6 @@ documentation:
           schema: ErrorSchema
   get:
     description: Show a Node's health (for debug use only)
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:

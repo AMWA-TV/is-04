@@ -20,7 +20,6 @@ schemas:
     Senders: !include schemas/senders.json
     Receiver: !include schemas/receiver.json
     Receivers: !include schemas/receivers.json
-    EmptySchema: !include schemas/empty.json
     ErrorSchema: !include schemas/error.json
 documentation:
   - title: Overview
@@ -78,8 +77,6 @@ documentation:
   displayName: Base
   get:
     description: List of paths available from this API
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:
@@ -89,8 +86,6 @@ documentation:
   displayName: Self
   get:
     description: Get information about this Node
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:
@@ -100,8 +95,6 @@ documentation:
   displayName: Sources
   get:
     description: List Sources
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:
@@ -114,8 +107,6 @@ documentation:
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
       description: Get a single Source
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -129,8 +120,6 @@ documentation:
   displayName: Flows
   get:
     description: List Flows
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:
@@ -143,8 +132,6 @@ documentation:
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
       description: Get a single Flow
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -158,8 +145,6 @@ documentation:
   displayName: Devices
   get:
     description: List Devices
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:
@@ -172,8 +157,6 @@ documentation:
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
       description: Get a single Device
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -187,8 +170,6 @@ documentation:
   displayName: Senders
   get:
     description: List Senders
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:
@@ -201,8 +182,6 @@ documentation:
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
       description: Get a single Sender
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
@@ -216,8 +195,6 @@ documentation:
   displayName: Receivers
   get:
     description: List Receivers
-    body:
-      schema: EmptySchema
     responses:
       200:
         body:
@@ -230,8 +207,6 @@ documentation:
         pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
     get:
       description: Get a single Receiver
-      body:
-        schema: EmptySchema
       responses:
         200:
           body:
