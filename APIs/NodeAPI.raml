@@ -244,6 +244,12 @@ documentation:
           body:
             schema: ErrorSchema
     /target:
+      options:
+        description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+        responses:
+          200:
+          403:
+          404:
       put:
         description: Request a change to a Receiver's subscription (deprecated)
         body:
