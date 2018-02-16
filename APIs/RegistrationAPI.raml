@@ -53,6 +53,11 @@ documentation:
           schema: !include schemas/registrationapi-base.json
 /resource:
   displayName: Resource
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
   post:
     description: Create or update a registered resource
     body:
@@ -94,6 +99,12 @@ documentation:
           "senders",
           "receivers"
         ]
+    options:
+      description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+      responses:
+        200:
+        403:
+        404:
     delete:
       description: Delete a registered resource
       responses:
@@ -120,6 +131,12 @@ documentation:
     nodeId:
       type: string
       pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
+      404:
   post:
     description: Update Node health
     responses:
