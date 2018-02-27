@@ -203,7 +203,7 @@ documentation:
         description: Request a change to a Receiver's subscription
         body:
           example: !include ../examples/nodeapi-v1.0-receivertarget-put-request.json
-          schema: SenderTarget
+          schema: !include schemas/nodeapi-receiver-target.json
         responses:
           202:
             body:
