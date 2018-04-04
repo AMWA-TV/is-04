@@ -223,7 +223,7 @@ documentation:
         description: Request a change to a Receiver's subscription (deprecated)
         body:
           example: !include ../examples/nodeapi-v1.1-senderid-get-200.json
-          schema: Sender
+          schema: !include schemas/nodeapi-receiver-target.json
         responses:
           202:
             body:
