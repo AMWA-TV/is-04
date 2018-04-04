@@ -61,13 +61,13 @@
     "interfaces" : [
         {
             "name":"eth0",
-            "chassis_id":"74:26:96:db:87:31",
-            "port_id":"74:26:96:db:87:31"
+            "chassis_id":"74-26-96-db-87-31",
+            "port_id":"74-26-96-db-87-31"
         },
         {
             "name":"eth1",
-            "chassis_id":"74:26:96:db:87:31",
-            "port_id":"74:26:96:db:87:32"
+            "chassis_id":"74-26-96-db-87-31",
+            "port_id":"74-26-96-db-87-32"
         }
     ]
 }

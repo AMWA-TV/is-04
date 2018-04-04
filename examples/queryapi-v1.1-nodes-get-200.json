@@ -45,13 +45,13 @@
         "interfaces" : [
           {
             "name":"eth0",
-            "chassis_id":"74:26:96:db:87:31",
-            "port_id":"74:26:96:db:87:31"
+            "chassis_id":"74-26-96-db-87-31",
+            "port_id":"74-26-96-db-87-31"
           },
           {
             "name":"eth1",
-            "chassis_id":"74:26:96:db:87:31",
-            "port_id":"74:26:96:db:87:32"
+            "chassis_id":"74-26-96-db-87-31",
+            "port_id":"74-26-96-db-87-32"
           }
         ]
     },
@@ -101,13 +101,13 @@
         "interfaces" : [
           {
             "name":"en0",
-            "chassis_id":"a4:26:84:db:58:31",
-            "port_id":"a4:26:84:db:58:31"
+            "chassis_id":"a4-26-84-db-58-31",
+            "port_id":"a4-26-84-db-58-31"
           },
           {
             "name":"en1",
-            "chassis_id":"a4:26:84:db:58:31",
-            "port_id":"a4:26:84:db:58:32"
+            "chassis_id":"a4-26-84-db-58-31",
+            "port_id":"a4-26-84-db-58-32"
           }
         ]
     }
