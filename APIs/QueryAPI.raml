@@ -442,6 +442,11 @@ documentation:
             schema: ErrorSchema
 /subscriptions:
   displayName: Subscriptions
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
   post:
     description: Create a websocket subscription to an API resource
     body:
@@ -488,6 +493,12 @@ documentation:
           description: Returned when the requested Subscription ID does not exist
           body:
             schema: ErrorSchema
+    options:
+      description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+      responses:
+        200:
+        403:
+        404:
     delete:
       description: Delete a single subscription
       body:
