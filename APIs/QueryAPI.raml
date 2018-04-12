@@ -1,4 +1,4 @@
-#%RAML 0.8
+#%RAML 1.0
 
 # AMWA NMOS Discovery and Registration Specification: Query API
 # (c) AMWA 2016
@@ -7,20 +7,20 @@ title: Query
 baseUri: http://example.api.com/x-nmos/query/{version}
 version: v1.0
 mediaType: application/json
-schemas:
-  - Node: !include schemas/node.json
-    Nodes: !include schemas/nodes.json
-    Device: !include schemas/device.json
-    Devices: !include schemas/devices.json
-    Source: !include schemas/source.json
-    Sources: !include schemas/sources.json
-    Flow: !include schemas/flow.json
-    Flows: !include schemas/flows.json
-    Sender: !include schemas/sender.json
-    Senders: !include schemas/senders.json
-    Receiver: !include schemas/receiver.json
-    Receivers: !include schemas/receivers.json
-    ErrorSchema: !include schemas/error.json
+types:
+  Node: !include schemas/node.json
+  Nodes: !include schemas/nodes.json
+  Device: !include schemas/device.json
+  Devices: !include schemas/devices.json
+  Source: !include schemas/source.json
+  Sources: !include schemas/sources.json
+  Flow: !include schemas/flow.json
+  Flows: !include schemas/flows.json
+  Sender: !include schemas/sender.json
+  Senders: !include schemas/senders.json
+  Receiver: !include schemas/receiver.json
+  Receivers: !include schemas/receivers.json
+  ErrorSchema: !include schemas/error.json
 documentation:
   - title: Overview
     content: |
@@ -42,7 +42,7 @@ documentation:
       200:
         body:
           example: !include ../examples/queryapi-v1.0-base-get-200.json
-          schema: !include schemas/queryapi-base.json
+          type: !include schemas/queryapi-base.json
 /nodes:
   displayName: Nodes
   get:
@@ -51,7 +51,7 @@ documentation:
       200:
         body:
           example: !include ../examples/queryapi-v1.0-nodes-get-200.json
-          schema: Nodes
+          type: Nodes
   /{nodeId}:
     uriParameters:
       nodeId:
@@ -63,11 +63,11 @@ documentation:
         200:
           body:
             example: !include ../examples/queryapi-v1.0-nodeid-get-200.json
-            schema: Node
+            type: Node
         404:
           description: Returned when the requested Node ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
 /sources:
   displayName: Sources
   get:
@@ -81,7 +81,7 @@ documentation:
       200:
         body:
           example: !include ../examples/queryapi-v1.0-sources-get-200.json
-          schema: Sources
+          type: Sources
   /{sourceId}:
     uriParameters:
       sourceId:
@@ -93,11 +93,11 @@ documentation:
         200:
           body:
             example: !include ../examples/queryapi-v1.0-sourceid-get-200.json
-            schema: Source
+            type: Source
         404:
           description: Returned when the requested Source ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
 /flows:
   displayName: Flows
   get:
@@ -111,7 +111,7 @@ documentation:
       200:
         body:
           example: !include ../examples/queryapi-v1.0-flows-get-200.json
-          schema: Flows
+          type: Flows
   /{flowId}:
     uriParameters:
       flowId:
@@ -123,11 +123,11 @@ documentation:
         200:
           body:
             example: !include ../examples/queryapi-v1.0-flowid-get-200.json
-            schema: Flow
+            type: Flow
         404:
           description: Returned when the requested Flow ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
 /devices:
   displayName: Devices
   get:
@@ -140,7 +140,7 @@ documentation:
       200:
         body:
           example: !include ../examples/queryapi-v1.0-devices-get-200.json
-          schema: Devices
+          type: Devices
   /{deviceId}:
     uriParameters:
       deviceId:
@@ -152,11 +152,11 @@ documentation:
         200:
           body:
             example: !include ../examples/queryapi-v1.0-deviceid-get-200.json
-            schema: Device
+            type: Device
         404:
           description: Returned when the requested Device ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
 /senders:
   displayName: Senders
   get:
@@ -170,7 +170,7 @@ documentation:
       200:
         body:
           example: !include ../examples/queryapi-v1.0-senders-get-200.json
-          schema: Senders
+          type: Senders
   /{senderId}:
     uriParameters:
       senderId:
@@ -182,11 +182,11 @@ documentation:
         200:
           body:
             example: !include ../examples/queryapi-v1.0-senderid-get-200.json
-            schema: Sender
+            type: Sender
         404:
           description: Returned when the requested Sender ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
 /receivers:
   displayName: Receivers
   get:
@@ -200,7 +200,7 @@ documentation:
       200:
         body:
           example: !include ../examples/queryapi-v1.0-receivers-get-200.json
-          schema: Receivers
+          type: Receivers
   /{receiverId}:
     uriParameters:
       receiverId:
@@ -212,38 +212,38 @@ documentation:
         200:
           body:
             example: !include ../examples/queryapi-v1.0-receiverid-get-200.json
-            schema: Receiver
+            type: Receiver
         404:
           description: Returned when the requested Receiver ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
 /subscriptions:
   displayName: Subscriptions
   post:
     description: Create a websocket subscription to an API resource
     body:
       example: !include ../examples/queryapi-v1.0-subscriptions-post-request.json
-      schema: !include schemas/queryapi-v1.0-subscriptions-post-request.json
+      type: !include schemas/queryapi-v1.0-subscriptions-post-request.json
     responses:
       201:
         body:
           example: !include ../examples/queryapi-v1.0-subscriptions-post-200.json
-          schema: !include schemas/queryapi-subscription-response.json
+          type: !include schemas/queryapi-subscription-response.json
       200:
         body:
           example: !include ../examples/queryapi-v1.0-subscriptions-post-200.json
-          schema: !include schemas/queryapi-subscription-response.json
+          type: !include schemas/queryapi-subscription-response.json
       400:
         description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
         body:
-          schema: ErrorSchema
+          type: ErrorSchema
   get:
     description: List active connections to websockets providing real-time updates on resource changes (for debug use only)
     responses:
       200:
         body:
           example: !include ../examples/queryapi-v1.0-subscriptions-get-200.json
-          schema: !include schemas/queryapi-subscriptions-response.json
+          type: !include schemas/queryapi-subscriptions-response.json
   /{subscriptionId}:
     uriParameters:
       subscriptionId:
@@ -255,11 +255,11 @@ documentation:
         200:
           body:
             example: !include ../examples/queryapi-v1.0-subscriptionid-get-200.json
-            schema: !include schemas/queryapi-subscription-response.json
+            type: !include schemas/queryapi-subscription-response.json
         404:
           description: Returned when the requested Subscription ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
     delete:
       description: Delete a single subscription
       responses:
@@ -268,8 +268,8 @@ documentation:
         403:
           description: Returned when a DELETE request is made against a non-persistent subscription which is managed by the Query API and cannot be deleted
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
         404:
           description: Returned when the requested Subscription ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
