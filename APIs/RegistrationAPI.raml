@@ -1,4 +1,4 @@
-#%RAML 0.8
+#%RAML 1.0
 
 # AMWA NMOS Discovery and Registration Specification: Registration API
 # (c) AMWA 2016
@@ -7,8 +7,8 @@ title: Registration
 baseUri: http://example.api.com/x-nmos/registration/{version}
 version: v1.1
 mediaType: application/json
-schemas:
-  - ErrorSchema: !include schemas/error.json
+types:
+  ErrorSchema: !include schemas/error.json
 documentation:
   - title: Overview
     content: |
@@ -50,19 +50,19 @@ documentation:
       200:
         body:
           example: !include ../examples/registrationapi-v1.1-base-get-200.json
-          schema: !include schemas/registrationapi-base.json
+          type: !include schemas/registrationapi-base.json
 /resource:
   displayName: Resource
   post:
     description: Create or update a registered resource
     body:
       example: !include ../examples/registrationapi-v1.1-resource-post-request.json
-      schema: !include schemas/registrationapi-resource-post-request.json
+      type: !include schemas/registrationapi-resource-post-request.json
     responses:
       200:
         body:
           example: !include ../examples/registrationapi-v1.1-resource-post-200.json
-          schema: !include schemas/registrationapi-resource-response.json
+          type: !include schemas/registrationapi-resource-response.json
         headers:
           Location:
             example: /x-nmos/registration/v1.1/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
@@ -70,7 +70,7 @@ documentation:
       201:
         body:
           example: !include ../examples/registrationapi-v1.1-resource-post-200.json
-          schema: !include schemas/registrationapi-resource-response.json
+          type: !include schemas/registrationapi-resource-response.json
         headers:
           Location:
             example: /x-nmos/registration/v1.1/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
@@ -78,7 +78,7 @@ documentation:
       400:
         description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
         body:
-          schema: ErrorSchema
+          type: ErrorSchema
   /{resourceType}/{resourceId}:
     uriParameters:
       resourceId:
@@ -102,18 +102,18 @@ documentation:
         404:
           description: Returned when the requested resource does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
     get:
       description: Show a registered resource (for debug use only)
       responses:
         200:
           body:
             example: !include ../examples/registrationapi-v1.1-resource-get-200.json
-            schema: !include schemas/registrationapi-resource-response.json
+            type: !include schemas/registrationapi-resource-response.json
         404:
           description: Returned when the requested resource does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
 /health/nodes/{nodeId}:
   displayName: Node health
   uriParameters:
@@ -126,19 +126,19 @@ documentation:
       200:
         body:
           example: !include ../examples/registrationapi-v1.1-health-post-200.json
-          schema: !include schemas/registrationapi-health-response.json
+          type: !include schemas/registrationapi-health-response.json
       404:
         description: Returned when the requested Node does not exist or has been garbage collected
         body:
-          schema: ErrorSchema
+          type: ErrorSchema
   get:
     description: Show a Node's health (for debug use only)
     responses:
       200:
         body:
           example: !include ../examples/registrationapi-v1.1-health-get-200.json
-          schema: !include schemas/registrationapi-health-response.json
+          type: !include schemas/registrationapi-health-response.json
       404:
         description: Returned when the requested Node does not exist or has been garbage collected
         body:
-          schema: ErrorSchema
+          type: ErrorSchema
