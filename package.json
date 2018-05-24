@@ -18,7 +18,7 @@
   "scripts": {
     "build": "npm run jsonlint && npm run raml2html",
     "jsonlint": "echo 'Linting...'; for INFILE in examples/*.json APIs/schemas/*.json; do jsonlint -q -c $INFILE || exit 1; done",
-    "raml2html": "for INFILE in APIs/*.raml ; do echo 'Found RAML file' $INFILE; OUTFILE=${INFILE%%raml}html; npx raml2html -i $INFILE -o $OUTFILE  || exit 1; echo 'Generated' $OUTFILE; done",
+    "raml2html": "for INFILE in APIs/*.raml ; do echo 'Found RAML file' $INFILE; OUTFILE=${INFILE%%raml}html; raml2html -i $INFILE -o $OUTFILE  || exit 1; echo 'Generated' $OUTFILE; done",
     "preraml2html": "rimraf APIs/*.html"
   }
 }
