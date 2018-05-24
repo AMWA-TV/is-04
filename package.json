@@ -1,0 +1,24 @@
+{
+  "name": "@amwa/nmos-discovery-registration",
+  "version": "1.2.1",
+  "author": "AMWA",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AMWA-TV/nmos-discovery-registration.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AMWA-TV/nmos-discovery-registration/issues"
+  },
+  "dependencies": {
+    "raml2html": "^3.0.0",
+    "jsonlint": "^1.6.3",
+    "rimraf": "^2.6.2"
+  },
+  "scripts": {
+    "build": "npm run jsonlint && npm run raml2html",
+    "jsonlint": "echo 'Linting...'; for INFILE in examples/*.json APIs/schemas/*.json; do jsonlint -q -c $INFILE || exit 1; done",
+    "raml2html": "for INFILE in APIs/*.raml ; do echo 'Found RAML file' $INFILE; OUTFILE=${INFILE%%raml}html; npx raml2html -i $INFILE -o $OUTFILE  || exit 1; echo 'Generated' $OUTFILE; done",
+    "preraml2html": "rimraf APIs/*.html"
+  }
+}
