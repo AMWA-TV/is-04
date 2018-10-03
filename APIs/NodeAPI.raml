@@ -83,7 +83,7 @@ documentation:
       200:
         body:
           example: !include ../examples/nodeapi-v1.1-base-get-200.json
-          schema: !include schemas/nodeapi-base.json
+          type: !include schemas/nodeapi-base.json
 /self:
   displayName: Self
   get:
@@ -92,7 +92,7 @@ documentation:
       200:
         body:
           example: !include ../examples/nodeapi-v1.1-self-get-200.json
-          schema: Node
+          type: Node
 /sources:
   displayName: Sources
   get:
@@ -101,7 +101,7 @@ documentation:
       200:
         body:
           example: !include ../examples/nodeapi-v1.1-sources-get-200.json
-          schema: Sources
+          type: Sources
   /{sourceId}:
     uriParameters:
       sourceId:
@@ -113,11 +113,11 @@ documentation:
         200:
           body:
             example: !include ../examples/nodeapi-v1.1-sourceid-get-200.json
-            schema: Source
+            type: Source
         404:
           description: Returned when the requested Source ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
 /flows:
   displayName: Flows
   get:
@@ -126,7 +126,7 @@ documentation:
       200:
         body:
           example: !include ../examples/nodeapi-v1.1-flows-get-200.json
-          schema: Flows
+          type: Flows
   /{flowId}:
     uriParameters:
       flowId:
@@ -138,11 +138,11 @@ documentation:
         200:
           body:
             example: !include ../examples/nodeapi-v1.1-flowid-get-200.json
-            schema: Flow
+            type: Flow
         404:
           description: Returned when the requested Flow ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
 /devices:
   displayName: Devices
   get:
@@ -151,7 +151,7 @@ documentation:
       200:
         body:
           example: !include ../examples/nodeapi-v1.1-devices-get-200.json
-          schema: Devices
+          type: Devices
   /{deviceId}:
     uriParameters:
       deviceId:
@@ -163,11 +163,11 @@ documentation:
         200:
           body:
             example: !include ../examples/nodeapi-v1.1-deviceid-get-200.json
-            schema: Device
+            type: Device
         404:
           description: Returned when the requested Device ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
 /senders:
   displayName: Senders
   get:
@@ -176,7 +176,7 @@ documentation:
       200:
         body:
           example: !include ../examples/nodeapi-v1.1-senders-get-200.json
-          schema: Senders
+          type: Senders
   /{senderId}:
     uriParameters:
       senderId:
@@ -188,11 +188,11 @@ documentation:
         200:
           body:
             example: !include ../examples/nodeapi-v1.1-senderid-get-200.json
-            schema: Sender
+            type: Sender
         404:
           description: Returned when the requested Sender ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
 /receivers:
   displayName: Receivers
   get:
@@ -201,7 +201,7 @@ documentation:
       200:
         body:
           example: !include ../examples/nodeapi-v1.1-receivers-get-200.json
-          schema: Receivers
+          type: Receivers
   /{receiverId}:
     uriParameters:
       receiverId:
@@ -213,27 +213,27 @@ documentation:
         200:
           body:
             example: !include ../examples/nodeapi-v1.1-receiverid-get-200.json
-            schema: Receiver
+            type: Receiver
         404:
           description: Returned when the requested Receiver ID does not exist
           body:
-            schema: ErrorSchema
+            type: ErrorSchema
     /target:
       put:
         description: Request a change to a Receiver's subscription (deprecated)
         body:
           example: !include ../examples/nodeapi-v1.1-senderid-get-200.json
-          schema: !include schemas/nodeapi-receiver-target.json
+          type: !include schemas/nodeapi-receiver-target.json
         responses:
           202:
             body:
               example: !include ../examples/nodeapi-v1.1-senderid-get-200.json
-              schema: Sender
+              type: Sender
           400:
             description: Returned when the PUT request is incorrectly formatted or missing mandatory attributes
             body:
-              schema: ErrorSchema
+              type: ErrorSchema
           404:
             description: Returned when the requested Receiver ID does not exist
             body:
-              schema: ErrorSchema
+              type: ErrorSchema
