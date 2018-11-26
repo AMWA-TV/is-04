@@ -47,7 +47,7 @@ traits:
             Link:
               description: Provides references to cursors for paging. The 'rel' attribute may be one of 'next', 'prev', 'first' or 'last'
               type: string
-              example: <http://example.api.com/x-nmos/query/v1.1/nodes/?paging.since=1441716353:6839634&paging.limit=20>; rel="next", <http://example.api.com/x-nmos/query/v1.1/nodes/?paging.until=1441716120:318744030&paging.limit=20>; rel="prev"
+              example: <http://example.api.com/x-nmos/query/{version}/nodes/?paging.since=1441716353:6839634&paging.limit=20>; rel="next", <http://example.api.com/x-nmos/query/{version}/nodes/?paging.until=1441716120:318744030&paging.limit=20>; rel="prev"
             X-Paging-Limit:
               description: Identifies the current limit being used for paging. This may not match the requested value if the requested value was too high for the implementation
               type: integer
@@ -201,7 +201,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.1-base-get-200.json
+          example: !include ../examples/queryapi-base-get-200.json
           type: !include schemas/queryapi-base.json
 /nodes:
   displayName: Nodes
@@ -219,7 +219,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.1-nodes-get-200.json
+          example: !include ../examples/queryapi-nodes-get-200.json
           type: Nodes
   /{nodeId}:
     uriParameters:
@@ -232,7 +232,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.1-nodeid-get-200.json
+            example: !include ../examples/queryapi-nodeid-get-200.json
             type: Node
         404:
           description: Returned when the requested Node ID does not exist
@@ -254,7 +254,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.1-sources-get-200.json
+          example: !include ../examples/queryapi-sources-get-200.json
           type: Sources
   /{sourceId}:
     uriParameters:
@@ -267,7 +267,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.1-sourceid-get-200.json
+            example: !include ../examples/queryapi-sourceid-get-200.json
             type: Source
         404:
           description: Returned when the requested Source ID does not exist
@@ -289,7 +289,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.1-flows-get-200.json
+          example: !include ../examples/queryapi-flows-get-200.json
           type: Flows
   /{flowId}:
     uriParameters:
@@ -302,7 +302,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.1-flowid-get-200.json
+            example: !include ../examples/queryapi-flowid-get-200.json
             type: Flow
         404:
           description: Returned when the requested Flow ID does not exist
@@ -324,7 +324,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.1-devices-get-200.json
+          example: !include ../examples/queryapi-devices-get-200.json
           type: Devices
   /{deviceId}:
     uriParameters:
@@ -337,7 +337,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.1-deviceid-get-200.json
+            example: !include ../examples/queryapi-deviceid-get-200.json
             type: Device
         404:
           description: Returned when the requested Device ID does not exist
@@ -359,7 +359,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.1-senders-get-200.json
+          example: !include ../examples/queryapi-senders-get-200.json
           type: Senders
   /{senderId}:
     uriParameters:
@@ -372,7 +372,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.1-senderid-get-200.json
+            example: !include ../examples/queryapi-senderid-get-200.json
             type: Sender
         404:
           description: Returned when the requested Sender ID does not exist
@@ -394,7 +394,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.1-receivers-get-200.json
+          example: !include ../examples/queryapi-receivers-get-200.json
           type: Receivers
   /{receiverId}:
     uriParameters:
@@ -407,7 +407,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.1-receiverid-get-200.json
+            example: !include ../examples/queryapi-receiverid-get-200.json
             type: Receiver
         404:
           description: Returned when the requested Receiver ID does not exist
@@ -423,16 +423,16 @@ documentation:
   post:
     description: Create a websocket subscription to an API resource
     body:
-      example: !include ../examples/queryapi-v1.1-subscriptions-post-request.json
+      example: !include ../examples/queryapi-subscriptions-post-request.json
       type: !include schemas/queryapi-subscriptions-post-request.json
     responses:
       201:
         body:
-          example: !include ../examples/queryapi-v1.1-subscriptions-post-200.json
+          example: !include ../examples/queryapi-subscriptions-post-200.json
           type: !include schemas/queryapi-subscription-response.json
       200:
         body:
-          example: !include ../examples/queryapi-v1.1-subscriptions-post-200.json
+          example: !include ../examples/queryapi-subscriptions-post-200.json
           type: !include schemas/queryapi-subscription-response.json
       400:
         description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
@@ -444,7 +444,7 @@ documentation:
     responses:
       200:
         body:
-          example: !include ../examples/queryapi-v1.1-subscriptions-get-200.json
+          example: !include ../examples/queryapi-subscriptions-get-200.json
           type: !include schemas/queryapi-subscriptions-response.json
   /{subscriptionId}:
     uriParameters:
@@ -456,7 +456,7 @@ documentation:
       responses:
         200:
           body:
-            example: !include ../examples/queryapi-v1.1-subscriptionid-get-200.json
+            example: !include ../examples/queryapi-subscriptionid-get-200.json
             type: !include schemas/queryapi-subscription-response.json
         404:
           description: Returned when the requested Subscription ID does not exist
