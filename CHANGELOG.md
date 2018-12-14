@@ -4,6 +4,7 @@ This document provides an overview of changes between released versions of this 
 ## Release (unreleased)
 * Under active development
 
+* Deprecate mDNS announcements for Nodes in registered mode
 * Replace DNS-SD service type for Registration API
 * Permit deprecated Node API connection management to not be implemented
 * Add explicit requirements for 501 responses when features are not implemented
