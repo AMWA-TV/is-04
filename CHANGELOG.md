@@ -4,6 +4,8 @@ This document provides an overview of changes between released versions of this 
 ## Release (unreleased)
 * Under active development
 
+* Add support for future device and transport types
+
 ## Release v1.2
 * Add network interfaces and bindings to Nodes, Senders and Receivers
 * Deprecate native Node API connection management interface
