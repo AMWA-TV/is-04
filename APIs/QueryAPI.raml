@@ -227,6 +227,8 @@ documentation:
           type: Nodes
       501:
         description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{nodeId}:
     uriParameters:
       nodeId:
@@ -264,6 +266,8 @@ documentation:
           type: Sources
       501:
         description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{sourceId}:
     uriParameters:
       sourceId:
@@ -301,6 +305,8 @@ documentation:
           type: Flows
       501:
         description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{flowId}:
     uriParameters:
       flowId:
@@ -338,6 +344,8 @@ documentation:
           type: Devices
       501:
         description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{deviceId}:
     uriParameters:
       deviceId:
@@ -375,6 +383,8 @@ documentation:
           type: Senders
       501:
         description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{senderId}:
     uriParameters:
       senderId:
@@ -412,6 +422,8 @@ documentation:
           type: Receivers
       501:
         description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{receiverId}:
     uriParameters:
       receiverId:
