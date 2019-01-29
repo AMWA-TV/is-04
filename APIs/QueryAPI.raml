@@ -59,6 +59,8 @@ traits:
               description: Identifies the current value of the query parameter 'paging.until' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.since value of a query to return the next page of results. Combining this with the X-Paging-Since header value provides the absolute time bounds of the current returned data set.
               type: string
               example: 1441716120:318744030
+        501:
+          description: The query parameters specified are not currently supported by this implementation.
   - downgrade:
       description: API resource supporting the return of data which matches an older minor API version than the request would return by default.
       queryParameters:
@@ -69,6 +71,8 @@ traits:
       responses:
         400:
           description: The requested downgrade query moves between major API versions which is not permitted.
+        501:
+          description: The query parameters specified are not currently supported by this implementation.
   - rql:
       description: This resource MAY support advanced query formats using the Resource Query Language (RQL) syntax
       queryParameters:
@@ -221,6 +225,8 @@ documentation:
         body:
           example: !include ../examples/queryapi-nodes-get-200.json
           type: Nodes
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
   /{nodeId}:
     uriParameters:
       nodeId:
@@ -256,6 +262,8 @@ documentation:
         body:
           example: !include ../examples/queryapi-sources-get-200.json
           type: Sources
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
   /{sourceId}:
     uriParameters:
       sourceId:
@@ -291,6 +299,8 @@ documentation:
         body:
           example: !include ../examples/queryapi-flows-get-200.json
           type: Flows
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
   /{flowId}:
     uriParameters:
       flowId:
@@ -326,6 +336,8 @@ documentation:
         body:
           example: !include ../examples/queryapi-devices-get-200.json
           type: Devices
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
   /{deviceId}:
     uriParameters:
       deviceId:
@@ -361,6 +373,8 @@ documentation:
         body:
           example: !include ../examples/queryapi-senders-get-200.json
           type: Senders
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
   /{senderId}:
     uriParameters:
       senderId:
@@ -396,6 +410,8 @@ documentation:
         body:
           example: !include ../examples/queryapi-receivers-get-200.json
           type: Receivers
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
   /{receiverId}:
     uriParameters:
       receiverId:
