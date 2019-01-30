@@ -4,6 +4,8 @@ This document provides an overview of changes between released versions of this 
 ## Release (unreleased)
 * Under active development
 
+* Permit deprecated Node API connection management to not be implemented
+* Add explicit requirements for 501 responses when features are not implemented
 * Add support for future device and transport types
 
 ## Release v1.2
