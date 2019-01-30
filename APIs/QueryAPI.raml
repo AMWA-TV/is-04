@@ -22,92 +22,92 @@ types:
   Receivers: !include schemas/receivers.json
   ErrorSchema: !include schemas/error.json
 traits:
-  - paged:
-      description: API resource supporting pagination of results
-      queryParameters:
-        paging.since:
-          description: Return only the results which have been created/updated since the time specified (non-inclusive) (seconds:nanoseconds)
-          type: string
-          pattern: "^[0-9]+:[0-9]+$"
-        paging.until:
-          description: Return only the results which were created/updated up until the time specified (inclusive) (seconds:nanoseconds)
-          type: string
-          pattern: "^[0-9]+:[0-9]+$"
-        paging.limit:
-          description: Restrict the response to the specified number of results. Implementations may specify their own default and maximum for the limit
-          type: integer
-        paging.order:
-          description: Specify whether paging should be based upon initial resource creation time, or when it was last modified. In both cases the response should be provided in descending order
-          type: string
-          enum: ["create", "update"]
-          default: "update"
-      responses:
-        200:
-          headers:
-            Link:
-              description: Provides references to cursors for paging. The 'rel' attribute may be one of 'next', 'prev', 'first' or 'last'
-              type: string
-              example: <http://example.api.com/x-nmos/query/{version}/nodes/?paging.since=1441716353:6839634&paging.limit=20>; rel="next", <http://example.api.com/x-nmos/query/{version}/nodes/?paging.until=1441716120:318744030&paging.limit=20>; rel="prev"
-            X-Paging-Limit:
-              description: Identifies the current limit being used for paging. This may not match the requested value if the requested value was too high for the implementation
-              type: integer
-            X-Paging-Since:
-              description: Identifies the current value of the query parameter 'paging.since' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.until value of a query to return the previous page of results. Combining this with the X-Paging-Until header value provides the absolute time bounds of the current returned data set.
-              type: string
-              example: 1441716353:6839634
-            X-Paging-Until:
-              description: Identifies the current value of the query parameter 'paging.until' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.since value of a query to return the next page of results. Combining this with the X-Paging-Since header value provides the absolute time bounds of the current returned data set.
-              type: string
-              example: 1441716120:318744030
-        501:
-          description: The query parameters specified are not currently supported by this implementation.
-  - downgrade:
-      description: API resource supporting the return of data which matches an older minor API version than the request would return by default.
-      queryParameters:
-        query.downgrade:
-          description: Minimum API version to return resources from if they exists within the registry
-          type: string
-          pattern: "^v[0-9]+.[0-9]+$"
-      responses:
-        400:
-          description: The requested downgrade query moves between major API versions which is not permitted.
-        501:
-          description: The query parameters specified are not currently supported by this implementation.
-  - rql:
-      description: This resource MAY support advanced query formats using the Resource Query Language (RQL) syntax
-      queryParameters:
-        query.rql:
-          description: RQL format string indicating the query to be performed, such as 'and(eq(format,urn:x-nmos:format:video),in(tags.location,(Salford,London)))'. Strings used as filter values MUST be URL encoded.
-          type: string
-      responses:
-        400:
-          description: The server refuses to perform the query as it would be too resource intensive.
-        501:
-          description: The query parameters specified are not currently supported by this implementation.
-  - ancestry:
-      description: This resource MAY support ancestry tracking whereby an ID is traced through 'parents' attributes to find and return all related resources
-      queryParameters:
-        query.ancestry_id:
-          description: UUID of the Source or Flow for which the ancestry is to be tracked
-          type: string
-          pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-        query.ancestry_type:
-          description: The type of ancestry query to perform, whether searching for 'parents' or 'children' of the specified resource
-          type: string
-          enum: ["parents", "children"]
-        query.ancestry_generations:
-          description: The maximum number of generations to search through before returning the set of results. If this is not set, the server may use a default or fail to return results due to the request being too resource intensive
-          type: integer
-      responses:
-        200:
-          headers:
-            X-Ancestry-Generations:
-              description: Identifies the number of ancestry generations being searched through. If 'query.ancestry_generations' is not specified by the user this should be returned as the server defined default.
-              type: integer
-        400:
-          description: The server refuses to perform the query as it would be too resource intensive.
-        501:
-          description: The query parameters specified are not currently supported by this implementation.
+  paged:
+    description: API resource supporting pagination of results
+    queryParameters:
+      paging.since:
+        description: Return only the results which have been created/updated since the time specified (non-inclusive) (seconds:nanoseconds)
+        type: string
+        pattern: "^[0-9]+:[0-9]+$"
+      paging.until:
+        description: Return only the results which were created/updated up until the time specified (inclusive) (seconds:nanoseconds)
+        type: string
+        pattern: "^[0-9]+:[0-9]+$"
+      paging.limit:
+        description: Restrict the response to the specified number of results. Implementations may specify their own default and maximum for the limit
+        type: integer
+      paging.order:
+        description: Specify whether paging should be based upon initial resource creation time, or when it was last modified. In both cases the response should be provided in descending order
+        type: string
+        enum: ["create", "update"]
+        default: "update"
+    responses:
+      200:
+        headers:
+          Link:
+            description: Provides references to cursors for paging. The 'rel' attribute may be one of 'next', 'prev', 'first' or 'last'
+            type: string
+            example: <http://example.api.com/x-nmos/query/{version}/nodes/?paging.since=1441716353:6839634&paging.limit=20>; rel="next", <http://example.api.com/x-nmos/query/{version}/nodes/?paging.until=1441716120:318744030&paging.limit=20>; rel="prev"
+          X-Paging-Limit:
+            description: Identifies the current limit being used for paging. This may not match the requested value if the requested value was too high for the implementation
+            type: integer
+          X-Paging-Since:
+            description: Identifies the current value of the query parameter 'paging.since' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.until value of a query to return the previous page of results. Combining this with the X-Paging-Until header value provides the absolute time bounds of the current returned data set.
+            type: string
+            example: 1441716353:6839634
+          X-Paging-Until:
+            description: Identifies the current value of the query parameter 'paging.until' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.since value of a query to return the next page of results. Combining this with the X-Paging-Since header value provides the absolute time bounds of the current returned data set.
+            type: string
+            example: 1441716120:318744030
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+  downgrade:
+    description: API resource supporting the return of data which matches an older minor API version than the request would return by default.
+    queryParameters:
+      query.downgrade:
+        description: Minimum API version to return resources from if they exists within the registry
+        type: string
+        pattern: "^v[0-9]+.[0-9]+$"
+    responses:
+      400:
+        description: The requested downgrade query moves between major API versions which is not permitted.
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+  rql:
+    description: This resource MAY support advanced query formats using the Resource Query Language (RQL) syntax
+    queryParameters:
+      query.rql:
+        description: RQL format string indicating the query to be performed, such as 'and(eq(format,urn:x-nmos:format:video),in(tags.location,(Salford,London)))'. Strings used as filter values MUST be URL encoded.
+        type: string
+    responses:
+      400:
+        description: The server refuses to perform the query as it would be too resource intensive.
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+  ancestry:
+    description: This resource MAY support ancestry tracking whereby an ID is traced through 'parents' attributes to find and return all related resources
+    queryParameters:
+      query.ancestry_id:
+        description: UUID of the Source or Flow for which the ancestry is to be tracked
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+      query.ancestry_type:
+        description: The type of ancestry query to perform, whether searching for 'parents' or 'children' of the specified resource
+        type: string
+        enum: ["parents", "children"]
+      query.ancestry_generations:
+        description: The maximum number of generations to search through before returning the set of results. If this is not set, the server may use a default or fail to return results due to the request being too resource intensive
+        type: integer
+    responses:
+      200:
+        headers:
+          X-Ancestry-Generations:
+            description: Identifies the number of ancestry generations being searched through. If 'query.ancestry_generations' is not specified by the user this should be returned as the server defined default.
+            type: integer
+      400:
+        description: The server refuses to perform the query as it would be too resource intensive.
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
 documentation:
   - title: Overview
     content: |
