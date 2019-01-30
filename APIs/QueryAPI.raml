@@ -116,7 +116,7 @@ documentation:
       Attributes defined as 'Optional' MUST be returned by the Query API if they exist within the registry. The presence declaration relates more to whether it is required for them to be registered at the Registration API side, or presented via the Node API.
   - title: DNS-SD Advertisement
     content: |
-      Query APIs MUST produce an mDNS advertisement of the type \_nmos-query.\_tcp. This MAY be accompanied by a unicast DNS announcement of the same type.
+      The preferred method of Query API advertisement is via unicast DNS. Query APIs MUST additionally be capable of producing an mDNS advertisement of the type \_nmos-query.\_tcp. This MAY be disabled via a user-configurable method.
 
       The IP address and port of the Query API MUST be identified via the DNS-SD advertisement, with the full HTTP path then being resolved via the standard NMOS API path documentation.
 

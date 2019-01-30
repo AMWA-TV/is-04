@@ -27,7 +27,7 @@ documentation:
       The Node API is exposed by each NMOS Node in a system, regardless of whether it is possible for that Node to provide NMOS resources such as Flows, Sources etc. Data exposed by the Node API is used to populate the (distributed) registry via the Registration API. In smaller deployments the Node API is fetched from directly as required by Nodes which implement the Peer to Peer specification.
   - title: DNS-SD Advertisement
     content: |
-      Node APIs MUST produce an mDNS advertisement of the type \_nmos-node.\_tcp. This MAY be accompanied by a unicast DNS announcement of the same type.
+      Node APIs MAY produce an mDNS advertisement of the type \_nmos-node.\_tcp in order to support peer to peer operation. This SHOULD NOT be advertised when a Registration API is present on the network, or when peer to peer operation is disabled.
 
       The IP address and port of the Node API MUST be identified via the DNS-SD advertisement, with the full HTTP path then being resolved via the standard NMOS API path documentation.
 
@@ -45,7 +45,7 @@ documentation:
 
       **ver\_**
 
-      When a Node is unable to locate or successfully register with a Registration API it MUST additionally advertise the following mDNS TXT records as part of its Node advertisement. If a Node is successfully registered with a Registration API it MUST withdraw advertisements of these TXT records. There is no requirement to register these TXT records with a unicast DNS service.
+      When a Node is operating in peer to peer mode it MUST additionally advertise the following mDNS TXT records as part of its Node advertisement. If a Node is successfully registered with a Registration API it MUST withdraw advertisements of these TXT records. There is no requirement to register these TXT records with a unicast DNS service.
 
       | **TXT Record Name** | **Corresponding Node API Resource** |
       |---------------------|-------------------------------------|
