@@ -66,7 +66,9 @@ documentation:
 
   - title: Receiver Subscriptions
     content: |
-      This method is deprecated, but should be supported alongside any other connection mechanisms until it is removed in v2.0. Please see the NMOS Connection API specification for the current methods for creating connections between Senders and Receivers.
+      This method is deprecated, but SHOULD be supported alongside any other connection mechanisms up to and including v1.2. From v1.3 Nodes MAY choose to return a 501 response from this endpoint as opposed to implementing it.
+
+      Please see the NMOS Connection API specification for the current methods for creating connections between Senders and Receivers.
 
       A PUT request to /receivers/{receiverId}/target will modify which Sender a Receiver is subscribed to.
 
@@ -225,6 +227,7 @@ documentation:
           200:
           403:
           404:
+          501:
       put:
         description: Request a change to a Receiver's subscription (deprecated)
         body:
@@ -241,5 +244,9 @@ documentation:
               type: ErrorSchema
           404:
             description: Returned when the requested Receiver ID does not exist
+            body:
+              type: ErrorSchema
+          501:
+            description: This feature has not been implemented due to deprecation
             body:
               type: ErrorSchema
