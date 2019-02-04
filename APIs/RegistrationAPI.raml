@@ -85,6 +85,10 @@ documentation:
         description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
         body:
           type: ErrorSchema
+      409:
+        description: Returned when the resource already exists in the registry at a different API version
+        body:
+          type: ErrorSchema
   /{resourceType}/{resourceId}:
     uriParameters:
       resourceId:
@@ -147,6 +151,10 @@ documentation:
           type: !include schemas/registrationapi-health-response.json
       404:
         description: Returned when the requested Node does not exist or has been garbage collected
+        body:
+          type: ErrorSchema
+      409:
+        description: Returned when the requested Node exists in the registry but at a different API version
         body:
           type: ErrorSchema
   get:
