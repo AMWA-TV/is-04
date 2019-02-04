@@ -119,6 +119,10 @@ documentation:
           description: Returned when the requested resource does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the resource exists in the registry at a different API version
+          body:
+            type: ErrorSchema
     get:
       description: Show a registered resource (for debug use only)
       responses:
@@ -128,6 +132,10 @@ documentation:
             type: !include schemas/registrationapi-resource-response.json
         404:
           description: Returned when the requested resource does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the resource exists in the registry at a different API version
           body:
             type: ErrorSchema
 /health/nodes/{nodeId}:
@@ -166,5 +174,9 @@ documentation:
           type: !include schemas/registrationapi-health-response.json
       404:
         description: Returned when the requested Node does not exist or has been garbage collected
+        body:
+          type: ErrorSchema
+      409:
+        description: Returned when the resource exists in the registry at a different API version
         body:
           type: ErrorSchema
