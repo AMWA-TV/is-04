@@ -379,7 +379,7 @@ documentation:
           example: !include ../examples/queryapi-subscriptions-post-200.json
           type: !include schemas/queryapi-subscription-response.json
       400:
-        description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
+        description: Returned when the POST request is incorrectly formatted, missing mandatory attributes or an attribute is invalid given the API's capabilities or configuration
         body:
           type: ErrorSchema
   get:
