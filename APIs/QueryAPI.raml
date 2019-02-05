@@ -114,6 +114,9 @@ documentation:
       The Query API is exposed by NMOS discovery Nodes. It is used to expose the contents of the (distributed) registry to all Nodes on the network. In smaller deployments where no such registry is available, Nodes with their own control capabilities fall back to interrogating Nodes directly using the Peer to Peer specification. This is a Read Only API.
 
       Attributes defined as 'Optional' in schemas MUST be returned by the Query API if they exist within the registry. The presence declaration relates more to whether it is required for them to be registered at the Registration API side, or presented via the Node API.
+  - title: Further Documentation
+    content: |
+      Further normative documentation covering the behaviour of this API is contained in the [docs](../docs) folder of this repository.
 /:
   displayName: Base
   get:
