@@ -382,7 +382,11 @@ documentation:
           example: !include ../examples/queryapi-subscriptions-post-200.json
           type: !include schemas/queryapi-subscription-response.json
       400:
-        description: Returned when the POST request is incorrectly formatted, missing mandatory attributes or an attribute is invalid given the API's capabilities or configuration
+        description: Returned when the POST request is incorrectly formatted, missing mandatory attributes or an attribute is invalid given the API's configuration
+        body:
+          type: ErrorSchema
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
         body:
           type: ErrorSchema
   get:
