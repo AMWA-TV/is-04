@@ -140,6 +140,13 @@ documentation:
           description: Returned when the requested resource does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the resource exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
 /health/nodes/{nodeId}:
   displayName: Node health
   uriParameters:
@@ -181,3 +188,10 @@ documentation:
         description: Returned when the requested Node does not exist or has been garbage collected
         body:
           type: ErrorSchema
+      409:
+        description: Returned when the requested Node exists in the registry but at a different API version. The correct API version is identified via the Location header.
+        body:
+          type: ErrorSchema
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/health/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
