@@ -433,6 +433,10 @@ documentation:
         description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
         body:
           type: ErrorSchema
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   get:
     is: [paged]
     description: List active connections to websockets providing real-time updates on resource changes (for debug use only)
