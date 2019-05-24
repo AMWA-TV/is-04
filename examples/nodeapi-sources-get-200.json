@@ -130,5 +130,56 @@
         "id": "3ca37fce-c0cf-42a6-86ad-43635a53b5bb",
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
         "clock_name": null
+    },
+    {
+        "description": "IS-07 Temperature Readings",
+        "tags": {
+            "host": [
+                "host1"
+            ]
+        },
+        "format": "urn:x-nmos:format:data",
+        "event_type": "number/temperature",
+        "caps": {},
+        "version": "1453880605:374934072",
+        "parents": [],
+        "label": "IS-07 Temperature Readings",
+        "id": "33e28c6f-d5ab-4ae5-b00d-f1cccab29af4",
+        "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
+        "clock_name": "clk0"
+    },
+    {
+        "description": "IS-07 Temperature Readings",
+        "tags": {
+            "host": [
+                "host1"
+            ]
+        },
+        "format": "urn:x-nmos:format:data",
+        "event_type": "number/temperature",
+        "caps": {},
+        "version": "1453880605:374934072",
+        "parents": [],
+        "label": "IS-07 Temperature Readings",
+        "id": "33e28c6f-d5ab-4ae5-b00d-f1cccab29af4",
+        "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
+        "clock_name": "clk0"
+    },
+    {
+        "description": "IS-07 Button",
+        "tags": {
+            "host": [
+                "host1"
+            ]
+        },
+        "format": "urn:x-nmos:format:data",
+        "event_type": "boolean",
+        "caps": {},
+        "version": "1453880605:374934072",
+        "parents": [],
+        "label": "IS-07 Button",
+        "id": "c8d27a1d-d124-4d06-bc43-312fd36f7db1",
+        "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
+        "clock_name": "clk0"
     }
 ]

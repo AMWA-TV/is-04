@@ -16,7 +16,6 @@
           "type": "string",
           "enum": [
             "urn:x-nmos:format:video",
-            "urn:x-nmos:format:data",
             "urn:x-nmos:format:mux"
           ],
           "format": "uri"

@@ -41,6 +41,14 @@
                   }
                 ]
               }
+            },
+            "event_types": {
+              "description": "Subclassification of the event types accepted defined by the AMWA IS-07 specification",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
             }
           }
         }
