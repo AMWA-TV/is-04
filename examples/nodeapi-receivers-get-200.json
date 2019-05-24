@@ -31,7 +31,7 @@
                 "application/json"
             ],
             "event_types": [
-                "number/temperature",
+                "number/temperature/*",
                 "boolean"
             ]
         },
