@@ -33,7 +33,8 @@
                 "anyOf": [
                   {
                     "enum": [
-                      "video/smpte291"
+                      "video/smpte291",
+                      "application/json"
                     ]
                   },
                   {
