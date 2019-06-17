@@ -183,13 +183,13 @@ documentation:
 
       Not all RQL operators will be suitable for use with a Query API. It is suggested that the following operators are supported, however these are not mandated and implementations may choose to support their own subset.
 
-      1) Functions: in(), out(), sort(), like(), select()
+      1) Functions: in(), out(), select()
 
       2) Logical Operators: and(), or(), not()
 
       3) Relational Operators: eq(), ne(), gt(), ge(), lt(), le()
 
-      NB: It is suggested that limit() is not implemented as paging and associated limits is specified directly by the Query API.
+      NB: It is suggested that sort() and limit() are not implemented as paging and associated limits is specified directly by the Query API.
 
       ** Querying Ancestry **
 
