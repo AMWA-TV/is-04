@@ -67,6 +67,11 @@
                 "type": "string",
                 "description": "URN identifying the control format",
                 "format": "uri"
+              },
+              "authorization": {
+                "type": "boolean",
+                "description": "This endpoint requires authorization",
+                "default": false
               }
             }
           }

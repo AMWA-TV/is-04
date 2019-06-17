@@ -45,6 +45,11 @@
     "params": {
       "description": "Object containing attributes to filter the resource on as per the Query Parameters specification. Can be empty.",
       "type": "object"
+    },
+    "authorization": {
+      "type": "boolean",
+      "description": "This WebSocket requires authorization",
+      "default": false
     }
   }
 }
