@@ -21,7 +21,7 @@
       "default": false
     },
     "secure": {
-      "description": "Whether to produce a secure websocket connection (wss://). NB: Default should be 'false' if the API is being presented via HTTP, and 'true' for HTTPS",
+      "description": "Whether to produce a secure websocket connection (wss://)",
       "type": "boolean"
     },
     "resource_path": {
