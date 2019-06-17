@@ -58,5 +58,47 @@
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
         "id": "4857f747-96cf-4ed7-8f4b-9497199f1f25",
         "media_type": "video/SMPTE2022-6"
+    },
+    {
+        "description": "IS-07 Temperature Readings (C)",
+        "tags": {},
+        "format": "urn:x-nmos:format:data",
+        "event_type": "number/temperature/C",
+        "caps": {},
+        "version": "1453880605:374934072",
+        "parents": [],
+        "label": "IS-07 Temperature Readings (C)",
+        "id": "6327c381-1239-41d1-b314-efc719600e26",
+        "source_id": "33e28c6f-d5ab-4ae5-b00d-f1cccab29af4",
+        "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
+        "media_type": "application/json"
+    },
+    {
+        "description": "IS-07 Temperature Readings (F)",
+        "tags": {},
+        "format": "urn:x-nmos:format:data",
+        "event_type": "number/temperature/F",
+        "caps": {},
+        "version": "1453880605:374934072",
+        "parents": [],
+        "label": "IS-07 Temperature Readings (F)",
+        "id": "6327c381-1239-41d1-b314-efc719600e26",
+        "source_id": "33e28c6f-d5ab-4ae5-b00d-f1cccab29af4",
+        "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
+        "media_type": "application/json"
+    },
+    {
+        "description": "IS-07 Button",
+        "tags": {},
+        "format": "urn:x-nmos:format:data",
+        "event_type": "boolean",
+        "caps": {},
+        "version": "1453880605:374934072",
+        "parents": [],
+        "label": "IS-07 Button",
+        "id": "fa6258b9-2826-4a0d-81d0-7da9edbc405f",
+        "source_id": "c8d27a1d-d124-4d06-bc43-312fd36f7db1",
+        "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
+        "media_type": "application/json"
     }
 ]
