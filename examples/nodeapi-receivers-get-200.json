@@ -21,5 +21,31 @@
           "eth1"
         ],
         "device_id": "05017e08-b329-45f9-a566-a3f99cc11e4d"
+    },
+    {
+        "description": "",
+        "format": "urn:x-nmos:format:data",
+        "tags": {},
+        "caps": {
+            "media_types": [
+                "application/json"
+            ],
+            "event_types": [
+                "number/temperature/*",
+                "boolean"
+            ]
+        },
+        "subscription": {
+            "sender_id": null,
+            "active": false
+        },
+        "version": "1441704532:450093308",
+        "label": "IS-07 Mixed RTPRx",
+        "id": "9503a7ab-cc49-4b6a-a5a3-d0d0ca5c9671",
+        "transport": "urn:x-nmos:transport:mqtt",
+        "interface_bindings":[
+          "eth0"
+        ],
+        "device_id": "05017e08-b329-45f9-a566-a3f99cc11e4d"
     }
 ]
