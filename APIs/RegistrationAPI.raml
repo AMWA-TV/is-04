@@ -16,8 +16,7 @@ documentation:
   - title: DNS-SD Advertisement
     content: |
       Registration APIs MUST produce an mDNS advertisement of the type \_nmos-registration.\_tcp. This MAY be accompanied by a unicast DNS announcement of the same type.
-      *note: RFC6763 Section 7.2 specifies that the maximum service name length for an mDNS advertisement is 16 characters when including the leading underscore, but "_nmos-registration" is 18 characters.*
-      <!-- TODO: Address the length of the mDNS advertisement type -->
+      *note: RFC6763 Section 7.2 specifies that the maximum service name length for an mDNS advertisement is 16 characters when including the leading underscore, but "_nmos-registration" is 18 characters. Implementers of IS-04 v1.2 and below are advised to consult the v1.3 documentation for an additional service type which can be used to resolve this issue. Use of this additional service type requires that any v1.2 and earlier Nodes are also updated to support browsing for it.*
 
       The IP address and port of the Registration API MUST be identified via the DNS-SD advertisement, with the full HTTP path then being resolved via the standard NMOS API path documentation.
 
