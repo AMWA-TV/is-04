@@ -10,6 +10,7 @@ This document provides an overview of changes between released versions of this 
 * Permit deprecated Node API connection management to not be implemented
 * Add explicit requirements for 501 responses when features are not implemented
 * Add support for future device and transport types
+* Add 409 response code for registries with conflicting resources
 
 ## Release v1.2
 * Add network interfaces and bindings to Nodes, Senders and Receivers
