@@ -55,9 +55,16 @@ documentation:
             example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
         description: The expected response for a create operation performed for a previously unregistered resource
       400:
-        description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
+        description: Returned when the POST request is incorrectly formatted, missing mandatory attributes or breaches another condition which a Node is unlikely to be able to automatically correct.
         body:
           type: ErrorSchema
+      409:
+        description: Returned when the resource already exists in the registry at a different API version. The correct API version is identified via the Location header.
+        body:
+          type: ErrorSchema
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
   /{resourceType}/{resourceId}:
     uriParameters:
       resourceId:
@@ -88,6 +95,13 @@ documentation:
           description: Returned when the requested resource does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the resource exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
     get:
       description: Show a registered resource (for debug use only)
       responses:
@@ -99,6 +113,13 @@ documentation:
           description: Returned when the requested resource does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the resource exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
 /health/nodes/{nodeId}:
   displayName: Node health
   uriParameters:
@@ -122,6 +143,13 @@ documentation:
         description: Returned when the requested Node does not exist or has been garbage collected
         body:
           type: ErrorSchema
+      409:
+        description: Returned when the requested Node exists in the registry but at a different API version. The correct API version is identified via the Location header.
+        body:
+          type: ErrorSchema
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/health/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
   get:
     description: Show a Node's health (for debug use only)
     responses:
@@ -133,3 +161,10 @@ documentation:
         description: Returned when the requested Node does not exist or has been garbage collected
         body:
           type: ErrorSchema
+      409:
+        description: Returned when the requested Node exists in the registry but at a different API version. The correct API version is identified via the Location header.
+        body:
+          type: ErrorSchema
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/health/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
