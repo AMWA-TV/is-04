@@ -165,6 +165,13 @@ documentation:
           description: Returned when the requested Node ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Node ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
 /sources:
   displayName: Sources
   get:
@@ -204,6 +211,13 @@ documentation:
           description: Returned when the requested Source ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Source ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/sources/3b8be755-08ff-452b-b217-c9151eb21193/
 /flows:
   displayName: Flows
   get:
@@ -243,6 +257,13 @@ documentation:
           description: Returned when the requested Flow ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Flow ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/flows/3b8be755-08ff-452b-b217-c9151eb21193/
 /devices:
   displayName: Devices
   get:
@@ -282,6 +303,13 @@ documentation:
           description: Returned when the requested Device ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Device ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/devices/3b8be755-08ff-452b-b217-c9151eb21193/
 /senders:
   displayName: Senders
   get:
@@ -321,6 +349,13 @@ documentation:
           description: Returned when the requested Sender ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Sender ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/senders/3b8be755-08ff-452b-b217-c9151eb21193/
 /receivers:
   displayName: Receivers
   get:
@@ -360,6 +395,13 @@ documentation:
           description: Returned when the requested Receiver ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Receiver ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/receivers/3b8be755-08ff-452b-b217-c9151eb21193/
 /subscriptions:
   displayName: Subscriptions
   options:
@@ -417,6 +459,13 @@ documentation:
           description: Returned when the requested Subscription ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Subscription ID exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/subscriptions/3b8be755-08ff-452b-b217-c9151eb21193/
     options:
       description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
       responses:
@@ -436,3 +485,10 @@ documentation:
           description: Returned when the requested Subscription ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Subscription ID exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/subscriptions/3b8be755-08ff-452b-b217-c9151eb21193/
