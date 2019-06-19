@@ -42,7 +42,7 @@
           ]
         },
         "colorspace" : {
-          "description" : "Colorspace used for the video. Any values not defined in the enum should be defined in the parameter registers",
+          "description" : "Colorspace used for the video. Any values not defined in the enum should be defined in the NMOS Parameter Registers",
           "type" : "string",
           "anyOf": [
             {
@@ -59,7 +59,7 @@
           ]
         },
         "transfer_characteristic": {
-          "description": "Transfer characteristic. Any values not defined in the enum should be defined in the parameter registers",
+          "description": "Transfer characteristic. Any values not defined in the enum should be defined in the NMOS Parameter Registers",
           "type": "string",
           "default": "SDR",
           "anyOf": [
