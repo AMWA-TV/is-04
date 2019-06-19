@@ -12,6 +12,7 @@ This document provides an overview of changes between released versions of this 
 * Add support for future device and transport types
 * Permit a Sender's 'manifest_href' to be null when the transport type does not require a transport file
 * Add 409 response code for registries with conflicting resources
+* Add support for signalling authorization requirements
 
 ## Release v1.2
 * Add network interfaces and bindings to Nodes, Senders and Receivers
