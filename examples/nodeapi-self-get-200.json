@@ -62,12 +62,20 @@
         {
             "name":"eth0",
             "chassis_id":"74-26-96-db-87-31",
-            "port_id":"74-26-96-db-87-31"
+            "port_id":"74-26-96-db-87-31",
+            "attached_network_device": {
+                "chassis_id": "2f-8c-af-79-c7-00",
+                "port_id": "Ethernet 1/3"
+            }
         },
         {
             "name":"eth1",
             "chassis_id":"74-26-96-db-87-31",
-            "port_id":"74-26-96-db-87-32"
+            "port_id":"74-26-96-db-87-32",
+            "attached_network_device": {
+                "chassis_id": "2d-51-2b-85-89-7b",
+                "port_id": "Ethernet 1/2"
+            }
         }
     ]
 }

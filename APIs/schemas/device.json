@@ -20,10 +20,7 @@
           "type": "string",
           "oneOf": [
             {
-              "enum": [
-                "urn:x-nmos:device:generic",
-                "urn:x-nmos:device:pipeline"
-              ]
+              "pattern": "^urn:x-nmos:device:"
             },
             {
               "not": {
@@ -70,6 +67,11 @@
                 "type": "string",
                 "description": "URN identifying the control format",
                 "format": "uri"
+              },
+              "authorization": {
+                "type": "boolean",
+                "description": "This endpoint requires authorization",
+                "default": false
               }
             }
           }

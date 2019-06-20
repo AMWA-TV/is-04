@@ -5,7 +5,7 @@
 
 title: Registration
 baseUri: http://example.api.com/x-nmos/registration/{version}
-version: v1.2
+version: v1.3
 mediaType: application/json
 types:
   ErrorSchema: !include schemas/error.json
@@ -13,34 +13,9 @@ documentation:
   - title: Overview
     content: |
       The Registration API is exposed by NMOS discovery Nodes. It is used to publish data to the distributed registry, which can then be queried via the Query API. In smaller deployments where no distributed registry is available, the Registration API is not used and discovery responsibilities fall to individual Nodes which choose to implement Peer to Peer specification. The Registration API is a Write Only API.
-  - title: DNS-SD Advertisement
+  - title: Further Documentation
     content: |
-      Registration APIs MUST produce an mDNS advertisement of the type \_nmos-registration.\_tcp. This MAY be accompanied by a unicast DNS announcement of the same type.
-      *note: RFC6763 Section 7.2 specifies that the maximum service name length for an mDNS advertisement is 16 characters when including the leading underscore, but "_nmos-registration" is 18 characters. Implementers of IS-04 v1.2 and below are advised to consult the v1.3 documentation for an additional service type which can be used to resolve this issue. Use of this additional service type requires that any v1.2 and earlier Nodes are also updated to support browsing for it.*
-
-      The IP address and port of the Registration API MUST be identified via the DNS-SD advertisement, with the full HTTP path then being resolved via the standard NMOS API path documentation.
-
-      Multiple DNS-SD advertisements for the same API are permitted where the API is exposed via multiple ports and/or protocols.
-
-  - title: DNS-SD TXT Records
-    content: |
-      **api\_proto**
-
-      The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_proto' with a value of either 'http' or 'https' dependent on the protocol in use by the Registration API web server.
-
-      **api\_ver**
-
-      The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_ver'. The value of this TXT record is a comma separated list of API versions supported by the server. For example: 'v1.0,v1.1,v2.0'. There should be no whitespace between commas, and versions should be listed in ascending order.
-
-      **pri**
-
-      The DNS-SD advertisement MUST include a TXT record with key 'pri' and an integer value. Servers MAY additionally represent a matching priority via the DNS-SD SRV record 'priority' and 'weight' as defined in RFC 2782. The TXT record should be used in favour to the SRV priority and weight where these values differ in order to overcome issues in the Bonjour and Avahi implementations.
-      Values 0 to 99 correspond to an active NMOS Registration API (zero being the highest priority). Values 100+ are reserved for development work to avoid colliding with a live system.
-
-  - title: Versioning
-    content: |
-      A Registration API may support multiple API versions at one time, provided data exposed from each of these versioned endpoints matches the schema for that API version. A Node registering with a Registration API should do so using only one version at a time, which should be the highest version which both the Node and the Registration API support. See the [APIs](../docs/2.0. APIs.md) and [Upgrade Path](../docs/6.0. Upgrade Path.md) documentation for more details.
-
+      Further normative documentation covering the behaviour of this API is contained in the [docs](../docs) folder of this repository.
 /:
   displayName: Base
   get:
@@ -52,6 +27,11 @@ documentation:
           type: !include schemas/registrationapi-base.json
 /resource:
   displayName: Resource
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
   post:
     description: Create or update a registered resource
     body:
@@ -75,9 +55,16 @@ documentation:
             example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
         description: The expected response for a create operation performed for a previously unregistered resource
       400:
-        description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
+        description: Returned when the POST request is incorrectly formatted, missing mandatory attributes or breaches another condition which a Node is unlikely to be able to automatically correct.
         body:
           type: ErrorSchema
+      409:
+        description: Returned when the resource already exists in the registry at a different API version. The correct API version is identified via the Location header.
+        body:
+          type: ErrorSchema
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
   /{resourceType}/{resourceId}:
     uriParameters:
       resourceId:
@@ -93,6 +80,12 @@ documentation:
           "senders",
           "receivers"
         ]
+    options:
+      description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+      responses:
+        200:
+        403:
+        404:
     delete:
       description: Delete a registered resource
       responses:
@@ -102,6 +95,13 @@ documentation:
           description: Returned when the requested resource does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the resource exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
     get:
       description: Show a registered resource (for debug use only)
       responses:
@@ -113,12 +113,25 @@ documentation:
           description: Returned when the requested resource does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the resource exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
 /health/nodes/{nodeId}:
   displayName: Node health
   uriParameters:
     nodeId:
       type: string
       pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
+      404:
   post:
     description: Update Node health
     responses:
@@ -130,6 +143,13 @@ documentation:
         description: Returned when the requested Node does not exist or has been garbage collected
         body:
           type: ErrorSchema
+      409:
+        description: Returned when the requested Node exists in the registry but at a different API version. The correct API version is identified via the Location header.
+        body:
+          type: ErrorSchema
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/health/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
   get:
     description: Show a Node's health (for debug use only)
     responses:
@@ -141,3 +161,10 @@ documentation:
         description: Returned when the requested Node does not exist or has been garbage collected
         body:
           type: ErrorSchema
+      409:
+        description: Returned when the requested Node exists in the registry but at a different API version. The correct API version is identified via the Location header.
+        body:
+          type: ErrorSchema
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/health/nodes/3b8be755-08ff-452b-b217-c9151eb21193/

@@ -1,6 +1,20 @@
 # Changelog
 This document provides an overview of changes between released versions of this specification. It is particularly important to consider this when implementing Registration and Query APIs which may support multiple releases simultaneously to ease upgrades in large facilities (see [Upgrade Path](docs/6.0.%20Upgrade%20Path.md)).
 
+## Release (unreleased)
+* Under active development
+
+* Add additional network data for Nodes as required by IS-06
+* Deprecate mDNS announcements for Nodes in registered mode
+* Replace DNS-SD service type for Registration API
+* Permit deprecated Node API connection management to not be implemented
+* Add explicit requirements for 501 responses when features are not implemented
+* Add support for future device and transport types
+* Permit a Sender's 'manifest_href' to be null when the transport type does not require a transport file
+* Add 409 response code for registries with conflicting resources
+* Add support for signalling authorization requirements
+* Indicate potential for Source/Flow attributes and 'caps' to be defined externally in the future
+
 ## Release v1.2
 * Add network interfaces and bindings to Nodes, Senders and Receivers
 * Deprecate native Node API connection management interface

@@ -24,12 +24,7 @@
           "type": "string",
           "oneOf": [
             {
-              "enum": [
-                "urn:x-nmos:transport:rtp",
-                "urn:x-nmos:transport:rtp.ucast",
-                "urn:x-nmos:transport:rtp.mcast",
-                "urn:x-nmos:transport:dash"
-              ]
+              "pattern": "^urn:x-nmos:transport:"
             },
             {
               "not": {
@@ -40,14 +35,14 @@
           "format": "uri"
         },
         "interface_bindings": {
-          "description": "Binding of Receiver ingress ports to interfaces on the parent Node. Should contain a single network interface unless a redundancy mechanism such as ST.2022-7 is in use, in which case each 'leg' should have its matching interface listed. Where the redundancy mechanism receives more than one copy of the stream via the same interface, that interface should be listed a corresponding number of times.",
+          "description": "Binding of Receiver ingress ports to interfaces on the parent Node.",
           "type": "array",
           "items": {
             "type":"string"
           }
         },
         "subscription": {
-          "description": "Object containing the 'sender_id' currently subscribed to. Sender_id should be null on initialisation, or when connected to a non-NMOS Sender.",
+          "description": "Object containing the 'sender_id' currently subscribed to.",
           "type": "object",
           "required": ["sender_id", "active"],
           "properties": {

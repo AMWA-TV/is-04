@@ -21,7 +21,7 @@
       "default": false
     },
     "secure": {
-      "description": "Whether to produce a secure websocket connection (wss://). NB: Default should be 'false' if the API is being presented via HTTP, and 'true' for HTTPS",
+      "description": "Whether to produce a secure websocket connection (wss://)",
       "type": "boolean"
     },
     "resource_path": {
@@ -32,6 +32,10 @@
     "params": {
       "description": "Object containing attributes to filter the resource on as per the Query Parameters specification. Can be empty.",
       "type": "object"
+    },
+    "authorization": {
+      "type": "boolean",
+      "description": "This WebSocket requires authorization"
     }
   }
 }

@@ -5,7 +5,7 @@
 
 title: Node
 baseUri: http://example.api.com/x-nmos/node/{version}
-version: v1.2
+version: v1.3
 mediaType: application/json
 types:
   Node: !include schemas/node.json
@@ -25,56 +25,9 @@ documentation:
   - title: Overview
     content: |
       The Node API is exposed by each NMOS Node in a system, regardless of whether it is possible for that Node to provide NMOS resources such as Flows, Sources etc. Data exposed by the Node API is used to populate the (distributed) registry via the Registration API. In smaller deployments the Node API is fetched from directly as required by Nodes which implement the Peer to Peer specification.
-  - title: DNS-SD Advertisement
+  - title: Further Documentation
     content: |
-      Node APIs MUST produce an mDNS advertisement of the type \_nmos-node.\_tcp. This MAY be accompanied by a unicast DNS announcement of the same type. Note that peer to peer mode and Node mDNS announcements are optional from v1.3 of the specification.
-
-      The IP address and port of the Node API MUST be identified via the DNS-SD advertisement, with the full HTTP path then being resolved via the standard NMOS API path documentation.
-
-      Multiple DNS-SD advertisements for the same API are permitted where the API is exposed via multiple ports and/or protocols.
-
-  - title: DNS-SD TXT Records
-    content: |
-      **api\_proto**
-
-      The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_proto' with a value of either 'http' or 'https' (lower-case) dependent on the protocol in use by the Node API web server.
-
-      **api\_ver**
-
-      The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_ver'. The value of this TXT record is a comma separated list of API versions supported by the server. For example: 'v1.0,v1.1,v2.0'. There should be no whitespace between commas, and versions should be listed in ascending order.
-
-      **ver\_**
-
-      When a Node is unable to locate or successfully register with a Registration API it MUST additionally advertise the following mDNS TXT records as part of its Node advertisement. If a Node is successfully registered with a Registration API it MUST withdraw advertisements of these TXT records. There is no requirement to register these TXT records with a unicast DNS service.
-
-      | **TXT Record Name** | **Corresponding Node API Resource** |
-      |---------------------|-------------------------------------|
-      | ver\_slf            | self                                |
-      | ver\_src            | sources                             |
-      | ver\_flw            | flows                               |
-      | ver\_dvc            | devices                             |
-      | ver\_snd            | senders                             |
-      | ver\_rcv            | receivers                           |
-
-      The value of each of the above should be an unsigned 8-bit integer initialised to '0'. This integer MUST be incremented and mDNS TXT record updated whenever a change is made to the corresponding HTTP API resource on the Node. The integer must wrap back to a value of '0' after reaching a maximum value of '255' (MAX_UINT8_T).
-
-      For example, the 'ver_src' TXT record must be created when the Node first advertises itself via mDNS. If the data held within the HTTP resource for /sources is added to, removed from or edited, then the 'ver_src' text record must be modified (value incremented).
-
-  - title: Versioning
-    content: |
-      A Node API may support multiple API versions at one time, provided data exposed from each of these versioned endpoints matches the schema for that API version. See the [APIs](../docs/2.0. APIs.md) and [Upgrade Path](../docs/6.0. Upgrade Path.md) documentation for more details.
-
-  - title: Receiver Subscriptions
-    content: |
-      This method is deprecated, but should be supported alongside any other connection mechanisms until it is removed in v2.0. Please see the NMOS Connection API specification for the current methods for creating connections between Senders and Receivers.
-
-      A PUT request to /receivers/{receiverId}/target will modify which Sender a Receiver is subscribed to.
-
-      In order to 'subscribe' a Receiver to a Sender, a PUT request should be made to this resource containing a full Sender object.
-      In order to 'unsubscribe' a Receiver from a Sender, an empty object '{}' should be used in this PUT request.
-      In both cases the target resource should respond with a 202 code (accepted) on success, and a response body matching the request body.
-
-      The Receiver's subscription object contains a 'sender_id' attribute which must be updated once a Receiver has successfully requested, parsed and actioned a change to the manifest_href is it connected to.
+      Further normative documentation covering the behaviour of this API is contained in the [docs](../docs) folder of this repository.
 /:
   displayName: Base
   get:
@@ -219,6 +172,13 @@ documentation:
           body:
             type: ErrorSchema
     /target:
+      options:
+        description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+        responses:
+          200:
+          403:
+          404:
+          501:
       put:
         description: Request a change to a Receiver's subscription (deprecated)
         body:
@@ -235,5 +195,9 @@ documentation:
               type: ErrorSchema
           404:
             description: Returned when the requested Receiver ID does not exist
+            body:
+              type: ErrorSchema
+          501:
+            description: This feature has not been implemented due to deprecation
             body:
               type: ErrorSchema

@@ -5,7 +5,7 @@
 
 title: Query
 baseUri: http://example.api.com/x-nmos/query/{version}
-version: v1.2
+version: v1.3
 mediaType: application/json
 types:
   Node: !include schemas/node.json
@@ -59,6 +59,8 @@ traits:
             description: Identifies the current value of the query parameter 'paging.until' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.since value of a query to return the next page of results. Combining this with the X-Paging-Since header value provides the absolute time bounds of the current returned data set.
             type: string
             example: 1441716120:318744030
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
   downgrade:
     description: API resource supporting the return of data which matches an older minor API version than the request would return by default.
     queryParameters:
@@ -69,6 +71,8 @@ traits:
     responses:
       400:
         description: The requested downgrade query moves between major API versions which is not permitted.
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
   rql:
     description: This resource MAY support advanced query formats using the Resource Query Language (RQL) syntax
     queryParameters:
@@ -109,91 +113,10 @@ documentation:
     content: |
       The Query API is exposed by NMOS discovery Nodes. It is used to expose the contents of the (distributed) registry to all Nodes on the network. In smaller deployments where no such registry is available, Nodes with their own control capabilities fall back to interrogating Nodes directly using the Peer to Peer specification. This is a Read Only API.
 
-      Attributes defined as 'Optional' MUST be returned by the Query API if they exist within the registry. The presence declaration relates more to whether it is required for them to be registered at the Registration API side, or presented via the Node API.
-  - title: DNS-SD Advertisement
+      Attributes defined as 'Optional' in schemas MUST be returned by the Query API if they exist within the registry. The presence declaration relates more to whether it is required for them to be registered at the Registration API side, or presented via the Node API.
+  - title: Further Documentation
     content: |
-      Query APIs MUST produce an mDNS advertisement of the type \_nmos-query.\_tcp. This MAY be accompanied by a unicast DNS announcement of the same type.
-
-      The IP address and port of the Query API MUST be identified via the DNS-SD advertisement, with the full HTTP path then being resolved via the standard NMOS API path documentation.
-
-      Multiple DNS-SD advertisements for the same API are permitted where the API is exposed via multiple ports and/or protocols.
-
-  - title: DNS-SD TXT Records
-    content: |
-      **api\_proto**
-
-      The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_proto' with a value of either 'http' or 'https' dependent on the protocol in use by the Query API web server.
-
-      **api\_ver**
-
-      The DNS-SD advertisement MUST be accompanied by a TXT record of name 'api\_ver'. The value of this TXT record is a comma separated list of API versions supported by the server. For example: 'v1.0,v1.1,v2.0'. There should be no whitespace between commas, and versions should be listed in ascending order.
-
-      **pri**
-
-      The DNS-SD advertisement MUST include a TXT record with key 'pri' and an integer value. Servers MAY additionally represent a matching priority via the DNS-SD SRV record 'priority' and 'weight' as defined in RFC 2782. The TXT record should be used in favour to the SRV priority and weight where these values differ in order to overcome issues in the Bonjour and Avahi implementations.
-      Values 0 to 99 correspond to an active NMOS Query API (zero being the highest priority). Values 100+ are reserved for development work to avoid colliding with a live system.
-
-  - title: Websockets
-    content: |
-      Persistent connections to the Query API are supported via Websockets which can be set up via the /subscriptions resource. Query APIs may additionally support the HTTP 'Upgrade' header sent by clients to upgrade an HTTP GET request to a Websocket. In cases where this is performed, a corresponding entry in /subscriptions must also be created with matching query parameters.
-
-  - title: Versioning
-    content: |
-      A Query API may support multiple API versions at one time, provided data exposed from each of these versioned endpoints matches the schema for that API version. See the [APIs](../docs/2.0. APIs.md) and [Upgrade Path](../docs/6.0. Upgrade Path.md) documentation for more details.
-
-  - title: Query Parameters
-    content: |
-      As a Query API may provide access to many thousands of resources, query parameters provide the means to narrow down these results. Any attribute which may be returned by a particular API resource SHOULD be available to use as a query parameter, however this RAML documentation only explicitly identifies core attributes under 'queryParameters'.
-
-      For a full description of the expected querying behaviour along with examples, please see the [Query Parameters Documentation](../docs/2.5. APIs - Query Parameters.md).
-
-      Basic Queries and Downgrade Queries SHOULD be supported. Advanced queries using RQL, ancestry tracking and similar MAY be supported.
-
-      ** Basic Queries **
-
-      Basic queries make use of standard HTTP GET query parameters in the form '?key=value'. Keys may match any attribute which the API schemas indicate could be returned by a given resource.
-
-      * Querying Within Objects
-
-      Querying using attributes of objects is permitted via the use of a '.' separator. For example, the /receivers resource may be queried with '?subscription.sender_id=2683ad14-642f-459d-a169-ef91c76cec6b'.
-
-      * Querying Within Arrays
-
-      Querying using attributes of objects held within arrays is permitted via the use of a '.' separator. For example, the /nodes resource may be queried with '?services.type=urn:x-manufacturer:service:tally'. More advanced queries within arrays may require use of the Resource Query Language 'in()' operator.
-
-      ** Downgrade Queries **
-
-      In order to streamline upgrades from one API version to another a Query API may sit in front of a registry which holds registered data matching multiple API versions' schemas. By default the Query API must only return data matching the API version specified in the request URL, however the client may choose to request mixed versions of data if it is capable of handling the potential missing keys.
-
-      Downgrades MUST only be performed between minor API versions as major versions may remove or re-purpose attributes. Clients which support multiple major API versions should retrieve this data via multiple HTTP requests or websocket subscriptions.
-
-      ** Resource Query Language **
-
-      Given the constraints of using a standard '?variable=value&variable2=value2' query syntax, Query APIs MAY support Resource Query Language (https://github.com/persvr/rql/) in order to support more advanced queries.
-
-      RQL should be formatted in the normalised form as opposed to using FIQL syntax, and passed via the query string using '?query.rql=...'.
-
-      Querying within objects and arrays should be performed as in the Basic Queries case by using the '.' separator.
-
-      When an RQL query is specified, the Basic Queries format MAY be ignored in order to simplify implementation.
-
-      Note that as RQL permits the definition of very complex queries, the server may return a 400 error code to indicate that it is refusing to action the client's request due to the query's complexity.
-
-      * Constraints
-
-      Not all RQL operators will be suitable for use with a Query API. It is suggested that the following operators are supported, however these are not mandated and implementations may choose to support their own subset.
-
-      1) Functions: in(), out(), select()
-
-      2) Logical Operators: and(), or(), not()
-
-      3) Relational Operators: eq(), ne(), gt(), ge(), lt(), le()
-
-      NB: It is suggested that sort() and limit() are not implemented as paging and associated limits is specified directly by the Query API.
-
-      ** Querying Ancestry **
-
-      Sources and Flows list their 'parents' in an array. A Query API implementing ancestry tracking may be queried using '?query.ancestry_...' parameters in order to identify parents or children of a given Source or Flow.
+      Further normative documentation covering the behaviour of this API is contained in the [docs](../docs) folder of this repository.
 /:
   displayName: Base
   get:
@@ -221,6 +144,10 @@ documentation:
         body:
           example: !include ../examples/queryapi-nodes-get-200.json
           type: Nodes
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{nodeId}:
     uriParameters:
       nodeId:
@@ -238,6 +165,13 @@ documentation:
           description: Returned when the requested Node ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Node ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
 /sources:
   displayName: Sources
   get:
@@ -256,6 +190,10 @@ documentation:
         body:
           example: !include ../examples/queryapi-sources-get-200.json
           type: Sources
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{sourceId}:
     uriParameters:
       sourceId:
@@ -273,6 +211,13 @@ documentation:
           description: Returned when the requested Source ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Source ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/sources/3b8be755-08ff-452b-b217-c9151eb21193/
 /flows:
   displayName: Flows
   get:
@@ -291,6 +236,10 @@ documentation:
         body:
           example: !include ../examples/queryapi-flows-get-200.json
           type: Flows
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{flowId}:
     uriParameters:
       flowId:
@@ -308,6 +257,13 @@ documentation:
           description: Returned when the requested Flow ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Flow ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/flows/3b8be755-08ff-452b-b217-c9151eb21193/
 /devices:
   displayName: Devices
   get:
@@ -326,6 +282,10 @@ documentation:
         body:
           example: !include ../examples/queryapi-devices-get-200.json
           type: Devices
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{deviceId}:
     uriParameters:
       deviceId:
@@ -343,6 +303,13 @@ documentation:
           description: Returned when the requested Device ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Device ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/devices/3b8be755-08ff-452b-b217-c9151eb21193/
 /senders:
   displayName: Senders
   get:
@@ -361,6 +328,10 @@ documentation:
         body:
           example: !include ../examples/queryapi-senders-get-200.json
           type: Senders
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{senderId}:
     uriParameters:
       senderId:
@@ -378,6 +349,13 @@ documentation:
           description: Returned when the requested Sender ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Sender ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/senders/3b8be755-08ff-452b-b217-c9151eb21193/
 /receivers:
   displayName: Receivers
   get:
@@ -396,6 +374,10 @@ documentation:
         body:
           example: !include ../examples/queryapi-receivers-get-200.json
           type: Receivers
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
   /{receiverId}:
     uriParameters:
       receiverId:
@@ -413,8 +395,20 @@ documentation:
           description: Returned when the requested Receiver ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Receiver ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/receivers/3b8be755-08ff-452b-b217-c9151eb21193/
 /subscriptions:
   displayName: Subscriptions
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
   post:
     description: Create a websocket subscription to an API resource
     body:
@@ -430,7 +424,11 @@ documentation:
           example: !include ../examples/queryapi-subscriptions-post-200.json
           type: !include schemas/queryapi-subscription-response.json
       400:
-        description: Returned when the POST request is incorrectly formatted or missing mandatory attributes
+        description: Returned when the POST request is incorrectly formatted, missing mandatory attributes or an attribute is invalid given the API's configuration
+        body:
+          type: ErrorSchema
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
         body:
           type: ErrorSchema
       501:
@@ -461,6 +459,19 @@ documentation:
           description: Returned when the requested Subscription ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Subscription ID exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/subscriptions/3b8be755-08ff-452b-b217-c9151eb21193/
+    options:
+      description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+      responses:
+        200:
+        403:
+        404:
     delete:
       description: Delete a single subscription
       responses:
@@ -474,3 +485,10 @@ documentation:
           description: Returned when the requested Subscription ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Subscription ID exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/subscriptions/3b8be755-08ff-452b-b217-c9151eb21193/
