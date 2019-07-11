@@ -14,6 +14,7 @@ This document provides an overview of changes between released versions of this 
 * Add 409 response code for registries with conflicting resources
 * Add support for signalling authorization requirements
 * Indicate potential for Source/Flow attributes and 'caps' to be defined externally in the future
+* Revise discovery process to ignore mDNS records when unicast records are available
 
 ## Release v1.2
 * Add network interfaces and bindings to Nodes, Senders and Receivers
