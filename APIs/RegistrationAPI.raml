@@ -44,7 +44,7 @@ documentation:
           type: !include schemas/registrationapi-resource-response.json
         headers:
           Location:
-            example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
+            example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193
         description: The expected response for an update operation on an existing registered resource
       201:
         body:
@@ -52,7 +52,7 @@ documentation:
           type: !include schemas/registrationapi-resource-response.json
         headers:
           Location:
-            example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
+            example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193
         description: The expected response for a create operation performed for a previously unregistered resource
       400:
         description: Returned when the POST request is incorrectly formatted, missing mandatory attributes or breaches another condition which a Node is unlikely to be able to automatically correct.
@@ -64,7 +64,7 @@ documentation:
           type: ErrorSchema
         headers:
           Location:
-            example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
+            example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193
   /{resourceType}/{resourceId}:
     uriParameters:
       resourceId:
@@ -101,7 +101,7 @@ documentation:
             type: ErrorSchema
           headers:
             Location:
-              example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
+              example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193
     get:
       description: Show a registered resource (for debug use only)
       responses:
@@ -119,7 +119,7 @@ documentation:
             type: ErrorSchema
           headers:
             Location:
-              example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
+              example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193
 /health/nodes/{nodeId}:
   displayName: Node health
   uriParameters:
@@ -149,7 +149,7 @@ documentation:
           type: ErrorSchema
         headers:
           Location:
-            example: /x-nmos/registration/{version}/health/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
+            example: /x-nmos/registration/{version}/health/nodes/3b8be755-08ff-452b-b217-c9151eb21193
   get:
     description: Show a Node's health (for debug use only)
     responses:
@@ -167,4 +167,4 @@ documentation:
           type: ErrorSchema
         headers:
           Location:
-            example: /x-nmos/registration/{version}/health/nodes/3b8be755-08ff-452b-b217-c9151eb21193/
+            example: /x-nmos/registration/{version}/health/nodes/3b8be755-08ff-452b-b217-c9151eb21193
