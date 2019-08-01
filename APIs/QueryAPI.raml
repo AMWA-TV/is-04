@@ -419,10 +419,16 @@ documentation:
         body:
           example: !include ../examples/queryapi-subscriptions-post-200.json
           type: !include schemas/queryapi-subscription-response.json
+        headers:
+          Location:
+            example: /x-nmos/query/{version}/subscriptions/7c903667-7113-4a8f-8865-1c63f9070a9e
       200:
         body:
           example: !include ../examples/queryapi-subscriptions-post-200.json
           type: !include schemas/queryapi-subscription-response.json
+        headers:
+          Location:
+            example: /x-nmos/query/{version}/subscriptions/7c903667-7113-4a8f-8865-1c63f9070a9e
       400:
         description: Returned when the POST request is incorrectly formatted, missing mandatory attributes or an attribute is invalid given the API's configuration
         body:
