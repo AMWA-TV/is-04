@@ -71,6 +71,13 @@ documentation:
           description: Returned when the requested Source ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Source ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/node/{version}/sources/4569cea2-ab63-4f97-8dd1-bad4669ea5e4
 /flows:
   displayName: Flows
   get:
@@ -96,6 +103,13 @@ documentation:
           description: Returned when the requested Flow ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Flow ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/node/{version}/flows/5fbec3b1-1b0f-417d-9059-8b94a47197ed
 /devices:
   displayName: Devices
   get:
@@ -121,6 +135,13 @@ documentation:
           description: Returned when the requested Device ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Device ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/node/{version}/devices/67c25159-ce25-4000-a66c-f31fff890265
 /senders:
   displayName: Senders
   get:
@@ -146,6 +167,13 @@ documentation:
           description: Returned when the requested Sender ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Sender ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/node/{version}/senders/d7aa5a30-681d-4e72-92fb-f0ba0f6f4c3e
 /receivers:
   displayName: Receivers
   get:
@@ -171,14 +199,19 @@ documentation:
           description: Returned when the requested Receiver ID does not exist
           body:
             type: ErrorSchema
+        409:
+          description: Returned when the requested Receiver ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/node/{version}/receivers/1eb53d65-ac83-441c-86f6-9b27df30ef0c
     /target:
       options:
         description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
         responses:
           200:
           403:
-          404:
-          501:
       put:
         description: Request a change to a Receiver's subscription (deprecated)
         body:
@@ -197,6 +230,13 @@ documentation:
             description: Returned when the requested Receiver ID does not exist
             body:
               type: ErrorSchema
+          409:
+            description: Returned when the requested Receiver ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+            body:
+              type: ErrorSchema
+            headers:
+              Location:
+                example: /x-nmos/node/{version}/receivers/1eb53d65-ac83-441c-86f6-9b27df30ef0c/target
           501:
             description: This feature has not been implemented due to deprecation
             body:
