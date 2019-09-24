@@ -18,8 +18,8 @@ types:
   Flows: !include schemas/flows.json
   Sender: !include schemas/sender.json
   Senders: !include schemas/senders.json
-  SenderTarget: !include schemas/sender-target.json
   Receiver: !include schemas/receiver.json
+  ReceiverTarget: !include schemas/nodeapi-receiver-target.json
   Receivers: !include schemas/receivers.json
   ErrorSchema: !include schemas/error.json
 documentation:
@@ -203,12 +203,12 @@ documentation:
         description: Request a change to a Receiver's subscription
         body:
           example: !include ../examples/nodeapi-v1.0-receivertarget-put-request.json
-          type: !include schemas/nodeapi-receiver-target.json
+          type: ReceiverTarget
         responses:
           202:
             body:
               example: !include ../examples/nodeapi-v1.0-receivertarget-put-200.json
-              type: SenderTarget
+              type: ReceiverTarget
           400:
             description: Returned when the PUT request is incorrectly formatted or missing mandatory attributes
             body:
