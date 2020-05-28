@@ -8,7 +8,7 @@ Readers are advised to be familiar with:
 * The [JT-NM Reference Architecture](http://jt-nm.org/RA-1.0/)
 * The [overview of Networked Media Open Specifications](https://github.com/AMWA-TV/nmos)
 
-Readers should read the [documentation](docs/) in this repository, starting with the [Overview](docs/1.0.%20Overview.md), and then look at the [APIs](APIs/), which are written in RAML and JSON Schema (if a suitable tool for reading RAML is not available, then [this](APIs/generateHTML) will create HTML versions).
+Readers should then read the [documentation](docs/), [APIs](APIs/) (RAML and JSON Schema), and [examples](examples/) (JSON) 
 
 > HTML rendered versions of all NMOS Specifications are available on the [NMOS GitHub pages](https://amwa-tv.github.io/nmos)
 
