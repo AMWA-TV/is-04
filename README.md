@@ -26,7 +26,6 @@ Each version of the specification is available under a v&lt;#MAJOR&gt;.&lt;#MINO
 * [APIs/RegistrationAPI.raml](APIs/RegistrationAPI.raml) -- Normative specification of the NMOS Registration API
 * [APIs/QueryAPI.raml](APIs/QueryAPI.raml) -- Normative specification of the NMOS Query API
 * [APIs/schemas/](APIs/schemas/) -- JSON schemas used by API specifications
-* [APIs/generateHTML](APIs/generateHTML) -- Tool to create HTML browsable version of the API specifications. Requires [raml2html](https://github.com/kevinrenskers/raml2html).
 * [examples/](examples/) -- Example JSON requests and responses for APIs
 * [LICENSE](LICENSE) -- Licenses for software and text documents
 * [NOTICE](NOTICE) -- Disclaimer
