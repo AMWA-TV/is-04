@@ -1,5 +1,8 @@
 # AMWA IS-04 NMOS Discovery and Registration Specification
 
+[![Lint Status](https://github.com/AMWA-TV/nmos-discovery-registration/workflows/Lint/badge.svg)](https://github.com/AMWA-TV/nmos-discovery-registration/actions?query=workflow%3ALint)
+[![Render Status](https://github.com/AMWA-TV/nmos-discovery-registration/workflows/Render/badge.svg)](https://github.com/AMWA-TV/nmos-discovery-registration/actions?query=workflow%3ARender)
+
 This repository contains details of this AMWA Specification, including Node, Registration and Query APIs, and requirements for Nodes for registry-based and peer-to-peer discovery. with supporting documentation and examples
 
 ## Getting started
