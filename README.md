@@ -13,7 +13,7 @@ Readers are advised to be familiar with:
 
 Readers should then read the [documentation](docs/), [APIs](APIs/) (RAML and JSON Schema), and [examples](examples/) (JSON) 
 
-> HTML rendered versions of all NMOS Specifications are available on the [NMOS GitHub pages](https://specs.amwa.tv/nmos)
+> HTML rendered versions of all NMOS Specifications are available at <https://specs.amwa.tv/nmos>
 
 ## Releases
 
