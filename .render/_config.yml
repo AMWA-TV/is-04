@@ -1,0 +1,16 @@
+# Don't change these
+theme: jekyll-theme-primer
+spec_server: specs.amwa.tv
+
+# AMWA ID
+amwa_id: IS-04
+
+# Base name for site (typically lower case version of AMWA ID, or the repo name)
+baseurl: /is-04
+
+# Which release or branch appears in header links and on the home page
+default_tree: releases/v1.3 # alternatively e.g. branches/v1.2.x
+
+# Regex patterns of releases and branches to show
+show_releases: ^v[0-9]+\.[0-9]+$|^v[0-9]+\.[0-9]+\.[0-9]+$
+show_branches: ^v[0-9]+\.[0-9]+-dev$|^v[0-9]+\.[0-9]+\.x$|^publish-
