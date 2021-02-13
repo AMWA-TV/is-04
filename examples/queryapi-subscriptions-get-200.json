@@ -5,6 +5,7 @@
         "params": {},
         "persist": false,
         "secure": false,
+        "authorization": false,
         "ws_href": "ws://172.29.80.52:8870/ws/?uid=6a52dbd5-a737-4c4e-823f-909ade8f8bf4",
         "id": "6a52dbd5-a737-4c4e-823f-909ade8f8bf4"
     },
@@ -14,6 +15,7 @@
         "params": {},
         "persist": false,
         "secure": false,
+        "authorization": false,
         "ws_href": "ws://172.29.80.52:8870/ws/?uid=7c903667-7113-4a8f-8865-1c63f9070a9e",
         "id": "7c903667-7113-4a8f-8865-1c63f9070a9e"
     },
@@ -23,6 +25,7 @@
         "params": {},
         "persist": false,
         "secure": true,
+        "authorization": false,
         "ws_href": "wss://172.29.80.52:8870/ws/?uid=c5f5c1ad-f9e6-44c0-828f-da3f7cdef286",
         "id": "c5f5c1ad-f9e6-44c0-828f-da3f7cdef286"
     },
@@ -32,6 +35,7 @@
         "params": {},
         "persist": false,
         "secure": false,
+        "authorization": false,
         "ws_href": "ws://172.29.80.52:8870/ws/?uid=b0416004-f825-4623-bf90-575b5dd32f93",
         "id": "b0416004-f825-4623-bf90-575b5dd32f93"
     }

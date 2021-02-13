@@ -14,7 +14,8 @@
         "controls": [
             {
                 "type": "urn:x-manufacturer:control:generic",
-                "href": "wss://154.67.63.2:4535"
+                "href": "wss://154.67.63.2:4535",
+                "authorization": false
             }
         ]
     },
