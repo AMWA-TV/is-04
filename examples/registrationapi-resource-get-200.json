@@ -58,5 +58,24 @@
             "locked": true
         }
     ],
-    "interfaces": []
+    "interfaces": [
+        {
+            "name":"eth0",
+            "chassis_id":"b3-cd-09-bb-9b-d8",
+            "port_id":"b3-cd-09-bb-9b-d8",
+            "attached_network_device": {
+                "chassis_id": "2f-8c-af-a8-11-74",
+                "port_id": "Ethernet 1/3"
+            }
+        },
+        {
+            "name":"eth1",
+            "chassis_id":"b3-cd-09-bb-9b-d8",
+            "port_id":"b3-cd-09-bb-9b-d9",
+            "attached_network_device": {
+                "chassis_id": "2d-51-2b-de-4a-32",
+                "port_id": "Ethernet 1/2"
+            }
+        }
+    ]
 }
