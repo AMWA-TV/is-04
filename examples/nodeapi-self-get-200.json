@@ -4,7 +4,7 @@
     "caps": {},
     "href": "http://172.29.80.65:12345/",
     "api": {
-        "versions": ["v1.0", "v1.1"],
+        "versions": ["v1.0", "v1.1", "v1.2"],
         "endpoints": [
             {
                 "host": "172.29.80.65",
@@ -20,23 +20,23 @@
     },
     "services": [
         {
-            "href": "http://172.29.80.65:12345/x-manufacturer/pipelinemanager/",
+            "href": "https://172.29.80.65:443/x-manufacturer/pipelinemanager/",
             "type": "urn:x-manufacturer:service:pipelinemanager"
         },
         {
-            "href": "http://172.29.80.65:12345/x-manufacturer/status/",
+            "href": "https://172.29.80.65:443/x-manufacturer/status/",
             "type": "urn:x-manufacturer:service:status"
         },
         {
-            "href": "http://172.29.80.65:12345/x-manufacturer/tally/",
+            "href": "https://172.29.80.65:443/x-manufacturer/tally/",
             "type": "urn:x-manufacturer:service:tally"
         },
         {
-            "href": "http://172.29.80.65:12345/x-manufacturer/mdnsbridge/",
+            "href": "https://172.29.80.65:443/x-manufacturer/mdnsbridge/",
             "type": "urn:x-manufacturer:service:mdnsbridge"
         },
         {
-            "href": "http://172.29.80.65:12345/x-manufacturer/storequery/",
+            "href": "https://172.29.80.65:443/x-manufacturer/storequery/",
             "type": "urn:x-manufacturer:service:storequery"
         }
     ],
