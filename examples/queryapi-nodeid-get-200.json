@@ -6,7 +6,7 @@
     "tags": {},
     "href": "http://172.29.176.102:12345/",
     "api": {
-        "versions": ["v1.1"],
+        "versions": ["v1.1", "v1.2"],
         "endpoints": [
             {
                 "host": "172.29.176.102",
