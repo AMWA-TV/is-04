@@ -8,7 +8,7 @@
         "tags": {},
         "href": "http://172.29.80.65:12345/",
         "api": {
-            "versions": ["v1.0", "v1.1"],
+            "versions": ["v1.0", "v1.1", "v1.2", "v1.3"],
             "endpoints": [
                 {
                     "host": "172.29.80.65",
@@ -18,29 +18,35 @@
                 {
                     "host": "172.29.80.65",
                     "port": 443,
-                    "protocol": "https"
+                    "protocol": "https",
+                    "authorization": false
                 }
             ]
         },
         "services": [
             {
-                "href": "http://172.29.80.65:12345/x-manufacturer/pipelinemanager/",
+                "href": "https://172.29.80.65:443/x-manufacturer/pipelinemanager/",
+                "authorization": false,
                 "type": "urn:x-manufacturer:service:pipelinemanager"
             },
             {
-                "href": "http://172.29.80.65:12345/x-manufacturer/status/",
+                "href": "https://172.29.80.65:443/x-manufacturer/status/",
+                "authorization": false,
                 "type": "urn:x-manufacturer:service:status"
             },
             {
-                "href": "http://172.29.80.65:12345/x-manufacturer/tally/",
+                "href": "https://172.29.80.65:443/x-manufacturer/tally/",
+                "authorization": false,
                 "type": "urn:x-manufacturer:service:tally"
             },
             {
-                "href": "http://172.29.80.65:12345/x-manufacturer/mdnsbridge/",
+                "href": "https://172.29.80.65:443/x-manufacturer/mdnsbridge/",
+                "authorization": false,
                 "type": "urn:x-manufacturer:service:mdnsbridge"
             },
             {
-                "href": "http://172.29.80.65:12345/x-manufacturer/storequery/",
+                "href": "https://172.29.80.65:443/x-manufacturer/storequery/",
+                "authorization": false,
                 "type": "urn:x-manufacturer:service:storequery"
             }
         ],
@@ -58,6 +64,26 @@
                 "version": "IEEE1588-2008",
                 "gmid": "08-00-11-ff-fe-21-e1-b0",
                 "locked": true
+            }
+        ],
+        "interfaces": [
+            {
+                "name":"eth0",
+                "chassis_id":"b3-cd-09-bb-9b-d8",
+                "port_id":"b3-cd-09-bb-9b-d8",
+                "attached_network_device": {
+                    "chassis_id": "2f-8c-af-a8-11-74",
+                    "port_id": "Ethernet 1/3"
+                }
+            },
+            {
+                "name":"eth1",
+                "chassis_id":"b3-cd-09-bb-9b-d8",
+                "port_id":"b3-cd-09-bb-9b-d9",
+                "attached_network_device": {
+                    "chassis_id": "2d-51-2b-de-4a-32",
+                    "port_id": "Ethernet 1/2"
+                }
             }
         ]
     }
