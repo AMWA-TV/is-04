@@ -6,10 +6,10 @@ This document provides an overview of changes between released versions of this 
 * Deprecate mDNS announcements for Nodes in registered mode
 * Replace DNS-SD service type for Registration API
 * Permit deprecated Node API connection management to not be implemented
-* Add explicit requirements for 501 (Not Implemented) responses when features are not implemented
+* Add explicit requirements for `501` (Not Implemented) responses when features are not implemented
 * Add support for future device and transport types
 * Permit a Sender's `manifest_href` to be `null` when the transport type does not require a transport file
-* Add 409 (Conflict) response code for registries with conflicting resources
+* Add `409` (Conflict) response code for registries with conflicting resources
 * Add support for signalling authorization requirements
 * Indicate potential for Source/Flow attributes and `caps` to be defined externally in the future
 * Revise discovery process to ignore mDNS records when unicast records are available
