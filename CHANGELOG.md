@@ -25,8 +25,8 @@ This document provides an overview of changes between released versions of this 
 * Add `api_proto` TXT records to DNS-SD advertisements
 * Add `api_ver` TXT records to DNS-SD advertisements
 * Add guidance on use of DNS SRV record priority and weight
-* Add support for secure websockets to the Query API
-* Add support for `Upgrade` headers when using websockets
+* Add support for secure WebSocket to the Query API
+* Add support for `Upgrade` headers when using WebSocket
 * Add paging support to the Query API
 * Add advanced query parameter support for the Query API
 * Add `device_id` to Flow attributes covering cases where a Device is a content transformer only
