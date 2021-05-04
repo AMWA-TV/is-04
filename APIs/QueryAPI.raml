@@ -111,7 +111,7 @@ traits:
 documentation:
   - title: Overview
     content: |
-      The Query API is exposed by NMOS discovery Nodes. It is used to expose the contents of the (distributed) registry to all Nodes on the network. In smaller deployments where no such registry is available, Nodes with their own control capabilities fall back to interrogating Nodes directly using the Peer to Peer specification. This is a Read Only API.
+      The Query API is exposed by NMOS discovery Nodes. It is used to expose the contents of the (distributed) registry to all Nodes on the network. In smaller deployments where no such registry is available, Nodes with their own control capabilities fall back to interrogating Nodes directly using the peer-to-peer specification. This is a read-only API.
 
       Attributes defined as 'Optional' in schemas MUST be returned by the Query API if they exist within the registry. The presence declaration relates more to whether it is required for them to be registered at the Registration API side, or presented via the Node API.
   - title: Further Documentation
@@ -410,7 +410,7 @@ documentation:
       200:
       403:
   post:
-    description: Create a websocket subscription to an API resource
+    description: Create a WebSocket subscription to an API resource
     body:
       example: !include ../examples/queryapi-subscriptions-post-request.json
       type: !include schemas/queryapi-subscriptions-post-request.json
@@ -439,7 +439,7 @@ documentation:
           type: ErrorSchema
   get:
     is: [paged]
-    description: List active connections to websockets providing real-time updates on resource changes (for debug use only)
+    description: List available WebSocket connections providing real-time updates on resource changes (for debug use only)
     responses:
       200:
         body:

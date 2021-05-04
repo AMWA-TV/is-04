@@ -19,7 +19,7 @@
 
 - Media Nodes locate IS-04 registry using DNS-SD (unicast preferred)
 - Media Nodes register their resource information with HTTP + JSON
-- Applications query with HTTP and/or subscribe with WebSockets
+- Applications query with HTTP and/or subscribe with WebSocket
 
 <!-- INTRO-END -->
 
