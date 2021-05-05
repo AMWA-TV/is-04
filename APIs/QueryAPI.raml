@@ -4,7 +4,7 @@
 # (c) AMWA 2016
 
 title: Query
-baseUri: http://example.api.com/x-nmos/query/{version}
+baseUri: http://api.example.com/x-nmos/query/{version}
 version: v1.3
 mediaType: application/json
 types:
@@ -47,7 +47,7 @@ traits:
           Link:
             description: Provides references to cursors for paging. The 'rel' attribute may be one of 'next', 'prev', 'first' or 'last'
             type: string
-            example: <http://example.api.com/x-nmos/query/{version}/nodes/?paging.since=1441716120:318744030&paging.limit=20>; rel="next", <http://example.api.com/x-nmos/query/{version}/nodes/?paging.until=1441716353:6839634&paging.limit=20>; rel="prev"
+            example: <http://api.example.com/x-nmos/query/{version}/nodes/?paging.since=1441716120:318744030&paging.limit=20>; rel="next", <http://api.example.com/x-nmos/query/{version}/nodes/?paging.until=1441716353:6839634&paging.limit=20>; rel="prev"
           X-Paging-Limit:
             description: Identifies the current limit being used for paging. This may not match the requested value if the requested value was too high for the implementation
             type: integer
