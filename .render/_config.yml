@@ -9,7 +9,7 @@ amwa_id: IS-04
 baseurl: /is-04
 
 # Which release or branch appears in header links and on the home page
-default_tree: releases/v1.3 # alternatively e.g. branches/v1.2.x
+default_tree: releases/v1.3.1 # alternatively e.g. branches/v1.2.x
 
 # Regex patterns of releases and branches to show
 show_releases: ^v[0-9]+\.[0-9]+$|^v[0-9]+\.[0-9]+\.[0-9]+$
