@@ -48,7 +48,7 @@
           "properties": {
             "sender_id": {
               "type": ["string", "null"],
-              "description": "UUID of the Sender from which this Receiver is currently configured to receive data, if it is active and receiving from an NMOS Sender, otherwise null",
+              "description": "UUID of the Sender from which this Receiver is currently configured to receive data. Only set if it is active and receiving from an NMOS Sender; otherwise null.",
               "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
               "default": null
             },
