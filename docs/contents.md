@@ -5,27 +5,30 @@
 ### APIs
 
 - APIs
-  - Common Keys
-  - Client Side Implementation Notes
-  - Server Side Implementation Notes
-  - Load Balancing & Redundancy
-  - Query Parameters
+  - APIs - Common Keys
+  - APIs - Client Side Implementation Notes
+  - APIs - Server Side Implementation Notes
+  - APIs - Load Balancing & Redundancy
+  - APIs - Query Parameters
 
 ### Discovery
 
 - Discovery
-  - Registered Operation
-  - Peer to Peer Operation
+  - Discover - Registered Operation
+  - Discover - Peer to Peer Operation
 
 ### Behaviour
 
 - Behaviour
-  - Registration
-  - Querying
-  - Nodes
+  - Behaviour - Registration
+  - Behaviour - Querying
+  - Behaviour - Nodes
+
+### Data Model
+
+- Data Model
+  - Data Model - Identifier Mapping
 
 ### Miscellaneous
 
-- Data Model
-  - Identifier Mapping
-  - Upgrade Path
+- Upgrade Path

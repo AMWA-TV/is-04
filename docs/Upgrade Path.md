@@ -4,7 +4,7 @@ _(c) AMWA 2016, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 
 As is common with web APIs, over time changes will be made to support new use cases and deprecate old ways of working. The NMOS APIs are no different, and have been designed to permit in-service upgrades across a facility which might be running large amounts of equipment with support for different versions of these specifications.
 
-API versioning is specified in the [APIs](2.0.%20APIs.md) documentation, with procedures for handling upgrades described below.
+API versioning is specified in the [APIs](APIs.md) documentation, with procedures for handling upgrades described below.
 
 ## Requirements for Nodes (Node APIs)
 

@@ -12,7 +12,7 @@ AMWA IS-04 specifies how to register and discover resources in an NMOS system. I
 
 - The [Registration API](../APIs/RegistrationAPI.raml) allows a Node to register its resources.
 - The [Query API](../APIs/QueryAPI.raml) allows querying of registered resources.
-- The [Node API](../APIs/NodeAPI.raml) is used to find resources on a Node, and is used for [peer-to-peer discovery](3.2.%20Discovery%20-%20Peer%20to%20Peer%20Operation.md)
+- The [Node API](../APIs/NodeAPI.raml) is used to find resources on a Node, and is used for [peer-to-peer discovery](Discovery%20-%20Peer%20to%20Peer%20Operation.md)
 
 The Specification includes:
 
@@ -23,7 +23,7 @@ The Specification includes:
   - Additional details and recommendations for implementers of API providers and clients.
   - Information about compatibility between different API versions.
 
-Familiarity with the [JT-NM Reference Architecture](https://jt-nm.org/reference-architecture/) is assumed, but a summary of the resources referenced by this specification is available in the [Data Model](5.0.%20Data%20Model.md).
+Familiarity with the [JT-NM Reference Architecture](https://jt-nm.org/reference-architecture/) is assumed, but a summary of the resources referenced by this specification is available in the [Data Model](Data%20Model.md).
 
 ## Use of Normative Language
 
@@ -36,7 +36,7 @@ A Node MUST implement the [Node API](../APIs/NodeAPI.raml).
 
 A Node MUST attempt to interact with the [Registration API](../APIs/RegistrationAPI.raml).
 
-Clients requiring data about other Nodes in the system (such as connection managers) MUST obtain this via the [Query API](../APIs/QueryAPI.raml) if available, or by using the [peer-to-peer specification](3.2.%20Discovery%20-%20Peer%20to%20Peer%20Operation.md) in smaller networks.
+Clients requiring data about other Nodes in the system (such as connection managers) MUST obtain this via the [Query API](../APIs/QueryAPI.raml) if available, or by using the [peer-to-peer specification](Discovery%20-%20Peer%20to%20Peer%20Operation.md) in smaller networks.
 
 ### Node Structure
 
