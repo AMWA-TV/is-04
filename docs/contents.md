@@ -14,8 +14,8 @@
 ### Discovery
 
 - Discovery
-  - Discover - Registered Operation
-  - Discover - Peer to Peer Operation
+  - Discovery - Registered Operation
+  - Discovery - Peer to Peer Operation
 
 ### Behaviour
 
