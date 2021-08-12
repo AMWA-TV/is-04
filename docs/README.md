@@ -1,5 +1,3 @@
-# Documents
-
 ## Introduction
 
 - [Overview](Overview.md)
