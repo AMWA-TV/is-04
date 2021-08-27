@@ -212,7 +212,7 @@ Event data containing both  `pre` and  `post` where the contents of  `pre` and  
 #### Handling Query Parameters
 
 WebSocket subscriptions support query parameters in a similar way as the corresponding HTTP API endpoints. Query parameters are specified in a `params` attribute rather than the query string.
-The [Basic Queries](2.5.%20APIs%20-%20Query%20Parameters.md#basic-queries) documentation includes the examples:
+The [Basic Queries](APIs%20-%20Query%20Parameters.md#basic-queries) documentation includes the examples:
 
 ```http
 GET /x-nmos/query/v1.0/sources?format=urn:x-nmos:format:video&device_id=9126cc2f-4c26-4c9b-a6cd-93c4381c9be5

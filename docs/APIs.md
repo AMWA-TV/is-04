@@ -53,7 +53,7 @@ A v1.1 API response can include:
 
 - v1.1 data without modification.
 - Data conforming to schemas less than v2.0 but greater than v1.1, with any non-v1.1 keys removed.
-- Query API only: Data confirming to schemas less than v1.1 but greater than or equal to v1.0 if a suitable downgrade parameter is specified (see [Query Parameters](2.5.%20APIs%20-%20Query%20Parameters.md)).
+- Query API only: Data confirming to schemas less than v1.1 but greater than or equal to v1.0 if a suitable downgrade parameter is specified (see [Query Parameters](APIs%20-%20Query%20Parameters.md)).
 
 ### Common API Base Resource
 
@@ -113,4 +113,4 @@ For HTTP codes `400` and upwards, a JSON format response MUST be returned as fol
 
 `code` SHOULD match the HTTP status code. `error` MUST always be present and in string format. `debug` MAY be `null` if no further debug information is available.
 
-Further details on when APIs will respond with particular codes is covered in the [Behaviour](4.0.%20Behaviour.md) section.
+Further details on when APIs will respond with particular codes is covered in the [Behaviour](Behaviour.md) section.

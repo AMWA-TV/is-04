@@ -15,7 +15,7 @@ The following behaviour assumes a Node with a single network interface for all t
 1. A Node is connected to the network.
 2. The Node runs an HTTP accessible Node API.
 3. The Node produces an mDNS advertisement of type `_nmos-node._tcp` in the `.local` domain as specified in [Node API](../APIs/NodeAPI.raml).
-4. The Node performs a DNS-SD browse for services of type `_nmos-register._tcp` as specified in [Discovery: Registered Operation](3.1.%20Discovery%20-%20Registered%20Operation.md).
+4. The Node performs a DNS-SD browse for services of type `_nmos-register._tcp` as specified in [Discovery: Registered Operation](Discovery%20-%20Registered%20Operation.md).
 5. The Node registers itself with the Registration API by taking the object it holds under the Node API's `/self` resource and `POST`ing this to the Registration API.
 6. The Node persists itself in the registry by issuing heartbeats as below.
 7. The Node registers its other resources (from `/devices`, `/sources`, etc.) with the Registration API. Resources MUST be registered in the correct order, such that a Receiver which references a `device_id` is registered after that corresponding Device (for example).
@@ -97,11 +97,11 @@ A registry MAY issue a `400` (Bad Request) code from the `/resource` `POST` endp
 - A parent resource ID has been modified (for example the `node_id` in a Device registration is modified during an update)
 - The parent resource referred to either doesn't exist in the registry or the ID matches the wrong type of resource
 
-Error responses as detailed in the [APIs](2.0.%20APIs.md) documentation can assist with debugging these issues.
+Error responses as detailed in the [APIs](APIs.md) documentation can assist with debugging these issues.
 
 ### Node Encounters HTTP `409` On Registration Or Heartbeat
 
-A `409` (Conflict) error indicates that the Node has attempted to register or heartbeat with a registry which it is already registered with using a different API version. The Node MUST fully unregister from this registry using its registered API version before proceeding to re-register at the new API version. For more information on supporting multiple versions, see the [Upgrade Path](6.0.%20Upgrade%20Path.md).
+A `409` (Conflict) error indicates that the Node has attempted to register or heartbeat with a registry which it is already registered with using a different API version. The Node MUST fully unregister from this registry using its registered API version before proceeding to re-register at the new API version. For more information on supporting multiple versions, see the [Upgrade Path](Upgrade%20Path.md).
 
 ### Node Encounters HTTP `404` On Heartbeat
 

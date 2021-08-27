@@ -93,7 +93,7 @@ where:
 
 - the URN base is a sequence of one or more names delimited by `:` characters, beginning with the namespace `urn:x-nmos:`.
 - the optional subclassification is the portion of the URN which follows the first occurrence of a `.` prior to any `/` character. By convention, URNs which begin `urn:x-nmos:` will never include a further `:` after the first occurrence of a `.`.
-- the optional version is the portion of the URN which follows the first occurrence of a `/`, up to and including the remainder of the URN. By convention, URNs which begin `urn:x-nmos:` will format the version as `v<MAJOR>.<MINOR>` and SHOULD be handled as specified in [APIs](2.0.%20APIs.md).
+- the optional version is the portion of the URN which follows the first occurrence of a `/`, up to and including the remainder of the URN. By convention, URNs which begin `urn:x-nmos:` will format the version as `v<MAJOR>.<MINOR>` and SHOULD be handled as specified in [APIs](APIs.md).
 
 A subclassification is more constrained than its URN base.  For example, the URN base `urn:x-nmos:transport:rtp` above has two subclassifications of `ucast` and `mcast`.
 

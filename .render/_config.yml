@@ -1,5 +1,7 @@
 # Don't change these
-theme: jekyll-theme-primer
+remote_theme: pages-themes/primer
+plugins:
+- jekyll-remote-theme
 spec_server: specs.amwa.tv
 
 # AMWA ID

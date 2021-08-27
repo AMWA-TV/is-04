@@ -41,13 +41,13 @@ Values 0 to 99 correspond to an active NMOS Registration API (zero being the hig
 
 1. Node comes online
 
-2. Node scans for an active Registration API on the network using unicast and/or multicast DNS service discovery (type `_nmos-register._tcp`) as described in the [Discovery](3.0.%20Discovery.md#unicast-vs-multicast-dns-sd) document.
+2. Node scans for an active Registration API on the network using unicast and/or multicast DNS service discovery (type `_nmos-register._tcp`) as described in the [Discovery](Discovery.md#unicast-vs-multicast-dns-sd) document.
 
    - Nodes which support v1.2 and earlier versions MUST additionally browse for the deprecated service type `_nmos-registration._tcp`.
 
 3. Given multiple returned Registration APIs, the Node orders these based on their advertised priority (TXT `pri`), filtering out any APIs which do not support the desired API version, protocol and authorization mode (TXT `api_ver`, `api_proto` and `api_auth`).
 
-   - Where a Node supports multiple API versions simultaneously, see the [Upgrade Path](6.0.%20Upgrade%20Path.md) for additional requirements in filtering the discovered API list.
+   - Where a Node supports multiple API versions simultaneously, see the [Upgrade Path](Upgrade%20Path.md) for additional requirements in filtering the discovered API list.
 
 4. The Node selects a Registration API to use based on the priority, and a random selection if multiple Registration APIs of the same API version with the same priority are identified.
 
@@ -55,7 +55,7 @@ Values 0 to 99 correspond to an active NMOS Registration API (zero being the hig
 
 If the chosen Registration API does not respond correctly at any time, another Registration API SHOULD be selected from the discovered list. If no further Registration APIs are available or TTLs on advertised services have expired, a re-query MAY be performed.
 
-If no Registration APIs are advertised on a network, the Node SHOULD assume peer-to-peer operation unless configured otherwise. The REQUIRED TXT record advertisements for this mode are described in the [Peer-to-Peer Operation](3.2.%20Discovery%20-%20Peer%20to%20Peer%20Operation.md) documentation.
+If no Registration APIs are advertised on a network, the Node SHOULD assume peer-to-peer operation unless configured otherwise. The REQUIRED TXT record advertisements for this mode are described in the [Peer-to-Peer Operation](Discovery%20-%20Peer%20to%20Peer%20Operation.md) documentation.
 
 ## Query API
 
@@ -90,11 +90,11 @@ Values 0 to 99 correspond to an active NMOS Query API (zero being the highest pr
 
 1. Node (or control interface) comes online
 
-2. Node scans for an active Query API on the network using unicast and/or multicast DNS service discovery (type `_nmos-query._tcp`) as described in the [Discovery](3.0.%20Discovery.md#unicast-vs-multicast-dns-sd) document.
+2. Node scans for an active Query API on the network using unicast and/or multicast DNS service discovery (type `_nmos-query._tcp`) as described in the [Discovery](Discovery.md#unicast-vs-multicast-dns-sd) document.
 
 3. Given multiple returned Query APIs, the Node orders these based on their advertised priority (TXT `pri`), filtering out any APIs which do not support the desired API version, protocol and authorization mode (TXT `api_ver`, `api_proto` and `api_auth`).
 
-   - Where a Node supports multiple API versions simultaneously, see the [Upgrade Path](6.0.%20Upgrade%20Path.md) for additional requirements in filtering the discovered API list.
+   - Where a Node supports multiple API versions simultaneously, see the [Upgrade Path](Upgrade%20Path.md) for additional requirements in filtering the discovered API list.
 
 4. The Node selects a Query API to use based on the priority, and a random selection if multiple Query APIs of the same version with the same priority are identified.
 
