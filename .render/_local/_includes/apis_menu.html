@@ -1,0 +1,12 @@
+<span class="dropdown-3">APIS
+	<div class="dropdown-3-content"> 
+		<p><b>RAML APIs for {{ site.default_tree | remove_first: "branches/"| remove_first: "releases/" }}</b></p>
+		{% for api in site.data.apis %}
+			<p><a href="{{ site.baseurl }}/{{ site.default_tree }}/APIs/{{ api.file }}">{{ api.name }}</a></p>
+		{% endfor %}
+		<p><b>JSON Schemas for {{ site.default_tree | remove_first: "branches/"| remove_first: "releases/" }}</b></p>
+		{% for schema in site.data.schemas %}
+			<p><a href="{{ site.baseurl }}/{{ site.default_tree }}/APIs/schemas/with-refs/{{ schema.file }}">{{ schema.name }}</a></p>
+		{% endfor %}
+	</div>
+</span>
