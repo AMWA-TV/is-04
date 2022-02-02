@@ -18,38 +18,38 @@ It does not cover other features of the Controller software, such as presentatio
 ### HTTP APIs
 #### Trailing Slashes
 APIs may advertise URLs with or without a trailing slash. Controllers SHOULD exercise care when appending additional paths to these URLs.
-~~https://github.com/AMWA-TV/nmos/wiki/Common-Issues~~
+~~[reference](https://github.com/AMWA-TV/nmos/wiki/Common-Issues)~~
 
 Controllers performing requests other than GET or HEAD (i.e PUT, POST, DELETE, OPTIONS etc.) MUST use URLs with no trailing slash present.
-~~https://specs.amwa.tv/is-08/releases/v1.0.1/docs/2.0._APIs.html#all-other-requests-put-post-delete-options-etc~~
+~~[reference](https://specs.amwa.tv/is-08/releases/v1.0.1/docs/2.0._APIs.html#all-other-requests-put-post-delete-options-etc)~~
 
 When a server implementation needs to indicate an API URL via an href or similar attribute, it is valid to either include a trailing slash or not provided that the listed path is accessible and follows the above rules. Controllers appending paths to href type attributes MUST support both cases, avoiding doubled or missing slashes.
-~~https://specs.amwa.tv/is-05/releases/v1.1.1/docs/2.0._APIs.html#client-behaviour~~
+~~[reference](https://specs.amwa.tv/is-05/releases/v1.1.1/docs/2.0._APIs.html#client-behaviour)~~
 
 #### API Version
 Controllers are responsible for identifying the correct API version they require.
-~~https://specs.amwa.tv/is-05/releases/v1.1.1/docs/2.0._APIs.html#common-api-base-resource~~
+~~[reference](https://specs.amwa.tv/is-05/releases/v1.1.1/docs/2.0._APIs.html#common-api-base-resource)~~
 
 Implementers of Controllers are strongly recommended to support multiple versions of the NMOS APIs simultaneously in order to ease the upgrade process in live facilities.
-~~https://specs.amwa.tv/is-08/releases/v1.0.1/docs/5.0._Upgrade_Path.html#requirements-for-channel-mapping-clients~~
+~~[reference](https://specs.amwa.tv/is-08/releases/v1.0.1/docs/5.0._Upgrade_Path.html#requirements-for-channel-mapping-clients)~~
 
 #### HTTP Error Codes & Responses
 The NMOS APIs use HTTP status codes to indicate success, failure and other cases to Controllers as per [RFC 7231](https://tools.ietf.org/html/rfc7231) and related standards.
 Where the RAML specification of an API specifies explicit response codes it is expected that a Controller will handle these cases in a particular way.
 
 As explicit handling of every possible HTTP response code is not expected, Controllers MUST instead implement more generic handling for ranges of response codes (1xx, 2xx, 3xx, 4xx and 5xx).
-~~https://specs.amwa.tv/is-08/releases/v1.0.1/docs/2.0._APIs.html#error-codes--responses~~
+~~[reference](https://specs.amwa.tv/is-08/releases/v1.0.1/docs/2.0._APIs.html#error-codes--responses)~~
 
 For Controllers performing GET and HEAD requests, using these methods SHOULD correctly handle a 301 (Moved Permanently) response.
 
 When a 301 is supported, the Controller MUST follow the redirect in order to retrieve the required response payload.
-~~https://specs.amwa.tv/is-08/releases/v1.0.1/docs/2.0._APIs.html#get-and-head-requests~~
-~~https://specs.amwa.tv/is-05/releases/v1.1.1/docs/2.0._APIs.html#urls-approach-to-trailing-slashes~~
+~~[reference](https://specs.amwa.tv/is-08/releases/v1.0.1/docs/2.0._APIs.html#get-and-head-requests)~~
+~~[reference](https://specs.amwa.tv/is-05/releases/v1.1.1/docs/2.0._APIs.html#urls-approach-to-trailing-slashes)~~
 
 If a Controller receives a HTTP 500 response code from the API, a failure has occurred. The Controller SHOULD display the content of the response’s error field to the user if possible, and indicate that the Device may be in a bad state.
 The Controller SHOULD also refresh the values in the map/active and map/activations endpoints to ensure it is accurately reflecting the current state of the API. (_JRT NOTE: This is very IS-08 specific, needs to be more generic_)
 
-~~https://specs.amwa.tv/is-08/releases/v1.0.1/docs/2.1._APIs_-_Controller_Side_Implementation.html#failure-modes~~
+~~[reference](https://specs.amwa.tv/is-08/releases/v1.0.1/docs/2.1._APIs_-_Controller_Side_Implementation.html#failure-modes)~~
 
 ## Registry Service Discovery	
 
@@ -66,8 +66,8 @@ Controllers SHOULD observe and interpret all of the TXT records returned with th
 
 ~~The TXT records can be used by API Controllers to construct paths by making use of the TXT records api_proto and api_ver, along with addresses and ports resolved via DNS-SD. API Controllers which are discovering Node APIs via a Query API can then construct Node API paths using the corresponding data available within the api attributes within the Query API /nodes resource This is described in the IS-04 specification.~~
 
-~~https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.0._APIs.html#api-paths~~
-~~https://github.com/AMWA-TV/nmos/wiki/IS-04-Client~~
+~~[reference](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.0._APIs.html#api-paths)~~
+~~[reference](https://github.com/AMWA-TV/nmos/wiki/IS-04-Client)~~
 
 ## API Version (_JRT NOTE: repetition of section name_)
 Controllers MUST be tolerant to URNs which have not yet been defined, but which might be added in later API versions. (_JRT NOTE: should this be part of the General section?_)
@@ -76,8 +76,8 @@ Controllers SHOULD adhere to the version downgrade requirements for Query API Cl
 
 ~~Make use of the Query API downgrade function wherever possible. This ensures that you can display Nodes and their resources via your interface, even if they only support a lower version of the API specifications.  This is described in the IS-04 specifcation~~
 
-~~see https://specs.amwa.tv/is-04/releases/v1.3.1/docs/6.0._Upgrade_Path.html#requirements-for-registries-registration-and-query-apis
-https://github.com/AMWA-TV/nmos/wiki/IS-04-Client~~
+~~[reference](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/6.0._Upgrade_Path.html#requirements-for-registries-registration-and-query-apis)
+[reference](https://github.com/AMWA-TV/nmos/wiki/IS-04-Client)~~
 
 ## Query API
 The Controller SHALL be capable of using the Registry's IS-04 Query API to discover any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
@@ -87,10 +87,10 @@ The Controller SHALL be capable of using the Registry's IS-04 Query API to disco
 The Controller SHALL use the Registry’s IS-04 Query API either via the REST API or by requesting WebSocket subscriptions.
 
 When using the Query API, basic queries SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller.	
-~~https://github.com/AMWA-TV/nmos/wiki/IS-04-Client~~
+~~[reference](https://github.com/AMWA-TV/nmos/wiki/IS-04-Client)~~
 
 If using the RESTful API rather than WebSockets, Pagination requirements MUST be implemented as specified in the [APIs: Query Parameters document in this specification](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.5._APIs_-_Query_Parameters.html#pagination).
-~~see https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.5._APIs_-_Query_Parameters.html#pagination~~
+~~[reference](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.5._APIs_-_Query_Parameters.html#pagination)~~
 
 ## WebSockets & Subscriptions	
 Where a WebSocket or other subscription based mechanism is provided for Controller usage, it is strongly recommended that Controllers make use of this and do not use the API resources directly.
@@ -98,13 +98,13 @@ In large systems, API resources rely upon pagination in order to return high vol
 This can be both hard to keep track of for a client, and require a large number of requests in order to scan the entire data set.
 
 For this reason it is preferred to use the API resources directly for debug and development purposes only.
-~~https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.5._APIs_-_Query_Parameters.html#pagination~~
-~~https://github.com/AMWA-TV/nmos/wiki/Generic-API-Client~~
+~~[reference](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.5._APIs_-_Query_Parameters.html#pagination)~~
+~~[reference](https://github.com/AMWA-TV/nmos/wiki/Generic-API-Client)~~
 
 ~~If a WebSocket connection fails, do not attempt to reconnect to it as messages may have been missed. Create a new subscription with this API or a different one if required. If all available APIs return errors, use an exponential backoff algorithm when retrying until a success code is returned.~~
 
 If a WebSocket connection fails, then an attempt to reconnect to the WebSocket MUST NOT be attempted. Instead, a new subscription SHOULD be created with this API or a different one if required. If all available APIs return errors, an exponential backoff algorithm SHOULD be used when retrying until a success code is returned.
-~~https://github.com/AMWA-TV/nmos/wiki/IS-04-Client~~
+~~[reference](https://github.com/AMWA-TV/nmos/wiki/IS-04-Client)~~
 
 ## Dynamic Update of Resources
 The Controller SHALL be capable of using the Registry's IS-04 Query API to discover and dynamically update the state of any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
