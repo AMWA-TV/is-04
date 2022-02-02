@@ -60,7 +60,7 @@ In order to locate the Registry, the Controller SHOULD support all of the follow
 
 The Controller SHOULD offer unicast DNS-SD as the default mechanism. 
 
-Controllers SHOULD observe and interpret all of the TXT records returned with the DNS Service Discovery responses according to the requirements for Query API Clients specified in [the API Paths section of the APIs document in this specification](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.0._APIs.html#api-paths).
+Controllers SHOULD observe and interpret all of the TXT records returned with the DNS Service Discovery responses according to the requirements for Query API Clients specified in [the API Paths section of the APIs document in this specification](APIs.md#api-paths).
 
 ~~These indicate the preferred API instance to use (via 'pri'), the API versions supported (via 'api_ver') and the protocol supported (via 'api_proto').~~
 
@@ -72,7 +72,7 @@ Controllers SHOULD observe and interpret all of the TXT records returned with th
 ## API Version (_JRT NOTE: repetition of section name_)
 Controllers MUST be tolerant to URNs which have not yet been defined, but which might be added in later API versions. (_JRT NOTE: should this be part of the General section?_)
 
-Controllers SHOULD adhere to the version downgrade requirements for Query API Clients specified in the [Upgrade document in this specification](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/6.0._Upgrade_Path.html#requirements-for-query-api-clients). (_JRT NOTE: move to the Query API section?_)
+Controllers SHOULD adhere to the version downgrade requirements for Query API Clients specified in the [Upgrade document in this specification](Upgrade%20Path.md#requirements-for-query-api-clients). (_JRT NOTE: move to the Query API section?_)
 
 ~~Make use of the Query API downgrade function wherever possible. This ensures that you can display Nodes and their resources via your interface, even if they only support a lower version of the API specifications.  This is described in the IS-04 specifcation~~
 
@@ -89,7 +89,7 @@ The Controller SHALL use the Registry’s IS-04 Query API either via the REST API 
 When using the Query API, basic queries SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller.	
 ~~[reference](https://github.com/AMWA-TV/nmos/wiki/IS-04-Client)~~
 
-If using the RESTful API rather than WebSockets, Pagination requirements MUST be implemented as specified in the [APIs: Query Parameters document in this specification](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.5._APIs_-_Query_Parameters.html#pagination).
+If using the RESTful API rather than WebSockets, Pagination requirements MUST be implemented as specified in the [APIs: Query Parameters document in this specification](APIs%20-%20Query%20Parameters.md#pagination).
 ~~[reference](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.5._APIs_-_Query_Parameters.html#pagination)~~
 
 ## WebSockets & Subscriptions	
