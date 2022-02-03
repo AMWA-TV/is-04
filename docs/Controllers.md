@@ -33,6 +33,8 @@ Controllers are responsible for identifying the correct API version they require
 Implementers of Controllers are strongly recommended to support multiple versions of the NMOS APIs simultaneously in order to ease the upgrade process in live facilities.
 ~~[reference](https://specs.amwa.tv/is-08/releases/v1.0.1/docs/5.0._Upgrade_Path.html#requirements-for-channel-mapping-clients)~~
 
+Controllers MUST be tolerant to URNs which have not yet been defined, but which might be added in later API versions as defined in the [Use of URNs section of the APIs: Common Keys document](APIs%20-%20Common%20Keys.md#use-of-urns) in this specification. (_JRT NOTE: moved into General section but is from IS-04 specification_)
+
 #### HTTP Error Codes & Responses
 The NMOS APIs use HTTP status codes to indicate success, failure and other cases to Controllers as per [RFC 7231](https://tools.ietf.org/html/rfc7231) and related standards.
 Where the RAML specification of an API specifies explicit response codes it is expected that a Controller will handle these cases in a particular way.
@@ -47,7 +49,7 @@ When a 301 is supported, the Controller MUST follow the redirect in order to ret
 ~~[reference](https://specs.amwa.tv/is-05/releases/v1.1.1/docs/2.0._APIs.html#urls-approach-to-trailing-slashes)~~
 
 If a Controller receives a HTTP 500 response code from the API, a failure has occurred. The Controller SHOULD display the content of the response’s error field to the user if possible, and indicate that the Device may be in a bad state.
-The Controller SHOULD also refresh the values in the map/active and map/activations endpoints to ensure it is accurately reflecting the current state of the API. (_JRT NOTE: This is very IS-08 specific, needs to be more generic_)
+The Controller SHOULD also refresh the values ~~in the map/active and map/activations endpoints~~ _of the relevant resources_ to ensure it is accurately reflecting the current state of the API. (_JRT NOTE: Was very IS-08 specific, modified to be more generic_)
 
 ~~[reference](https://specs.amwa.tv/is-08/releases/v1.0.1/docs/2.1._APIs_-_Controller_Side_Implementation.html#failure-modes)~~
 
@@ -60,7 +62,7 @@ In order to locate the Registry, the Controller SHOULD support all of the follow
 
 The Controller SHOULD offer unicast DNS-SD as the default mechanism. 
 
-Controllers SHOULD observe and interpret all of the TXT records returned with the DNS Service Discovery responses according to the requirements for Query API Clients specified in [the API Paths section of the APIs document in this specification](APIs.md#api-paths).
+Controllers SHOULD observe and interpret all of the TXT records returned with the DNS Service Discovery responses according to the requirements for Query API Clients specified in the [API Paths section of the APIs document](APIs.md#api-paths) in this specification.
 
 ~~These indicate the preferred API instance to use (via 'pri'), the API versions supported (via 'api_ver') and the protocol supported (via 'api_proto').~~
 
@@ -69,28 +71,25 @@ Controllers SHOULD observe and interpret all of the TXT records returned with th
 ~~[reference](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.0._APIs.html#api-paths)~~
 ~~[reference](https://github.com/AMWA-TV/nmos/wiki/IS-04-Client)~~
 
-## API Version (_JRT NOTE: repetition of section name_)
-Controllers MUST be tolerant to URNs which have not yet been defined, but which might be added in later API versions. (_JRT NOTE: should this be part of the General section?_)
-
-Controllers SHOULD adhere to the version downgrade requirements for Query API Clients specified in the [Upgrade document in this specification](Upgrade%20Path.md#requirements-for-query-api-clients). (_JRT NOTE: move to the Query API section?_)
-
 ~~Make use of the Query API downgrade function wherever possible. This ensures that you can display Nodes and their resources via your interface, even if they only support a lower version of the API specifications.  This is described in the IS-04 specifcation~~
 
 ~~[reference](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/6.0._Upgrade_Path.html#requirements-for-registries-registration-and-query-apis)
 [reference](https://github.com/AMWA-TV/nmos/wiki/IS-04-Client)~~
 
 ## Query API
-The Controller SHALL be capable of using the Registry's IS-04 Query API to discover any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
+The Controller MUST be capable of using the Registry's IS-04 Query API to discover any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
 
-~~The Controller SHALL use the Registry’s IS-04 Query API to discover all Senders or Receivers that are registered in the Registry.~~
+~~The Controller MUST use the Registry’s IS-04 Query API to discover all Senders or Receivers that are registered in the Registry.~~
 
-The Controller SHALL use the Registry’s IS-04 Query API either via the REST API or by requesting WebSocket subscriptions.
+The Controller MUST use the Registry’s IS-04 Query API either via the REST API or by requesting WebSocket subscriptions.
 
 When using the Query API, basic queries SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller.	
 ~~[reference](https://github.com/AMWA-TV/nmos/wiki/IS-04-Client)~~
 
-If using the RESTful API rather than WebSockets, Pagination requirements MUST be implemented as specified in the [APIs: Query Parameters document in this specification](APIs%20-%20Query%20Parameters.md#pagination).
+If using the RESTful API rather than WebSockets, Pagination requirements MUST be implemented as specified in the [Pagination section of the APIs: Query Parameters document](APIs%20-%20Query%20Parameters.md#pagination) in this specification.
 ~~[reference](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.5._APIs_-_Query_Parameters.html#pagination)~~
+
+Controllers SHOULD adhere to the version downgrade requirements for Query API Clients specified in the [Requirements for Query API Clients section of the Upgrade Path document](Upgrade%20Path.md#requirements-for-query-api-clients) in this specification.
 
 ## WebSockets & Subscriptions	
 Where a WebSocket or other subscription based mechanism is provided for Controller usage, it is strongly recommended that Controllers make use of this and do not use the API resources directly.
@@ -107,10 +106,10 @@ If a WebSocket connection fails, then an attempt to reconnect to the WebSocket M
 ~~[reference](https://github.com/AMWA-TV/nmos/wiki/IS-04-Client)~~
 
 ## Dynamic Update of Resources
-The Controller SHALL be capable of using the Registry's IS-04 Query API to discover and dynamically update the state of any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
+The Controller MUST be capable of using the Registry's IS-04 Query API to discover and dynamically update the state of any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
 
-* The Controller SHALL indicate available Senders to the user.
-* The Controller SHALL dynamically indicate to the user when a Sender is put ‘offline’ or put back 'online'
-* ~~The Controller SHALL discover and dynamically update all the Senders that are registered in the Registry.~~
-* The Controller SHALL indicate to the user which of the discovered Receivers are controllable via the IS-05 Connection API, for instance, allowing Senders to be connected.
-* The Controller MUST indicate to the user which Receivers have a connection API, but can choose not to display Receivers without a connection API
+* The Controller MUST indicate available Senders to the user.
+* The Controller MUST dynamically indicate to the user when a Sender is put ‘offline’ or put back 'online'
+* ~~The Controller MUST discover and dynamically update all the Senders that are registered in the Registry.~~
+* The Controller MUST indicate to the user which of the discovered Receivers are controllable via the IS-05 Connection API, for instance, allowing Senders to be connected.
+* The Controller MUST indicate to the user which Receivers have a Connection API, but can choose not to display Receivers without a Connection API
