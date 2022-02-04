@@ -19,13 +19,18 @@ It does not cover other features of the Controller software, such as presentatio
 
 ### HTTP APIs
 #### Trailing Slashes
-APIs may advertise URLs with or without a trailing slash. Controllers SHOULD exercise care when appending additional paths to these URLs.
+APIs may advertise URLs with or without a trailing slash.
+Controllers appending paths to `href` type attributes MUST support both cases, avoiding doubled or missing slashes.
+(~~[AMWA Wiki](https://github.com/AMWA-TV/nmos/wiki/Common-Issues)~~)
+(~~[IS-05](https://specs.amwa.tv/is-05/releases/v1.1.1/docs/2.0._APIs.html#client-behaviour)~~)
+
+~~APIs may advertise URLs with or without a trailing slash. Controllers SHOULD exercise care when appending additional paths to these URLs.~~
 (~~[AMWA Wiki](https://github.com/AMWA-TV/nmos/wiki/Common-Issues)~~)
 
 Controllers performing requests other than GET or HEAD (i.e PUT, POST, DELETE, OPTIONS etc.) MUST use URLs with no trailing slash present.
 (~~[IS-08](https://specs.amwa.tv/is-08/releases/v1.0.1/docs/2.0._APIs.html#all-other-requests-put-post-delete-options-etc)~~)
 
-When a server implementation needs to indicate an API URL via an href or similar attribute, it is valid to either include a trailing slash or not provided that the listed path is accessible and follows the above rules. Controllers appending paths to href type attributes MUST support both cases, avoiding doubled or missing slashes.
+~~When a server implementation needs to indicate an API URL via an href or similar attribute, it is valid to either include a trailing slash or not provided that the listed path is accessible and follows the above rules. Controllers appending paths to href type attributes MUST support both cases, avoiding doubled or missing slashes.~~
 (~~[IS-05](https://specs.amwa.tv/is-05/releases/v1.1.1/docs/2.0._APIs.html#client-behaviour)~~)
 
 #### API Version
