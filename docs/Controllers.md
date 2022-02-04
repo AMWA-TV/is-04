@@ -83,21 +83,23 @@ The Controller MUST use the Registry’s IS-04 Query API either via the REST API o
 When using the Query API, basic queries SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller.	
 (~~[AMWA Wiki](https://github.com/AMWA-TV/nmos/wiki/IS-04-Client)~~)
 
-If using the RESTful API rather than WebSockets, Pagination requirements MUST be implemented as specified in the [Pagination section of the APIs: Query Parameters document](APIs%20-%20Query%20Parameters.md#pagination) in this specification.
-(~~[IS-04](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.5._APIs_-_Query_Parameters.html#pagination)~~)
-
 Controllers SHOULD adhere to the version downgrade requirements for Query API Clients specified in the [Requirements for Query API Clients section of the Upgrade Path document](Upgrade%20Path.md#requirements-for-query-api-clients) in this specification.
 
-## WebSockets & Subscriptions	
-Where a WebSocket or other subscription based mechanism is provided for Controller usage, it is strongly recommended that Controllers make use of this and do not use the API resources directly.
+## Pagination
 In large systems, API resources rely upon pagination in order to return high volumes of data.
 This can be both hard to keep track of for a client, and require a large number of requests in order to scan the entire data set.
 
-For this reason it is preferred to use the API resources directly for debug and development purposes only.
+For this reason it is recommended to use the RESTful QUERY API for debug and development purposes only.
 (~~[IS-04](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.5._APIs_-_Query_Parameters.html#pagination)~~
 ~~[AMWA Wiki](https://github.com/AMWA-TV/nmos/wiki/Generic-API-Client)~~)
 
-If a WebSocket connection fails, then an attempt to reconnect to the WebSocket MUST NOT be attempted. Instead, a new subscription SHOULD be created with this API or a different one if required. If all available APIs return errors, an exponential backoff algorithm SHOULD be used when retrying until a success code is returned.
+If using the RESTful Query API rather than WebSockets, Pagination requirements MUST be implemented as specified in the [Pagination section of the APIs: Query Parameters document](APIs%20-%20Query%20Parameters.md#pagination) in this specification.
+(~~[IS-04](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/2.5._APIs_-_Query_Parameters.html#pagination)~~)
+	
+## WebSockets & Subscriptions	
+Where a WebSocket or other subscription based mechanism is provided for Controller usage, it is strongly recommended that Controllers make use of this and do not use the API resources directly.
+
+If a WebSocket connection fails, then an attempt to reconnect to the WebSocket ~~MUST~~ SHOULD NOT be attempted. Instead, a new subscription SHOULD be created with this API or a different one if required. If all available APIs return errors, an exponential backoff algorithm SHOULD be used when retrying until a success code is returned.
 (~~[AMWA Wiki](https://github.com/AMWA-TV/nmos/wiki/IS-04-Client)~~)
 
 ## Dynamic Update of Resources
