@@ -42,7 +42,7 @@ Implementers of Controllers are strongly recommended to support multiple version
 
 Later API versions might use URNs which have not yet been defined and so Controllers MUST be tolerant to these.
 
-#### HTTP Error Codes & Responses
+#### Error Codes & Responses
 The NMOS APIs use HTTP status codes to indicate success, failure and other cases to Controllers as per [RFC 7231](https://tools.ietf.org/html/rfc7231) and related standards.
 Where the RAML specification of an API specifies explicit response codes it is expected that a Controller will handle these cases in a particular way.
 
@@ -75,7 +75,8 @@ Controllers SHOULD observe and interpret all of the TXT records returned with th
 ~~[IS-04](https://specs.amwa.tv/is-04/releases/v1.3.1/docs/6.0._Upgrade_Path.html#requirements-for-registries-registration-and-query-apis)~~)
 
 ## Query API
-The Controller MUST be capable of using the Registry's IS-04 Query API to discover any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
+The Controller MUST be capable of using the Registry's IS-04 Query API to discover any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver,
+as described in the [APIs section](README.md#apis) of this specification.
 
 The Controller MUST use the Registry’s IS-04 Query API either via the REST API or by requesting WebSocket subscriptions.
 
