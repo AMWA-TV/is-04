@@ -45,8 +45,8 @@ The Controller SHOULD also refresh the endpoints of the relevant Resources to en
 ## Registry Service Discovery	
 
 In order to locate the Registry, the Controller SHOULD support all of the following: 
-* Unicast DNS Service Discovery (DNS-SD)
-* mDNS
+* Unicast DNS Service Discovery (DNS-SD).
+* mDNS.
 * Direct configuration with the location of a preferred Registry.
 
 The Controller SHOULD offer unicast DNS-SD as the default mechanism. 
@@ -80,6 +80,6 @@ If a WebSocket connection fails, then an attempt to reconnect to the WebSocket S
 The Controller MUST be capable of using the Registry's IS-04 Query API to discover and dynamically update the state of any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
 
 * The Controller MUST indicate available Senders to the user.
-* The Controller MUST dynamically indicate to the user when a Sender is put ‘offline’ or put back 'online'
-* The Controller MUST indicate to the user which of the discovered Receivers are controllable via the IS-05 Connection API, for instance, allowing Senders to be connected.
-* The Controller MUST indicate to the user which Receivers have a Connection API, but can choose not to display Receivers without a Connection API
+* The Controller MUST dynamically indicate to the user when a Sender is put ‘offline’ or put back 'online'.
+* The Controller MUST indicate available Receivers to the user which have an IS-05 Connection API.
+However, the Controller can choose not to display discovered Receivers without an IS-05 Connection API.
