@@ -48,7 +48,7 @@ The Controller SHOULD also refresh the endpoints of the relevant Resources to en
 
 In order to locate the Registry, the Controller SHOULD support all of the following: 
 * Unicast DNS Service Discovery (DNS-SD).
-* mDNS.
+* Multicast DNS Service Discovery (mDNS).
 * Direct configuration with the location of a preferred Registry.
 
 The Controller SHOULD offer unicast DNS-SD as the default mechanism. 
