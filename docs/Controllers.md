@@ -71,7 +71,7 @@ This can be both hard to keep track of for a client, and require a large number 
 
 For this reason it is recommended to use the RESTful QUERY API for debug and development purposes only.
 
-If using the RESTful Query API rather than WebSockets, Pagination requirements MUST be implemented as specified in the [Pagination section of the APIs: Query Parameters document](APIs%20-%20Query%20Parameters.md#pagination) in this specification.
+If using the RESTful Query API rather than WebSockets, pagination requirements MUST be implemented as specified in the [Pagination section of the APIs: Query Parameters document](APIs%20-%20Query%20Parameters.md#pagination) in this specification.
 	
 ## WebSockets & Subscriptions	
 Where a WebSocket or other subscription based mechanism is provided for Controller usage, it is strongly recommended that Controllers make use of this and do not use the API resources directly.
