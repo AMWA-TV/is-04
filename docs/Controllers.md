@@ -36,12 +36,12 @@ The NMOS APIs use HTTP status codes to indicate success, failure and other cases
 As explicit handling of every possible HTTP response code is not expected, Controllers MUST implement generic handling for ranges of response codes (1xx, 2xx, 3xx, 4xx and 5xx).
 However, where the RAML specification of an API specifies explicit response codes the Controller SHOULD handle these cases explicitly.
 
-For Controllers performing GET and HEAD requests, using these methods SHOULD correctly handle a 301 (Moved Permanently) response.
+For Controllers performing `GET` and `HEAD` requests, using these methods SHOULD correctly handle a `301` (Moved Permanently) response.
 
 When a 301 is supported, the Controller MUST follow the redirect in order to retrieve the required response payload.
 
 If a Controller receives a HTTP 500 response code from the API, a failure has occurred.
-The Controller SHOULD display the content of the response’s error field to the user if possible, and indicate that the Resource may be in an unknown state.
+The Controller SHOULD display the content of the responseâ€™s error field to the user if possible, and indicate that the Resource may be in an unknown state.
 The Controller SHOULD also refresh the endpoints of the relevant Resources to ensure the Controller is accurately reflecting the current state of the API.
 
 ## Registry Service Discovery	
@@ -59,7 +59,7 @@ Controllers SHOULD observe and interpret all of the TXT records returned with th
 The Controller MUST be capable of using the Registry's IS-04 Query API to discover any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver,
 as described in the [APIs section](README.md#apis) of this specification.
 
-The Controller MUST use the Registry’s IS-04 Query API either via the REST API or by requesting WebSocket subscriptions.
+The Controller MUST use the Registryâ€™s IS-04 Query API either via the REST API or by requesting WebSocket subscriptions.
 
 When using the Query API, basic queries SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller.	
 
@@ -82,6 +82,6 @@ If a WebSocket connection fails, then an attempt to reconnect to the WebSocket S
 The Controller MUST be capable of using the Registry's IS-04 Query API to discover and dynamically update the state of any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
 
 * The Controller MUST indicate available Senders to the user.
-* The Controller MUST dynamically indicate to the user when a Sender is put ‘offline’ or put back 'online'.
+* The Controller MUST dynamically indicate to the user when a Sender is put â€˜offlineâ€™ or put back 'online'.
 * The Controller MUST indicate available Receivers to the user which have an IS-05 Connection API.
 However, the Controller can choose not to display discovered Receivers without an IS-05 Connection API.
