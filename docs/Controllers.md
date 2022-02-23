@@ -8,7 +8,7 @@ A Controller is Client software that interacts with the NMOS APIs to discover, c
 
 * This document includes normative references to be followed when implementing a Controller.
 * This document covers how the Controller interacts with the NMOS APIs only.
-It does not cover other features of the Controller software, such as presentation.
+  It does not cover other features of the Controller software, such as presentation.
 * This document does not cover any requirements relating to where a Controller is additionally acting as a Node (e.g. receiving monitoring information via IS-07).
 
 ## General
@@ -30,7 +30,10 @@ Controllers are responsible for identifying the correct API version they require
 
 Implementers of Controllers are strongly recommended to support multiple versions of the NMOS APIs simultaneously in order to ease the upgrade process in live facilities.
 
-Later API versions might use URNs which have not yet been defined and so Controllers MUST be tolerant to these.
+#### API Common Keys
+Controllers SHOULD follow the requirements for common APi keys specificified in the [IS-04 APIs: Common Keys](APIs%20-%20Common%20Keys.md) document including the requirements regarding [use of URNs](APIs%20-%20Common%20Keys.md#use-of-urns).
+
+~~Later API versions might use URNs which have not yet been defined and so Controllers MUST be tolerant to these.~~
 
 #### Error Codes & Responses
 The NMOS APIs use HTTP status codes to indicate success, failure and other cases to Controllers as per [RFC 7231](https://tools.ietf.org/html/rfc7231) and related standards.
@@ -43,7 +46,7 @@ For Controllers performing `GET` and `HEAD` requests, using these methods SHOULD
 When a 301 is supported, the Controller MUST follow the redirect in order to retrieve the required response payload.
 
 If a Controller receives a HTTP 500 response code from the API, a failure has occurred.
-The Controller SHOULD display the content of the responseâ€™s error field to the user if possible, and indicate that the Resource may be in an unknown state.
+The Controller SHOULD display the content of the response’s error field to the user if possible, and indicate that the Resource is likely to ~~may~~ be in an unknown state.
 The Controller SHOULD also refresh the endpoints of the relevant Resources to ensure the Controller is accurately reflecting the current state of the API.
 
 ## Registry Service Discovery	
@@ -61,7 +64,7 @@ Controllers SHOULD observe and interpret all of the TXT records returned with th
 The Controller MUST be capable of using the Registry's IS-04 Query API to discover any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver,
 as described in the [APIs section](README.md#apis) of this specification.
 
-The Controller MUST use the Registryâ€™s IS-04 Query API either via the REST API or by requesting WebSocket subscriptions.
+The Controller MUST use the Registry’s IS-04 Query API either via the REST API or by requesting WebSocket subscriptions.
 
 When using the Query API, basic queries SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller.	
 
@@ -84,6 +87,6 @@ If a WebSocket connection fails, then an attempt to reconnect to the WebSocket S
 The Controller MUST be capable of using the Registry's IS-04 Query API to discover and dynamically update the state of any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
 
 * The Controller MUST indicate available Senders to the user.
-* The Controller MUST dynamically indicate to the user when a Sender is put â€˜offlineâ€™ or put back 'online'.
+* The Controller MUST dynamically indicate to the user when a Sender is put ‘offline’ or put back 'online'.
 * The Controller MUST indicate available Receivers to the user which have an IS-05 Connection API.
 However, the Controller can choose not to display discovered Receivers without an IS-05 Connection API.
