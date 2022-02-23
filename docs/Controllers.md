@@ -40,7 +40,7 @@ Versions MUST be represented as complete strings. Parsing MUST proceed as follow
 Implementers of Controllers are RECOMMENDED to support multiple versions of the NMOS APIs simultaneously in order to ease the upgrade process in live facilities.
 
 #### API Common Keys
-Controllers SHOULD follow the requirements for common APi keys specificified in the [IS-04 APIs: Common Keys](APIs%20-%20Common%20Keys.md) document including the requirements regarding [use of URNs](APIs%20-%20Common%20Keys.md#use-of-urns).
+Controllers SHOULD follow the requirements for common APi keys specified in the [IS-04 APIs: Common Keys](APIs%20-%20Common%20Keys.md) document including the requirements regarding [use of URNs](APIs%20-%20Common%20Keys.md#use-of-urns).
 
 ~~Later API versions might use URNs which have not yet been defined and so Controllers MUST be tolerant to these.~~
 
