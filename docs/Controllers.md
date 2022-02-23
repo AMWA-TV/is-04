@@ -17,7 +17,9 @@ It does not cover other features of the Controller software, such as presentatio
 Where this document refers to the "user" of a Controller, this includes both human operators who drive the Controller manually and automation systems that drive the Controller programmatically.
 
 ### HTTP APIs
+
 #### Trailing Slashes
+
 APIs may advertise URLs with or without a trailing slash.
 Controllers appending paths to `href` type attributes MUST support both cases, avoiding doubled or missing slashes.
 
