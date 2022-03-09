@@ -94,6 +94,6 @@ If a WebSocket connection fails, then an attempt to reconnect to the WebSocket S
 The Controller MUST be capable of using the Registry's IS-04 Query API to discover and dynamically update the state of any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
 
 * The Controller MUST indicate available Senders to the user.
-* The Controller must reflect changes in presence/absence of Senders to the user after a maximum of 30 seconds.
+* The Controller MUST reflect changes in presence/absence of Senders to the user after a maximum of 30 seconds.
 * The Controller MUST indicate available Receivers to the user which have an IS-05 Connection API.
   However, the Controller can choose not to display discovered Receivers without an IS-05 Connection API.
