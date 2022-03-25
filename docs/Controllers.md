@@ -36,7 +36,7 @@ Implementers of Controllers are RECOMMENDED to support multiple versions of the 
 
 #### API Common Keys
 
-Controllers SHOULD follow the requirements for common APi keys specified in the [IS-04 APIs: Common Keys](APIs%20-%20Common%20Keys.md) document including the requirements regarding [use of URNs](APIs%20-%20Common%20Keys.md#use-of-urns).
+Controllers SHOULD follow the requirements for common API keys specified in the [IS-04 APIs: Common Keys](APIs%20-%20Common%20Keys.md) document including the requirements regarding [use of URNs](APIs%20-%20Common%20Keys.md#use-of-urns).
 
 #### Error Codes & Responses
 
