@@ -14,6 +14,7 @@ A Controller is Client software that interacts with the NMOS APIs to discover, c
 ## General
 
 ### User
+
 Where this document refers to the "user" of a Controller, this includes both human operators who drive the Controller manually and automation systems that drive the Controller programmatically.
 
 ### HTTP APIs
@@ -91,6 +92,7 @@ Where a WebSocket or other subscription based mechanism is provided for Controll
 If a WebSocket connection fails, then an attempt to reconnect to the WebSocket SHOULD NOT be attempted. Instead, a new subscription SHOULD be created with this API or a different one if required. If all available APIs return errors, an exponential backoff algorithm SHOULD be used when retrying until a success code is returned.
 
 ## Dynamic Update of Resources
+
 The Controller MUST be capable of using the Query API to discover and dynamically update the state of any registered resource, including Node, Device, Source, Flow, Sender, and Receiver.
 
 * The Controller MUST indicate available Senders to the user.
