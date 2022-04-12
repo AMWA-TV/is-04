@@ -88,7 +88,7 @@ For this reason it is RECOMMENDED to use the RESTful QUERY API for debug and dev
 
 If using the HTTP API rather than WebSocket subscriptions, pagination requirements MUST be implemented as specified in the [APIs: Query Parameters: Pagination](APIs%20-%20Query%20Parameters.md#pagination) section of this specification.
 	
-## WebSockets & Subscriptions	
+## WebSocket Subscriptions	
 
 It is RECOMMENDED that Controllers make use of the WebSocket subscription mechanism and do not use the HTTP API resources directly.
 
