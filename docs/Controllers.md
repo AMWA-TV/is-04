@@ -62,18 +62,18 @@ In order to locate the Query API, the Controller SHOULD support all of the follo
 
 The Controller SHOULD offer unicast DNS-SD as the default mechanism. 
 
-Controllers SHOULD observe and interpret all of the TXT records returned with the DNS Service Discovery responses according to the requirements for Query API Clients specified in the [API Paths section of the APIs document](APIs.md#api-paths) in this specification.
+Controllers SHOULD observe and interpret all of the TXT records returned with the DNS Service Discovery responses according to the requirements for Query API Clients specified in the [APIs: API Paths](APIs.md#api-paths) section of this specification.
 
 ## Query API
 
 The Controller MUST be capable of using the Query API to discover any registered resource, including Node, Device, Source, Flow, Sender, and Receiver,
-as described in the [APIs section](README.md#apis) of this specification.
+as described in the [APIs](APIs.md) section of this specification.
 
 The Controller MUST use the Query API either via the HTTP API or by requesting WebSocket subscriptions.
 
 When using the Query API, query filters SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller, as specified in the [APIs: Query Parameters](APIs%20-%20Query%20Parameters.md) document.
 
-Controllers SHOULD adhere to the version downgrade requirements for Query API Clients specified in the [Requirements for Query API Clients section of the Upgrade Path document](Upgrade%20Path.md#requirements-for-query-api-clients) in this specification.
+Controllers SHOULD adhere to the version downgrade requirements for Query API Clients specified in the [Upgrade Path: Requirements for Query API Clients](Upgrade%20Path.md#requirements-for-query-api-clients) section of this specification.
 
 ## Pagination
 
@@ -82,7 +82,7 @@ This can be both hard to keep track of for a client, and require a large number 
 
 For this reason it is RECOMMENDED to use the RESTful QUERY API for debug and development purposes only.
 
-If using the HTTP API rather than WebSocket subscriptions, pagination requirements MUST be implemented as specified in the [Pagination section of the APIs: Query Parameters document](APIs%20-%20Query%20Parameters.md#pagination) in this specification.
+If using the HTTP API rather than WebSocket subscriptions, pagination requirements MUST be implemented as specified in the [APIs: Query Parameters: Pagination](APIs%20-%20Query%20Parameters.md#pagination) section of this specification.
 	
 ## WebSockets & Subscriptions	
 
