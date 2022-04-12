@@ -77,7 +77,7 @@ The Query Service implements the Query API of the NMOS Discovery and Registratio
 - Obtaining a list of registered Nodes in order to drive a configuration interface.
 - Obtaining a list of Sender resources and a list of Receiver resources in order to provide a connection management interface.
 
-The Query API also provides the ability to generate ‘long lived’ queries using its Subscription mechanism and WebSockets.
+The Query API also provides the ability to generate 'long lived' queries using its Subscription mechanism and WebSocket connections.
 
 ### Examples
 
