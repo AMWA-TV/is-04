@@ -87,7 +87,7 @@ If using the HTTP API rather than WebSocket subscriptions, pagination requiremen
 	
 ## WebSockets & Subscriptions	
 
-Where a WebSocket or other subscription based mechanism is provided for Controller usage, it is strongly RECOMMENDED that Controllers make use of this and do not use the API resources directly.
+It is RECOMMENDED that Controllers make use of the WebSocket subscription mechanism and do not use the HTTP API resources directly.
 
 If a WebSocket connection fails, then an attempt to reconnect to the WebSocket SHOULD NOT be attempted. Instead, a new subscription SHOULD be created with this API or a different one if required. If all available APIs return errors, an exponential backoff algorithm SHOULD be used when retrying until a success code is returned.
 
