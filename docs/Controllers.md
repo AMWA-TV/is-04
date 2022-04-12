@@ -30,7 +30,7 @@ The versioning format is `v<MAJOR>.<MINOR>`
 * `MINOR` increments will be performed for non-breaking changes (such as the addition of attributes in a response)
 * `MAJOR` increments will be performed for breaking changes (such as the renaming of a resource or attribute)
 
-Versions MUST be represented as complete strings. Parsing MUST proceed as follows: separate into two strings, using the point (.) as a delimiter. Compare integer representations of `MAJOR`, `MINOR` version (such that v1.12 is greater than v1.5).
+Versions MUST be represented as complete strings. Parsing MUST proceed as follows: separate into two strings, using the point (`.`) as a delimiter. Compare integer representations of `MAJOR`, `MINOR` version (such that v1.12 is greater than v1.5).
 
 Implementers of Controllers are RECOMMENDED to support multiple versions of the NMOS APIs simultaneously in order to ease the upgrade process in live facilities.
 
@@ -42,23 +42,23 @@ Controllers SHOULD follow the requirements for common API keys specified in the 
 
 The NMOS APIs use HTTP status codes to indicate success, failure and other cases to Controllers as per [RFC 7231](https://tools.ietf.org/html/rfc7231) and related standards.
 
-As explicit handling of every possible HTTP response code is not expected, Controllers MUST implement generic handling for ranges of response codes (1xx, 2xx, 3xx, 4xx and 5xx).
+As explicit handling of every possible HTTP response code is not expected, Controllers MUST implement generic handling for ranges of response codes (`1xx`, `2xx`, `3xx`, `4xx` and `5xx`).
 However, where the RAML specification of an API specifies explicit response codes the Controller SHOULD handle these cases explicitly.
 
 For Controllers performing `GET` and `HEAD` requests, using these methods SHOULD correctly handle a `301` (Moved Permanently) response.
 
-When a 301 is supported, the Controller MUST follow the redirect in order to retrieve the required response payload.
+When a `301` is supported, the Controller MUST follow the redirect in order to retrieve the required response payload.
 
-If a Controller receives an HTTP 5xx or 4xx response code from the API, a failure has occurred.
+If a Controller receives an HTTP `5xx` or `4xx` response code from the API, a failure has occurred.
 The Controller SHOULD display the content of the response's error field to the user if possible, and indicate that the resource is likely to be in an unknown state.
 The Controller SHOULD also refresh the endpoints of the relevant resources to ensure the Controller is accurately reflecting the current state of the API.
 
 ## Registry Service Discovery	
 
-In order to locate the Registry, the Controller SHOULD support all of the following: 
+In order to locate the Query API, the Controller SHOULD support all of the following:
 * Unicast DNS Service Discovery (DNS-SD).
 * Multicast DNS Service Discovery (mDNS).
-* Direct configuration with the location of a preferred Registry.
+* Direct configuration with the location of a preferred Query API.
 
 The Controller SHOULD offer unicast DNS-SD as the default mechanism. 
 
@@ -66,10 +66,10 @@ Controllers SHOULD observe and interpret all of the TXT records returned with th
 
 ## Query API
 
-The Controller MUST be capable of using the Registry's IS-04 Query API to discover any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver,
+The Controller MUST be capable of using the Query API to discover any registered resource, including Node, Device, Source, Flow, Sender, and Receiver,
 as described in the [APIs section](README.md#apis) of this specification.
 
-The Controller MUST use the Registry's IS-04 Query API either via the HTTP API or by requesting WebSocket subscriptions.
+The Controller MUST use the Query API either via the HTTP API or by requesting WebSocket subscriptions.
 
 When using the Query API, query filters SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller, as specified in the [APIs: Query Parameters](APIs%20-%20Query%20Parameters.md) document.
 
@@ -82,7 +82,7 @@ This can be both hard to keep track of for a client, and require a large number 
 
 For this reason it is RECOMMENDED to use the RESTful QUERY API for debug and development purposes only.
 
-If using the RESTful Query API rather than WebSockets, Pagination requirements MUST be implemented as specified in the [Pagination section of the APIs: Query Parameters document](APIs%20-%20Query%20Parameters.md#pagination) in this specification.
+If using the HTTP API rather than WebSocket subscriptions, pagination requirements MUST be implemented as specified in the [Pagination section of the APIs: Query Parameters document](APIs%20-%20Query%20Parameters.md#pagination) in this specification.
 	
 ## WebSockets & Subscriptions	
 
@@ -91,7 +91,7 @@ Where a WebSocket or other subscription based mechanism is provided for Controll
 If a WebSocket connection fails, then an attempt to reconnect to the WebSocket SHOULD NOT be attempted. Instead, a new subscription SHOULD be created with this API or a different one if required. If all available APIs return errors, an exponential backoff algorithm SHOULD be used when retrying until a success code is returned.
 
 ## Dynamic Update of Resources
-The Controller MUST be capable of using the Registry's IS-04 Query API to discover and dynamically update the state of any registered resource, including Node, Device,  Source, Flow, Sender, and Receiver.
+The Controller MUST be capable of using the Query API to discover and dynamically update the state of any registered resource, including Node, Device, Source, Flow, Sender, and Receiver.
 
 * The Controller MUST indicate available Senders to the user.
 * The Controller MUST reflect changes in presence/absence of Senders to the user after a maximum of 30 seconds.
