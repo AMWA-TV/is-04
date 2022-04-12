@@ -54,12 +54,15 @@ If a Controller receives an HTTP `5xx` or `4xx` response code from the API, a fa
 The Controller SHOULD display the content of the response's error field to the user if possible, and indicate that the resource is likely to be in an unknown state.
 The Controller SHOULD also refresh the endpoints of the relevant resources to ensure the Controller is accurately reflecting the current state of the API.
 
-## Registry Service Discovery	
+## Query API Discovery	
+
+NMOS [Discovery](Discovery.md) makes use of the DNS Service Discovery (DNS-SD) protocol. The [Query API: Client Interaction Procedure](Discovery%20-%20Registered%20Operation.md#client-interaction-procedure-1) section of this specification describes the requirements in detail.
 
 In order to locate the Query API, the Controller SHOULD support all of the following:
-* Unicast DNS Service Discovery (DNS-SD).
-* Multicast DNS Service Discovery (mDNS).
-* Direct configuration with the location of a preferred Query API.
+
+* Unicast DNS
+* Multicast DNS (mDNS)
+* Direct configuration with the location of a preferred Query API
 
 The Controller SHOULD offer unicast DNS-SD as the default mechanism. 
 
