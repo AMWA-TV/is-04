@@ -73,26 +73,17 @@ Controllers SHOULD observe and interpret all of the TXT records returned with th
 The Controller MUST be capable of using the Query API to discover any registered resource, including Node, Device, Source, Flow, Sender, and Receiver,
 as described in the [APIs](APIs.md) section of this specification.
 
-The Controller MUST use the Query API either via the HTTP API or by requesting WebSocket subscriptions.
-
 When using the Query API, query filters SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller, as specified in the [APIs: Query Parameters](APIs%20-%20Query%20Parameters.md) document.
 
 Controllers SHOULD adhere to the version downgrade requirements for Query API Clients specified in the [Upgrade Path: Requirements for Query API Clients](Upgrade%20Path.md#requirements-for-query-api-clients) section of this specification.
 
 ## Pagination
 
-In large systems, API resources rely upon pagination in order to return high volumes of data.
-This can be both hard to keep track of for a client, and require a large number of requests in order to scan the entire data set.
-
-For this reason it is RECOMMENDED to use the RESTful QUERY API for debug and development purposes only.
-
 If using the HTTP API rather than WebSocket subscriptions, pagination requirements MUST be implemented as specified in the [APIs: Query Parameters: Pagination](APIs%20-%20Query%20Parameters.md#pagination) section of this specification.
 	
 ## WebSocket Subscriptions	
 
-It is RECOMMENDED that Controllers make use of the WebSocket subscription mechanism and do not use the HTTP API resources directly.
-
-If a WebSocket connection fails, then an attempt to reconnect to the WebSocket SHOULD NOT be attempted. Instead, a new subscription SHOULD be created with this API or a different one if required. If all available APIs return errors, an exponential backoff algorithm SHOULD be used when retrying until a success code is returned.
+In order to avoid polling of the RESTful QUERY API it is RECOMMENDED that Controllers use the WebSocket subscription mechanism.
 
 ## Dynamic Update of Resources
 
