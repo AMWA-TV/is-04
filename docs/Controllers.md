@@ -83,7 +83,7 @@ If using the HTTP API rather than WebSocket subscriptions, pagination requiremen
 	
 ## WebSocket Subscriptions	
 
-In order to avoid polling of the RESTful QUERY API it is RECOMMENDED that Controllers use the WebSocket subscription mechanism.
+In order to avoid polling of the HTTP API, it is RECOMMENDED that Controllers use the WebSocket subscription mechanism.
 
 ## Dynamic Update of Resources
 
@@ -93,3 +93,4 @@ The Controller MUST be capable of using the Query API to discover and dynamicall
 * The Controller MUST reflect changes in presence/absence of Senders to the user after a maximum of 30 seconds.
 * The Controller MUST indicate available Receivers to the user which have an IS-05 Connection API.
   However, the Controller MAY choose to omit discovered Receivers without an IS-05 Connection API.
+
