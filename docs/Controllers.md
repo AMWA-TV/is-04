@@ -42,15 +42,14 @@ Controllers SHOULD follow the requirements for common API keys specified in the 
 The NMOS APIs use HTTP status codes to indicate success, failure and other cases to Controllers as per [RFC 7231](https://tools.ietf.org/html/rfc7231) and related standards.
 
 As explicit handling of every possible HTTP response code is not expected, Controllers MUST implement generic handling for ranges of response codes (`1xx`, `2xx`, `3xx`, `4xx` and `5xx`).
-However, where the RAML specification of an API specifies explicit response codes the Controller SHOULD handle these cases explicitly.
+However, where the API specifies explicit response codes the Controller SHOULD handle these cases explicitly.
 
 For Controllers performing `GET` and `HEAD` requests, using these methods SHOULD correctly handle a `301` (Moved Permanently) response.
 
 When a `301` is supported, the Controller MUST follow the redirect in order to retrieve the required response payload.
 
 If a Controller receives an HTTP `5xx` or `4xx` response code from the API, a failure has occurred.
-The Controller SHOULD display the content of the response's `error` field to the user if possible.
-The Controller SHOULD continue indicating this error status for the resource until it has been refreshed.
+The Controller SHOULD display the content of the response's `error` field to the User if possible.
 
 ## Query API Discovery	
 
