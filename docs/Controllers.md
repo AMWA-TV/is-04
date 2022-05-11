@@ -2,20 +2,18 @@
 
 _(c) AMWA 2022, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 
-## Informative
+## Introduction
 
-A Controller is Client software that interacts with the NMOS APIs to discover, connect and manage devices within a networked media system.
+A Controller is Client software that interacts with the NMOS APIs to discover, connect and manage resources (Nodes, Devices, Senders and Receivers) within a networked media system.
 
 * This document includes normative references to be followed when implementing a Controller.
 * This document covers how the Controller interacts with the NMOS APIs only.
   It does not cover other features of the Controller software, such as presentation.
 * This document does not cover any requirements relating to where a Controller is additionally acting as a Node (e.g. receiving monitoring information via IS-07).
 
+Where this document refers to a User, this can include both human operators who drive a Controller manually and automation systems that drive a Controller programmatically.
+
 ## General
-
-### User
-
-Where this document refers to the "user" of a Controller, this includes both human operators who drive the Controller manually and automation systems that drive the Controller programmatically.
 
 ### HTTP APIs
 
