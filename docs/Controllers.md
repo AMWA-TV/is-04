@@ -44,7 +44,7 @@ The NMOS APIs use HTTP status codes to indicate success, failure and other cases
 As explicit handling of every possible HTTP response code is not expected, Controllers MUST implement generic handling for ranges of response codes (`1xx`, `2xx`, `3xx`, `4xx` and `5xx`).
 However, where the API specifies explicit response codes the Controller SHOULD handle these cases explicitly.
 
-When a Controller performs `GET` and `HEAD` requests, it MUST correctly handle a `301` (Moved Permanently) response by following the redirect `Location` header.
+When a Controller performs `GET` and `HEAD` requests, it MUST correctly handle a `301` (Moved Permanently) redirect to accommodate the API implementations permitted in the [APIs: URLs: Approach to Trailing Slashes](APIs.md#urls-approach-to-trailing-slashes) section of this specification.
 
 If a Controller receives an HTTP `5xx` or `4xx` response code from the API, a failure has occurred.
 The Controller SHOULD display the content of the response's `error` field to the User if possible.
