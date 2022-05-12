@@ -70,7 +70,7 @@ as described in the [APIs](APIs.md) section of this specification.
 
 When using the Query API, query filters SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller, as specified in the [APIs: Query Parameters](APIs%20-%20Query%20Parameters.md) document.
 
-Controllers SHOULD adhere to the version downgrade requirements for Query API Clients specified in the [Upgrade Path: Requirements for Query API Clients](Upgrade%20Path.md#requirements-for-query-api-clients) section of this specification.
+Controllers MUST adhere to the [Requirements for Query API Clients](Upgrade%20Path.md#requirements-for-query-api-clients) found in this specification.
 
 ## Pagination
 
@@ -82,7 +82,7 @@ In order to avoid polling of the HTTP API, it is RECOMMENDED that Controllers us
 
 ## Dynamic Update of Resources
 
-The Controller MUST be capable of using the Query API to discover and dynamically update the state of any registered resource, including Node, Device, Source, Flow, Sender, and Receiver.
+The Controller MUST be capable of using the Query API to discover and dynamically report the state of any registered resource, including Node, Device, Source, Flow, Sender, and Receiver.
 
 * The Controller MUST indicate available Senders to the user.
 * The Controller MUST reflect changes in presence/absence of Senders to the user after a maximum of 30 seconds.
