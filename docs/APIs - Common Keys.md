@@ -8,7 +8,7 @@ A number of common keys are used within NMOS APIs. Their definitions, semantics 
 
 Core resources such as Sources, Flows, Nodes etc. include a `version` attribute. As properties of a given Flow or similar will change over its lifetime, the version identifies the instant at which this change took place. For example, if a vision mix transition occurred which resulted in a change to the `parents` which make up a particular Flow, the `version` is modified to reflect the wall clock instant at which this change occurred.
 
-`version` is a nanosecond TAI timestamp represented as a string of the format: `<seconds>:<nanoseconds`. Note the  `:` as opposed to a `.`, indicating that the value `1439299836:10` is interpreted as 1439299836 seconds and 10 nanoseconds.
+`version` is a TAI timestamp. In NMOS APIS, a TAI timestamp is represented as a string of the format: `<seconds>:<nanoseconds>`. Note the  `:` as opposed to a `.`, indicating that the value `1439299836:10` is interpreted as 1439299836 seconds and 10 nanoseconds.
 
 Combining the version with the resource's ID attribute creates a hash which can be used to uniquely identify a particular variant of a Source, Flow or similar.
 
