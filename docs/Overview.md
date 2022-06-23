@@ -25,6 +25,8 @@ The Specification includes:
 
 Familiarity with the [JT-NM Reference Architecture](https://jt-nm.org/reference-architecture/) is assumed, but a summary of the resources referenced by this specification is available in the [Data Model](Data%20Model.md).
 
+The [NMOS Glossary][Glossary] defines several common terms that have specific meanings in NMOS.
+
 ## Use of Normative Language
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY",
@@ -77,7 +79,7 @@ The Query Service implements the Query API of the NMOS Discovery and Registratio
 - Obtaining a list of registered Nodes in order to drive a configuration interface.
 - Obtaining a list of Sender resources and a list of Receiver resources in order to provide a connection management interface.
 
-The Query API also provides the ability to generate ‘long lived’ queries using its Subscription mechanism and WebSockets.
+The Query API also provides the ability to generate 'long lived' queries using its Subscription mechanism and WebSocket connections.
 
 ### Examples
 
@@ -85,4 +87,6 @@ The diagram below shows examples of peer-to-peer and registered discovery.
 
 ![Registration Sequence](images/registration-sequence.png)
 
+[Glossary]: https://specs.amwa.tv/nmos/main/docs/Glossary.html "NMOS Glossary"
 [RFC-2119]: https://tools.ietf.org/html/rfc2119 "Key words for use in RFCs"
+
