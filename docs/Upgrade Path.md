@@ -75,7 +75,7 @@ No keys are affected
 
 - Sources: `format` could be listed as `urn:x-nmos:format:mux`
 - Flows: `format` could be listed as `urn:x-nmos:format:mux`
-- Senders: `flow_id` could be listed as `null`
+- Senders: `flow_id` could be listed as `null` to indicate a Flow is not currently internally routed to the Sender
 
 ## Performing Upgrades
 
