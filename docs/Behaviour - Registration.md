@@ -109,7 +109,13 @@ A `404` (Not Found) error on heartbeat indicates that the Node performing the he
 
 ### Node Encounters HTTP `500` (or other `5xx`), Inability To Connect, Or A Timeout
 
-A `500` (Internal Server Error) error, inability to connect or a timeout indicates a server side or connectivity issue. As this issue could affect just one Registration API in a cluster, it is advised that clients identify another Registration API to use from their discovered list. The first interaction with a new Registration API in this case SHOULD be a heartbeat to confirm whether the Node is still present in the registry.
+On registration or heartbeat, any of the following conditions indicates a server side or connectivity issue:
+
+- `500` (Internal Server Error) or other `5xx` error
+- Inability to connect
+- Timeout
+
+As this issue could affect just one Registration API in a cluster, it is advised that clients identify another Registration API to use from their discovered list. The first interaction with a new Registration API in this case SHOULD be a heartbeat to confirm whether the Node is still present in the registry.
 
 When performing the initial heartbeat with a new Registration API, a `200` (OK) code indicates that the Node and its resources are still present in the registry cluster and no further action is necessary. Future registrations and heartbeats SHOULD be performed against this new Registration API. If a `404` (Not Found) code is encountered when performing this heartbeat, refer to 'Node Encounters HTTP `404` On Heartbeat' above.
 
