@@ -8,11 +8,11 @@ Where the behaviour associated with an API attribute is not sufficiently clear f
 
 ### All Resources
 
-`caps`: Capabilities are intended to signal a collection of inputs or outputs which a given resource is able to consume or produce, but which it might not be doing at this instant. For example, Receiver capabilities indicate the types of data a Receiver can consume from a network. The specification defines capabilities of `media_types` and `event_types` for Receivers which take an array form. Future additions to capabilities and the structure which they use will be documented external to this specification.
+`caps`: Capabilities are intended to signal a collection of inputs or outputs which a given resource is able to consume or produce, but which it might not be doing at this instant. For example, Receiver capabilities indicate the types of data a Receiver can consume from a network. The specification defines capabilities of `media_types` and `event_types` for Receivers which take an array form.
 
-### Sources & Flows
+Additions to capabilities and the structure which they use can be made using the AMWA process and criteria defined in the [NMOS Parameter Registers](https://specs.amwa.tv/nmos-parameter-registers/). Extensions to capabilities are documented in the [Capabilities register](https://specs.amwa.tv/nmos-parameter-registers/branches/main/capabilities/).
 
-Core Source and Flow attributes are defined directly within this specification. Future additions to Source and Flow attributes or expansions of permitted values for existing attributes will be documented external to this specification.
+New top-level attributes can also be added for each resource type via the AMWA process and criteria defined in the the NMOS Parameter Registers, which ensures such additions are compatible with the schemas in this specification. For example, additional Flow attributes are documented in the [Flow Attributes register](https://specs.amwa.tv/nmos-parameter-registers/branches/main/flow-attributes/).
 
 ### Senders
 
