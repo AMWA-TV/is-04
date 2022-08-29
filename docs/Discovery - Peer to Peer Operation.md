@@ -53,7 +53,7 @@ When a Node is operating in peer-to-peer mode it MUST additionally advertise the
 
 The value of each of the above SHOULD be the text representation of an unsigned 8-bit integer initialised to 0. This integer MUST be incremented and mDNS TXT record updated whenever a change is made to the corresponding HTTP API resource on the Node. The integer MUST wrap back to a value of 0 after reaching a maximum value of 255.
 
-For example, the `ver_src` TXT record MUST be created when the Node first advertises itself via mDNS. If the data held within the HTTP resource for `/sources` is added to, removed from or edited, then the `ver_src` text record MUST be modified (value incremented).
+For example, the `ver_src` TXT record MUST be created when the Node first advertises itself via mDNS. If the data held within the HTTP resources under `/sources` is added to, removed from or edited, then the `ver_src` text record MUST be modified (value incremented). The `version` attribute of each resource indicates which specific resources have changed, as specified in [APIs: Common Keys](APIs%20-%20Common%20Keys.md#version).
 
 ### Client Interaction Procedure
 
