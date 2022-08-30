@@ -599,13 +599,13 @@ X-Ancestry-Generations: 4
 
 Payload
 
-- Returns Sources which list an ID of `c1398579-15bc-468e-91ec-df5bbefe1cd3` in their `parents` attribute array. These are the first generation ancestors.
-- For each first generation ancestor found, the ID of these Sources is used to look up the next generation in the `parents` arrays of further Sources.
+- Returns Sources which list an ID of `c1398579-15bc-468e-91ec-df5bbefe1cd3` in their `parents` attribute array. These children are the first generation descendants.
+- For each first generation descendant found, the ID of these Sources is used to look up the next generation by the `parents` arrays of further Sources.
 - This process continues up to the generation limit returned in the `X-Ancestry-Generations` header. The server MAY refuse to honour a requested `query.ancestry_generations` value using a `400` (Bad Request) error code if it is deemed to be too resource intensive.
 
 ***Notes***
 
-- Responses SHOULD NOT include the Source with ID specified in the `ancestry_id` parameter.
+- Responses do not include the Source with ID specified in the `ancestry_id` parameter.
 
 **Example 2: Parents Of A Flow**
 
@@ -625,10 +625,10 @@ X-Ancestry-Generations: 2
 
 Payload
 
-- Returns Flows which are listed in the `parents` array of the Flow identified by the ID `ad14888a-3a98-444c-8aa8-4d87b77cbaa1`. These are the first generation parents.
-- For each first generation parent found, their `parents` array is used to identify the next generation of parents to be returned.
+- Returns Flows which are listed in the `parents` array of the Flow identified by the ID `ad14888a-3a98-444c-8aa8-4d87b77cbaa1`. These parents are the first generation ancestors.
+- For each first generation ancestor found, their `parents` array is used to identify the next generation of ancestors to be returned.
 - This process continues up to the generation limit returned in the `X-Ancestry-Generations` header (in this case limited to 2 by a query parameter). The server MAY refuse to honour a requested `query.ancestry_generations` value using a `400` (Bad Request) error code if it is deemed to be too resource intensive.
 
 ***Notes***
 
-- Responses SHOULD NOT include the Flow with ID specified in the `ancestry_id` parameter.
+- Responses do not include the Flow with ID specified in the `ancestry_id` parameter.
