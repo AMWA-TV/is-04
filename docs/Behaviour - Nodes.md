@@ -14,6 +14,8 @@ Additions to capabilities and the structure which they use can be made using the
 
 New top-level attributes can also be added for each resource type via the AMWA process and criteria defined in the the NMOS Parameter Registers, which ensures such additions are compatible with the schemas in this specification. For example, additional Flow attributes are documented in the [Flow Attributes register](https://specs.amwa.tv/nmos-parameter-registers/branches/main/flow-attributes/).
 
+`version`: The `version` is updated whenever any change is made to a resource's configuration, as specified in [APIs: Common Keys](APIs%20-%20Common%20Keys.md#version). In registered operation, the change is registered with the Registration API, as specified in [Behaviour: Registration](Behaviour%20-%20Registration.md#registration-updates). In peer-to-peer operation, the change is advertised using the `ver_` TXT records, as specified in [Discovery: Peer-to-Peer Operation](Discovery%20-%20Peer%20to%20Peer%20Operation.md#ver_).
+
 ### Senders
 
 `subscription`: The `subscription` key is used to indicate how a Sender currently connects to Receivers in a networked media system. The subscription MUST be updated to reflect the current configuration of the Sender whether it was modified via an NMOS mechanism or an externally-defined control mechanism.

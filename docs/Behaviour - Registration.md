@@ -20,7 +20,13 @@ The following behaviour assumes a Node with a single network interface for all t
 6. The Node persists itself in the registry by issuing heartbeats as below.
 7. The Node registers its other resources (from `/devices`, `/sources`, etc.) with the Registration API. Resources MUST be registered in the correct order, such that a Receiver which references a `device_id` is registered after that corresponding Device (for example).
 
-#### Resilient Node Behaviour
+### Registration Updates
+
+A Node's resources change over time. For example, as specified in [Behaviour: Nodes](Behaviour%20-%20Nodes.md), the `subscription` attributes of Senders and Receivers are updated whenever the configuration is changed. Each resource has a `version` attribute which is updated whenever any change is made to its configuration, as specified in [APIs: Common Keys](APIs%20-%20Common%20Keys.md#version). These changes are exposed in the Node API and registered with the Registration API by `POST`ing each updated resource to the Registration API. The Registration API indicates that it has received an update to a previous record by sending a `200` (OK) response, rather than a `201` (Created) response.
+
+In the case of re-configurable Nodes, resources can also be added to or removed from the Node API to reflect, for example, a change from a configuration as an input Device (with Receivers) to an output device (with Sources, Flows and Senders). A Node assigns an `id` attribute for each added resource, as specified in [Data Model: Identifier Mapping](Data%20Model%20-%20Identifier%20Mapping.md), and sets the `version` attribute to identify the instant at which the change took place. When a previous configuration is restored, assigning the same `id` values enables a control system to re-establish connections, for example. The Node also registers resources that have been added and removed with the Registration API, by making `POST` and `DELETE` requests. 
+
+### Resilient Node Behaviour
 
 In some deployments, multiple copies of essence (video/audio/data) are sent via redundant paths in order to provide guarantees about availability. In these situations, it is likely that a single Node will be used at the point of content creation and transmission via the two paths, and again a single Node used for reception from the two paths.
 

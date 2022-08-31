@@ -12,6 +12,8 @@ Core resources such as Sources, Flows, Nodes etc. include a `version` attribute.
 
 Combining the version with the resource's ID attribute creates a hash which can be used to uniquely identify a particular variant of a Source, Flow or similar.
 
+In registered operation, whenever a Node's resources are updated, the change is registered with the Registration API, as specified in [Behaviour: Registration](Behaviour%20-%20Registration.md#registration-updates). In peer-to-peer operation, the change is advertised using the `ver_` TXT records, as specified in [Discovery: Peer-to-Peer Operation](Discovery%20-%20Peer%20to%20Peer%20Operation.md#ver_).
+
 ## Label
 
 Freeform human readable string to be used within user interfaces.
