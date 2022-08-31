@@ -8,6 +8,6 @@ repo_url: https://github.com/AMWA-TV/is-04
 releases:
   - v1.1.3
   - v1.2.2
-  - v1.3.1
+  - v1.3.2
 default_branch: v1.3.x
 show_in_index: true
