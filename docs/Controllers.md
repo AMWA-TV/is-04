@@ -82,7 +82,7 @@ In order to avoid polling of the HTTP API, it is RECOMMENDED that Controllers us
 
 ## Dynamic Update of Resources
 
-The Controller MUST be capable of using the Query API to discover and dynamically report the state of any registered resource, including Node, Device, Source, Flow, Sender, and Receiver.
+The Controller uses the Query API to discover and track the state of any registered resource, including Node, Device, Source, Flow, Sender, and Receiver.
 
 * The Controller MUST indicate available Senders to the user.
 * The Controller MUST reflect changes in presence/absence of Senders to the user after a maximum of 30 seconds.
