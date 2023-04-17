@@ -51,7 +51,8 @@ The Controller SHOULD display the content of the response's `error` field to the
 
 ## Query API Discovery	
 
-NMOS [Discovery](Discovery.md) makes use of the DNS Service Discovery (DNS-SD) protocol. The [Query API: Client Interaction Procedure](Discovery%20-%20Registered%20Operation.md#client-interaction-procedure-1) section of this specification describes the requirements in detail.
+NMOS [Discovery](Discovery.md) makes use of the DNS Service Discovery (DNS-SD) protocol in both Registered Operation and Peer-to-Peer Operation.
+The Controller MUST support registered operation as specified in the [Query API: Client Interaction Procedure](Discovery%20-%20Registered%20Operation.md#client-interaction-procedure-1) section of this specification.
 
 In order to locate the Query API, the Controller SHOULD support all of the following:
 
