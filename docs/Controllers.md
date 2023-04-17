@@ -65,7 +65,7 @@ Controllers MUST observe and interpret all of the TXT records returned with the 
 
 ## Query API
 
-The Controller MUST be capable of using the Query API to discover any registered resource, including Node, Device, Source, Flow, Sender, and Receiver,
+In registered operation, the Controller MUST use the Query API to discover any registered resource, including Node, Device, Source, Flow, Sender, and Receiver,
 as described in the [APIs](APIs.md) section of this specification.
 
 When using the Query API, query filters SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller, as specified in the [APIs: Query Parameters](APIs%20-%20Query%20Parameters.md) document.
@@ -82,9 +82,11 @@ In order to avoid polling of the HTTP API, it is RECOMMENDED that Controllers us
 
 ## Dynamic Update of Resources
 
-The Controller uses the Query API to discover and track the state of any registered resource, including Node, Device, Source, Flow, Sender, and Receiver.
+In registered operation, the Controller uses the Query API to discover and track the state of any registered resource, including Node, Device, Source, Flow, Sender, and Receiver.
 
 * The Controller MUST indicate available Senders to the user.
 * The Controller MUST reflect changes in presence/absence of Senders to the user after a maximum of 30 seconds.
 * The Controller MUST indicate available Receivers to the user which have an IS-05 Connection API.
   However, the Controller MAY choose to omit discovered Receivers without an IS-05 Connection API.
+
+If the controller supports peer-to-peer operation when a Query API is not available, the Controller discovers and tracks the state of resources as specified in the [Peer-to-Peer Operation: Client Interaction Procedure](Discovery%20-%20Peer%20to%20Peer%20Operation.md#client-interaction-procedure) section of this specification.
