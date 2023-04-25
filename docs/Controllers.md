@@ -49,9 +49,10 @@ When a Controller performs `GET` and `HEAD` requests, it MUST correctly handle a
 If a Controller receives an HTTP `5xx` or `4xx` response code from the API, a failure has occurred.
 The Controller SHOULD display the content of the response's `error` field to the User if possible.
 
-## Query API Discovery	
+## Query API Discovery
 
-NMOS [Discovery](Discovery.md) makes use of the DNS Service Discovery (DNS-SD) protocol. The [Query API: Client Interaction Procedure](Discovery%20-%20Registered%20Operation.md#client-interaction-procedure-1) section of this specification describes the requirements in detail.
+NMOS [Discovery](Discovery.md) makes use of the DNS Service Discovery (DNS-SD) protocol in both Registered Operation and Peer-to-Peer Operation.
+The Controller MUST support the [Query API: Client Interaction Procedure](Discovery%20-%20Registered%20Operation.md#client-interaction-procedure-1) specified in the Registered Operation section of this specification.
 
 In order to locate the Query API, the Controller SHOULD support all of the following:
 
@@ -65,7 +66,7 @@ Controllers MUST observe and interpret all of the TXT records returned with the 
 
 ## Query API
 
-The Controller MUST be capable of using the Query API to discover any registered resource, including Node, Device, Source, Flow, Sender, and Receiver,
+In Registered Operation, the Controller MUST use the Query API to discover any registered resource, including Node, Device, Source, Flow, Sender, and Receiver,
 as described in the [APIs](APIs.md) section of this specification.
 
 When using the Query API, query filters SHOULD be used (and advanced query language where available) to cut down on the volume of resources returned to the Controller, as specified in the [APIs: Query Parameters](APIs%20-%20Query%20Parameters.md) document.
@@ -76,15 +77,17 @@ Controllers MUST adhere to the [Requirements for Query API Clients](Upgrade%20Pa
 
 If using the HTTP API rather than WebSocket subscriptions, pagination requirements MUST be implemented as specified in the [APIs: Query Parameters: Pagination](APIs%20-%20Query%20Parameters.md#pagination) section of this specification.
 	
-## WebSocket Subscriptions	
+## WebSocket Subscriptions
 
 In order to avoid polling of the HTTP API, it is RECOMMENDED that Controllers use the WebSocket subscription mechanism.
 
 ## Dynamic Update of Resources
 
-The Controller MUST be capable of using the Query API to discover and dynamically report the state of any registered resource, including Node, Device, Source, Flow, Sender, and Receiver.
+In Registered Operation, the Controller uses the Query API to discover and track the state of any registered resource, including Node, Device, Source, Flow, Sender, and Receiver.
 
-* The Controller MUST indicate available Senders to the user.
-* The Controller MUST reflect changes in presence/absence of Senders to the user after a maximum of 30 seconds.
-* The Controller MUST indicate available Receivers to the user which have an IS-05 Connection API.
+* The Controller MUST indicate available Senders to the User.
+* The Controller MUST reflect changes in presence/absence of Senders to the User after a maximum of 30 seconds.
+* The Controller MUST indicate available Receivers to the User which have an IS-05 Connection API.
   However, the Controller MAY choose to omit discovered Receivers without an IS-05 Connection API.
+
+If the Controller supports Peer-to-Peer Operation when a Query API is not available, the Controller discovers and tracks the state of resources as specified in the [Peer-to-Peer Operation: Client Interaction Procedure](Discovery%20-%20Peer%20to%20Peer%20Operation.md#client-interaction-procedure) section of this specification.

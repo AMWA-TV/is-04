@@ -88,18 +88,18 @@ Values 0 to 99 correspond to an active NMOS Query API (zero being the highest pr
 
 ### Client Interaction Procedure
 
-1. Node (or control interface) comes online
+1. Client (such as a Node or control interface) comes online
 
-2. Node scans for an active Query API on the network using unicast and/or multicast DNS service discovery (type `_nmos-query._tcp`) as described in the [Discovery](Discovery.md#unicast-vs-multicast-dns-sd) document.
+2. Client scans for an active Query API on the network using unicast and/or multicast DNS service discovery (type `_nmos-query._tcp`) as described in the [Discovery](Discovery.md#unicast-vs-multicast-dns-sd) document.
 
-3. Given multiple returned Query APIs, the Node orders these based on their advertised priority (TXT `pri`), filtering out any APIs which do not support the desired API version, protocol and authorization mode (TXT `api_ver`, `api_proto` and `api_auth`).
+3. Given multiple returned Query APIs, the client orders these based on their advertised priority (TXT `pri`), filtering out any APIs which do not support the desired API version, protocol and authorization mode (TXT `api_ver`, `api_proto` and `api_auth`).
 
-   - Where a Node supports multiple API versions simultaneously, see the [Upgrade Path](Upgrade%20Path.md) for additional requirements in filtering the discovered API list.
+   - Where a client supports multiple API versions simultaneously, see the [Upgrade Path](Upgrade%20Path.md) for additional requirements in filtering the discovered API list.
 
-4. The Node selects a Query API to use based on the priority, and a random selection if multiple Query APIs of the same version with the same priority are identified.
+4. The client selects a Query API to use based on the priority, and a random selection if multiple Query APIs of the same version with the same priority are identified.
 
-5. Node requests data from the selected Query API.
+5. Client requests data from the selected Query API.
 
 If the chosen Query API does not respond correctly at any time, another Query API SHOULD be selected from the discovered list. If no further Query APIs are available or TTLs on advertised services have expired, a re-query MAY be performed.
 
-If no Query APIs are advertised on a network, the Node SHOULD assume peer-to-peer operation (if supported) unless configured otherwise.
+If no Query APIs are advertised on a network, the client SHOULD assume peer-to-peer operation (if supported) unless configured otherwise.
