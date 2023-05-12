@@ -39,7 +39,7 @@ See [Use of URNs](#use-of-urns) below for additional requirements regarding thei
 
 A URN describing the protocol used to send data (video, audio, data etc.) over a network.
 
-Note: From v1.3 onwards, permitted transport types are not versioned and are instead defined via the [NMOS Parameter Registers](https://github.com/AMWA-TV/nmos-parameter-registers). Prior to v1.3, the following table applies.
+Note: From v1.3 onwards, permitted transport types are not versioned and are instead defined in the [Transports register](https://specs.amwa.tv/nmos-parameter-registers/branches/main/transports/) of the NMOS Parameter Registers. Prior to v1.3, the following table applies.
 
 | **Permitted Value**              | **Valid From API Version** |
 |----------------------------------|----------------------------|
@@ -54,7 +54,14 @@ See [Use of URNs](#use-of-urns) below for additional requirements regarding thei
 
 ## Tags
 
-A set of keys and values providing a means to filter resources based on particular categorisations. Each tag has a single key, but MAY have multiple values. Each tags SHOULD be interpreted using the comparison of a single key value pair, with the comparison being case-insensitive following the Unicode Simple Case Folding specification.
+A set of names and values providing a means to filter resources based on particular categorisations.
+
+- Each tag is identified by a name. Note: Tag names can be defined in the [Tags register](https://specs.amwa.tv/nmos-parameter-registers/branches/main/tags/) of the NMOS Parameter Registers.
+  The names within the `tags` object are expected to be unique, as per [RFC 8259 Section 4](https://tools.ietf.org/html/rfc8259#section-4).
+- Each tag MAY have multiple values, unless additional constraints are defined for the specific name.
+
+Filtering resources based on a name-value pair compares the value with each of the values for that name found in the resource `tags`.
+The comparison SHOULD be case-insensitive following the Unicode Simple Case Folding specification.
 
 **Example: Tags Format**
 
@@ -72,7 +79,7 @@ A set of keys and values providing a means to filter resources based on particul
 
 A URN describing the role which a Device has within the production environment (such as camera, mixer, tally light etc.).
 
-Note: From v1.3 onwards, permitted device types are not versioned and are instead defined via the [NMOS Parameter Registers](https://github.com/AMWA-TV/nmos-parameter-registers). Prior to v1.3, the following table applies.
+Note: From v1.3 onwards, permitted device types are not versioned and are instead defined in the [Device Types register](https://specs.amwa.tv/nmos-parameter-registers/branches/main/device-types/) of the NMOS Parameter Registers. Prior to v1.3, the following table applies.
 
 | **Permitted Value**          | **Valid From API Version** |
 |------------------------------|----------------------------|
