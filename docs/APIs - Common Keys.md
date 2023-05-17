@@ -4,6 +4,12 @@ _(c) AMWA 2016, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 
 A number of common keys are used within NMOS APIs. Their definitions, semantics and permitted values are described below.
 
+## ID
+
+Core resources such as Sources, Flows, Nodes etc. include an `id` attribute. Resource identity is explained in the [Data Model](Data%20Model.md) and [Identifier Persistence & Generation](Data%20Model%20-%20Identifier%20Mapping.md#identifier-persistence--generation) sections of this specification.
+
+The `id` attribute is a UUID, formatted as a string of 32 lowercase hex digits in groups of 8, 4, 4, 4, 12 separated by `-`, for example: `f81d4fae-7dec-11d0-a765-00a0c91e6bf6`.
+
 ## Version
 
 Core resources such as Sources, Flows, Nodes etc. include a `version` attribute. As properties of a given Flow or similar will change over its lifetime, the version identifies the instant at which this change took place. For example, if a vision mix transition occurred which resulted in a change to the `parents` which make up a particular Flow, the `version` is modified to reflect the wall clock instant at which this change occurred.
