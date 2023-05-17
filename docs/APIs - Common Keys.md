@@ -1,8 +1,14 @@
 # APIs: Common Keys
+{:.no_toc}
+
+* A markdown unordered list which will be replaced with the ToC, excluding the "Contents header" from above
+{:toc}
 
 _(c) AMWA 2016, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 
 A number of common keys are used within NMOS APIs. Their definitions, semantics and permitted values are described below.
+
+Note: From v1.1 onwards, the core `id`, `version`, `label`, `description` and `tags` properties are available for all resource types.
 
 ## ID
 
@@ -27,6 +33,29 @@ Freeform human readable string to be used within user interfaces.
 ## Description
 
 Freeform human readable string to be used within user interfaces.
+
+## Tags
+
+A set of names and values providing a means to filter resources based on particular categorisations.
+
+- Each tag is identified by a name. Note: Tag names can be defined in the [Tags register](https://specs.amwa.tv/nmos-parameter-registers/branches/main/tags/) of the NMOS Parameter Registers.
+  The names within the `tags` object are expected to be unique, as per [RFC 8259 Section 4](https://tools.ietf.org/html/rfc8259#section-4).
+- Each tag MAY have multiple values, unless additional constraints are defined for the specific name.
+
+Filtering resources based on a name-value pair compares the value with each of the values for that name found in the resource `tags`.
+The comparison SHOULD be case-insensitive following the Unicode Simple Case Folding specification.
+
+**Example: Tags Format**
+
+```json
+{
+  "tags": {
+    "location": ["Salford", "Media City"],
+    "studio": ["HQ1"],
+    "recording": ["The Voice UK"]
+  }
+}
+```
 
 ## Format
 
@@ -57,29 +86,6 @@ Note: From v1.3 onwards, permitted transport types are not versioned and are ins
 For example, an RTP Transmitter sending to a multicast group uses the transport `urn:x-nmos:transport:rtp.mcast`, but a receiver supporting both unicast and multicast presents the transport `urn:x-nmos:transport:rtp` to indicate its less restrictive state.
 
 See [Use of URNs](#use-of-urns) below for additional requirements regarding their handling.
-
-## Tags
-
-A set of names and values providing a means to filter resources based on particular categorisations.
-
-- Each tag is identified by a name. Note: Tag names can be defined in the [Tags register](https://specs.amwa.tv/nmos-parameter-registers/branches/main/tags/) of the NMOS Parameter Registers.
-  The names within the `tags` object are expected to be unique, as per [RFC 8259 Section 4](https://tools.ietf.org/html/rfc8259#section-4).
-- Each tag MAY have multiple values, unless additional constraints are defined for the specific name.
-
-Filtering resources based on a name-value pair compares the value with each of the values for that name found in the resource `tags`.
-The comparison SHOULD be case-insensitive following the Unicode Simple Case Folding specification.
-
-**Example: Tags Format**
-
-```json
-{
-  "tags": {
-    "location": ["Salford", "Media City"],
-    "studio": ["HQ1"],
-    "recording": ["The Voice UK"]
-  }
-}
-```
 
 ## Type (Devices)
 
