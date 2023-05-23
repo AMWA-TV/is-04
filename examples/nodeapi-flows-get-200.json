@@ -80,7 +80,7 @@
         "version": "1453880605:374934072",
         "parents": [],
         "label": "IS-07 Temperature Readings (F)",
-        "id": "6327c381-1239-41d1-b314-efc719600e26",
+        "id": "6327c381-1239-41d1-b315-efc719600e26",
         "source_id": "33e28c6f-d5ab-4ae5-b00d-f1cccab29af4",
         "device_id": "9126cc2f-4c26-4c9b-a6cd-93c4381c9be5",
         "media_type": "application/json"
