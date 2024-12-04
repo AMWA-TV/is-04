@@ -12,7 +12,7 @@
       ],
       "properties": {
         "media_type": {
-          "description": "Subclassification of the format using IANA assigned media types",
+          "description": "Subclassification of the format, using IANA assigned media types where available, or other values defined in the NMOS Parameter Registers",
           "type": "string",
           "anyOf": [
             {

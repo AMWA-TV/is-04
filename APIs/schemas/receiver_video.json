@@ -25,7 +25,7 @@
           "type": "object",
           "properties": {
             "media_types": {
-              "description": "Subclassification of the formats accepted using IANA assigned media types",
+              "description": "Subclassifications of the format accepted, using IANA assigned media types where available, or other values defined in the NMOS Parameter Registers",
               "type": "array",
               "minItems": 1,
               "items": {
