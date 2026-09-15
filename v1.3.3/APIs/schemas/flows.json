@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "description": "A list of Flow resources",
+  "title": "Collection of Flows",
+  "items": {
+    "$ref": "flow.json"
+  },
+  "uniqueItems": true
+}
