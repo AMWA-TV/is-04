@@ -1,0 +1,43 @@
+name: Documentation (Zensical)
+run-name: ${{ case(github.event_name == 'push', '', github.event_name == 'release', format('Release - {0}', github.event.release.tag_name), format('Documentation - {0}', inputs.ref || github.ref_name)) }}
+
+# Experimental shared-toolkit rendering. The existing render.yml workflow and
+# .render pipeline remain active until the new output has been accepted.
+on:
+  push:
+    branches:
+      - 'v[0-9]+.[0-9]+-dev'
+      - 'v[0-9]+.[0-9]+.x'
+      - 'publish-*'
+  release:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Optional branch or tag to rebuild
+        required: false
+        default: ''
+      rebuild_all:
+        description: Rebuild all matching branches and release tags
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: amwa-documentation-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  docs:
+    uses: AMWA-TV/amwa-spec-docs/.github/workflows/docs.yml@main
+    with:
+      versioned: true
+      site-name: is-04
+      public-docs-root: https://specs.amwa.tv/new/is-04
+      source-ref: ${{ inputs.ref || github.ref_name }}
+      rebuild-all: ${{ inputs.rebuild_all || false }}
+      # Pin this to a released toolkit tag or commit SHA once available.
+      toolkit-ref: main
+    secrets: inherit

@@ -1,7 +1,8 @@
 # AMWA IS-04 NMOS Discovery and Registration Specification
 
 [![Lint Status](https://github.com/AMWA-TV/is-04/workflows/Lint/badge.svg)](https://github.com/AMWA-TV/is-04/actions?query=workflow%3ALint)
-[![Render Status](https://github.com/AMWA-TV/is-04/workflows/Render/badge.svg)](https://github.com/AMWA-TV/is-04/actions?query=workflow%3ARender)
+[![Zensical Render Status](https://github.com/AMWA-TV/is-04/actions/workflows/docs.yml/badge.svg)](https://github.com/AMWA-TV/is-04/actions/workflows/docs.yml)
+[![Legacy Render Status](https://github.com/AMWA-TV/is-04/workflows/Render/badge.svg)](https://github.com/AMWA-TV/is-04/actions?query=workflow%3ARender)
 
 <!-- INTRO-START -->
 
