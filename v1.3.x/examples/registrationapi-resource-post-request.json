@@ -1,0 +1,90 @@
+{
+    "type": "node",
+    "data": {
+        "version": "1441973902:879053935",
+        "hostname": "host1",
+        "label": "host1",
+        "description": "host1",
+        "tags": {},
+        "href": "http://172.29.80.65:12345/",
+        "api": {
+            "versions": ["v1.0", "v1.1", "v1.2", "v1.3"],
+            "endpoints": [
+                {
+                    "host": "172.29.80.65",
+                    "port": 12345,
+                    "protocol": "http"
+                },
+                {
+                    "host": "172.29.80.65",
+                    "port": 443,
+                    "protocol": "https",
+                    "authorization": false
+                }
+            ]
+        },
+        "services": [
+            {
+                "href": "https://172.29.80.65:443/x-manufacturer/pipelinemanager/",
+                "authorization": false,
+                "type": "urn:x-manufacturer:service:pipelinemanager"
+            },
+            {
+                "href": "https://172.29.80.65:443/x-manufacturer/status/",
+                "authorization": false,
+                "type": "urn:x-manufacturer:service:status"
+            },
+            {
+                "href": "https://172.29.80.65:443/x-manufacturer/tally/",
+                "authorization": false,
+                "type": "urn:x-manufacturer:service:tally"
+            },
+            {
+                "href": "https://172.29.80.65:443/x-manufacturer/mdnsbridge/",
+                "authorization": false,
+                "type": "urn:x-manufacturer:service:mdnsbridge"
+            },
+            {
+                "href": "https://172.29.80.65:443/x-manufacturer/storequery/",
+                "authorization": false,
+                "type": "urn:x-manufacturer:service:storequery"
+            }
+        ],
+        "caps": {},
+        "id": "3b8be755-08ff-452b-b217-c9151eb21193",
+        "clocks": [
+            {
+                "name": "clk0",
+                "ref_type":"internal"
+            },
+            {
+                "name": "clk1",
+                "ref_type":"ptp",
+                "traceable": true,
+                "version": "IEEE1588-2008",
+                "gmid": "08-00-11-ff-fe-21-e1-b0",
+                "locked": true
+            }
+        ],
+        "interfaces": [
+            {
+                "name":"eth0",
+                "chassis_id":"b3-cd-09-bb-9b-d8",
+                "port_id":"b3-cd-09-bb-9b-d8",
+                "attached_network_device": {
+                    "chassis_id": "2f-8c-af-a8-11-74",
+                    "port_id": "Ethernet 1/3"
+                }
+            },
+            {
+                "name":"eth1",
+                "chassis_id":"b3-cd-09-bb-9b-d8",
+                "port_id":"b3-cd-09-bb-9b-d9",
+                "attached_network_device": {
+                    "chassis_id": "2d-51-2b-de-4a-32",
+                    "port_id": "Ethernet 1/2"
+                }
+            }
+        ]
+    }
+}
