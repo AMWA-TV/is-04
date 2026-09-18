@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "description": "Describes a coded audio Flow",
+  "title": "Coded Audio Flow resource",
+  "allOf": [
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes an audio Flow",
+      "title": "Audio Flow resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a Flow",
+          "title": "Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes the foundations of all NMOS resources",
+              "title": "Base resource",
+              "required": [
+                "id",
+                "version",
+                "label",
+                "description",
+                "tags"
+              ],
+              "properties": {
+                "id": {
+                  "description": "Globally unique identifier for the resource",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "version": {
+                  "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                  "type": "string",
+                  "pattern": "^[0-9]+:[0-9]+$"
+                },
+                "label": {
+                  "description": "Freeform string label for the resource",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "Detailed description of the resource",
+                  "type": "string"
+                },
+                "tags": {
+                  "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                  "type": "object",
+                  "patternProperties": {
+                    "": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "source_id",
+                "device_id",
+                "parents"
+              ],
+              "properties": {
+                "grain_rate": {
+                  "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                  "type": "object",
+                  "required": [
+                    "numerator"
+                  ],
+                  "properties": {
+                    "numerator": {
+                      "description": "Numerator",
+                      "type": "integer"
+                    },
+                    "denominator": {
+                      "description": "Denominator",
+                      "type": "integer",
+                      "default": 1
+                    }
+                  }
+                },
+                "source_id": {
+                  "description": "Globally unique identifier for the Source which initially created the Flow",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "device_id": {
+                  "description": "Globally unique identifier for the Device which initially created the Flow",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "parents": {
+                  "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "format",
+            "sample_rate"
+          ],
+          "properties": {
+            "format": {
+              "description": "Format of the data coming from the Flow as a URN",
+              "type": "string",
+              "enum": [
+                "urn:x-nmos:format:audio"
+              ],
+              "format": "uri"
+            },
+            "sample_rate": {
+              "description": "Number of audio samples per second for this Flow",
+              "type": "object",
+              "required": [
+                "numerator"
+              ],
+              "properties": {
+                "numerator": {
+                  "description": "Numerator",
+                  "type": "integer"
+                },
+                "denominator": {
+                  "description": "Denominator",
+                  "type": "integer",
+                  "default": 1
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "object",
+      "required": [
+        "media_type"
+      ],
+      "properties": {
+        "media_type": {
+          "description": "Subclassification of the format using IANA assigned media types",
+          "type": "string",
+          "pattern": "^audio\\/[^\\s\\/]+$",
+          "not": {
+            "enum": [
+              "audio/L24",
+              "audio/L20",
+              "audio/L16",
+              "audio/L8"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}
