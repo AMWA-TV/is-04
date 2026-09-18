@@ -1,0 +1,3994 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://specs.amwa.tv/new/is-04/v1.2.x/2.5.%20APIs%20-%20Query%20Parameters/">
+      
+      
+        <link rel="prev" href="../2.4.%20APIs%20-%20Load%20Balancing%20%26%20Redundancy/">
+      
+      
+        <link rel="next" href="../3.0.%20Discovery/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.62">
+    
+    
+      
+        <title>APIs: Query Parameters - AMWA IS-04 NMOS Discovery and Registration Specification</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.ce62732f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/amwa-branding.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#apis-query-parameters" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="AMWA IS-04 NMOS Discovery and Registration Specification" class="md-header__button md-logo" aria-label="AMWA IS-04 NMOS Discovery and Registration Specification" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AMWA IS-04 NMOS Discovery and Registration Specification
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              APIs: Query Parameters
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/AMWA-TV/is-04" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AMWA-TV/is-04
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="AMWA IS-04 NMOS Discovery and Registration Specification" class="md-nav__button md-logo" aria-label="AMWA IS-04 NMOS Discovery and Registration Specification" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    AMWA IS-04 NMOS Discovery and Registration Specification
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AMWA-TV/is-04" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AMWA-TV/is-04
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AMWA IS-04 NMOS Discovery and Registration Specification (Stable)
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.0.%20Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AMWA NMOS Discovery and Registration Specification: Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  APIs
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/NodeAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  NodeAPI
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/QueryAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  QueryAPI
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/RegistrationAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  RegistrationAPI
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.1.%20APIs%20-%20Common%20Keys/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs: Common Keys
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.2.%20APIs%20-%20Client%20Side%20Implementation%20Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs: Client Side Implementation Notes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.3.%20APIs%20-%20Server%20Side%20Implementation%20Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs: Server Side Implementation Notes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.4.%20APIs%20-%20Load%20Balancing%20%26%20Redundancy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs: Load Balancing &amp; Redundancy
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs: Query Parameters
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs: Query Parameters
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Pagination
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pagination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Edge Cases
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downgrade-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Downgrade Queries
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Downgrade Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalid-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Invalid Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Basic Queries
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalid-examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Invalid Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-rql-queries-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Advanced (RQL) Queries (Optional)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced (RQL) Queries (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ancestry-queries-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Ancestry Queries (Optional)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ancestry Queries (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3.0.%20Discovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Discovery
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3.1.%20Discovery%20-%20Registered%20Operation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Discovery: Registered Operation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3.2.%20Discovery%20-%20Peer%20to%20Peer%20Operation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Discovery: Peer to Peer Operation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.0.%20Behaviour/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.1.%20Behaviour%20-%20Registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour: Registration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.2.%20Behaviour%20-%20Querying/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour: Querying
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.3.%20Behaviour%20-%20Nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour: Nodes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5.0.%20Data%20Model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Data Model
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5.1.%20Data%20Model%20-%20Identifier%20Mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Data Model: Identifier Mapping
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6.0.%20Upgrade%20Path/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Upgrade Path
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <label class="md-nav__link" for="__nav_19" id="__nav_19_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Examples
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Examples
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Examples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-base-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-base-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-deviceid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-deviceid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-devices-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-devices-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-flowid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-flowid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-flows-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-flows-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-receiverid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-receiverid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-receivers-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-receivers-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-self-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-self-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-senderid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-senderid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-senders-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-senders-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-sourceid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-sourceid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-sources-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-sources-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-base-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-base-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-deviceid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-deviceid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-devices-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-devices-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-flowid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-flowid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-flows-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-flows-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-nodeid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-nodeid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-nodes-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-nodes-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-receiverid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-receiverid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-receivers-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-receivers-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-senderid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-senderid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-senders-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-senders-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-sourceid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-sourceid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-sources-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-sources-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-subscriptionid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscriptionid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-subscriptions-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscriptions-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-subscriptions-post-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscriptions-post-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-subscriptions-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscriptions-post-request.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-base-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-base-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-health-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-health-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-health-post-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-health-post-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-resource-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-resource-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-resource-post-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-resource-post-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-resource-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-resource-post-request.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <label class="md-nav__link" for="__nav_20" id="__nav_20_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Schemas
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Schemas
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  JSON Schemas
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/clock_internal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  clock_internal
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/clock_ptp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  clock_ptp
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/device/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  device
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  devices
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  error
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_audio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_audio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_audio_coded/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_audio_coded
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_audio_raw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_audio_raw
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_core
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_mux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_mux
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_sdianc_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_sdianc_data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_video/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_video
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_video_coded/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_video_coded
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_video_raw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_video_raw
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flows
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  node
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/nodeapi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-base
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/nodeapi-receiver-target/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-receiver-target
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/queryapi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-base
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/queryapi-subscription-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscription-response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/queryapi-subscriptions-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscriptions-post-request
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/queryapi-subscriptions-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscriptions-response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/queryapi-subscriptions-websocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscriptions-websocket
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver_audio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver_audio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver_core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver_core
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver_data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver_mux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver_mux
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver_video/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver_video
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receivers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receivers
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/registrationapi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-base
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/registrationapi-health-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-health-response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/registrationapi-resource-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-resource-post-request
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/registrationapi-resource-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-resource-response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/resource_core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  resource_core
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/sender/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  sender
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/senders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  senders
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  source
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/source_audio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  source_audio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/source_core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  source_core
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/source_generic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  source_generic
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  sources
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Pagination
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pagination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Edge Cases
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downgrade-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Downgrade Queries
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Downgrade Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalid-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Invalid Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Basic Queries
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invalid-examples_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Invalid Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-rql-queries-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Advanced (RQL) Queries (Optional)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced (RQL) Queries (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ancestry-queries-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Ancestry Queries (Optional)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ancestry Queries (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#examples_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Examples
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+  
+
+
+<h1 id="apis-query-parameters">APIs: Query Parameters</h1>
+<p><em>(c) AMWA 2016, CC Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</em></p>
+<p>The Query API supports a range of query string parameters which may be used as part of GET requests, or within WebSocket subscriptions.</p>
+<p>The following document describes the expected usage and behaviour of these query parameters alongside the RAML specification in order to aid implementers. A description of each individual query parameter is included within the RAML.</p>
+<h2 id="pagination">Pagination</h2>
+<p>Query APIs SHOULD support pagination of their API resources where the 'paged' trait is specified in the RAML documentation. Pagination is not used by WebSocket subscriptions.</p>
+<p>Query API clients MUST detect whether pagination is being used by examining the HTTP response headers for 'X-Paging-Limit' which MUST be returned in all cases where pagination is in use.</p>
+<p>The following implementation notes should be observed:</p>
+<ul>
+<li>
+<p>The registry which backs the Query API is expected to maintain a 'creation' and 'update' timestamp alongside each registered resource. These values should not be returned to API clients in the response body, but will be made available via headers and used as pagination cursors.</p>
+</li>
+<li>
+<p>In order to ensure that pagination does not result in resources being skipped, it is important that there are no duplicate creation or update timestamps stored against resources of the same type (Node, Source, Flow etc). It is suggested (although not mandated) that these timestamps are stored with nanosecond resolution using a TAI timebase, which will allow clients to navigate collections based on a common understanding of time.</p>
+</li>
+<li>
+<p>The choice to page based on 'creation' or 'update' timestamp depends on the client's intended use of the data. Paging based on 'creation' time from the start of a collection provides the best mechanism to identify all resources held in a registry. Paging based on 'update' time from the end of a collection provides the best mechanism to watch for changing resources in the case that WebSocket subscriptions are not available.</p>
+</li>
+<li>
+<p>Paging through a collection for a second time, using the same cursors as previously should never result in new data appearing in the response payloads when using 'creation' ordering, provided the requested paging times are less than or equal to the maximum paging time held in the registry. However, note that as the registry is dynamic and resources may be updated or deleted a given cursor may return fewer results than it did previously. When using 'update' ordering and a query filter, new data may appear when cursors are used for a second time.</p>
+</li>
+<li>
+<p>When query parameters which perform filtering are used at the same time as paging, the filters must be applied by the implementation before applying paging parameters to the resulting data set.</p>
+</li>
+<li>
+<p>A server may choose its own default value for paging limit (see Example 1).</p>
+</li>
+<li>
+<p>Where both 'since' and 'until' parameters are specified, the 'since' value takes precedence where a resulting data set is constrained by the server's value of 'limit' (see Example 5).</p>
+</li>
+<li>
+<p>Servers should include 'prev' and 'next' Link headers and may include 'first' and 'last' Link headers in all responses.</p>
+</li>
+</ul>
+<h3 id="examples">Examples</h3>
+<p>The following examples aim to identify how pagination should behave in the presence of a set of registered data. In order to avoid displaying full resource representations, the only data listed here is the 'update' timestamp associated with each registered record. The same procedures can be applied where 'creation' timestamps and the '?paging.order=create' parameter are used instead.</p>
+<p>Where a paging limit is not specified in a request the server's default is used.</p>
+<p><strong>Sample Data: Registered Node Update Timestamps (Comma-Separated)</strong>
+<div class="highlight"><pre><span></span><code>[0:1, 0:2, 0:3, 0:4, 0:5, 0:6, 0:7, 0:8, 0:9, 0:10, 0:11, 0:12, 0:13, 0:14, 0:15, 0:16, 0:17, 0:18, 0:19, 0:20]
+</code></pre></div></p>
+<p>Each of the above corresponds to the update timestamp of a corresponding Node, in the format &lt;seconds&gt;:&lt;nanoseconds&gt; and displayed in ascending order. These will be used throughout the following examples.</p>
+<p>Response payloads in the examples will show these values, but in a real implementation should be replaced by the corresponding JSON objects for the Nodes or other resources being queried.</p>
+<p><strong>Example 1: Initial /nodes Request</strong></p>
+<p>In this example there are no query parameters used in the request, but as the Query API supports pagination it returns a subset of the results with headers identifying how to page further into the collection.</p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/nodes
+</code></pre></div></p>
+<p><strong><em>Response</em></strong></p>
+<p>Headers
+<div class="highlight"><pre><span></span><code>Link: &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.since=0:20&amp;paging.limit=10&gt;; rel="next", &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.until=0:10&amp;paging.limit=10&gt;; rel="prev"
+X-Paging-Limit: 10
+X-Paging-Since: 0:10
+X-Paging-Until: 0:20
+</code></pre></div></p>
+<p>Payload Resources
+<div class="highlight"><pre><span></span><code>[
+  0:20,
+  0:19,
+  0:18,
+  0:17,
+  0:16,
+  0:15,
+  0:14,
+  0:13,
+  0:12,
+  0:11
+]
+</code></pre></div></p>
+<p><strong><em>Notes</em></strong>
+* The data set returned when no query parameters are specified must be from the most recently updated (or created) resources in the collection, returned in descending order.
+* The X-Paging headers identify properties of the collection of data returned in the response. These parameters may be used to construct a URL which would return the same set of bounded data on consecutive requests (for example /x-nmos/query/v1.1/nodes?paging.since=0:10&amp;paging.until=0:20).
+* The Link header identifies the 'next' and 'prev' cursors which an application may use to make its next requests. An implementation may also provide 'first' and 'last' cursors to identify the beginning and end of a collection if this can be addressed via a consistent URL.</p>
+<p><strong>Example 2: Request With Custom Limit</strong></p>
+<p>This request is similar to Example 1, but the client has chosen to use a custom page size limit.</p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/nodes?paging.limit=5
+</code></pre></div></p>
+<p><strong><em>Response</em></strong></p>
+<p>Headers
+<div class="highlight"><pre><span></span><code>Link: &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.since=0:20&amp;paging.limit=5&gt;; rel="next", &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.until=0:15&amp;paging.limit=5&gt;; rel="prev"
+X-Paging-Limit: 5
+X-Paging-Since: 0:15
+X-Paging-Until: 0:20
+</code></pre></div></p>
+<p>Payload Resources
+<div class="highlight"><pre><span></span><code>[
+  0:20,
+  0:19,
+  0:18,
+  0:17,
+  0:16
+]
+</code></pre></div></p>
+<p><strong><em>Notes</em></strong>
+* In this case the server has accepted the client's paging size limit request. If the client had requested a page size which the server was unable to honour, the actual page size used would be returned in X-Paging-Limit.</p>
+<p><strong>Example 3: Request With Since Parameter</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/nodes?paging.since=0:4
+</code></pre></div></p>
+<p><strong><em>Response</em></strong></p>
+<p>Headers
+<div class="highlight"><pre><span></span><code>Link: &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.since=0:14&amp;paging.limit=10&gt;; rel="next", &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.until=0:4&amp;paging.limit=10&gt;; rel="prev"
+X-Paging-Limit: 10
+X-Paging-Since: 0:4
+X-Paging-Until: 0:14
+</code></pre></div></p>
+<p>Payload Resources
+<div class="highlight"><pre><span></span><code>[
+  0:14,
+  0:13,
+  0:12,
+  0:11,
+  0:10,
+  0:9,
+  0:8,
+  0:7,
+  0:6,
+  0:5
+]
+</code></pre></div></p>
+<p><strong>Example 4: Request With Until Parameter</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/nodes?paging.until=0:16
+</code></pre></div></p>
+<p><strong><em>Response</em></strong></p>
+<p>Headers
+<div class="highlight"><pre><span></span><code>Link: &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.since=0:16&amp;paging.limit=10&gt;; rel="next", &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.until=0:6&amp;paging.limit=10&gt;; rel="prev"
+X-Paging-Limit: 10
+X-Paging-Since: 0:6
+X-Paging-Until: 0:16
+</code></pre></div></p>
+<p>Payload Resources
+<div class="highlight"><pre><span></span><code>[
+  0:16,
+  0:15,
+  0:14,
+  0:13,
+  0:12,
+  0:11,
+  0:10,
+  0:9,
+  0:8,
+  0:7
+]
+</code></pre></div></p>
+<p><strong>Example 5: Request With Since &amp; Until Parameters</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/nodes?paging.since=0:4&amp;paging.until=0:16
+</code></pre></div></p>
+<p><strong><em>Response</em></strong></p>
+<p>Headers
+<div class="highlight"><pre><span></span><code>Link: &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.since=0:14&amp;paging.limit=10&gt;; rel="next", &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.until=0:4&amp;paging.limit=10&gt;; rel="prev"
+X-Paging-Limit: 10
+X-Paging-Since: 0:4
+X-Paging-Until: 0:14
+</code></pre></div></p>
+<p>Payload Resources
+<div class="highlight"><pre><span></span><code>[
+  0:14,
+  0:13,
+  0:12,
+  0:11,
+  0:10,
+  0:9,
+  0:8,
+  0:7,
+  0:6,
+  0:5
+]
+</code></pre></div></p>
+<p><strong><em>Notes</em></strong>
+* Whilst both 'since' and 'until' are specified, as this server example has a default paging limit of '10', the 'since' parameter must take precedence. As a result of this the value of X-Paging-Until is lower than requested and a further request must be made to retrieve any remaining data.</p>
+<h3 id="edge-cases">Edge Cases</h3>
+<p>When a client requests data which falls at the extreme ends of the stored data set it may be less clear what values should be returned in the 'X-Paging-Limit' and 'X-Paging-Since' headers. The following examples are intended to clarify the expectation in these cases.</p>
+<p>Where a paging limit is not specified in a request the server's default is used.</p>
+<p><strong>Example 1: Client request occurs at the beginning of the data set</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/nodes?paging.until=0:20
+</code></pre></div></p>
+<p>In this case, assume that there are stored records for '0:21' and '0:22' but no earlier.</p>
+<p><strong><em>Response</em></strong></p>
+<p>Headers
+<div class="highlight"><pre><span></span><code>Link: &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.since=0:20&amp;paging.limit=10&gt;; rel="next", &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.until=0:0&amp;paging.limit=10&gt;; rel="prev"
+X-Paging-Limit: 10
+X-Paging-Since: 0:0
+X-Paging-Until: 0:20
+</code></pre></div></p>
+<p>Payload Resources
+<div class="highlight"><pre><span></span><code>[]
+</code></pre></div></p>
+<p><strong>Example 2: Client request occurs at the end of the data set</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/nodes?paging.since=0:20
+</code></pre></div></p>
+<p>In this case, assume that there are stored records for '0:19' and '0:20' but no later.</p>
+<p><strong><em>Response</em></strong></p>
+<p>Headers
+<div class="highlight"><pre><span></span><code>Link: &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.since=0:20&amp;paging.limit=10&gt;; rel="next", &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?paging.until=0:20&amp;paging.limit=10&gt;; rel="prev"
+X-Paging-Limit: 10
+X-Paging-Since: 0:20
+X-Paging-Until: 0:20
+</code></pre></div></p>
+<p>Payload Resources
+<div class="highlight"><pre><span></span><code>[]
+</code></pre></div></p>
+<p><strong><em>Notes:</em></strong>
+* In this situation the client is expected to re-perform the same request (as specified in the 'next' cursor) until data is returned. If the client were to increment the value of 'since' requested it would be in danger of moving ahead of the current time and missing records.</p>
+<p><strong>Example 3: Client request includes a query parameter resulting in a single result, but no paging parameters</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/nodes?label=My%20Node
+</code></pre></div></p>
+<p>In this case, assume that the most recently created or updated Node held in the registry has a paging value of '0:20' associated with it. Also assume that the Node with label 'My Node' has a paging time of '0:15'.</p>
+<p><strong><em>Response</em></strong></p>
+<p>Headers
+<div class="highlight"><pre><span></span><code>Link: &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?label=My%20Node&amp;paging.since=0:20&amp;paging.limit=10&gt;; rel="next", &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?label=My%20Node&amp;paging.until=0:0&amp;paging.limit=10&gt;; rel="prev"
+X-Paging-Limit: 10
+X-Paging-Since: 0:0
+X-Paging-Until: 0:20
+</code></pre></div></p>
+<p>Payload Resources
+<div class="highlight"><pre><span></span><code>[
+  0:15
+]
+</code></pre></div></p>
+<p><strong>Example 4: Client request includes a query parameter resulting in a no result, with no paging parameters</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/nodes?label=My%20Invalid%20Node
+</code></pre></div></p>
+<p>In this case, assume that the most recently created or updated Node held in the registry has a paging value of '0:20' associated with it.</p>
+<p><strong><em>Response</em></strong></p>
+<p>Headers
+<div class="highlight"><pre><span></span><code>Link: &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?label=My%20Invalid%20Node&amp;paging.since=0:20&amp;paging.limit=10&gt;; rel="next", &lt;http://example.api.com/x-nmos/query/v1.1/nodes/?label=My%20Invalid%20Node&amp;paging.until=0:0&amp;paging.limit=10&gt;; rel="prev"
+X-Paging-Limit: 10
+X-Paging-Since: 0:0
+X-Paging-Until: 0:20
+</code></pre></div></p>
+<p>Payload Resources
+<div class="highlight"><pre><span></span><code>[]
+</code></pre></div></p>
+<h2 id="downgrade-queries">Downgrade Queries</h2>
+<p>Query APIs SHOULD support downgrade queries against their API resources where the 'downgrade' trait is specified in the RAML documentation.</p>
+<p>Downgrade queries permit old-versioned responses to be provided to clients which are confident that they can handle any missing attributes between the specified API versions.</p>
+<h3 id="examples_1">Examples</h3>
+<p><strong>Example 1: No Downgrade Parameter</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/nodes
+</code></pre></div></p>
+<p><strong><em>Response</em></strong>
+* Returns all Nodes held in the registry which match the v1.1 schema.
+* Returns Nodes with versions greater than or equal to v1.2, and less than v2.0. These Nodes must have all non-v1.1 keys stripped by the Query API before they are returned.</p>
+<p><strong>Example 2: Downgrade From v1.1 to v1.0</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/nodes?query.downgrade=v1.0
+</code></pre></div></p>
+<p><strong><em>Response</em></strong>
+* Returns all Nodes held in the registry which match the v1.1 schema.
+* Returns Nodes with versions greater than or equal to v1.2, and less than v2.0. These Nodes must have all non-v1.1 keys stripped by the Query API before they are returned.
+* Returns all Nodes which are registered in v1.0 format.</p>
+<p><strong>Example 3: Downgrade From v1.3 to v1.1</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.3/flows?query.downgrade=v1.1
+</code></pre></div></p>
+<p><strong><em>Response</em></strong>
+* Returns all Flows held in the registry which match the v1.3 schema.
+* Returns Flows with versions greater than or equal to v1.4, and less than v2.0. These Flows must have all non-v1.3 keys stripped by the Query API before they are returned.
+* Returns all Flows which are registered in v1.2 or v1.1 format.</p>
+<h3 id="invalid-examples">Invalid Examples</h3>
+<p><strong>Invalid Example 1: Downgrade Between Major API Versions</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v3.0/flows?query.downgrade=v1.0
+</code></pre></div></p>
+<p><strong><em>Response</em></strong>
+* Returns an HTTP 400 error code as downgrade queries may not be performed between major API versions.</p>
+<h2 id="basic-queries">Basic Queries</h2>
+<p>Query APIs SHOULD support basic queries against their API resources.</p>
+<p>Queries may be performed using any attribute specified in a given resource's schema, however the RAML documents only the core resource attributes for simplicity.</p>
+<p>If a query parameter is requested which does not match an attribute found in any resource, an empty result set must be returned.</p>
+<h3 id="examples_2">Examples</h3>
+<p><strong>Example 1: Basic Query Using One Parameter</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.0/senders?transport=urn:x-nmos:transport:rtp
+</code></pre></div></p>
+<p><strong><em>Response</em></strong>
+* Returns all Sender objects which have an attribute 'transport' which exactly matches the string 'urn:x-nmos:transport:rtp'.</p>
+<p><strong>Example 2: Basic Query Using Two Parameters</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.0/sources?format=urn:x-nmos:format:video&amp;device_id=9126cc2f-4c26-4c9b-a6cd-93c4381c9be5
+</code></pre></div></p>
+<p><strong><em>Response</em></strong>
+* Returns all Source objects which have an attribute of 'format' which exactly matches 'urn:x-nmos:format:video' AND a 'device_id' attribute which exactly matches '9126cc2f-4c26-4c9b-a6cd-93c4381c9be5'.</p>
+<p><strong>Example 3: Querying Within Objects</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.0/flows?tags.studio=HQ1
+</code></pre></div></p>
+<p><strong><em>Response</em></strong>
+* Returns all Flows which have a 'tags' attribute with a key of 'studio'. The value of 'tags.studio' (which is an array in this case, see Flow schema) must contain 'HQ1' as one of its entries.</p>
+<p><strong>Example 4: Querying Within Arrays</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.0/nodes?services.type=urn:x-manufacturer:service:myservice
+</code></pre></div></p>
+<p><strong><em>Response</em></strong>
+* The schema defines a Node's 'services' as an array of objects, where 'type' is a key in these inner objects. As a result, this query returns all Nodes where one of these service objects has a 'type' of 'urn:x-manufacturer:service:myservice'.</p>
+<h3 id="invalid-examples_1">Invalid Examples</h3>
+<p><strong>Invalid Example 1: Duplicate Query Parameters</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.0/flows?tags.location=Salford&amp;tags.location=London
+</code></pre></div></p>
+<p><strong><em>Response</em></strong>
+* This query specifies two matching query parameters with different values. As different programming frameworks may not make both of these values available, this is an invalid query for which the response is not defined and may vary by implementation. If this sort of query is required, it is suggested that Resource Query Language is used (see below).</p>
+<h2 id="advanced-rql-queries-optional">Advanced (RQL) Queries (Optional)</h2>
+<p>Query APIs MAY support Resource Query Language (RQL) queries against their API resources where the 'rql' trait is specified in the RAML documentation. A 501 HTTP status code should be returned where a RAML query is attempted using RQL functions or operators which are not supported by a Query API.</p>
+<h3 id="examples_3">Examples</h3>
+<p><strong>Example 1: Simple Query</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/senders?query.rql=eq(transport,urn%3Ax-nmos%3Atransport%3Artp)
+</code></pre></div></p>
+<p><strong><em>Response</em></strong>
+* Returns all Sender objects which have an attribute 'transport' which exactly matches the string 'urn:x-nmos:transport:rtp'. This response matches that of 'Example 1' in basic querying.</p>
+<p><strong>Example 2: Advanced Query</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/sources?query.rql=and(eq(format,urn%3Ax-nmos%3Aformat%3Avideo),in(tags.location,(Salford,London)))
+</code></pre></div></p>
+<p><strong><em>Response</em></strong>
+* Returns all Sources which have a 'format' attribute equal to 'urn:x-nmos:format:video' AND a 'tags' attribute with a key of 'location', which has values of 'Salford' or 'London'.</p>
+<h2 id="ancestry-queries-optional">Ancestry Queries (Optional)</h2>
+<p>Query APIs MAY support Source and Flow ancestry queries against their API resources where the 'ancestry' trait is specified in the RAML documentation. A 501 HTTP status code should be returned where an ancestry query is attempted against a Query API which does not implement it.</p>
+<h3 id="examples_4">Examples</h3>
+<p><strong>Example 1: Children Of A Source</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/sources?query.ancestry_id=c1398579-15bc-468e-91ec-df5bbefe1cd3&amp;query.ancestry_type=children
+</code></pre></div></p>
+<p><strong><em>Response</em></strong></p>
+<p>Headers
+<div class="highlight"><pre><span></span><code>X-Ancestry-Generations: 4
+</code></pre></div></p>
+<p>Payload
+* Returns Sources which list an ID of 'c1398579-15bc-468e-91ec-df5bbefe1cd3' in their 'parents' attribute array. These are the first generation ancestors.
+* For each first generation ancestor found, the ID of these Sources is used to look up the next generation in the 'parents' arrays of further Sources.
+* This process continues up to the generation limit returned in the X-Ancestry-Generations header. The server may refuse to honour a requested ''?query.ancestry_generations' value using a 400 error code if it is deemed to be too resource intensive.</p>
+<p><strong><em>Notes</em></strong>
+* Responses should not include the Source with ID specified in the 'ancestry_id' parameter.</p>
+<p><strong>Example 2: Parents Of A Flow</strong></p>
+<p><strong><em>Request</em></strong>
+<div class="highlight"><pre><span></span><code>GET /x-nmos/query/v1.1/flows?query.ancestry_id=ad14888a-3a98-444c-8aa8-4d87b77cbaa1&amp;query.ancestry_type=parents&amp;query.ancestry_generations=2
+</code></pre></div></p>
+<p><strong><em>Response</em></strong></p>
+<p>Headers
+<div class="highlight"><pre><span></span><code>X-Ancestry-Generations: 2
+</code></pre></div></p>
+<p>Payload
+* Returns Flows which are listed in the 'parents' array of the Flow identified by the ID 'ad14888a-3a98-444c-8aa8-4d87b77cbaa1'. These are the first generation parents.
+* For each first generation parent found, their 'parents' array is used to identify the next generation of parents to be returned.
+* This process continues up to the generation limit returned in the X-Ancestry-Generations header (in this case limited to 2 by a query parameter). The server may refuse to honour a requested ''?query.ancestry_generations' value using a 400 error code if it is deemed to be too resource intensive.</p>
+<p><strong><em>Notes</em></strong>
+* Responses should not include the Flow with ID specified in the 'ancestry_id' parameter.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"provider":"mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
+      
+        <script src="../javascripts/json-viewer.js"></script>
+      
+        <script src="../javascripts/amwa-branding.js"></script>
+      
+    
+  </body>
+</html>
