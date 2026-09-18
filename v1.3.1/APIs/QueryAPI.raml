@@ -1,0 +1,495 @@
+#%RAML 1.0
+
+# AMWA NMOS Discovery and Registration Specification: Query API
+# (c) AMWA 2016
+
+title: Query
+baseUri: http://api.example.com/x-nmos/query/{version}
+version: v1.3
+mediaType: application/json
+types:
+  Node: !include schemas/node.json
+  Nodes: !include schemas/nodes.json
+  Device: !include schemas/device.json
+  Devices: !include schemas/devices.json
+  Source: !include schemas/source.json
+  Sources: !include schemas/sources.json
+  Flow: !include schemas/flow.json
+  Flows: !include schemas/flows.json
+  Sender: !include schemas/sender.json
+  Senders: !include schemas/senders.json
+  Receiver: !include schemas/receiver.json
+  Receivers: !include schemas/receivers.json
+  ErrorSchema: !include schemas/error.json
+traits:
+  paged:
+    description: API resource supporting pagination of results
+    queryParameters:
+      paging.since:
+        description: Return only the results which have been created/updated since the time specified (non-inclusive) (seconds:nanoseconds)
+        type: string
+        pattern: "^[0-9]+:[0-9]+$"
+      paging.until:
+        description: Return only the results which were created/updated up until the time specified (inclusive) (seconds:nanoseconds)
+        type: string
+        pattern: "^[0-9]+:[0-9]+$"
+      paging.limit:
+        description: Restrict the response to the specified number of results. Implementations may specify their own default and maximum for the limit
+        type: integer
+      paging.order:
+        description: Specify whether paging should be based upon initial resource creation time, or when it was last modified. In both cases the response should be provided in descending order
+        type: string
+        enum: ["create", "update"]
+        default: "update"
+    responses:
+      200:
+        headers:
+          Link:
+            description: Provides references to cursors for paging. The 'rel' attribute may be one of 'next', 'prev', 'first' or 'last'
+            type: string
+            example: <http://api.example.com/x-nmos/query/{version}/nodes/?paging.since=1441716120:318744030&paging.limit=20>; rel="next", <http://api.example.com/x-nmos/query/{version}/nodes/?paging.until=1441716353:6839634&paging.limit=20>; rel="prev"
+          X-Paging-Limit:
+            description: Identifies the current limit being used for paging. This may not match the requested value if the requested value was too high for the implementation
+            type: integer
+          X-Paging-Since:
+            description: Identifies the current value of the query parameter 'paging.since' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.until value of a query to return the previous page of results. Combining this with the X-Paging-Until header value provides the absolute time bounds of the current returned data set.
+            type: string
+            example: 1441716353:6839634
+          X-Paging-Until:
+            description: Identifies the current value of the query parameter 'paging.until' in use, or if not specified identifies what value it would have had to return this data set. This value may be re-used as the paging.since value of a query to return the next page of results. Combining this with the X-Paging-Since header value provides the absolute time bounds of the current returned data set.
+            type: string
+            example: 1441716120:318744030
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+  downgrade:
+    description: API resource supporting the return of data which matches an older minor API version than the request would return by default.
+    queryParameters:
+      query.downgrade:
+        description: Minimum API version to return resources from if they exists within the registry
+        type: string
+        pattern: "^v[0-9]+.[0-9]+$"
+    responses:
+      400:
+        description: The requested downgrade query moves between major API versions which is not permitted.
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+  rql:
+    description: This resource MAY support advanced query formats using the Resource Query Language (RQL) syntax
+    queryParameters:
+      query.rql:
+        description: RQL format string indicating the query to be performed, such as 'and(eq(format,urn:x-nmos:format:video),in(tags.location,(Salford,London)))'. Strings used as filter values MUST be URL encoded.
+        type: string
+    responses:
+      400:
+        description: The server refuses to perform the query as it would be too resource intensive.
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+  ancestry:
+    description: This resource MAY support ancestry tracking whereby an ID is traced through 'parents' attributes to find and return all related resources
+    queryParameters:
+      query.ancestry_id:
+        description: UUID of the Source or Flow for which the ancestry is to be tracked
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+      query.ancestry_type:
+        description: The type of ancestry query to perform, whether searching for 'parents' or 'children' of the specified resource
+        type: string
+        enum: ["parents", "children"]
+      query.ancestry_generations:
+        description: The maximum number of generations to search through before returning the set of results. If this is not set, the server may use a default or fail to return results due to the request being too resource intensive
+        type: integer
+    responses:
+      200:
+        headers:
+          X-Ancestry-Generations:
+            description: Identifies the number of ancestry generations being searched through. If 'query.ancestry_generations' is not specified by the user this should be returned as the server defined default.
+            type: integer
+      400:
+        description: The server refuses to perform the query as it would be too resource intensive.
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+documentation:
+  - title: Overview
+    content: |
+      The Query API is exposed by NMOS discovery Nodes. It is used to expose the contents of the (distributed) registry to all Nodes on the network. In smaller deployments where no such registry is available, Nodes with their own control capabilities fall back to interrogating Nodes directly using the peer-to-peer specification. This is a read-only API.
+
+      Attributes defined as 'Optional' in schemas MUST be returned by the Query API if they exist within the registry. The presence declaration relates more to whether it is required for them to be registered at the Registration API side, or presented via the Node API.
+  - title: Further Documentation
+    content: |
+      Further normative documentation covering the behaviour of this API is contained in the [docs](../docs) folder of this repository.
+/:
+  displayName: Base
+  get:
+    description: List of paths available from this API
+    responses:
+      200:
+        body:
+          example: !include ../examples/queryapi-base-get-200.json
+          type: !include schemas/queryapi-base.json
+/nodes:
+  displayName: Nodes
+  get:
+    is: [paged, rql, downgrade]
+    description: |
+      List Nodes.
+      NB: Query parameters should be implemented for all permitted resource attributes.
+    queryParameters:
+      id:
+      version:
+      label:
+      description:
+      tags:
+    responses:
+      200:
+        body:
+          example: !include ../examples/queryapi-nodes-get-200.json
+          type: Nodes
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
+  /{nodeId}:
+    uriParameters:
+      nodeId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      is: [downgrade]
+      description: Get a single Node
+      responses:
+        200:
+          body:
+            example: !include ../examples/queryapi-nodeid-get-200.json
+            type: Node
+        404:
+          description: Returned when the requested Node ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Node ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/nodes/3b8be755-08ff-452b-b217-c9151eb21193
+/sources:
+  displayName: Sources
+  get:
+    is: [paged, rql, ancestry, downgrade]
+    description: |
+      List Sources.
+      NB: Query parameters should be implemented for all permitted resource attributes.
+    queryParameters:
+      id:
+      version:
+      label:
+      description:
+      tags:
+    responses:
+      200:
+        body:
+          example: !include ../examples/queryapi-sources-get-200.json
+          type: Sources
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
+  /{sourceId}:
+    uriParameters:
+      sourceId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      is: [downgrade]
+      description: Get a single Source
+      responses:
+        200:
+          body:
+            example: !include ../examples/queryapi-sourceid-get-200.json
+            type: Source
+        404:
+          description: Returned when the requested Source ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Source ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/sources/c23c6a65-8e91-4f6c-a484-046363dbca29
+/flows:
+  displayName: Flows
+  get:
+    is: [paged, rql, ancestry, downgrade]
+    description: |
+      List Flows.
+      NB: Query parameters should be implemented for all permitted resource attributes.
+    queryParameters:
+      id:
+      version:
+      label:
+      description:
+      tags:
+    responses:
+      200:
+        body:
+          example: !include ../examples/queryapi-flows-get-200.json
+          type: Flows
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
+  /{flowId}:
+    uriParameters:
+      flowId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      is: [downgrade]
+      description: Get a single Flow
+      responses:
+        200:
+          body:
+            example: !include ../examples/queryapi-flowid-get-200.json
+            type: Flow
+        404:
+          description: Returned when the requested Flow ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Flow ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/flows/b3bb5be7-9fe9-4324-a5bb-4c70e1084449
+/devices:
+  displayName: Devices
+  get:
+    is: [paged, rql, downgrade]
+    description: |
+      List Devices.
+      NB: Query parameters should be implemented for all permitted resource attributes.
+    queryParameters:
+      id:
+      version:
+      label:
+      description:
+      tags:
+    responses:
+      200:
+        body:
+          example: !include ../examples/queryapi-devices-get-200.json
+          type: Devices
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
+  /{deviceId}:
+    uriParameters:
+      deviceId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      is: [downgrade]
+      description: Get a single Device
+      responses:
+        200:
+          body:
+            example: !include ../examples/queryapi-deviceid-get-200.json
+            type: Device
+        404:
+          description: Returned when the requested Device ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Device ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/devices/a370d258-69de-4422-860a-ee4cf32ee9f4
+/senders:
+  displayName: Senders
+  get:
+    is: [paged, rql, downgrade]
+    description: |
+      List Senders.
+      NB: Query parameters should be implemented for all permitted resource attributes.
+    queryParameters:
+      id:
+      version:
+      label:
+      description:
+      tags:
+    responses:
+      200:
+        body:
+          example: !include ../examples/queryapi-senders-get-200.json
+          type: Senders
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
+  /{senderId}:
+    uriParameters:
+      senderId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      is: [downgrade]
+      description: Get a single Sender
+      responses:
+        200:
+          body:
+            example: !include ../examples/queryapi-senderid-get-200.json
+            type: Sender
+        404:
+          description: Returned when the requested Sender ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Sender ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/senders/171d5c80-7fff-4c23-9383-46503eb1c63e
+/receivers:
+  displayName: Receivers
+  get:
+    is: [paged, rql, downgrade]
+    description: |
+      List Receivers.
+      NB: Query parameters should be implemented for all permitted resource attributes.
+    queryParameters:
+      id:
+      version:
+      label:
+      description:
+      tags:
+    responses:
+      200:
+        body:
+          example: !include ../examples/queryapi-receivers-get-200.json
+          type: Receivers
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
+  /{receiverId}:
+    uriParameters:
+      receiverId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      is: [downgrade]
+      description: Get a single Receiver
+      responses:
+        200:
+          body:
+            example: !include ../examples/queryapi-receiverid-get-200.json
+            type: Receiver
+        404:
+          description: Returned when the requested Receiver ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Receiver ID exists in the registry at a lower API version and a query downgrade has not been requested, or the requested downgrade does not extend as far as the resource's API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/receivers/3350d113-1593-4271-a7f5-f4974415bb8e
+/subscriptions:
+  displayName: Subscriptions
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
+  post:
+    description: Create a WebSocket subscription to an API resource
+    body:
+      example: !include ../examples/queryapi-subscriptions-post-request.json
+      type: !include schemas/queryapi-subscriptions-post-request.json
+    responses:
+      201:
+        body:
+          example: !include ../examples/queryapi-subscriptions-post-200.json
+          type: !include schemas/queryapi-subscription-response.json
+        headers:
+          Location:
+            example: /x-nmos/query/{version}/subscriptions/7c903667-7113-4a8f-8865-1c63f9070a9e
+      200:
+        body:
+          example: !include ../examples/queryapi-subscriptions-post-200.json
+          type: !include schemas/queryapi-subscription-response.json
+        headers:
+          Location:
+            example: /x-nmos/query/{version}/subscriptions/7c903667-7113-4a8f-8865-1c63f9070a9e
+      400:
+        description: Returned when the POST request is incorrectly formatted, missing mandatory attributes or an attribute is invalid given the API's configuration
+        body:
+          type: ErrorSchema
+      501:
+        description: The query parameters specified are not currently supported by this implementation.
+        body:
+          type: ErrorSchema
+  get:
+    is: [paged]
+    description: List available WebSocket connections providing real-time updates on resource changes (for debug use only)
+    responses:
+      200:
+        body:
+          example: !include ../examples/queryapi-subscriptions-get-200.json
+          type: !include schemas/queryapi-subscriptions-response.json
+  /{subscriptionId}:
+    uriParameters:
+      subscriptionId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      description: Get a single subscription (for debug use only)
+      responses:
+        200:
+          body:
+            example: !include ../examples/queryapi-subscriptionid-get-200.json
+            type: !include schemas/queryapi-subscription-response.json
+        404:
+          description: Returned when the requested Subscription ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Subscription ID exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/subscriptions/7c903667-7113-4a8f-8865-1c63f9070a9e
+    options:
+      description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+      responses:
+        200:
+        403:
+    delete:
+      description: Delete a single subscription
+      responses:
+        204:
+          description: The expected response, indicating 'No Content' following the DELETE
+        403:
+          description: Returned when a DELETE request is made against a non-persistent subscription which is managed by the Query API and cannot be deleted
+          body:
+            type: ErrorSchema
+        404:
+          description: Returned when the requested Subscription ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Subscription ID exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/query/{version}/subscriptions/7c903667-7113-4a8f-8865-1c63f9070a9e

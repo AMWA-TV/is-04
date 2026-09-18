@@ -1,0 +1,3131 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "description": "Returning a registered resource from the Registration API",
+  "title": "Registered resource",
+  "oneOf": [
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes the Node and the services which run on it",
+      "title": "Node resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes the foundations of all NMOS resources",
+          "title": "Base resource",
+          "required": [
+            "id",
+            "version",
+            "label",
+            "description",
+            "tags"
+          ],
+          "properties": {
+            "id": {
+              "description": "Globally unique identifier for the resource",
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            "version": {
+              "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+              "type": "string",
+              "pattern": "^[0-9]+:[0-9]+$"
+            },
+            "label": {
+              "description": "Freeform string label for the resource",
+              "type": "string"
+            },
+            "description": {
+              "description": "Detailed description of the resource",
+              "type": "string"
+            },
+            "tags": {
+              "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+              "type": "object",
+              "patternProperties": {
+                "": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "href",
+            "caps",
+            "api",
+            "services",
+            "clocks",
+            "interfaces"
+          ],
+          "properties": {
+            "href": {
+              "description": "HTTP access href for the Node's API (deprecated)",
+              "type": "string",
+              "format": "uri"
+            },
+            "hostname": {
+              "description": "Node hostname (optional, deprecated)",
+              "type": "string",
+              "format": "hostname"
+            },
+            "api": {
+              "description": "URL fragments required to connect to the Node API",
+              "type": "object",
+              "required": [
+                "versions",
+                "endpoints"
+              ],
+              "properties": {
+                "versions": {
+                  "description": "Supported API versions running on this Node",
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^v[0-9]+\\.[0-9]+$"
+                  }
+                },
+                "endpoints": {
+                  "description": "Host, port and protocol details required to connect to the API",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "host",
+                      "port",
+                      "protocol"
+                    ],
+                    "properties": {
+                      "host": {
+                        "type": "string",
+                        "description": "IP address or hostname which the Node API is running on",
+                        "anyOf": [
+                          {
+                            "format": "hostname"
+                          },
+                          {
+                            "format": "ipv4"
+                          },
+                          {
+                            "format": "ipv6"
+                          }
+                        ]
+                      },
+                      "port": {
+                        "type": "integer",
+                        "description": "Port number which the Node API is running on",
+                        "minimum": 1,
+                        "maximum": 65535
+                      },
+                      "protocol": {
+                        "type": "string",
+                        "description": "Protocol supported by this instance of the Node API",
+                        "enum": [
+                          "http",
+                          "https"
+                        ]
+                      },
+                      "authorization": {
+                        "type": "boolean",
+                        "description": "This endpoint requires authorization",
+                        "default": false
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "caps": {
+              "description": "Capabilities (not yet defined)",
+              "type": "object"
+            },
+            "services": {
+              "description": "Array of objects containing a URN format type and href",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "href",
+                  "type"
+                ],
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL to reach a service running on the Node",
+                    "format": "uri"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "URN identifying the type of service",
+                    "format": "uri"
+                  },
+                  "authorization": {
+                    "type": "boolean",
+                    "description": "This endpoint requires authorization",
+                    "default": false
+                  }
+                }
+              }
+            },
+            "clocks": {
+              "description": "Clocks made available to Devices owned by this Node",
+              "type": "array",
+              "items": {
+                "anyOf": [
+                  {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "description": "Describes a clock with no external reference",
+                    "title": "Clock with no external reference",
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "ref_type"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Name of this refclock (unique for this set of clocks)",
+                        "pattern": "^clk[0-9]+$"
+                      },
+                      "ref_type": {
+                        "description": "Type of external reference used by this clock",
+                        "type": "string",
+                        "enum": [
+                          "internal"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "description": "Describes a clock referenced to PTP",
+                    "title": "PTP clock",
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "ref_type",
+                      "traceable",
+                      "version",
+                      "gmid",
+                      "locked"
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Name of this refclock (unique for this set of clocks)",
+                        "pattern": "^clk[0-9]+$"
+                      },
+                      "ref_type": {
+                        "description": "Type of external reference used by this clock",
+                        "type": "string",
+                        "enum": [
+                          "ptp"
+                        ]
+                      },
+                      "traceable": {
+                        "description": "External refclock is synchronised to International Atomic Time (TAI)",
+                        "type": "boolean"
+                      },
+                      "version": {
+                        "description": "Version of PTP reference used by this clock",
+                        "type": "string",
+                        "enum": [
+                          "IEEE1588-2008"
+                        ]
+                      },
+                      "gmid": {
+                        "description": "ID of the PTP reference used by this clock",
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}$"
+                      },
+                      "locked": {
+                        "description": "Lock state of this clock to the external reference. If true, this device follows the external reference, otherwise it has no defined relationship to the external reference",
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "interfaces": {
+              "description": "Network interfaces made available to devices owned by this Node. Port IDs and Chassis IDs are used to inform topology discovery via IS-06, and require that interfaces implement ARP at a minimum, and ideally LLDP.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "chassis_id",
+                  "port_id",
+                  "name"
+                ],
+                "properties": {
+                  "chassis_id": {
+                    "description": "Chassis ID of the interface, as signalled in LLDP from this node. Set to null where LLDP is unsuitable for use (ie. virtualised environments)",
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^([0-9a-f]{2}-){5}([0-9a-f]{2})$",
+                        "description": "When the Chassis ID is a MAC address, use this format"
+                      },
+                      {
+                        "type": "string",
+                        "pattern": "^.+$",
+                        "description": "When the Chassis ID is anything other than a MAC address, a freeform string may be used"
+                      },
+                      {
+                        "type": "null",
+                        "description": "When the Chassis ID is unavailable it should be set to null"
+                      }
+                    ]
+                  },
+                  "port_id": {
+                    "description": "Port ID of the interface, as signalled in LLDP or via ARP responses from this node. Must be a MAC address",
+                    "type": "string",
+                    "pattern": "^([0-9a-f]{2}-){5}([0-9a-f]{2})$"
+                  },
+                  "name": {
+                    "description": "Name of the interface (unique in scope of this node).  This attribute is used by sub-resources of this node such as senders and receivers to refer to interfaces to which they are bound.",
+                    "type": "string"
+                  },
+                  "attached_network_device": {
+                    "type": "object",
+                    "required": [
+                      "chassis_id",
+                      "port_id"
+                    ],
+                    "properties": {
+                      "chassis_id": {
+                        "description": "Chassis ID of the attached network device, as signalled in LLDP received by this Node.",
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^([0-9a-f]{2}-){5}([0-9a-f]{2})$",
+                            "description": "When the Chassis ID is a MAC address, use this format"
+                          },
+                          {
+                            "type": "string",
+                            "pattern": "^.+$",
+                            "description": "When the Chassis ID is anything other than a MAC address, a freeform string may be used"
+                          }
+                        ]
+                      },
+                      "port_id": {
+                        "description": "Port ID of the attached network device, as signalled in LLDP received by this Node.",
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "pattern": "^([0-9a-f]{2}-){5}([0-9a-f]{2})$",
+                            "description": "When the Port ID is a MAC address, use this format"
+                          },
+                          {
+                            "type": "string",
+                            "pattern": "^.+$",
+                            "description": "When the Port ID is anything other than a MAC address, a freeform string may be used"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a Device",
+      "title": "Device resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes the foundations of all NMOS resources",
+          "title": "Base resource",
+          "required": [
+            "id",
+            "version",
+            "label",
+            "description",
+            "tags"
+          ],
+          "properties": {
+            "id": {
+              "description": "Globally unique identifier for the resource",
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            "version": {
+              "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+              "type": "string",
+              "pattern": "^[0-9]+:[0-9]+$"
+            },
+            "label": {
+              "description": "Freeform string label for the resource",
+              "type": "string"
+            },
+            "description": {
+              "description": "Detailed description of the resource",
+              "type": "string"
+            },
+            "tags": {
+              "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+              "type": "object",
+              "patternProperties": {
+                "": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "type",
+            "node_id",
+            "senders",
+            "receivers",
+            "controls"
+          ],
+          "properties": {
+            "type": {
+              "description": "Device type URN",
+              "type": "string",
+              "oneOf": [
+                {
+                  "pattern": "^urn:x-nmos:device:"
+                },
+                {
+                  "not": {
+                    "pattern": "^urn:x-nmos:"
+                  }
+                }
+              ],
+              "format": "uri"
+            },
+            "node_id": {
+              "description": "Globally unique identifier for the Node which initially created the Device. This attribute is used to ensure referential integrity by registry implementations.",
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            "senders": {
+              "description": "UUIDs of Senders attached to the Device (deprecated)",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+              }
+            },
+            "receivers": {
+              "description": "UUIDs of Receivers attached to the Device (deprecated)",
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+              }
+            },
+            "controls": {
+              "description": "Control endpoints exposed for the Device",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": [
+                  "href",
+                  "type"
+                ],
+                "properties": {
+                  "href": {
+                    "type": "string",
+                    "description": "URL to reach a control endpoint, whether http or otherwise",
+                    "format": "uri"
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "URN identifying the control format",
+                    "format": "uri"
+                  },
+                  "authorization": {
+                    "type": "boolean",
+                    "description": "This endpoint requires authorization",
+                    "default": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a Source",
+      "title": "Source resource",
+      "oneOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a generic Source",
+          "title": "Generic Source resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Source",
+              "title": "Source resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "caps",
+                    "device_id",
+                    "parents",
+                    "clock_name"
+                  ],
+                  "properties": {
+                    "grain_rate": {
+                      "description": "Maximum number of Grains per second for Flows derived from this Source. Corresponding Flow Grain rates may override this attribute. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Sources only.",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "caps": {
+                      "description": "Capabilities (not yet defined)",
+                      "type": "object"
+                    },
+                    "device_id": {
+                      "description": "Globally unique identifier for the Device which initially created the Source. This attribute is used to ensure referential integrity by registry implementations.",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "parents": {
+                      "description": "Array of UUIDs representing the Source IDs of Grains which came together at the input to this Source (may change over the lifetime of this Source)",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                      }
+                    },
+                    "clock_name": {
+                      "description": "Reference to clock in the originating Node",
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "pattern": "^clk[0-9]+$"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Format of the data coming from the Source as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:video",
+                    "urn:x-nmos:format:mux"
+                  ],
+                  "format": "uri"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes an audio Source",
+          "title": "Audio Source resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Source",
+              "title": "Source resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "caps",
+                    "device_id",
+                    "parents",
+                    "clock_name"
+                  ],
+                  "properties": {
+                    "grain_rate": {
+                      "description": "Maximum number of Grains per second for Flows derived from this Source. Corresponding Flow Grain rates may override this attribute. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Sources only.",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "caps": {
+                      "description": "Capabilities (not yet defined)",
+                      "type": "object"
+                    },
+                    "device_id": {
+                      "description": "Globally unique identifier for the Device which initially created the Source. This attribute is used to ensure referential integrity by registry implementations.",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "parents": {
+                      "description": "Array of UUIDs representing the Source IDs of Grains which came together at the input to this Source (may change over the lifetime of this Source)",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                      }
+                    },
+                    "clock_name": {
+                      "description": "Reference to clock in the originating Node",
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "pattern": "^clk[0-9]+$"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "channels"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Format of the data coming from the Source as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:audio"
+                  ],
+                  "format": "uri"
+                },
+                "channels": {
+                  "description": "Array of objects describing the audio channels",
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "title": "Component",
+                    "type": "object",
+                    "required": [
+                      "label"
+                    ],
+                    "properties": {
+                      "label": {
+                        "description": "Label for this channel (free text)",
+                        "type": "string"
+                      },
+                      "symbol": {
+                        "description": "Symbol for this channel (from VSF TR-03 Appendix A)",
+                        "type": "string",
+                        "oneOf": [
+                          {
+                            "enum": [
+                              "L",
+                              "R",
+                              "C",
+                              "LFE",
+                              "Ls",
+                              "Rs",
+                              "Lss",
+                              "Rss",
+                              "Lrs",
+                              "Rrs",
+                              "Lc",
+                              "Rc",
+                              "Cs",
+                              "HI",
+                              "VIN",
+                              "M1",
+                              "M2",
+                              "Lt",
+                              "Rt",
+                              "Lst",
+                              "Rst",
+                              "S"
+                            ]
+                          },
+                          {
+                            "pattern": "^NSC(0[0-9][0-9]|1[0-1][0-9]|12[0-8])$",
+                            "description": "Numbered Source Channel"
+                          },
+                          {
+                            "pattern": "^U(0[1-9]|[1-5][0-9]|6[0-4])$",
+                            "description": "Undefined channel"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a data Source",
+          "title": "Data Source resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Source",
+              "title": "Source resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "caps",
+                    "device_id",
+                    "parents",
+                    "clock_name"
+                  ],
+                  "properties": {
+                    "grain_rate": {
+                      "description": "Maximum number of Grains per second for Flows derived from this Source. Corresponding Flow Grain rates may override this attribute. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Sources only.",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "caps": {
+                      "description": "Capabilities (not yet defined)",
+                      "type": "object"
+                    },
+                    "device_id": {
+                      "description": "Globally unique identifier for the Device which initially created the Source. This attribute is used to ensure referential integrity by registry implementations.",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "parents": {
+                      "description": "Array of UUIDs representing the Source IDs of Grains which came together at the input to this Source (may change over the lifetime of this Source)",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                      }
+                    },
+                    "clock_name": {
+                      "description": "Reference to clock in the originating Node",
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "pattern": "^clk[0-9]+$"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Format of the data coming from the Source as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:data"
+                  ],
+                  "format": "uri"
+                },
+                "event_type": {
+                  "description": "Event type generated by this Source, if applicable",
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a Flow",
+      "title": "Flow resource",
+      "anyOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a raw Video Flow",
+          "title": "Raw Video Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Video Flow",
+              "title": "Video Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes a Flow",
+                  "title": "Flow resource",
+                  "allOf": [
+                    {
+                      "$schema": "http://json-schema.org/draft-04/schema#",
+                      "type": "object",
+                      "description": "Describes the foundations of all NMOS resources",
+                      "title": "Base resource",
+                      "required": [
+                        "id",
+                        "version",
+                        "label",
+                        "description",
+                        "tags"
+                      ],
+                      "properties": {
+                        "id": {
+                          "description": "Globally unique identifier for the resource",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "version": {
+                          "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                          "type": "string",
+                          "pattern": "^[0-9]+:[0-9]+$"
+                        },
+                        "label": {
+                          "description": "Freeform string label for the resource",
+                          "type": "string"
+                        },
+                        "description": {
+                          "description": "Detailed description of the resource",
+                          "type": "string"
+                        },
+                        "tags": {
+                          "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                          "type": "object",
+                          "patternProperties": {
+                            "": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "source_id",
+                        "device_id",
+                        "parents"
+                      ],
+                      "properties": {
+                        "grain_rate": {
+                          "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                          "type": "object",
+                          "required": [
+                            "numerator"
+                          ],
+                          "properties": {
+                            "numerator": {
+                              "description": "Numerator",
+                              "type": "integer"
+                            },
+                            "denominator": {
+                              "description": "Denominator",
+                              "type": "integer",
+                              "default": 1
+                            }
+                          }
+                        },
+                        "source_id": {
+                          "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "device_id": {
+                          "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "parents": {
+                          "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "format",
+                    "frame_width",
+                    "frame_height",
+                    "colorspace"
+                  ],
+                  "properties": {
+                    "format": {
+                      "description": "Format of the data coming from the Flow as a URN",
+                      "type": "string",
+                      "enum": [
+                        "urn:x-nmos:format:video"
+                      ],
+                      "format": "uri"
+                    },
+                    "frame_width": {
+                      "description": "Width of the picture in pixels",
+                      "type": "integer"
+                    },
+                    "frame_height": {
+                      "description": "Height of the picture in pixels",
+                      "type": "integer"
+                    },
+                    "interlace_mode": {
+                      "description": "Interlaced video mode for frames in this Flow",
+                      "type": "string",
+                      "default": "progressive",
+                      "enum": [
+                        "progressive",
+                        "interlaced_tff",
+                        "interlaced_bff",
+                        "interlaced_psf"
+                      ]
+                    },
+                    "colorspace": {
+                      "description": "Colorspace used for the video. Any values not defined in the enum should be defined in the NMOS Parameter Registers",
+                      "type": "string",
+                      "anyOf": [
+                        {
+                          "enum": [
+                            "BT601",
+                            "BT709",
+                            "BT2020",
+                            "BT2100"
+                          ]
+                        },
+                        {
+                          "pattern": "^\\S+$"
+                        }
+                      ]
+                    },
+                    "transfer_characteristic": {
+                      "description": "Transfer characteristic. Any values not defined in the enum should be defined in the NMOS Parameter Registers",
+                      "type": "string",
+                      "default": "SDR",
+                      "anyOf": [
+                        {
+                          "enum": [
+                            "SDR",
+                            "HLG",
+                            "PQ"
+                          ]
+                        },
+                        {
+                          "pattern": "^\\S+$"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "media_type",
+                "components"
+              ],
+              "properties": {
+                "media_type": {
+                  "description": "Subclassification of the format using IANA assigned media types",
+                  "type": "string",
+                  "enum": [
+                    "video/raw"
+                  ]
+                },
+                "components": {
+                  "description": "Array of objects describing the components",
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "title": "component",
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "width",
+                      "height",
+                      "bit_depth"
+                    ],
+                    "properties": {
+                      "name": {
+                        "description": "Name of this component",
+                        "type": "string",
+                        "enum": [
+                          "Y",
+                          "Cb",
+                          "Cr",
+                          "I",
+                          "Ct",
+                          "Cp",
+                          "A",
+                          "R",
+                          "G",
+                          "B",
+                          "DepthMap"
+                        ]
+                      },
+                      "width": {
+                        "description": "Width of this component in pixels",
+                        "type": "integer"
+                      },
+                      "height": {
+                        "description": "Height of this component in pixels",
+                        "type": "integer"
+                      },
+                      "bit_depth": {
+                        "description": "Number of bits used to describe each sample",
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a coded Video Flow",
+          "title": "Coded Video Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Video Flow",
+              "title": "Video Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes a Flow",
+                  "title": "Flow resource",
+                  "allOf": [
+                    {
+                      "$schema": "http://json-schema.org/draft-04/schema#",
+                      "type": "object",
+                      "description": "Describes the foundations of all NMOS resources",
+                      "title": "Base resource",
+                      "required": [
+                        "id",
+                        "version",
+                        "label",
+                        "description",
+                        "tags"
+                      ],
+                      "properties": {
+                        "id": {
+                          "description": "Globally unique identifier for the resource",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "version": {
+                          "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                          "type": "string",
+                          "pattern": "^[0-9]+:[0-9]+$"
+                        },
+                        "label": {
+                          "description": "Freeform string label for the resource",
+                          "type": "string"
+                        },
+                        "description": {
+                          "description": "Detailed description of the resource",
+                          "type": "string"
+                        },
+                        "tags": {
+                          "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                          "type": "object",
+                          "patternProperties": {
+                            "": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "source_id",
+                        "device_id",
+                        "parents"
+                      ],
+                      "properties": {
+                        "grain_rate": {
+                          "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                          "type": "object",
+                          "required": [
+                            "numerator"
+                          ],
+                          "properties": {
+                            "numerator": {
+                              "description": "Numerator",
+                              "type": "integer"
+                            },
+                            "denominator": {
+                              "description": "Denominator",
+                              "type": "integer",
+                              "default": 1
+                            }
+                          }
+                        },
+                        "source_id": {
+                          "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "device_id": {
+                          "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "parents": {
+                          "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "format",
+                    "frame_width",
+                    "frame_height",
+                    "colorspace"
+                  ],
+                  "properties": {
+                    "format": {
+                      "description": "Format of the data coming from the Flow as a URN",
+                      "type": "string",
+                      "enum": [
+                        "urn:x-nmos:format:video"
+                      ],
+                      "format": "uri"
+                    },
+                    "frame_width": {
+                      "description": "Width of the picture in pixels",
+                      "type": "integer"
+                    },
+                    "frame_height": {
+                      "description": "Height of the picture in pixels",
+                      "type": "integer"
+                    },
+                    "interlace_mode": {
+                      "description": "Interlaced video mode for frames in this Flow",
+                      "type": "string",
+                      "default": "progressive",
+                      "enum": [
+                        "progressive",
+                        "interlaced_tff",
+                        "interlaced_bff",
+                        "interlaced_psf"
+                      ]
+                    },
+                    "colorspace": {
+                      "description": "Colorspace used for the video. Any values not defined in the enum should be defined in the NMOS Parameter Registers",
+                      "type": "string",
+                      "anyOf": [
+                        {
+                          "enum": [
+                            "BT601",
+                            "BT709",
+                            "BT2020",
+                            "BT2100"
+                          ]
+                        },
+                        {
+                          "pattern": "^\\S+$"
+                        }
+                      ]
+                    },
+                    "transfer_characteristic": {
+                      "description": "Transfer characteristic. Any values not defined in the enum should be defined in the NMOS Parameter Registers",
+                      "type": "string",
+                      "default": "SDR",
+                      "anyOf": [
+                        {
+                          "enum": [
+                            "SDR",
+                            "HLG",
+                            "PQ"
+                          ]
+                        },
+                        {
+                          "pattern": "^\\S+$"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "media_type"
+              ],
+              "properties": {
+                "media_type": {
+                  "description": "Subclassification of the format using IANA assigned media types",
+                  "type": "string",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "video/H264",
+                        "video/vc2"
+                      ]
+                    },
+                    {
+                      "pattern": "^video\\/[^\\s\\/]+$"
+                    }
+                  ],
+                  "not": {
+                    "enum": [
+                      "video/raw"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a raw audio Flow",
+          "title": "Raw Audio Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes an audio Flow",
+              "title": "Audio Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes a Flow",
+                  "title": "Flow resource",
+                  "allOf": [
+                    {
+                      "$schema": "http://json-schema.org/draft-04/schema#",
+                      "type": "object",
+                      "description": "Describes the foundations of all NMOS resources",
+                      "title": "Base resource",
+                      "required": [
+                        "id",
+                        "version",
+                        "label",
+                        "description",
+                        "tags"
+                      ],
+                      "properties": {
+                        "id": {
+                          "description": "Globally unique identifier for the resource",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "version": {
+                          "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                          "type": "string",
+                          "pattern": "^[0-9]+:[0-9]+$"
+                        },
+                        "label": {
+                          "description": "Freeform string label for the resource",
+                          "type": "string"
+                        },
+                        "description": {
+                          "description": "Detailed description of the resource",
+                          "type": "string"
+                        },
+                        "tags": {
+                          "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                          "type": "object",
+                          "patternProperties": {
+                            "": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "source_id",
+                        "device_id",
+                        "parents"
+                      ],
+                      "properties": {
+                        "grain_rate": {
+                          "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                          "type": "object",
+                          "required": [
+                            "numerator"
+                          ],
+                          "properties": {
+                            "numerator": {
+                              "description": "Numerator",
+                              "type": "integer"
+                            },
+                            "denominator": {
+                              "description": "Denominator",
+                              "type": "integer",
+                              "default": 1
+                            }
+                          }
+                        },
+                        "source_id": {
+                          "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "device_id": {
+                          "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "parents": {
+                          "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "format",
+                    "sample_rate"
+                  ],
+                  "properties": {
+                    "format": {
+                      "description": "Format of the data coming from the Flow as a URN",
+                      "type": "string",
+                      "enum": [
+                        "urn:x-nmos:format:audio"
+                      ],
+                      "format": "uri"
+                    },
+                    "sample_rate": {
+                      "description": "Number of audio samples per second for this Flow",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "media_type",
+                "bit_depth"
+              ],
+              "properties": {
+                "media_type": {
+                  "description": "Subclassification of the format using IANA assigned media types",
+                  "type": "string",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "audio/L24",
+                        "audio/L20",
+                        "audio/L16",
+                        "audio/L8"
+                      ]
+                    },
+                    {
+                      "pattern": "^audio\\/[^\\s\\/]+$"
+                    }
+                  ]
+                },
+                "bit_depth": {
+                  "description": "Bit depth of the audio samples",
+                  "type": "integer"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a coded audio Flow",
+          "title": "Coded Audio Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes an audio Flow",
+              "title": "Audio Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes a Flow",
+                  "title": "Flow resource",
+                  "allOf": [
+                    {
+                      "$schema": "http://json-schema.org/draft-04/schema#",
+                      "type": "object",
+                      "description": "Describes the foundations of all NMOS resources",
+                      "title": "Base resource",
+                      "required": [
+                        "id",
+                        "version",
+                        "label",
+                        "description",
+                        "tags"
+                      ],
+                      "properties": {
+                        "id": {
+                          "description": "Globally unique identifier for the resource",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "version": {
+                          "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                          "type": "string",
+                          "pattern": "^[0-9]+:[0-9]+$"
+                        },
+                        "label": {
+                          "description": "Freeform string label for the resource",
+                          "type": "string"
+                        },
+                        "description": {
+                          "description": "Detailed description of the resource",
+                          "type": "string"
+                        },
+                        "tags": {
+                          "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                          "type": "object",
+                          "patternProperties": {
+                            "": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": [
+                        "source_id",
+                        "device_id",
+                        "parents"
+                      ],
+                      "properties": {
+                        "grain_rate": {
+                          "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                          "type": "object",
+                          "required": [
+                            "numerator"
+                          ],
+                          "properties": {
+                            "numerator": {
+                              "description": "Numerator",
+                              "type": "integer"
+                            },
+                            "denominator": {
+                              "description": "Denominator",
+                              "type": "integer",
+                              "default": 1
+                            }
+                          }
+                        },
+                        "source_id": {
+                          "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "device_id": {
+                          "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                          "type": "string",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                        },
+                        "parents": {
+                          "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "format",
+                    "sample_rate"
+                  ],
+                  "properties": {
+                    "format": {
+                      "description": "Format of the data coming from the Flow as a URN",
+                      "type": "string",
+                      "enum": [
+                        "urn:x-nmos:format:audio"
+                      ],
+                      "format": "uri"
+                    },
+                    "sample_rate": {
+                      "description": "Number of audio samples per second for this Flow",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "media_type"
+              ],
+              "properties": {
+                "media_type": {
+                  "description": "Subclassification of the format using IANA assigned media types",
+                  "type": "string",
+                  "pattern": "^audio\\/[^\\s\\/]+$",
+                  "not": {
+                    "pattern": "^audio\\/L[0-9]+$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a generic data Flow",
+          "title": "Generic data Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Flow",
+              "title": "Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "source_id",
+                    "device_id",
+                    "parents"
+                  ],
+                  "properties": {
+                    "grain_rate": {
+                      "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "source_id": {
+                      "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "device_id": {
+                      "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "parents": {
+                      "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "media_type"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Format of the data coming from the Flow as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:data"
+                  ],
+                  "format": "uri"
+                },
+                "media_type": {
+                  "description": "Subclassification of the format using IANA assigned media types",
+                  "type": "string",
+                  "pattern": "^[^\\s\\/]+\\/[^\\s\\/]+$",
+                  "not": {
+                    "enum": [
+                      "video/smpte291",
+                      "application/json"
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes an SDI ancillary Flow",
+          "title": "SDI ancillary Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Flow",
+              "title": "Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "source_id",
+                    "device_id",
+                    "parents"
+                  ],
+                  "properties": {
+                    "grain_rate": {
+                      "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "source_id": {
+                      "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "device_id": {
+                      "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "parents": {
+                      "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "media_type"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Format of the data coming from the Flow as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:data"
+                  ],
+                  "format": "uri"
+                },
+                "media_type": {
+                  "description": "Subclassification of the format using IANA assigned media types",
+                  "type": "string",
+                  "enum": [
+                    "video/smpte291"
+                  ]
+                },
+                "DID_SDID": {
+                  "description": "List of Data identification and Secondary data identification words",
+                  "type": "array",
+                  "items": {
+                    "title": "entry",
+                    "type": "object",
+                    "properties": {
+                      "DID": {
+                        "description": "Data identification word",
+                        "type": "string",
+                        "pattern": "^0x[0-9a-fA-F]{2}$"
+                      },
+                      "SDID": {
+                        "description": "Secondary data identification word",
+                        "type": "string",
+                        "pattern": "^0x[0-9a-fA-F]{2}$"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a JSON based Flow",
+          "title": "JSON based Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Flow",
+              "title": "Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "source_id",
+                    "device_id",
+                    "parents"
+                  ],
+                  "properties": {
+                    "grain_rate": {
+                      "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "source_id": {
+                      "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "device_id": {
+                      "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "parents": {
+                      "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "media_type"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Format of the data coming from the Flow as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:data"
+                  ],
+                  "format": "uri"
+                },
+                "media_type": {
+                  "description": "Subclassification of the format using IANA assigned media types",
+                  "type": "string",
+                  "enum": [
+                    "application/json"
+                  ]
+                },
+                "event_type": {
+                  "description": "Event type generated by this Flow, if applicable",
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a mux Flow",
+          "title": "Mux Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Flow",
+              "title": "Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "source_id",
+                    "device_id",
+                    "parents"
+                  ],
+                  "properties": {
+                    "grain_rate": {
+                      "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "source_id": {
+                      "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "device_id": {
+                      "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "parents": {
+                      "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "media_type"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Format of the data coming from the Flow as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:mux"
+                  ],
+                  "format": "uri"
+                },
+                "media_type": {
+                  "description": "Subclassification of the format using IANA assigned media types",
+                  "type": "string",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "video/SMPTE2022-6"
+                      ]
+                    },
+                    {
+                      "pattern": "^[^\\s\\/]+\\/[^\\s\\/]+$"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a sender",
+      "title": "Sender resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes the foundations of all NMOS resources",
+          "title": "Base resource",
+          "required": [
+            "id",
+            "version",
+            "label",
+            "description",
+            "tags"
+          ],
+          "properties": {
+            "id": {
+              "description": "Globally unique identifier for the resource",
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            "version": {
+              "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+              "type": "string",
+              "pattern": "^[0-9]+:[0-9]+$"
+            },
+            "label": {
+              "description": "Freeform string label for the resource",
+              "type": "string"
+            },
+            "description": {
+              "description": "Detailed description of the resource",
+              "type": "string"
+            },
+            "tags": {
+              "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+              "type": "object",
+              "patternProperties": {
+                "": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "flow_id",
+            "transport",
+            "device_id",
+            "manifest_href",
+            "interface_bindings",
+            "subscription"
+          ],
+          "properties": {
+            "caps": {
+              "description": "Capabilities of this sender",
+              "type": "object",
+              "properties": {}
+            },
+            "flow_id": {
+              "description": "ID of the Flow currently passing via this Sender",
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+              "default": null
+            },
+            "transport": {
+              "description": "Transport type used by the Sender in URN format",
+              "type": "string",
+              "oneOf": [
+                {
+                  "pattern": "^urn:x-nmos:transport:"
+                },
+                {
+                  "not": {
+                    "pattern": "^urn:x-nmos:"
+                  }
+                }
+              ],
+              "format": "uri"
+            },
+            "device_id": {
+              "description": "Device ID which this Sender forms part of. This attribute is used to ensure referential integrity by registry implementations.",
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            "manifest_href": {
+              "description": "HTTP(S) accessible URL to a file describing how to connect to the Sender.",
+              "type": [
+                "string",
+                "null"
+              ],
+              "format": "uri"
+            },
+            "interface_bindings": {
+              "description": "Binding of Sender egress ports to interfaces on the parent Node.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "subscription": {
+              "description": "Object containing the 'receiver_id' currently subscribed to (unicast only).",
+              "type": "object",
+              "required": [
+                "receiver_id",
+                "active"
+              ],
+              "properties": {
+                "receiver_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "UUID of the Receiver that this Sender is currently subscribed to",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                  "default": null
+                },
+                "active": {
+                  "type": "boolean",
+                  "description": "Sender is enabled and configured to send data",
+                  "default": false
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a Receiver",
+      "title": "Receiver resource",
+      "oneOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a video Receiver",
+          "title": "Video Receiver resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a receiver",
+              "title": "Receiver resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "device_id",
+                    "transport",
+                    "interface_bindings",
+                    "subscription"
+                  ],
+                  "properties": {
+                    "device_id": {
+                      "description": "Device ID which this Receiver forms part of. This attribute is used to ensure referential integrity by registry implementations.",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "transport": {
+                      "description": "Transport type accepted by the Receiver in URN format",
+                      "type": "string",
+                      "oneOf": [
+                        {
+                          "pattern": "^urn:x-nmos:transport:"
+                        },
+                        {
+                          "not": {
+                            "pattern": "^urn:x-nmos:"
+                          }
+                        }
+                      ],
+                      "format": "uri"
+                    },
+                    "interface_bindings": {
+                      "description": "Binding of Receiver ingress ports to interfaces on the parent Node.",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "subscription": {
+                      "description": "Object containing the 'sender_id' currently subscribed to.",
+                      "type": "object",
+                      "required": [
+                        "sender_id",
+                        "active"
+                      ],
+                      "properties": {
+                        "sender_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "UUID of the Sender that this Receiver is currently subscribed to",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                          "default": null
+                        },
+                        "active": {
+                          "type": "boolean",
+                          "description": "Receiver is enabled and configured with a Sender's connection parameters",
+                          "default": false
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "caps"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Type of Flow accepted by the Receiver as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:video"
+                  ],
+                  "format": "uri"
+                },
+                "caps": {
+                  "description": "Capabilities",
+                  "type": "object",
+                  "properties": {
+                    "media_types": {
+                      "description": "Subclassification of the formats accepted using IANA assigned media types",
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string",
+                        "anyOf": [
+                          {
+                            "enum": [
+                              "video/raw",
+                              "video/H264",
+                              "video/vc2"
+                            ]
+                          },
+                          {
+                            "pattern": "^video\\/[^\\s\\/]+$"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes an audio Receiver",
+          "title": "Audio Receiver resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a receiver",
+              "title": "Receiver resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "device_id",
+                    "transport",
+                    "interface_bindings",
+                    "subscription"
+                  ],
+                  "properties": {
+                    "device_id": {
+                      "description": "Device ID which this Receiver forms part of. This attribute is used to ensure referential integrity by registry implementations.",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "transport": {
+                      "description": "Transport type accepted by the Receiver in URN format",
+                      "type": "string",
+                      "oneOf": [
+                        {
+                          "pattern": "^urn:x-nmos:transport:"
+                        },
+                        {
+                          "not": {
+                            "pattern": "^urn:x-nmos:"
+                          }
+                        }
+                      ],
+                      "format": "uri"
+                    },
+                    "interface_bindings": {
+                      "description": "Binding of Receiver ingress ports to interfaces on the parent Node.",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "subscription": {
+                      "description": "Object containing the 'sender_id' currently subscribed to.",
+                      "type": "object",
+                      "required": [
+                        "sender_id",
+                        "active"
+                      ],
+                      "properties": {
+                        "sender_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "UUID of the Sender that this Receiver is currently subscribed to",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                          "default": null
+                        },
+                        "active": {
+                          "type": "boolean",
+                          "description": "Receiver is enabled and configured with a Sender's connection parameters",
+                          "default": false
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "caps"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Type of Flow accepted by the Receiver as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:audio"
+                  ],
+                  "format": "uri"
+                },
+                "caps": {
+                  "description": "Capabilities",
+                  "type": "object",
+                  "properties": {
+                    "media_types": {
+                      "description": "Subclassification of the formats accepted using IANA assigned media types",
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string",
+                        "anyOf": [
+                          {
+                            "enum": [
+                              "audio/L24",
+                              "audio/L20",
+                              "audio/L16",
+                              "audio/L8"
+                            ]
+                          },
+                          {
+                            "pattern": "^audio\\/[^\\s\\/]+$"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a data Receiver",
+          "title": "Data Receiver resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a receiver",
+              "title": "Receiver resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "device_id",
+                    "transport",
+                    "interface_bindings",
+                    "subscription"
+                  ],
+                  "properties": {
+                    "device_id": {
+                      "description": "Device ID which this Receiver forms part of. This attribute is used to ensure referential integrity by registry implementations.",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "transport": {
+                      "description": "Transport type accepted by the Receiver in URN format",
+                      "type": "string",
+                      "oneOf": [
+                        {
+                          "pattern": "^urn:x-nmos:transport:"
+                        },
+                        {
+                          "not": {
+                            "pattern": "^urn:x-nmos:"
+                          }
+                        }
+                      ],
+                      "format": "uri"
+                    },
+                    "interface_bindings": {
+                      "description": "Binding of Receiver ingress ports to interfaces on the parent Node.",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "subscription": {
+                      "description": "Object containing the 'sender_id' currently subscribed to.",
+                      "type": "object",
+                      "required": [
+                        "sender_id",
+                        "active"
+                      ],
+                      "properties": {
+                        "sender_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "UUID of the Sender that this Receiver is currently subscribed to",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                          "default": null
+                        },
+                        "active": {
+                          "type": "boolean",
+                          "description": "Receiver is enabled and configured with a Sender's connection parameters",
+                          "default": false
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "caps"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Type of Flow accepted by the Receiver as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:data"
+                  ],
+                  "format": "uri"
+                },
+                "caps": {
+                  "description": "Capabilities",
+                  "type": "object",
+                  "properties": {
+                    "media_types": {
+                      "description": "Subclassification of the formats accepted using IANA assigned media types",
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string",
+                        "anyOf": [
+                          {
+                            "enum": [
+                              "video/smpte291",
+                              "application/json"
+                            ]
+                          },
+                          {
+                            "pattern": "^[^\\s\\/]+\\/[^\\s\\/]+$"
+                          }
+                        ]
+                      }
+                    },
+                    "event_types": {
+                      "description": "Subclassification of the event types accepted defined by the AMWA IS-07 specification",
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a mux Receiver",
+          "title": "Mux Receiver resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a receiver",
+              "title": "Receiver resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "device_id",
+                    "transport",
+                    "interface_bindings",
+                    "subscription"
+                  ],
+                  "properties": {
+                    "device_id": {
+                      "description": "Device ID which this Receiver forms part of. This attribute is used to ensure referential integrity by registry implementations.",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "transport": {
+                      "description": "Transport type accepted by the Receiver in URN format",
+                      "type": "string",
+                      "oneOf": [
+                        {
+                          "pattern": "^urn:x-nmos:transport:"
+                        },
+                        {
+                          "not": {
+                            "pattern": "^urn:x-nmos:"
+                          }
+                        }
+                      ],
+                      "format": "uri"
+                    },
+                    "interface_bindings": {
+                      "description": "Binding of Receiver ingress ports to interfaces on the parent Node.",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "subscription": {
+                      "description": "Object containing the 'sender_id' currently subscribed to.",
+                      "type": "object",
+                      "required": [
+                        "sender_id",
+                        "active"
+                      ],
+                      "properties": {
+                        "sender_id": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "UUID of the Sender that this Receiver is currently subscribed to",
+                          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                          "default": null
+                        },
+                        "active": {
+                          "type": "boolean",
+                          "description": "Receiver is enabled and configured with a Sender's connection parameters",
+                          "default": false
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "caps"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Type of Flow accepted by the Receiver as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:mux"
+                  ],
+                  "format": "uri"
+                },
+                "caps": {
+                  "description": "Capabilities",
+                  "type": "object",
+                  "properties": {
+                    "media_types": {
+                      "description": "Subclassification of the formats accepted using IANA assigned media types",
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string",
+                        "anyOf": [
+                          {
+                            "enum": [
+                              "video/SMPTE2022-6"
+                            ]
+                          },
+                          {
+                            "pattern": "^[^\\s\\/]+\\/[^\\s\\/]+$"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
