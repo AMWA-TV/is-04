@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "description": "Create a new subscription to a Query API",
+  "title": "Subscription creation",
+  "required": [
+    "max_update_rate_ms",
+    "persist",
+    "resource_path",
+    "params"
+  ],
+  "properties": {
+    "max_update_rate_ms": {
+      "description": "Rate limiting for messages. Sets the minimum interval (in milliseconds) between consecutive WebSocket messages.",
+      "type": "integer",
+      "default": 100
+    },
+    "persist": {
+      "description": "Whether the API will retain or destroy the subscription after the final client disconnects",
+      "type": "boolean",
+      "default": false
+    },
+    "secure": {
+      "description": "Whether a secure WebSocket connection (wss://) is required. NB: Default should be 'true' if the API is being presented via HTTPS, and 'false' otherwise.",
+      "type": "boolean"
+    },
+    "resource_path": {
+      "description": "HTTP resource path in the Query API to which this subscription relates",
+      "type": "string",
+      "enum": ["/nodes", "/devices", "/sources", "/flows", "/senders", "/receivers"]
+    },
+    "params": {
+      "description": "Object containing attributes to filter the resource on as per the Query Parameters specification. Can be empty.",
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "description": "Describes an audio Receiver",
+  "title": "Audio Receiver resource",
+  "allOf": [
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a receiver",
+      "title": "Receiver resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes the foundations of all NMOS resources",
+          "title": "Base resource",
+          "required": [
+            "id",
+            "version",
+            "label",
+            "description",
+            "tags"
+          ],
+          "properties": {
+            "id": {
+              "description": "Globally unique identifier for the resource",
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            "version": {
+              "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+              "type": "string",
+              "pattern": "^[0-9]+:[0-9]+$"
+            },
+            "label": {
+              "description": "Freeform string label for the resource",
+              "type": "string"
+            },
+            "description": {
+              "description": "Detailed description of the resource",
+              "type": "string"
+            },
+            "tags": {
+              "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+              "type": "object",
+              "patternProperties": {
+                "": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "device_id",
+            "transport",
+            "subscription"
+          ],
+          "properties": {
+            "device_id": {
+              "description": "Device ID which this Receiver forms part of. This attribute is used to ensure referential integrity by registry implementations.",
+              "type": "string",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+            },
+            "transport": {
+              "description": "Transport type accepted by the Receiver in URN format",
+              "type": "string",
+              "oneOf": [
+                {
+                  "enum": [
+                    "urn:x-nmos:transport:rtp",
+                    "urn:x-nmos:transport:rtp.ucast",
+                    "urn:x-nmos:transport:rtp.mcast",
+                    "urn:x-nmos:transport:dash"
+                  ]
+                },
+                {
+                  "not": {
+                    "pattern": "^urn:x-nmos:"
+                  }
+                }
+              ],
+              "format": "uri"
+            },
+            "subscription": {
+              "description": "Object containing the 'sender_id' currently subscribed to. Sender_id should be null on initialisation.",
+              "type": "object",
+              "required": [
+                "sender_id"
+              ],
+              "properties": {
+                "sender_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "UUID of the Sender that this Receiver is currently subscribed to",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                  "default": null
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "object",
+      "required": [
+        "format",
+        "caps"
+      ],
+      "properties": {
+        "format": {
+          "description": "Type of Flow accepted by the Receiver as a URN",
+          "type": "string",
+          "enum": [
+            "urn:x-nmos:format:audio"
+          ],
+          "format": "uri"
+        },
+        "caps": {
+          "description": "Capabilities",
+          "type": "object",
+          "properties": {
+            "media_types": {
+              "description": "Subclassification of the formats accepted using IANA assigned media types",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "anyOf": [
+                  {
+                    "enum": [
+                      "audio/L24",
+                      "audio/L20",
+                      "audio/L16",
+                      "audio/L8"
+                    ]
+                  },
+                  {
+                    "pattern": "^audio\\/[^\\s\\/]+$"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

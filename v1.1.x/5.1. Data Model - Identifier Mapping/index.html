@@ -1,0 +1,3972 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://specs.amwa.tv/new/is-04/v1.1.x/5.1.%20Data%20Model%20-%20Identifier%20Mapping/">
+      
+      
+        <link rel="prev" href="../5.0.%20Data%20Model/">
+      
+      
+        <link rel="next" href="../6.0.%20Upgrade%20Path/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.62">
+    
+    
+      
+        <title>Data Model: Identifier Mapping - AMWA IS-04 NMOS Discovery and Registration Specification</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.ce62732f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/amwa-branding.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-model-identifier-mapping" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="AMWA IS-04 NMOS Discovery and Registration Specification" class="md-header__button md-logo" aria-label="AMWA IS-04 NMOS Discovery and Registration Specification" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AMWA IS-04 NMOS Discovery and Registration Specification
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Model: Identifier Mapping
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/AMWA-TV/is-04" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AMWA-TV/is-04
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="AMWA IS-04 NMOS Discovery and Registration Specification" class="md-nav__button md-logo" aria-label="AMWA IS-04 NMOS Discovery and Registration Specification" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    AMWA IS-04 NMOS Discovery and Registration Specification
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AMWA-TV/is-04" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AMWA-TV/is-04
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AMWA IS-04 NMOS Discovery and Registration Specification (Stable)
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.0.%20Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AMWA NMOS Discovery and Registration Specification: Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  APIs
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/NodeAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  NodeAPI
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/QueryAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  QueryAPI
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/RegistrationAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  RegistrationAPI
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.1.%20APIs%20-%20Common%20Keys/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs: Common Keys
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.2.%20APIs%20-%20Client%20Side%20Implementation%20Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs: Client Side Implementation Notes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.3.%20APIs%20-%20Server%20Side%20Implementation%20Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs: Server Side Implementation Notes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.4.%20APIs%20-%20Load%20Balancing%20%26%20Redundancy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs: Load Balancing &amp; Redundancy
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.5.%20APIs%20-%20Query%20Parameters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs: Query Parameters
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3.0.%20Discovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Discovery
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3.1.%20Discovery%20-%20Registered%20Operation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Discovery: Registered Operation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3.2.%20Discovery%20-%20Peer%20to%20Peer%20Operation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Discovery: Peer to Peer Operation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.0.%20Behaviour/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.1.%20Behaviour%20-%20Registration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour: Registration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.2.%20Behaviour%20-%20Querying/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour: Querying
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.3.%20Behaviour%20-%20Nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour: Nodes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5.0.%20Data%20Model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Data Model
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Data Model: Identifier Mapping
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Data Model: Identifier Mapping
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identity-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Identity Hierarchy
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-and-flow-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Source and Flow Representation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source and Flow Representation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Sources
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flows
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier-persistence-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Identifier Persistence &amp; Generation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identifier Persistence &amp; Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Node ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Device ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Source ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flow-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flow ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sender-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Sender ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receiver-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Receiver ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Virtual Identifiers
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-identity-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Real-World Identity Examples
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real-World Identity Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge-device-camera-or-sdi-to-ip-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Edge Device: Camera or SDI to IP Converter
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-device-hardware-ip-codec" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Processing Device: Hardware IP Codec
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-device-hardware-audio-mixer" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Processing Device: Hardware Audio Mixer
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-device-virtual-vision-mixer-on-fixed-hardware-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Processing Device: Virtual Vision Mixer on Fixed Hardware Node
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6.0.%20Upgrade%20Path/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Upgrade Path
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <label class="md-nav__link" for="__nav_19" id="__nav_19_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Examples
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Examples
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Examples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-base-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-base-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-deviceid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-deviceid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-devices-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-devices-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-flowid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-flowid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-flows-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-flows-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-receiverid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-receiverid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-receivers-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-receivers-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-self-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-self-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-senderid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-senderid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-senders-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-senders-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-sourceid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-sourceid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/nodeapi-v1.1-sources-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-v1.1-sources-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-base-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-base-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-deviceid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-deviceid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-devices-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-devices-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-flowid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-flowid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-flows-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-flows-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-nodeid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-nodeid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-nodes-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-nodes-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-receiverid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-receiverid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-receivers-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-receivers-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-senderid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-senderid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-senders-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-senders-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-sourceid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-sourceid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-sources-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-sources-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-subscriptionid-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-subscriptionid-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-subscriptions-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-subscriptions-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-subscriptions-post-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-subscriptions-post-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/queryapi-v1.1-subscriptions-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-v1.1-subscriptions-post-request.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-v1.1-base-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-v1.1-base-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-v1.1-health-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-v1.1-health-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-v1.1-health-post-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-v1.1-health-post-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-v1.1-resource-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-v1.1-resource-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-v1.1-resource-post-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-v1.1-resource-post-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/registrationapi-v1.1-resource-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-v1.1-resource-post-request.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <label class="md-nav__link" for="__nav_20" id="__nav_20_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Schemas
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Schemas
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  JSON Schemas
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/clock_internal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  clock_internal
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/clock_ptp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  clock_ptp
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/device/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  device
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/devices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  devices
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/error/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  error
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_audio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_audio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_audio_coded/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_audio_coded
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_audio_raw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_audio_raw
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_core
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_mux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_mux
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_sdianc_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_sdianc_data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_video/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_video
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_video_coded/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_video_coded
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flow_video_raw/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flow_video_raw
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/flows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  flows
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  node
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/nodeapi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-base
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/nodeapi-receiver-target/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodeapi-receiver-target
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  nodes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/queryapi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-base
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/queryapi-subscription-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscription-response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/queryapi-subscriptions-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscriptions-post-request
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/queryapi-subscriptions-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscriptions-response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/queryapi-subscriptions-websocket/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  queryapi-subscriptions-websocket
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver_audio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver_audio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver_core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver_core
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver_data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver_mux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver_mux
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receiver_video/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receiver_video
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/receivers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  receivers
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/registrationapi-base/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-base
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/registrationapi-health-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-health-response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/registrationapi-resource-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-resource-post-request
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/registrationapi-resource-response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  registrationapi-resource-response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/resource_core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  resource_core
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/sender/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  sender
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/senders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  senders
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  source
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/source_audio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  source_audio
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/source_core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  source_core
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/source_generic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  source_generic
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/sources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  sources
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identity-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Identity Hierarchy
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-and-flow-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Source and Flow Representation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source and Flow Representation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Sources
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flows
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier-persistence-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Identifier Persistence &amp; Generation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identifier Persistence &amp; Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Node ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#device-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Device ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Source ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flow-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Flow ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sender-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Sender ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#receiver-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Receiver ID
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#virtual-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Virtual Identifiers
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-identity-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Real-World Identity Examples
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real-World Identity Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge-device-camera-or-sdi-to-ip-converter" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Edge Device: Camera or SDI to IP Converter
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-device-hardware-ip-codec" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Processing Device: Hardware IP Codec
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-device-hardware-audio-mixer" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Processing Device: Hardware Audio Mixer
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processing-device-virtual-vision-mixer-on-fixed-hardware-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Processing Device: Virtual Vision Mixer on Fixed Hardware Node
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+  
+
+
+<h1 id="data-model-identifier-mapping">Data Model: Identifier Mapping</h1>
+<p><em>(c) AMWA 2016, CC Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</em></p>
+<p>Identity is a core part of a flexible architecture for networked media. Associating IDs and timestamps with essence at the point of capture provides us with the capability to track a video frame or other content's ancestry through the production chain and back to the device which originally captured it. Definitions for each of the logical entities described here is available via the JT-NM Reference Architecture (<a href="http://www.jt-nm.org">http://www.jt-nm.org</a>).</p>
+<p>In order to ensure consistent behaviour in a production facility employing this identity, some rules must be applied when generating and handling identifiers. The guidelines below provide details of how this should be implemented.</p>
+<p>Implementing identity in many Devices is relatively straightforward, however for more complex multi-stage Devices (for example vision and audio mixers) there is more to consider. It is important that all editorial and transformative changes made to essence are represented by the identity model. As such, new Sources and/or Flows must be generated for a number of internal operations carried out by Devices.</p>
+<p>In addition to the potential creative benefits of tracking identity, some operational tasks can be simplified. For example, a camera's tally light can be instructed to watch for the ID of its video Source forming an ancestor of the vision mixer's PGM Out Source, and switching on whenever this is the case.</p>
+<h2 id="identity-hierarchy">Identity Hierarchy</h2>
+<p><img alt="Class diagram" src="../images/class.png" title="Class diagram" /></p>
+<p>All resources shown above are part of the JT-NM reference architecture. Each logical entity (aside from the Grain and its descendants) is identified by a UUID and a version, with the version changing whenever a modification is made to the resource's metadata (such as a Flow label, Sender description etc).</p>
+<h2 id="source-and-flow-representation">Source and Flow Representation</h2>
+<h3 id="sources">Sources</h3>
+<p>A new Source should be created in the following circumstances:</p>
+<ul>
+<li>At the input of essence into a networked media enviroment from the 'edge' (ie. a legacy or incompatible protocol)</li>
+<li>At the point of capture (ie. in a network connected camera or microphone)</li>
+<li>At the mix point of two or more Flows of essence (ie. an audio mix bus, vision mix bus)</li>
+<li>Where a multiplexed Source is split into multiple mono-essence Sources</li>
+<li>Where a set of Flows are combined as a single multiplexed Source</li>
+</ul>
+<p>Whenever a new Source is generated, its immediate parent Source(s) must be recorded. This is achieved via a 'parents' attribute in the Node API Sources resource. This contains an array of Source IDs corresponding to the Sources whose Flows have been brought together at this point. For example, a vision mixer which is fading between a Flow from Source A, and a Flow from Source B would indicate ["A", "B"] in its 'parents' attribute for the duration of this transition.</p>
+<h3 id="flows">Flows</h3>
+<p>A new Flow should be created in the following circumstances:</p>
+<ul>
+<li>Where a Flow passes through a processing element which is modelled as a new Source</li>
+<li>Where a Flow is modified in a non-editorial manner (ie. audio volume changed, EQ applied, video contrast changed, video encoded or decoded)</li>
+</ul>
+<p>Note that in order to avoid creating a new Flow after every single processing element held within a Device, processing blocks can be logically grouped together provided it will never be possible to use a Flow from part way through the processing block. For example, a three band EQ block within an audio mixer will cause a new Flow to be generated. Creating a new Flow after each EQ band is an option, but as these Flows could never be used directly anywhere else internal or external to the Device the representation of it is of no benefit. It is however important to register the EQ process as a whole as a new Flow as it may be possible to route the pre-EQ and post-EQ essence to a Sender, or to a mixing element within the Device.</p>
+<p>Sources and Flows must be advertised via a Node's API, and registered via the Registration API if available. This should only be done on the Device which originates the Source or Flow; if a Flow is received by a Device from the network it does not need to be re-advertised via APIs.</p>
+<p>Whenever a new Flow is generated, its immediate parent Flow(s) must be recorded. This is achieved via a 'parents' attribute in the Node API Flows resource. This contains an array of Flow IDs corresponding to the Flows which have been brought together at this point. For example, an encoder which codes a raw video Flow C into a coded video Flow D would indicate ["C"] in its 'parents' attribute.</p>
+<p><strong>Important Note:</strong> A processing element which has a 1:1 input to output relationship and doesn't make editorial changes only need create a new Flow ID on output and not a new Source ID. As a Flow ID must descend from a single consistent Source ID, the Flow ID for these processing elements MUST be generated based on seed data including the incoming Flow ID. If this dynamic Flow generation cannot be achieved, the processing element MUST be viewed as a new Source instead (see Flow ID section below).</p>
+<h2 id="identifier-persistence-generation">Identifier Persistence &amp; Generation</h2>
+<p>Persistent identity helps to ensure that users' expectations meet with reality. For example, if a piece of equipment is switched off and back on, the user would expect it to return with the same signals routed to and from the same ports. A control system managing this can only do so if the identifiers used by the Node remain the same.</p>
+<p>UUIDs are used throughout the NMOS data model, and can be generated in a number of ways (including from hardware addresses) in order to achieve consistent behaviour (see <a href="https://tools.ietf.org/html/rfc4122">RFC 4122</a>).</p>
+<h3 id="node-id">Node ID</h3>
+<p>For physical Nodes, the Node ID must be universally unique to that Node, and remain the same for all time (much in the same way as a serial number).</p>
+<p>For virtual Nodes, the Node ID must be universally unique to that Node. If a snapshot is taken of the virtual Node then it should be stored with the same ID, however the following conditions must be applied when re-deploying the virtual Node from this snapshot:</p>
+<ul>
+<li>If deploying via the same controller which created it and no other instantiation of this virtual Node exists, the original Node ID should be used.</li>
+<li>If deploying via the same controller which created it and an instantiation of this virtual Node exists, it must be deployed with a new ID. Uses of this Node ID (and child resources) in any other stored data must be mapped to the new ID during this process.</li>
+<li>If deploying via a different controller it cannot be guaranteed that another instance of this virtual Node isn't already in existence. A new Node ID must therefore be generated, with any stored data being mapped to the new ID during the process.</li>
+</ul>
+<p>In order to simplify the above process for deploying snapshots, you may opt to generate a new Node ID for each instantiation of a virtual Node snapshot, but a mapping service must provide translations between old and new IDs as this may be required to keep session / production / automation data relevant.</p>
+<h3 id="device-id">Device ID</h3>
+<p>Owned by:</p>
+<ul>
+<li>Node ID</li>
+</ul>
+<p>Should change if:</p>
+<ul>
+<li>The same Device configuration operates on a different Node</li>
+<li>A duplicate of the Device operates at the same time as the original instantiation</li>
+</ul>
+<p>Should not change if:</p>
+<ul>
+<li>The same Device configuration is re-loaded onto the same Node after a reboot or similar</li>
+</ul>
+<p>It is suggested that Device IDs be generated using the combination of:</p>
+<ul>
+<li>The parent Node ID</li>
+<li>A Device serial number if available in the case of physical systems, or a persistent identifier or index created upon Device instantiation in the case of virtual systems</li>
+</ul>
+<h3 id="source-id">Source ID</h3>
+<p>Owned by:</p>
+<ul>
+<li>Device ID</li>
+</ul>
+<p>Should change if:</p>
+<ul>
+<li>Device ID changes</li>
+<li>A different physical interface (such as an SDI input) is used to retrieve essence</li>
+<li>Format URN changes between video, audio, data and mux variants</li>
+</ul>
+<p>Should not change if:</p>
+<ul>
+<li>Configuration parameters associated with the Source are changed, such as its operating resolution or bitrate</li>
+<li>Labels, descriptions or other metadata associated with the Source resource are modified</li>
+</ul>
+<p>It is suggested that Source IDs be generated using a combination of:</p>
+<ul>
+<li>The parent Device ID</li>
+<li>A processing element type and index (or name) within the Device</li>
+<li>A processing element Source index (or name)</li>
+</ul>
+<h3 id="flow-id">Flow ID</h3>
+<p>Owned by:</p>
+<ul>
+<li>Source ID</li>
+</ul>
+<p>Should change if:</p>
+<ul>
+<li>Source ID changes</li>
+<li>Format URN changes between video, audio, data and mux variants (including between two codec types)</li>
+</ul>
+<p>Should not change if:</p>
+<ul>
+<li>Configuration parameters associated with the Flow are changed, such as its operating resolution or bitrate</li>
+<li>Labels, descriptions or other metadata associated with the Flow resource are modified</li>
+</ul>
+<p>It is suggested that Flow IDs be generated using the combination of:</p>
+<ul>
+<li>The parent Source ID</li>
+<li>A processing element type and index (or name) within the Device</li>
+<li>A processing element Flow index (or name)\</li>
+<li>Parent Flow ID**</li>
+</ul>
+<p>** This should only be used in cases where the generation of a new
+Flow ID has been the result of a 1:1 transformation such as an encode,
+and not a vision mix.</p>
+<h3 id="sender-id">Sender ID</h3>
+<p>Owned by:</p>
+<ul>
+<li>Device ID</li>
+</ul>
+<p>Should change if:</p>
+<ul>
+<li>Device ID changes</li>
+<li>Transport type URN changes</li>
+</ul>
+<p>Should not change if:</p>
+<ul>
+<li>Flow ID it is sending changes</li>
+<li>A virtual Device is re-configured, adding or removing some Senders, but keeping this one</li>
+</ul>
+<p>It is suggested that Sender IDs be generated using the combination of:</p>
+<ul>
+<li>The parent Device ID</li>
+<li>An output connection identifier such as a bus name, index or similar</li>
+</ul>
+<h3 id="receiver-id">Receiver ID</h3>
+<p>Owned by:</p>
+<ul>
+<li>Device ID</li>
+</ul>
+<p>Should change if:</p>
+<ul>
+<li>Device ID changes</li>
+<li>Transport type URN changes</li>
+<li>Supported data format URN changes between video, audio, data and mux (including between two codec types)</li>
+</ul>
+<p>Should not change if:</p>
+<ul>
+<li>Sender ID it is receiving from changes</li>
+<li>A virtual Device is re-configured, adding or removing some Receivers, but keeping this one</li>
+</ul>
+<p>It is suggested that Receiver IDs be generated using the combination of:</p>
+<ul>
+<li>The parent Device ID</li>
+<li>An input connection identifier such as a channel name, index or similar</li>
+</ul>
+<h2 id="virtual-identifiers">Virtual Identifiers</h2>
+<p>In systems which are heavily re-configurable such as an IT virtualisation platform, it may not always be possible to generate identifiers based on fixed hardware. This inability to re-generate the same IDs for the same processing elements indicates a need for some form of persistent storage in order to make the identifiers useful over a period of time longer than a single production deployment.</p>
+<p>Consider for example a TV production using a re-configurable studio facility. The recording is split over a few weeks, with a gap of three days in the middle where the physical studio floor is in use by another production. It is necessary to 'spin down' the virtual infrastructure in use during this period so that it can be used by others. When spinning it back up again, all connections between senders and receivers should be re-instated, and all recorded metadata should be relatable to the previous recording period. By persisting the identifiers used in the previous production this is very straightforward (although the requirements for identifier re-generation as specified under the Node ID heading above should be observed, and mappings applied where necessary).</p>
+<h2 id="real-world-identity-examples">Real-World Identity Examples</h2>
+<p>In order to demonstrate how identity should be applied to real-world Devices, some example of common applications are included below.</p>
+<h3 id="edge-device-camera-or-sdi-to-ip-converter">Edge Device: Camera or SDI to IP Converter</h3>
+<p><img alt="Key" src="../images/key.png" title="Key" />
+<img alt="Edge" src="../images/edge.png" title="Edge" /></p>
+<p>System</p>
+<ul>
+<li>Fixed Node ID</li>
+<li>Fixed Device ID</li>
+</ul>
+<p>Input</p>
+<ul>
+<li>SDI or Camera Sensor</li>
+</ul>
+<p>Output</p>
+<ul>
+<li>Fixed Source IDs</li>
+<li>Fixed Flow IDs</li>
+<li>Fixed Sender IDs</li>
+</ul>
+<h3 id="processing-device-hardware-ip-codec">Processing Device: Hardware IP Codec</h3>
+<p><img alt="Key" src="../images/key.png" title="Key" />
+<img alt="Processing" src="../images/processing.png" title="Processing" /></p>
+<p>System</p>
+<ul>
+<li>Fixed Node ID</li>
+<li>Fixed Device ID</li>
+</ul>
+<p>Input</p>
+<ul>
+<li>Fixed Receiver ID</li>
+</ul>
+<p>Output</p>
+<ul>
+<li>Flow ID generated based on input Flow ID (see <em>Source and Flow
+    Representation</em> above)</li>
+<li>Fixed Sender ID</li>
+</ul>
+<h3 id="processing-device-hardware-audio-mixer">Processing Device: Hardware Audio Mixer</h3>
+<p><img alt="Key" src="../images/key.png" title="Key" />
+<img alt="Mixer" src="../images/mixer.png" title="Mixer" /></p>
+<p>NB: A new Flow is created following each processing element where a tap off could be taken, even if it isn't being taken at that moment. For example, a pre-fade version of Channel 1 may be taken to the monitor bus post-processing (EQ), so a new Flow must be created here. The key is to distinguish this Flow as different from the post-fade version which may not have identical content. If a Flow receives a time domain modification (Grain sync timestamp change, or delay applied), no data model changes are required as the Grain origin timestamps still uniquely identify it within the originating Flow. At mix points and where data is generated from a control signal (such as a tone generator) a new Source must also be created.</p>
+<p>System</p>
+<ul>
+<li>Fixed Node ID</li>
+<li>Fixed Device ID</li>
+</ul>
+<p>Channel Strip</p>
+<ul>
+<li>Fixed Receiver ID</li>
+<li>Input dependent Flow ID following each self-contained processing element (see <em>Source and Flow Representation</em> above)</li>
+</ul>
+<p>Tone Generator</p>
+<ul>
+<li>Fixed Source ID</li>
+<li>Fixed Flow ID</li>
+</ul>
+<p>Delay Line</p>
+<ul>
+<li>Output Source and Flow ID match input</li>
+</ul>
+<p>PGM Bus</p>
+<ul>
+<li>Fixed Source ID and Flow ID</li>
+<li>Fixed Sender ID</li>
+</ul>
+<p>Monitor Bus</p>
+<ul>
+<li>Fixed Source ID</li>
+<li>Fixed Flow ID</li>
+<li>Fixed Sender ID</li>
+</ul>
+<p>During operation, as with any other fixed hardware Device there is little need to generate new identifiers as they can be baked into the Device at manufacture. Changes will however be required to the ancestry recorded against Flows and Sources within the API (and network registry if applicable). These changes will occur whenever a modification is made to bus routing, such as pressing a PFL button or linking a channel to a particular group.</p>
+<p>Metering isn't shown in this example, but may be shown to take an audio Flow as input, create a new metering data Source and Flow, and pass this data on to a Sender for transmission to the network as a series of measurements.</p>
+<h3 id="processing-device-virtual-vision-mixer-on-fixed-hardware-node">Processing Device: Virtual Vision Mixer on Fixed Hardware Node</h3>
+<p>This example covers a more flexible setup where the configuration of Devices is determined on a more freeform basis using logical processing blocks which can be assembled based on the user's requirements. Fundamentally this works in the same way as previous examples.</p>
+<p><img alt="Key" src="../images/key.png" title="Key" />
+<img alt="VM-Palette" src="../images/vm-palette.png" title="VM-Palette" /></p>
+<p>The user starts out with a palette of components which can be attached together to create a vision mixer suitable for their requirements. Each component can either have identity associated with it permanently (if there are a limited number of each component which can be deployed), or the identifiers could be generated on the fly as a particular component is instantiated. In the latter case, whilst randomly generated identifiers could be used each time, some degree of consistency may be useful. For example the main PGM output from the mixer might be best defined with the same Sender ID each time it is instantiated so that it can easily be brought up and routed from as part of a larger studio preset. Management and generation of these identifiers is at the discretion of the implementer, but a suggested scheme might use the Device ID plus processor type or role plus an index within the Device as the seed data to generate identifiers in a consistent manner.</p>
+<p>Note as shown in the palette where new Flows are generated as opposed to new Sources. The video amplifier creates a new Flow based on its input as whilst it is editorially the same, an effect has been applied. The video matrix does not change any identity (no new Sources or Flows) as it acts purely as a passive splitter for existing Flows. The other components shown indicate that they are a new Source, either because they combine Flows or because they generate a Flow from scratch.</p>
+<p>Having built a vision mixer from the palette above, a simple example layout is shown below.</p>
+<p><strong>Important Note:</strong> Unlike most of the processing elements above which have a fixed output Source and Flow ID, or carry the Flow ID through from the input, the video amplifier (much like an encoder or decoder) simply generates a new Flow from the input Flow without the need for a new Source. As a Flow ID must descend from a single consistent Source ID, the Flow ID for these processing elements MUST be generated based on seed data including the incoming Flow ID. If this dynamic Flow generation cannot be achieved, the processing element MUST be viewed as a new Source.</p>
+<p><img alt="VM-Device" src="../images/vm-device.png" title="VM-Device" /></p>
+<p>System</p>
+<ul>
+<li>
+<p>Fixed Node ID</p>
+</li>
+<li>
+<p>Fixed Device ID</p>
+<p>NB: This assumes the mixer cannot be logically split into two distinct mixers. In this case multiple Device IDs may exist</p>
+</li>
+</ul>
+<p>Inputs</p>
+<ul>
+<li>Fixed Receiver ID pool, or generated based on seed data of Device ID
+    and Receiver index</li>
+</ul>
+<p>Outputs</p>
+<ul>
+<li>Fixed Sender ID pool, or generated based on seed data of Device ID
+    and Sender index</li>
+</ul>
+<p>Pattern Generator</p>
+<ul>
+<li>
+<p>Source and Flow ID generated based on seed data of Device ID, processor type and pattern generator index within Device</p>
+<p>Alternatively these IDs could be statically associated with a processor from the palette, rather than assigning them upon instantiation</p>
+</li>
+</ul>
+<p>FX Keyer</p>
+<ul>
+<li>
+<p>Source and Flow ID generated based on seed data of Device ID, processor type and FX keyer index within the Device</p>
+<p>Alternatively these IDs could be statically associated with a processor from the palette, rather than assigning them upon instantiation</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"provider":"mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
+      
+        <script src="../javascripts/json-viewer.js"></script>
+      
+        <script src="../javascripts/amwa-branding.js"></script>
+      
+    
+  </body>
+</html>
