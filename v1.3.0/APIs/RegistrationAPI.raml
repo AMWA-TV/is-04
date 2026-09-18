@@ -1,0 +1,168 @@
+#%RAML 1.0
+
+# AMWA NMOS Discovery and Registration Specification: Registration API
+# (c) AMWA 2016
+
+title: Registration
+baseUri: http://example.api.com/x-nmos/registration/{version}
+version: v1.3
+mediaType: application/json
+types:
+  ErrorSchema: !include schemas/error.json
+documentation:
+  - title: Overview
+    content: |
+      The Registration API is exposed by NMOS discovery Nodes. It is used to publish data to the distributed registry, which can then be queried via the Query API. In smaller deployments where no distributed registry is available, the Registration API is not used and discovery responsibilities fall to individual Nodes which choose to implement Peer to Peer specification. The Registration API is a Write Only API.
+  - title: Further Documentation
+    content: |
+      Further normative documentation covering the behaviour of this API is contained in the [docs](../docs) folder of this repository.
+/:
+  displayName: Base
+  get:
+    description: List of paths available from this API
+    responses:
+      200:
+        body:
+          example: !include ../examples/registrationapi-base-get-200.json
+          type: !include schemas/registrationapi-base.json
+/resource:
+  displayName: Resource
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
+  post:
+    description: Create or update a registered resource
+    body:
+      example: !include ../examples/registrationapi-resource-post-request.json
+      type: !include schemas/registrationapi-resource-post-request.json
+    responses:
+      200:
+        body:
+          example: !include ../examples/registrationapi-resource-post-200.json
+          type: !include schemas/registrationapi-resource-response.json
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193
+        description: The expected response for an update operation on an existing registered resource
+      201:
+        body:
+          example: !include ../examples/registrationapi-resource-post-200.json
+          type: !include schemas/registrationapi-resource-response.json
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193
+        description: The expected response for a create operation performed for a previously unregistered resource
+      400:
+        description: Returned when the POST request is incorrectly formatted, missing mandatory attributes or breaches another condition which a Node is unlikely to be able to automatically correct.
+        body:
+          type: ErrorSchema
+      409:
+        description: Returned when the resource already exists in the registry at a different API version. The correct API version is identified via the Location header.
+        body:
+          type: ErrorSchema
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193
+  /{resourceType}/{resourceId}:
+    uriParameters:
+      resourceId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+      resourceType:
+        type: string
+        enum: [
+          "nodes",
+          "devices",
+          "sources",
+          "flows",
+          "senders",
+          "receivers"
+        ]
+    options:
+      description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+      responses:
+        200:
+        403:
+    delete:
+      description: Delete a registered resource
+      responses:
+        204:
+          description: The expected response, indicating 'No Content' following the DELETE
+        404:
+          description: Returned when the requested resource does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the resource exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193
+    get:
+      description: Show a registered resource (for debug use only)
+      responses:
+        200:
+          body:
+            example: !include ../examples/registrationapi-resource-get-200.json
+            type: !include schemas/registrationapi-resource-response.json
+        404:
+          description: Returned when the requested resource does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the resource exists in the registry at a different API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/registration/{version}/resource/nodes/3b8be755-08ff-452b-b217-c9151eb21193
+/health/nodes/{nodeId}:
+  displayName: Node health
+  uriParameters:
+    nodeId:
+      type: string
+      pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
+  post:
+    description: Update Node health
+    responses:
+      200:
+        body:
+          example: !include ../examples/registrationapi-health-post-200.json
+          type: !include schemas/registrationapi-health-response.json
+      404:
+        description: Returned when the requested Node does not exist or has been garbage collected
+        body:
+          type: ErrorSchema
+      409:
+        description: Returned when the requested Node exists in the registry but at a different API version. The correct API version is identified via the Location header.
+        body:
+          type: ErrorSchema
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/health/nodes/3b8be755-08ff-452b-b217-c9151eb21193
+  get:
+    description: Show a Node's health (for debug use only)
+    responses:
+      200:
+        body:
+          example: !include ../examples/registrationapi-health-get-200.json
+          type: !include schemas/registrationapi-health-response.json
+      404:
+        description: Returned when the requested Node does not exist or has been garbage collected
+        body:
+          type: ErrorSchema
+      409:
+        description: Returned when the requested Node exists in the registry but at a different API version. The correct API version is identified via the Location header.
+        body:
+          type: ErrorSchema
+        headers:
+          Location:
+            example: /x-nmos/registration/{version}/health/nodes/3b8be755-08ff-452b-b217-c9151eb21193

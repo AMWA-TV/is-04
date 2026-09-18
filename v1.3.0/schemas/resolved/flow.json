@@ -1,0 +1,1377 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "description": "Describes a Flow",
+  "title": "Flow resource",
+  "anyOf": [
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a raw Video Flow",
+      "title": "Raw Video Flow resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a Video Flow",
+          "title": "Video Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Flow",
+              "title": "Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "source_id",
+                    "device_id",
+                    "parents"
+                  ],
+                  "properties": {
+                    "grain_rate": {
+                      "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "source_id": {
+                      "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "device_id": {
+                      "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "parents": {
+                      "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "frame_width",
+                "frame_height",
+                "colorspace"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Format of the data coming from the Flow as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:video"
+                  ],
+                  "format": "uri"
+                },
+                "frame_width": {
+                  "description": "Width of the picture in pixels",
+                  "type": "integer"
+                },
+                "frame_height": {
+                  "description": "Height of the picture in pixels",
+                  "type": "integer"
+                },
+                "interlace_mode": {
+                  "description": "Interlaced video mode for frames in this Flow",
+                  "type": "string",
+                  "default": "progressive",
+                  "enum": [
+                    "progressive",
+                    "interlaced_tff",
+                    "interlaced_bff",
+                    "interlaced_psf"
+                  ]
+                },
+                "colorspace": {
+                  "description": "Colorspace used for the video. Any values not defined in the enum should be defined in the NMOS Parameter Registers",
+                  "type": "string",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "BT601",
+                        "BT709",
+                        "BT2020",
+                        "BT2100"
+                      ]
+                    },
+                    {
+                      "pattern": "^\\S+$"
+                    }
+                  ]
+                },
+                "transfer_characteristic": {
+                  "description": "Transfer characteristic. Any values not defined in the enum should be defined in the NMOS Parameter Registers",
+                  "type": "string",
+                  "default": "SDR",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "SDR",
+                        "HLG",
+                        "PQ"
+                      ]
+                    },
+                    {
+                      "pattern": "^\\S+$"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "media_type",
+            "components"
+          ],
+          "properties": {
+            "media_type": {
+              "description": "Subclassification of the format using IANA assigned media types",
+              "type": "string",
+              "enum": [
+                "video/raw"
+              ]
+            },
+            "components": {
+              "description": "Array of objects describing the components",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "title": "component",
+                "type": "object",
+                "required": [
+                  "name",
+                  "width",
+                  "height",
+                  "bit_depth"
+                ],
+                "properties": {
+                  "name": {
+                    "description": "Name of this component",
+                    "type": "string",
+                    "enum": [
+                      "Y",
+                      "Cb",
+                      "Cr",
+                      "I",
+                      "Ct",
+                      "Cp",
+                      "A",
+                      "R",
+                      "G",
+                      "B",
+                      "DepthMap"
+                    ]
+                  },
+                  "width": {
+                    "description": "Width of this component in pixels",
+                    "type": "integer"
+                  },
+                  "height": {
+                    "description": "Height of this component in pixels",
+                    "type": "integer"
+                  },
+                  "bit_depth": {
+                    "description": "Number of bits used to describe each sample",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a coded Video Flow",
+      "title": "Coded Video Flow resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a Video Flow",
+          "title": "Video Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Flow",
+              "title": "Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "source_id",
+                    "device_id",
+                    "parents"
+                  ],
+                  "properties": {
+                    "grain_rate": {
+                      "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "source_id": {
+                      "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "device_id": {
+                      "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "parents": {
+                      "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "frame_width",
+                "frame_height",
+                "colorspace"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Format of the data coming from the Flow as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:video"
+                  ],
+                  "format": "uri"
+                },
+                "frame_width": {
+                  "description": "Width of the picture in pixels",
+                  "type": "integer"
+                },
+                "frame_height": {
+                  "description": "Height of the picture in pixels",
+                  "type": "integer"
+                },
+                "interlace_mode": {
+                  "description": "Interlaced video mode for frames in this Flow",
+                  "type": "string",
+                  "default": "progressive",
+                  "enum": [
+                    "progressive",
+                    "interlaced_tff",
+                    "interlaced_bff",
+                    "interlaced_psf"
+                  ]
+                },
+                "colorspace": {
+                  "description": "Colorspace used for the video. Any values not defined in the enum should be defined in the NMOS Parameter Registers",
+                  "type": "string",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "BT601",
+                        "BT709",
+                        "BT2020",
+                        "BT2100"
+                      ]
+                    },
+                    {
+                      "pattern": "^\\S+$"
+                    }
+                  ]
+                },
+                "transfer_characteristic": {
+                  "description": "Transfer characteristic. Any values not defined in the enum should be defined in the NMOS Parameter Registers",
+                  "type": "string",
+                  "default": "SDR",
+                  "anyOf": [
+                    {
+                      "enum": [
+                        "SDR",
+                        "HLG",
+                        "PQ"
+                      ]
+                    },
+                    {
+                      "pattern": "^\\S+$"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "media_type"
+          ],
+          "properties": {
+            "media_type": {
+              "description": "Subclassification of the format using IANA assigned media types",
+              "type": "string",
+              "anyOf": [
+                {
+                  "enum": [
+                    "video/H264",
+                    "video/vc2"
+                  ]
+                },
+                {
+                  "pattern": "^video\\/[^\\s\\/]+$"
+                }
+              ],
+              "not": {
+                "enum": [
+                  "video/raw"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a raw audio Flow",
+      "title": "Raw Audio Flow resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes an audio Flow",
+          "title": "Audio Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Flow",
+              "title": "Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "source_id",
+                    "device_id",
+                    "parents"
+                  ],
+                  "properties": {
+                    "grain_rate": {
+                      "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "source_id": {
+                      "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "device_id": {
+                      "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "parents": {
+                      "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "sample_rate"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Format of the data coming from the Flow as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:audio"
+                  ],
+                  "format": "uri"
+                },
+                "sample_rate": {
+                  "description": "Number of audio samples per second for this Flow",
+                  "type": "object",
+                  "required": [
+                    "numerator"
+                  ],
+                  "properties": {
+                    "numerator": {
+                      "description": "Numerator",
+                      "type": "integer"
+                    },
+                    "denominator": {
+                      "description": "Denominator",
+                      "type": "integer",
+                      "default": 1
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "media_type",
+            "bit_depth"
+          ],
+          "properties": {
+            "media_type": {
+              "description": "Subclassification of the format using IANA assigned media types",
+              "type": "string",
+              "anyOf": [
+                {
+                  "enum": [
+                    "audio/L24",
+                    "audio/L20",
+                    "audio/L16",
+                    "audio/L8"
+                  ]
+                },
+                {
+                  "pattern": "^audio\\/[^\\s\\/]+$"
+                }
+              ]
+            },
+            "bit_depth": {
+              "description": "Bit depth of the audio samples",
+              "type": "integer"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a coded audio Flow",
+      "title": "Coded Audio Flow resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes an audio Flow",
+          "title": "Audio Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes a Flow",
+              "title": "Flow resource",
+              "allOf": [
+                {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "description": "Describes the foundations of all NMOS resources",
+                  "title": "Base resource",
+                  "required": [
+                    "id",
+                    "version",
+                    "label",
+                    "description",
+                    "tags"
+                  ],
+                  "properties": {
+                    "id": {
+                      "description": "Globally unique identifier for the resource",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "version": {
+                      "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                      "type": "string",
+                      "pattern": "^[0-9]+:[0-9]+$"
+                    },
+                    "label": {
+                      "description": "Freeform string label for the resource",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Detailed description of the resource",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                      "type": "object",
+                      "patternProperties": {
+                        "": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "required": [
+                    "source_id",
+                    "device_id",
+                    "parents"
+                  ],
+                  "properties": {
+                    "grain_rate": {
+                      "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                      "type": "object",
+                      "required": [
+                        "numerator"
+                      ],
+                      "properties": {
+                        "numerator": {
+                          "description": "Numerator",
+                          "type": "integer"
+                        },
+                        "denominator": {
+                          "description": "Denominator",
+                          "type": "integer",
+                          "default": 1
+                        }
+                      }
+                    },
+                    "source_id": {
+                      "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "device_id": {
+                      "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                    },
+                    "parents": {
+                      "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "object",
+              "required": [
+                "format",
+                "sample_rate"
+              ],
+              "properties": {
+                "format": {
+                  "description": "Format of the data coming from the Flow as a URN",
+                  "type": "string",
+                  "enum": [
+                    "urn:x-nmos:format:audio"
+                  ],
+                  "format": "uri"
+                },
+                "sample_rate": {
+                  "description": "Number of audio samples per second for this Flow",
+                  "type": "object",
+                  "required": [
+                    "numerator"
+                  ],
+                  "properties": {
+                    "numerator": {
+                      "description": "Numerator",
+                      "type": "integer"
+                    },
+                    "denominator": {
+                      "description": "Denominator",
+                      "type": "integer",
+                      "default": 1
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "media_type"
+          ],
+          "properties": {
+            "media_type": {
+              "description": "Subclassification of the format using IANA assigned media types",
+              "type": "string",
+              "pattern": "^audio\\/[^\\s\\/]+$",
+              "not": {
+                "pattern": "^audio\\/L[0-9]+$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a generic data Flow",
+      "title": "Generic data Flow resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a Flow",
+          "title": "Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes the foundations of all NMOS resources",
+              "title": "Base resource",
+              "required": [
+                "id",
+                "version",
+                "label",
+                "description",
+                "tags"
+              ],
+              "properties": {
+                "id": {
+                  "description": "Globally unique identifier for the resource",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "version": {
+                  "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                  "type": "string",
+                  "pattern": "^[0-9]+:[0-9]+$"
+                },
+                "label": {
+                  "description": "Freeform string label for the resource",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "Detailed description of the resource",
+                  "type": "string"
+                },
+                "tags": {
+                  "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                  "type": "object",
+                  "patternProperties": {
+                    "": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "source_id",
+                "device_id",
+                "parents"
+              ],
+              "properties": {
+                "grain_rate": {
+                  "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                  "type": "object",
+                  "required": [
+                    "numerator"
+                  ],
+                  "properties": {
+                    "numerator": {
+                      "description": "Numerator",
+                      "type": "integer"
+                    },
+                    "denominator": {
+                      "description": "Denominator",
+                      "type": "integer",
+                      "default": 1
+                    }
+                  }
+                },
+                "source_id": {
+                  "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "device_id": {
+                  "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "parents": {
+                  "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "format",
+            "media_type"
+          ],
+          "properties": {
+            "format": {
+              "description": "Format of the data coming from the Flow as a URN",
+              "type": "string",
+              "enum": [
+                "urn:x-nmos:format:data"
+              ],
+              "format": "uri"
+            },
+            "media_type": {
+              "description": "Subclassification of the format using IANA assigned media types",
+              "type": "string",
+              "pattern": "^[^\\s\\/]+\\/[^\\s\\/]+$",
+              "not": {
+                "enum": [
+                  "video/smpte291",
+                  "application/json"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes an SDI ancillary Flow",
+      "title": "SDI ancillary Flow resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a Flow",
+          "title": "Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes the foundations of all NMOS resources",
+              "title": "Base resource",
+              "required": [
+                "id",
+                "version",
+                "label",
+                "description",
+                "tags"
+              ],
+              "properties": {
+                "id": {
+                  "description": "Globally unique identifier for the resource",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "version": {
+                  "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                  "type": "string",
+                  "pattern": "^[0-9]+:[0-9]+$"
+                },
+                "label": {
+                  "description": "Freeform string label for the resource",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "Detailed description of the resource",
+                  "type": "string"
+                },
+                "tags": {
+                  "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                  "type": "object",
+                  "patternProperties": {
+                    "": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "source_id",
+                "device_id",
+                "parents"
+              ],
+              "properties": {
+                "grain_rate": {
+                  "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                  "type": "object",
+                  "required": [
+                    "numerator"
+                  ],
+                  "properties": {
+                    "numerator": {
+                      "description": "Numerator",
+                      "type": "integer"
+                    },
+                    "denominator": {
+                      "description": "Denominator",
+                      "type": "integer",
+                      "default": 1
+                    }
+                  }
+                },
+                "source_id": {
+                  "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "device_id": {
+                  "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "parents": {
+                  "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "format",
+            "media_type"
+          ],
+          "properties": {
+            "format": {
+              "description": "Format of the data coming from the Flow as a URN",
+              "type": "string",
+              "enum": [
+                "urn:x-nmos:format:data"
+              ],
+              "format": "uri"
+            },
+            "media_type": {
+              "description": "Subclassification of the format using IANA assigned media types",
+              "type": "string",
+              "enum": [
+                "video/smpte291"
+              ]
+            },
+            "DID_SDID": {
+              "description": "List of Data identification and Secondary data identification words",
+              "type": "array",
+              "items": {
+                "title": "entry",
+                "type": "object",
+                "properties": {
+                  "DID": {
+                    "description": "Data identification word",
+                    "type": "string",
+                    "pattern": "^0x[0-9a-fA-F]{2}$"
+                  },
+                  "SDID": {
+                    "description": "Secondary data identification word",
+                    "type": "string",
+                    "pattern": "^0x[0-9a-fA-F]{2}$"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a JSON based Flow",
+      "title": "JSON based Flow resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a Flow",
+          "title": "Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes the foundations of all NMOS resources",
+              "title": "Base resource",
+              "required": [
+                "id",
+                "version",
+                "label",
+                "description",
+                "tags"
+              ],
+              "properties": {
+                "id": {
+                  "description": "Globally unique identifier for the resource",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "version": {
+                  "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                  "type": "string",
+                  "pattern": "^[0-9]+:[0-9]+$"
+                },
+                "label": {
+                  "description": "Freeform string label for the resource",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "Detailed description of the resource",
+                  "type": "string"
+                },
+                "tags": {
+                  "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                  "type": "object",
+                  "patternProperties": {
+                    "": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "source_id",
+                "device_id",
+                "parents"
+              ],
+              "properties": {
+                "grain_rate": {
+                  "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                  "type": "object",
+                  "required": [
+                    "numerator"
+                  ],
+                  "properties": {
+                    "numerator": {
+                      "description": "Numerator",
+                      "type": "integer"
+                    },
+                    "denominator": {
+                      "description": "Denominator",
+                      "type": "integer",
+                      "default": 1
+                    }
+                  }
+                },
+                "source_id": {
+                  "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "device_id": {
+                  "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "parents": {
+                  "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "format",
+            "media_type"
+          ],
+          "properties": {
+            "format": {
+              "description": "Format of the data coming from the Flow as a URN",
+              "type": "string",
+              "enum": [
+                "urn:x-nmos:format:data"
+              ],
+              "format": "uri"
+            },
+            "media_type": {
+              "description": "Subclassification of the format using IANA assigned media types",
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
+            },
+            "event_type": {
+              "description": "Event type generated by this Flow, if applicable",
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "type": "object",
+      "description": "Describes a mux Flow",
+      "title": "Mux Flow resource",
+      "allOf": [
+        {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "type": "object",
+          "description": "Describes a Flow",
+          "title": "Flow resource",
+          "allOf": [
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "description": "Describes the foundations of all NMOS resources",
+              "title": "Base resource",
+              "required": [
+                "id",
+                "version",
+                "label",
+                "description",
+                "tags"
+              ],
+              "properties": {
+                "id": {
+                  "description": "Globally unique identifier for the resource",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "version": {
+                  "description": "String formatted TAI timestamp (<seconds>:<nanoseconds>) indicating precisely when an attribute of the resource last changed",
+                  "type": "string",
+                  "pattern": "^[0-9]+:[0-9]+$"
+                },
+                "label": {
+                  "description": "Freeform string label for the resource",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "Detailed description of the resource",
+                  "type": "string"
+                },
+                "tags": {
+                  "description": "Key value set of freeform string tags to aid in filtering resources. Values should be represented as an array of strings. Can be empty.",
+                  "type": "object",
+                  "patternProperties": {
+                    "": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "source_id",
+                "device_id",
+                "parents"
+              ],
+              "properties": {
+                "grain_rate": {
+                  "description": "Number of Grains per second for this Flow. Must be an integer division of, or equal to the Grain rate specified by the parent Source. Grain rate matches the frame rate for video (see NMOS Content Model). Specified for periodic Flows only.",
+                  "type": "object",
+                  "required": [
+                    "numerator"
+                  ],
+                  "properties": {
+                    "numerator": {
+                      "description": "Numerator",
+                      "type": "integer"
+                    },
+                    "denominator": {
+                      "description": "Denominator",
+                      "type": "integer",
+                      "default": 1
+                    }
+                  }
+                },
+                "source_id": {
+                  "description": "Globally unique identifier for the Source which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.0 only).",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "device_id": {
+                  "description": "Globally unique identifier for the Device which initially created the Flow. This attribute is used to ensure referential integrity by registry implementations (v1.1 onwards).",
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "parents": {
+                  "description": "Array of UUIDs representing the Flow IDs of Grains which came together to generate this Flow (may change over the lifetime of this Flow)",
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "object",
+          "required": [
+            "format",
+            "media_type"
+          ],
+          "properties": {
+            "format": {
+              "description": "Format of the data coming from the Flow as a URN",
+              "type": "string",
+              "enum": [
+                "urn:x-nmos:format:mux"
+              ],
+              "format": "uri"
+            },
+            "media_type": {
+              "description": "Subclassification of the format using IANA assigned media types",
+              "type": "string",
+              "anyOf": [
+                {
+                  "enum": [
+                    "video/SMPTE2022-6"
+                  ]
+                },
+                {
+                  "pattern": "^[^\\s\\/]+\\/[^\\s\\/]+$"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

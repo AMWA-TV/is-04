@@ -1,0 +1,243 @@
+#%RAML 1.0
+
+# AMWA NMOS Discovery and Registration Specification: Node API
+# (c) AMWA 2016
+
+title: Node
+baseUri: http://example.api.com/x-nmos/node/{version}
+version: v1.3
+mediaType: application/json
+types:
+  Node: !include schemas/node.json
+  Nodes: !include schemas/nodes.json
+  Device: !include schemas/device.json
+  Devices: !include schemas/devices.json
+  Source: !include schemas/source.json
+  Sources: !include schemas/sources.json
+  Flow: !include schemas/flow.json
+  Flows: !include schemas/flows.json
+  Sender: !include schemas/sender.json
+  Senders: !include schemas/senders.json
+  Receiver: !include schemas/receiver.json
+  Receivers: !include schemas/receivers.json
+  ErrorSchema: !include schemas/error.json
+documentation:
+  - title: Overview
+    content: |
+      The Node API is exposed by each NMOS Node in a system, regardless of whether it is possible for that Node to provide NMOS resources such as Flows, Sources etc. Data exposed by the Node API is used to populate the (distributed) registry via the Registration API. In smaller deployments the Node API is fetched from directly as required by Nodes which implement the Peer to Peer specification.
+  - title: Further Documentation
+    content: |
+      Further normative documentation covering the behaviour of this API is contained in the [docs](../docs) folder of this repository.
+/:
+  displayName: Base
+  get:
+    description: List of paths available from this API
+    responses:
+      200:
+        body:
+          example: !include ../examples/nodeapi-base-get-200.json
+          type: !include schemas/nodeapi-base.json
+/self:
+  displayName: Self
+  get:
+    description: Get information about this Node
+    responses:
+      200:
+        body:
+          example: !include ../examples/nodeapi-self-get-200.json
+          type: Node
+/sources:
+  displayName: Sources
+  get:
+    description: List Sources
+    responses:
+      200:
+        body:
+          example: !include ../examples/nodeapi-sources-get-200.json
+          type: Sources
+  /{sourceId}:
+    uriParameters:
+      sourceId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      description: Get a single Source
+      responses:
+        200:
+          body:
+            example: !include ../examples/nodeapi-sourceid-get-200.json
+            type: Source
+        404:
+          description: Returned when the requested Source ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Source ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/node/{version}/sources/4569cea2-ab63-4f97-8dd1-bad4669ea5e4
+/flows:
+  displayName: Flows
+  get:
+    description: List Flows
+    responses:
+      200:
+        body:
+          example: !include ../examples/nodeapi-flows-get-200.json
+          type: Flows
+  /{flowId}:
+    uriParameters:
+      flowId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      description: Get a single Flow
+      responses:
+        200:
+          body:
+            example: !include ../examples/nodeapi-flowid-get-200.json
+            type: Flow
+        404:
+          description: Returned when the requested Flow ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Flow ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/node/{version}/flows/5fbec3b1-1b0f-417d-9059-8b94a47197ed
+/devices:
+  displayName: Devices
+  get:
+    description: List Devices
+    responses:
+      200:
+        body:
+          example: !include ../examples/nodeapi-devices-get-200.json
+          type: Devices
+  /{deviceId}:
+    uriParameters:
+      deviceId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      description: Get a single Device
+      responses:
+        200:
+          body:
+            example: !include ../examples/nodeapi-deviceid-get-200.json
+            type: Device
+        404:
+          description: Returned when the requested Device ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Device ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/node/{version}/devices/67c25159-ce25-4000-a66c-f31fff890265
+/senders:
+  displayName: Senders
+  get:
+    description: List Senders
+    responses:
+      200:
+        body:
+          example: !include ../examples/nodeapi-senders-get-200.json
+          type: Senders
+  /{senderId}:
+    uriParameters:
+      senderId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      description: Get a single Sender
+      responses:
+        200:
+          body:
+            example: !include ../examples/nodeapi-senderid-get-200.json
+            type: Sender
+        404:
+          description: Returned when the requested Sender ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Sender ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/node/{version}/senders/d7aa5a30-681d-4e72-92fb-f0ba0f6f4c3e
+/receivers:
+  displayName: Receivers
+  get:
+    description: List Receivers
+    responses:
+      200:
+        body:
+          example: !include ../examples/nodeapi-receivers-get-200.json
+          type: Receivers
+  /{receiverId}:
+    uriParameters:
+      receiverId:
+        type: string
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    get:
+      description: Get a single Receiver
+      responses:
+        200:
+          body:
+            example: !include ../examples/nodeapi-receiverid-get-200.json
+            type: Receiver
+        404:
+          description: Returned when the requested Receiver ID does not exist
+          body:
+            type: ErrorSchema
+        409:
+          description: Returned when the requested Receiver ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+          body:
+            type: ErrorSchema
+          headers:
+            Location:
+              example: /x-nmos/node/{version}/receivers/1eb53d65-ac83-441c-86f6-9b27df30ef0c
+    /target:
+      options:
+        description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+        responses:
+          200:
+          403:
+      put:
+        description: Request a change to a Receiver's subscription (deprecated)
+        body:
+          example: !include ../examples/nodeapi-senderid-get-200.json
+          type: !include schemas/nodeapi-receiver-target.json
+        responses:
+          202:
+            body:
+              example: !include ../examples/nodeapi-senderid-get-200.json
+              type: Sender
+          400:
+            description: Returned when the PUT request is incorrectly formatted or missing mandatory attributes
+            body:
+              type: ErrorSchema
+          404:
+            description: Returned when the requested Receiver ID does not exist
+            body:
+              type: ErrorSchema
+          409:
+            description: Returned when the requested Receiver ID exists at a higher API version, and the resource cannot be conformed to the requested API version. The correct API version is identified via the Location header.
+            body:
+              type: ErrorSchema
+            headers:
+              Location:
+                example: /x-nmos/node/{version}/receivers/1eb53d65-ac83-441c-86f6-9b27df30ef0c/target
+          501:
+            description: This feature has not been implemented due to deprecation
+            body:
+              type: ErrorSchema
