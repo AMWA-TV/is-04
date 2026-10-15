@@ -8,7 +8,8 @@
       
       
       
-        <link rel="canonical" href="https://specs.amwa.tv/new/is-04/v1.3.x/APIs/">
+        <link rel="canonical" href="https://specs.amwa.tv/is-04/v1.3.x/v1.3.x/APIs/">
+      
       
       
         <link rel="prev" href="../Overview/">
@@ -21,7 +22,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="zensical-0.0.62">
+      <meta name="generator" content="zensical-0.0.70">
     
     
       
@@ -32,7 +33,7 @@
       
         
       
-      <link rel="stylesheet" href="../assets/stylesheets/modern/main.ce62732f.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.e442bf79.min.css">
       
       
 
@@ -69,14 +70,11 @@
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <label class="md-overlay" for="__drawer" aria-hidden="true"></label>
     <div data-md-component="skip">
-      
-        
-        <a href="#apis" class="md-skip">
-          Skip to content
-        </a>
-      
+      <a href="#__skip" class="md-skip">
+        Skip to content
+      </a>
     </div>
     <div data-md-component="announce">
       
@@ -260,18 +258,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_2">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Introduction
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -295,10 +294,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -341,18 +341,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   APIs
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
     
@@ -388,18 +389,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3_1">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="true">
+            <label class="md-nav__title" for="__nav_3_1">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   General
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
     
@@ -413,6 +415,23 @@
       
         
       
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="././" class="md-nav__link md-nav__link--active">
         
@@ -430,13 +449,166 @@
 
       </a>
       
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API Specifications
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API Validation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#content-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Content Types
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API Paths
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Versioning
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-api-base-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Common API Base Resource
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#urls-approach-to-trailing-slashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        URLs: Approach to Trailing Slashes
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="URLs: Approach to Trailing Slashes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-and-head-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>GET</code> and <code>HEAD</code> Requests
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-other-requests-put-post-delete-options-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        All Other Requests (<code>PUT</code>, <code>POST</code>, <code>DELETE</code>, <code>OPTIONS</code>, etc.)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Client Behaviour
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-codes-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Error Codes &amp; Responses
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -460,10 +632,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -487,10 +659,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -514,10 +686,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -541,10 +713,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -568,18 +740,20 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -620,18 +794,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Discovery
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -665,18 +840,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_1">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_4_1">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   General
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -700,10 +876,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -727,10 +903,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -754,18 +930,20 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -806,18 +984,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_5">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Behaviour
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -851,18 +1030,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_1">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_5_1">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   General
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -886,10 +1066,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -913,10 +1093,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -940,10 +1120,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -967,18 +1147,20 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -1019,18 +1201,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_6">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Controllers
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -1054,10 +1237,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -1098,18 +1282,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_7">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Data Model
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -1143,18 +1328,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7_1">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_1_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_7_1">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   General
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -1178,10 +1364,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1205,18 +1391,20 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -1257,18 +1445,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_8">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Miscellaneous
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -1292,10 +1481,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -1336,24 +1526,25 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_9">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   API Definitions
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
   
     <li class="md-nav__item">
-      <a href="././" class="md-nav__link">
+      <a href="./definitions/" class="md-nav__link">
         
   
   
@@ -1371,10 +1562,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1398,10 +1589,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1425,10 +1616,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1452,10 +1643,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -1496,18 +1688,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_10">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   JSON Schemas
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -1531,10 +1724,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1558,10 +1751,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1585,10 +1778,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1612,10 +1805,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1639,10 +1832,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1666,10 +1859,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1693,10 +1886,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1720,10 +1913,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1747,10 +1940,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1774,10 +1967,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1801,10 +1994,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1828,10 +2021,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1855,10 +2048,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1882,10 +2075,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1909,10 +2102,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1936,10 +2129,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1963,10 +2156,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -1990,10 +2183,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2017,10 +2210,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2044,10 +2237,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2071,10 +2264,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2098,10 +2291,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2125,10 +2318,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2152,10 +2345,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2179,10 +2372,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2206,10 +2399,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2233,10 +2426,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2260,10 +2453,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2287,10 +2480,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2314,10 +2507,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2341,10 +2534,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2368,10 +2561,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2395,10 +2588,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2422,10 +2615,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2449,10 +2642,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2476,10 +2669,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2503,10 +2696,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2530,10 +2723,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2557,10 +2750,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2584,10 +2777,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2611,10 +2804,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2638,10 +2831,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2665,10 +2858,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2692,10 +2885,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2719,10 +2912,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2746,10 +2939,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2773,10 +2966,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2800,10 +2993,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -2844,18 +3038,19 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_11">
-            <span class="md-nav__icon md-icon"></span>
-            
+        
+          <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+            <label class="md-nav__title" for="__nav_11">
+              <span class="md-nav__icon md-icon"></span>
+              
   
   Examples
 
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
+            </label>
+            <ul class="md-nav__list" data-md-scrollfix>
               
                 
+                  
   
   
   
@@ -2879,10 +3074,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2906,10 +3101,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2933,10 +3128,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2960,10 +3155,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -2987,10 +3182,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3014,10 +3209,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3041,10 +3236,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3068,10 +3263,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3095,10 +3290,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3122,10 +3317,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3149,10 +3344,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3176,10 +3371,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3203,10 +3398,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3230,10 +3425,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3257,10 +3452,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3284,10 +3479,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3311,10 +3506,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3338,10 +3533,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3365,10 +3560,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3392,10 +3587,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3419,10 +3614,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3446,10 +3641,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3473,10 +3668,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3500,10 +3695,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3527,10 +3722,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3554,10 +3749,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3581,10 +3776,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3608,10 +3803,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3635,10 +3830,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3662,10 +3857,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3689,10 +3884,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3716,10 +3911,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3743,10 +3938,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3770,10 +3965,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3797,10 +3992,10 @@
     </li>
   
 
-              
-            
+                
               
                 
+                  
   
   
   
@@ -3824,10 +4019,11 @@
     </li>
   
 
+                
               
-            
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        
       
     </li>
   
@@ -3850,6 +4046,11 @@
                       
                     
                     
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
                   
                   <div class="md-sidebar__inner">
                     
@@ -3862,6 +4063,147 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API Specifications
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API Validation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#content-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Content Types
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API Paths
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Versioning
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-api-base-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Common API Base Resource
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#urls-approach-to-trailing-slashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        URLs: Approach to Trailing Slashes
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="URLs: Approach to Trailing Slashes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-and-head-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code>GET</code> and <code>HEAD</code> Requests
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-other-requests-put-post-delete-options-etc" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        All Other Requests (<code>PUT</code>, <code>POST</code>, <code>DELETE</code>, <code>OPTIONS</code>, etc.)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-behaviour" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Client Behaviour
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-codes-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Error Codes &amp; Responses
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3872,18 +4214,99 @@
             <div class="md-content" data-md-component="content">
               
               <article class="md-content__inner md-typeset">
+                <a id="__skip" tabindex="-1"></a>
                 
                   
+
   
   
 
 
 <h1 id="apis">APIs</h1>
+<p><em>(c) AMWA 2016, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)</em></p>
+<p>This document covers common aspects of the following three APIs:</p>
 <ul>
-<li><a href="NodeAPI/">NodeAPI</a></li>
-<li><a href="QueryAPI/">QueryAPI</a></li>
-<li><a href="RegistrationAPI/">RegistrationAPI</a></li>
+<li><a href="../../APIs/NodeAPI.raml">Node API</a></li>
+<li><a href="../../APIs/RegistrationAPI.raml">Registration API</a></li>
+<li><a href="../../APIs/QueryAPI.raml">Query API</a></li>
 </ul>
+<h2 id="api-specifications">API Specifications</h2>
+<p>The Node, Registration and Query APIs are specified using:</p>
+<ul>
+<li>The following sub-sections describing common API properties.</li>
+<li><a href="http://raml.org/">RAML</a> documents and <a href="http://tools.ietf.org/html/draft-zyp-json-schema-04">JSON schemas</a> in the <a href="../../APIs/">APIs</a> folder.</li>
+</ul>
+<p>Examples of JSON format output are provided in the <a href="../../examples/">examples</a> folder.</p>
+<h2 id="api-validation">API Validation</h2>
+<p>JSON schemas are included with the RAML API definitions. These include validation for values used within the APIs. It is strongly RECOMMENDED that implementers of a Registration API use these JSON schemas as part of a validation stage when receiving registrations from Nodes. Invalid resources SHOULD cause a <code>400</code> (Bad Request) HTTP error to be returned to the client.</p>
+<h3 id="content-types">Content Types</h3>
+<p>All APIs MUST provide a JSON representation signalled via <code>Content-Type: application/json</code> headers. This SHOULD be the default content type in the absence of any requested alternative by clients. Other content types (such as HTML) are permitted if they are explicitly requested via <code>Accept</code> headers.</p>
+<h3 id="api-paths">API Paths</h3>
+<p>All NMOS APIs MUST use a path in the following format. Other HTTP resources MAY be presented on the same port by the Node, provided all NMOS resources are available from the <code>/x-nmos/</code> path as follows:</p>
+<div class="highlight"><pre><span></span><code>http(s)://&lt;ip address or hostname&gt;:&lt;port&gt;/x-nmos/&lt;api type&gt;/&lt;api version&gt;/
+</code></pre></div>
+<p>At each level of the API from the base resource upwards, the response SHOULD include a JSON format array of the child resources available from that point.</p>
+<p>API clients using DNS-SD for API discovery SHOULD construct these paths by making use of the TXT records <code>api_proto</code> and <code>api_ver</code>, along with addresses and ports resolved via DNS-SD. API clients which are discovering Node APIs via a Query API SHOULD construct Node API paths using the corresponding data available within the <code>api</code> attributes within the Query API <code>/nodes</code> resources.</p>
+<p>Where protocol and versioning data is not available, clients MAY assume a v1.0 API, which operates via HTTP only.</p>
+<h3 id="versioning">Versioning</h3>
+<p>All public APIs are versioned as follows:</p>
+<ul>
+<li>Requesting the API base resource (such as <code>http(s)://&lt;ip address or hostname&gt;:&lt;port&gt;/x-nmos/query/</code>) will provide a list containing the versions of the API present on the node.</li>
+<li>A versioned API response MUST include only resources which match the schema for that API version.</li>
+<li>Data which is held for mismatched minor API versions MAY be returned if it can be conformed to the correct schema (see example below). Data MUST NOT be conformed between major API versions.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p>A v1.1 API response can include:</p>
+<ul>
+<li>v1.1 data without modification.</li>
+<li>Data conforming to schemas less than v2.0 but greater than v1.1, with any non-v1.1 keys removed.</li>
+<li>Query API only: Data confirming to schemas less than v1.1 but greater than or equal to v1.0 if a suitable downgrade parameter is specified (see <a href="../APIs%20-%20Query%20Parameters/">Query Parameters</a>).</li>
+</ul>
+<h3 id="common-api-base-resource">Common API Base Resource</h3>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+<span class="w">  </span><span class="s2">"v1.0/"</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">"v2.0/"</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">"v3.0/"</span>
+<span class="p">]</span>
+</code></pre></div>
+<ul>
+<li>Appending <code>/v1.0/</code> to the API base resource will request the version v1.0 of the API if available.</li>
+<li>The versioning format is <code>v&lt;MAJOR&gt;.&lt;MINOR&gt;</code></li>
+<li><code>MINOR</code> increments will be performed for non-breaking changes (such as the addition of attributes in a response)</li>
+<li><code>MAJOR</code> increments will be performed for breaking changes (such as the renaming of a resource or attribute)</li>
+<li>Versions MUST be represented as complete strings. Parsing MUST proceed as follows: separate into two strings, using the point (<code>.</code>) as a delimiter. Compare integer representations of <code>MAJOR</code>, <code>MINOR</code> version (such that v1.12 is greater than v1.5).</li>
+<li>Clients are responsible for identifying the correct API version they require.</li>
+</ul>
+<h3 id="urls-approach-to-trailing-slashes">URLs: Approach to Trailing Slashes</h3>
+<p>For consistency and in order to adhere to how these APIs are specified in RAML, the 'primary' path for every resource has the trailing slash omitted.</p>
+<p>In order to overcome shortcomings in some common libraries, the following requirements are imposed for the support of URL paths with or without trailing slashes.</p>
+<h4 id="get-and-head-requests"><code>GET</code> and <code>HEAD</code> Requests</h4>
+<ul>
+<li>Clients performing requests using these methods SHOULD correctly handle a <code>301</code> (Moved Permanently) response.</li>
+<li>When a <code>301</code> is supported, the client MUST follow the redirect in order to retrieve the response payload.</li>
+<li>Servers implementing the APIs MUST support requests using these methods to both the trailing slash and non-trailing slash path to each resource. One of these MAY produce a <code>301</code> response causing a redirect to the other if preferred.</li>
+</ul>
+<h4 id="all-other-requests-put-post-delete-options-etc">All Other Requests (<code>PUT</code>, <code>POST</code>, <code>DELETE</code>, <code>OPTIONS</code>, etc.)</h4>
+<ul>
+<li>Clients performing requests using these methods MUST use URLs with no trailing slash present.</li>
+<li>Servers implementing the APIs MUST correctly interpret requests using these methods to paths without trailing slashes present.</li>
+<li>Servers implementing the APIs MAY correctly interpret requests using these methods to paths with trailing slashes present for backward compatibility.</li>
+<li>Servers SHOULD NOT respond with <code>3xx</code> codes for these request types.</li>
+</ul>
+<h4 id="client-behaviour">Client Behaviour</h4>
+<p>When a server implementation needs to indicate an API URL via an <code>href</code> or similar attribute, it is valid to either include a trailing slash or not provided that the listed path is accessible and follows the above rules. Clients appending paths to <code>href</code> type attributes MUST support both cases, avoiding doubled or missing slashes.</p>
+<h3 id="error-codes-responses">Error Codes &amp; Responses</h3>
+<p>The NMOS APIs use HTTP status codes to indicate success, failure and other cases to clients as per <a href="https://tools.ietf.org/html/rfc7231">RFC 7231</a> and related standards. Where the RAML specification of an API specifies explicit response codes it is expected that a client will handle these cases in a particular way. Explicit handling of every possible HTTP response code is not expected, but clients are expected to implement generic handling for ranges of response codes (<code>1xx</code>, <code>2xx</code>, <code>3xx</code>, <code>4xx</code> and <code>5xx</code>).</p>
+<p>For HTTP codes <code>400</code> and upwards, a JSON format response MUST be returned as follows:</p>
+<p><strong>Example Error Response</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Human readable message which is suitable for user interface display, and helpful to the user"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"debug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Programmer / debugging detail or traceback"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>code</code> SHOULD match the HTTP status code. <code>error</code> MUST always be present and in string format. <code>debug</code> MAY be <code>null</code> if no further debug information is available.</p>
+<p>Further details on when APIs will respond with particular codes is covered in the <a href="../Behaviour/">Behaviour</a> section.</p>
 
 
 
@@ -3927,7 +4350,7 @@
 </footer>
       
     </div>
-    <div class="md-dialog" data-md-component="dialog">
+    <div class="md-dialog" data-md-component="dialog" role="status" aria-atomic="true">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
@@ -3939,10 +4362,10 @@
       
         
         
-      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"provider":"mike"}}</script>
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"redirect":null,"search":"../assets/javascripts/workers/search.c47bb847.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","clipboard.error":"Could not copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"provider":"mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
+      <script src="../assets/javascripts/bundle.a2388154.min.js"></script>
       
         <script src="../javascripts/json-viewer.js"></script>
       
