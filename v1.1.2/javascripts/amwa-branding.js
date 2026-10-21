@@ -8,7 +8,7 @@
   branding.className = 'amwa-header-branding';
   branding.setAttribute('aria-label', 'AMWA branding');
 
-  for (const logo of [{"file": "AMWA-logo.png", "alt": "AMWA logo", "href": "https://www.amwa.tv"}, {"file": "NMOS-logo.png", "alt": "NMOS logo", "href": "https://specs.amwa.tv/new/nmos"}]) {
+  for (const logo of [{"file": "AMWA-logo.png", "alt": "AMWA logo", "href": "https://www.amwa.tv"}, {"file": "NMOS-logo.png", "alt": "NMOS logo", "href": "https://specs.amwa.tv/nmos"}]) {
     const image = document.createElement('img');
     image.src = logo.src || assetUrl(logo.file);
     image.alt = logo.alt;
