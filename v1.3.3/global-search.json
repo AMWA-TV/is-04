@@ -3,12 +3,6 @@
   "repository": "AMWA-TV/is-04",
   "documents": [
     {
-      "title": "Page not found",
-      "url": "https://specs.amwa.tv/is-04/latest/404/",
-      "text": "Page not found Page not found Page not found - AMWA IS-04 NMOS Discovery and Registration Specification Skip to content Page not found The page you requested could not be found. Return to the documentation home",
-      "repository": "AMWA-TV/is-04"
-    },
-    {
       "title": "NodeAPI",
       "url": "https://specs.amwa.tv/is-04/latest/APIs/NodeAPI/",
       "text": "NodeAPI NodeAPI NodeAPI - AMWA IS-04 NMOS Discovery and Registration Specification Skip to content NodeAPI The Node API is exposed by each NMOS Node in a system, regardless of whether it is possible for that Node to provide NMOS resources such as Flows, Sources etc. Data exposed by the Node API is used to populate the (distributed) registry via the Registration API. In smaller deployments the Node API is fetched from directly as required by Nodes which implement the peer-to-peer specification. Open NodeAPI API documentation",
